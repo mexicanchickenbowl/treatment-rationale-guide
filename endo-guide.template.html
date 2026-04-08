@@ -25,6 +25,7 @@
   .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
   .prose-body mark.current { background: #fb923c; color: #fff; }
   .cite { color: #b45309; font-weight: 500; }
+  .pct  { color: #0d9488; font-weight: 500; }
   .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; }
   .scroll-table { overflow-x: auto; }
   kbd { font-family: ui-monospace, monospace; background: #f3f4f6; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: 0.75rem; }
@@ -41,23 +42,57 @@ const { useState, useMemo, useEffect, useRef, useCallback } = React;
 // --- utilities --------------------------------------------------------------
 const CITE_MARKER = /\{\{cite:\s*([^}]+?)\}\}/g;
 
-function renderTextWithCites(text, query) {
-  // Replace {{cite: ...}} with styled spans, then apply search highlighting.
+// Matches: 84%  77.8%  84–97%  70-90%
+const PCT_RE = /(\d+(?:\.\d+)?(?:[–\-]\d+(?:\.\d+)?)?)%/g;
+// Matches: Torabinejad et al (2009)  (Ricucci, 2014)  Fowler and Reader 2001
+const PROSE_AUTHOR_RE = /\b([A-Z][A-Za-z\-']+(?:\s+(?:et\s+al\.?|and|&)\s+[A-Z][A-Za-z\-']+)?)\s*(?:\((\d{4})\)|,?\s*(\d{4})(?=[;)\s]))/g;
+
+function splitByRegex(text, re, type) {
+  // Returns [{t:"text"|type, v:string}]
   const nodes = [];
+  let last = 0;
+  let m;
+  const r = new RegExp(re.source, re.flags.includes("g") ? re.flags : re.flags + "g");
+  r.lastIndex = 0;
+  while ((m = r.exec(text))) {
+    if (m.index > last) nodes.push({ t: "text", v: text.slice(last, m.index) });
+    nodes.push({ t: type, v: m[0] });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) nodes.push({ t: "text", v: text.slice(last) });
+  return nodes;
+}
+
+function renderTextWithCites(text, query) {
+  // Pass 1: split on {{cite:}} markers
+  const pass1 = [];
   let lastIndex = 0;
   let m;
   const re = new RegExp(CITE_MARKER.source, "g");
   while ((m = re.exec(text))) {
-    if (m.index > lastIndex) nodes.push({ t: "text", v: text.slice(lastIndex, m.index) });
+    if (m.index > lastIndex) pass1.push({ t: "text", v: text.slice(lastIndex, m.index) });
     const payload = m[1];
-    // display: author + year only; finding hidden
     const head = payload.split(/\s+[—–-]{1,2}\s+/)[0];
-    nodes.push({ t: "cite", v: head });
+    pass1.push({ t: "cite", v: head });
     lastIndex = m.index + m[0].length;
   }
-  if (lastIndex < text.length) nodes.push({ t: "text", v: text.slice(lastIndex) });
-  return nodes.map((n, i) => {
+  if (lastIndex < text.length) pass1.push({ t: "text", v: text.slice(lastIndex) });
+
+  // Pass 2 & 3: for plain text segments, split on percentages then prose authors
+  const pass3 = [];
+  for (const node of pass1) {
+    if (node.t !== "text") { pass3.push(node); continue; }
+    for (const n2 of splitByRegex(node.v, PCT_RE, "pct")) {
+      if (n2.t !== "text") { pass3.push(n2); continue; }
+      for (const n3 of splitByRegex(n2.v, PROSE_AUTHOR_RE, "cite")) {
+        pass3.push(n3);
+      }
+    }
+  }
+
+  return pass3.map((n, i) => {
     if (n.t === "cite") return <span key={i} className="cite">{highlight(n.v, query)}</span>;
+    if (n.t === "pct")  return <span key={i} className="pct">{highlight(n.v, query)}</span>;
     return <React.Fragment key={i}>{highlight(n.v, query)}</React.Fragment>;
   });
 }
