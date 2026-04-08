@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Endo Rationale Guide</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  html, body { height: 100%; }
+  body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .prose-body { font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.65; }
+  .prose-body h3 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.05rem; margin-top: 1.25rem; color: #1f2937; }
+  .prose-body h4 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 0.98rem; margin-top: 1rem; color: #374151; }
+  .prose-body p { margin: 0.65rem 0; }
+  .prose-body ul { list-style: disc; padding-left: 1.4rem; margin: 0.6rem 0; }
+  .prose-body ol { list-style: decimal; padding-left: 1.4rem; margin: 0.6rem 0; }
+  .prose-body li { margin: 0.25rem 0; }
+  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 1rem 0; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .prose-body th, .prose-body td { border: 1px solid #e5e7eb; padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
+  .prose-body thead th { background: #f8fafc; position: sticky; top: 0; font-weight: 600; }
+  .prose-body tbody tr:nth-child(even) { background: #fafafa; }
+  .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
+  .prose-body mark.current { background: #fb923c; color: #fff; }
+  .cite { color: #b45309; font-weight: 500; }
+  .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; }
+  .scroll-table { overflow-x: auto; }
+  kbd { font-family: ui-monospace, monospace; background: #f3f4f6; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: 0.75rem; }
+  .tab-active { border-bottom: 2px solid #4338ca; color: #4338ca; font-weight: 600; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const DATA = /*__DATA__*/null;
+
+const { useState, useMemo, useEffect, useRef, useCallback } = React;
+
+// --- utilities --------------------------------------------------------------
+const CITE_MARKER = /\{\{cite:\s*([^}]+?)\}\}/g;
+
+function renderTextWithCites(text, query) {
+  // Replace {{cite: ...}} with styled spans, then apply search highlighting.
+  const nodes = [];
+  let lastIndex = 0;
+  let m;
+  const re = new RegExp(CITE_MARKER.source, "g");
+  while ((m = re.exec(text))) {
+    if (m.index > lastIndex) nodes.push({ t: "text", v: text.slice(lastIndex, m.index) });
+    const payload = m[1];
+    // display: author + year only; finding hidden
+    const head = payload.split(/\s+[—–-]{1,2}\s+/)[0];
+    nodes.push({ t: "cite", v: head });
+    lastIndex = m.index + m[0].length;
+  }
+  if (lastIndex < text.length) nodes.push({ t: "text", v: text.slice(lastIndex) });
+  return nodes.map((n, i) => {
+    if (n.t === "cite") return <span key={i} className="cite">{highlight(n.v, query)}</span>;
+    return <React.Fragment key={i}>{highlight(n.v, query)}</React.Fragment>;
+  });
+}
+
+function highlight(text, query) {
+  if (!query) return text;
+  const q = query.toLowerCase();
+  const lower = text.toLowerCase();
+  const out = [];
+  let i = 0;
+  while (i < text.length) {
+    const idx = lower.indexOf(q, i);
+    if (idx < 0) { out.push(text.slice(i)); break; }
+    if (idx > i) out.push(text.slice(i, idx));
+    out.push(<mark key={out.length}>{text.slice(idx, idx + q.length)}</mark>);
+    i = idx + q.length;
+  }
+  return out;
+}
+
+function countMatches(text, query) {
+  if (!query || !text) return 0;
+  const q = query.toLowerCase();
+  const t = text.toLowerCase();
+  let n = 0, i = 0;
+  while ((i = t.indexOf(q, i)) >= 0) { n++; i += q.length; }
+  return n;
+}
+
+function blockText(b) {
+  if (!b) return "";
+  if (b.type === "p" || b.type?.startsWith("h")) return b.text || "";
+  if (b.type === "ul" || b.type === "ol") return (b.items || []).join("\n");
+  if (b.type === "table") return [(b.headers || []).join(" | "), ...(b.rows || []).map(r => r.join(" | "))].join("\n");
+  return "";
+}
+
+function sectionText(sec) {
+  const own = (sec.blocks || []).map(blockText).join("\n");
+  const sub = (sec.subsections || []).map(s => s.title + "\n" + (s.blocks || []).map(blockText).join("\n")).join("\n");
+  return sec.title + "\n" + own + "\n" + sub;
+}
+
+// --- block renderers --------------------------------------------------------
+function Block({ block, query }) {
+  const t = block.type;
+  if (t === "p") return <p>{renderTextWithCites(block.text, query)}</p>;
+  if (t === "h3") return <h3>{renderTextWithCites(block.text, query)}</h3>;
+  if (t === "h4") return <h4>{renderTextWithCites(block.text, query)}</h4>;
+  if (t === "ul") return <ul>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ul>;
+  if (t === "ol") return <ol>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ol>;
+  if (t === "table") return (
+    <div className="scroll-table">
+      <table>
+        <thead><tr>{block.headers.map((h, i) => <th key={i}>{renderTextWithCites(h, query)}</th>)}</tr></thead>
+        <tbody>{block.rows.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j}>{renderTextWithCites(c, query)}</td>)}</tr>)}</tbody>
+      </table>
+    </div>
+  );
+  return null;
+}
+
+// --- reference pane ---------------------------------------------------------
+function ReferencePane({ sections, query }) {
+  const [activeId, setActiveId] = useState(sections[0]?.id);
+  const mainRef = useRef(null);
+
+  // IntersectionObserver for active section
+  useEffect(() => {
+    const root = mainRef.current;
+    if (!root) return;
+    const els = root.querySelectorAll("[data-anchor]");
+    const obs = new IntersectionObserver((entries) => {
+      const vis = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (vis.length) setActiveId(vis[0].target.getAttribute("data-anchor"));
+    }, { root, rootMargin: "-20% 0px -70% 0px", threshold: 0 });
+    els.forEach(el => obs.observe(el));
+    return () => obs.disconnect();
+  }, [sections]);
+
+  // filter sidebar: show only sections with matches when searching
+  const matchCounts = useMemo(() => {
+    if (!query) return null;
+    const map = {};
+    for (const sec of sections) {
+      const text = sectionText(sec);
+      map[sec.id] = countMatches(text, query);
+    }
+    return map;
+  }, [sections, query]);
+
+  const filteredSections = useMemo(() => {
+    if (!query) return sections;
+    return sections.filter(s => (matchCounts?.[s.id] || 0) > 0);
+  }, [sections, query, matchCounts]);
+
+  const jumpTo = (id) => {
+    const el = mainRef.current?.querySelector(`[data-anchor="${id}"]`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div className="flex flex-1 min-h-0">
+      <aside className="sidebar w-72 border-r bg-white overflow-y-auto shrink-0">
+        <nav className="p-3 text-sm">
+          {filteredSections.length === 0 && query && (
+            <div className="text-slate-500 p-3">No matches.</div>
+          )}
+          {filteredSections.map(sec => (
+            <div key={sec.id} className="mb-2">
+              <a href={`#${sec.id}`} onClick={e => { e.preventDefault(); jumpTo(sec.id); }}
+                 className={`block rounded px-2 py-1 hover:bg-slate-100 ${activeId === sec.id ? "active" : ""}`}>
+                <span className="text-slate-400 mr-1">{sec.number}</span>
+                {sec.title}
+                {query && matchCounts?.[sec.id] ? <span className="ml-1 text-xs text-amber-700">({matchCounts[sec.id]})</span> : null}
+              </a>
+              {sec.subsections?.length ? (
+                <ul className="ml-4 mt-0.5">
+                  {sec.subsections.map(sub => (
+                    <li key={sub.id}>
+                      <a href={`#${sub.id}`} onClick={e => { e.preventDefault(); jumpTo(sub.id); }}
+                         className={`block rounded px-2 py-0.5 text-slate-600 hover:bg-slate-100 ${activeId === sub.id ? "active" : ""}`}>
+                        <span className="text-slate-400 mr-1">{sub.number}</span>
+                        {sub.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
+          ))}
+        </nav>
+      </aside>
+      <main ref={mainRef} className="flex-1 overflow-y-auto">
+        <div className="max-w-3xl mx-auto p-8 prose-body">
+          {sections.map(sec => (
+            <section key={sec.id} data-anchor={sec.id} id={sec.id} className="mb-10">
+              <h2 className="text-2xl font-semibold text-slate-900 mt-6 mb-3">
+                <span className="text-slate-400 mr-2 text-lg">{sec.number}</span>
+                {highlight(sec.title, query)}
+              </h2>
+              {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
+              {(sec.subsections || []).map(sub => (
+                <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-6">
+                  <h3 className="text-lg font-semibold text-slate-800 mt-5 mb-2">
+                    <span className="text-slate-400 mr-2 text-sm">{sub.number}</span>
+                    {highlight(sub.title, query)}
+                  </h3>
+                  {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
+                </section>
+              ))}
+            </section>
+          ))}
+          <div className="h-96" />
+        </div>
+      </main>
+    </div>
+  );
+}
+
+// --- study pane: author ↔ finding matching quiz -----------------------------
+const LS_KEY = "endo-guide.study.v1";
+
+function loadStudyState() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY) || "{}"); } catch { return {}; }
+}
+function saveStudyState(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
+
+function StudyPane({ cards, onJump }) {
+  const validCards = useMemo(() => cards.filter(c => c.author && c.finding && c.finding.length > 20), [cards]);
+  const [state, setState] = useState(() => {
+    const s = loadStudyState();
+    return {
+      boxes: s.boxes || {},        // cardKey -> 0|1|2 (New/Learning/Known)
+      history: s.history || [],    // {t, correct}
+      streak: s.streak || 0,
+      ...s,
+    };
+  });
+  const [reverse, setReverse] = useState(false); // false: show finding, pick author
+  const [current, setCurrent] = useState(null);
+  const [choices, setChoices] = useState([]);
+  const [pick, setPick] = useState(null);
+
+  const cardKey = (c) => `${(c.author||"").toLowerCase()}|${c.year}|${c.finding.slice(0,60)}`;
+
+  const pickNext = useCallback(() => {
+    if (!validCards.length) return;
+    // Leitner weights: New=3, Learning=4, Known=1
+    const weights = validCards.map(c => {
+      const b = state.boxes[cardKey(c)] ?? 0;
+      return b === 0 ? 3 : b === 1 ? 4 : 1;
+    });
+    const total = weights.reduce((a, b) => a + b, 0);
+    let r = Math.random() * total;
+    let idx = 0;
+    for (; idx < weights.length; idx++) { r -= weights[idx]; if (r <= 0) break; }
+    const card = validCards[Math.min(idx, validCards.length - 1)];
+    // build 4 choices
+    const pool = validCards.filter(c => c !== card);
+    const sameSection = pool.filter(c => c.section_id === card.section_id);
+    const distractors = [];
+    const used = new Set([(reverse ? card.finding : card.author).toLowerCase()]);
+    const draw = (arr) => {
+      while (arr.length && distractors.length < 3) {
+        const i = Math.floor(Math.random() * arr.length);
+        const pick = arr.splice(i, 1)[0];
+        const key = (reverse ? pick.finding : pick.author).toLowerCase();
+        if (!used.has(key)) { used.add(key); distractors.push(pick); }
+      }
+    };
+    draw([...sameSection]);
+    if (distractors.length < 3) draw([...pool]);
+    const all = [card, ...distractors].sort(() => Math.random() - 0.5);
+    setCurrent(card);
+    setChoices(all);
+    setPick(null);
+  }, [validCards, state.boxes, reverse]);
+
+  useEffect(() => { pickNext(); }, [pickNext]);
+
+  const answer = (choice) => {
+    if (pick) return;
+    setPick(choice);
+    const correct = choice === current;
+    setState(s => {
+      const next = { ...s, boxes: { ...s.boxes }, history: [...s.history, { t: Date.now(), correct }] };
+      const k = cardKey(current);
+      const cur = next.boxes[k] ?? 0;
+      next.boxes[k] = correct ? Math.min(2, cur + 1) : 0;
+      next.streak = correct ? (s.streak || 0) + 1 : 0;
+      saveStudyState(next);
+      return next;
+    });
+  };
+
+  if (!validCards.length) {
+    return <div className="p-8 text-slate-600">No study cards extracted yet. Add <code>{`{{cite: Author Year — Finding}}`}</code> markers to <code>endo-guide.md</code> and rebuild.</div>;
+  }
+
+  const today = new Date().toDateString();
+  const todayHistory = (state.history || []).filter(h => new Date(h.t).toDateString() === today);
+  const todayAcc = todayHistory.length ? Math.round(100 * todayHistory.filter(h => h.correct).length / todayHistory.length) : 0;
+  const totalKnown = Object.values(state.boxes || {}).filter(v => v === 2).length;
+
+  const promptText = reverse ? current?.author : current?.finding;
+  const promptLabel = reverse ? "Which finding matches this author?" : "Which author reported this finding?";
+
+  return (
+    <div className="flex-1 overflow-y-auto">
+      <div className="max-w-2xl mx-auto p-8">
+        <div className="flex items-center justify-between mb-6 text-sm text-slate-600">
+          <div>
+            <span className="font-semibold text-slate-900">{validCards.length}</span> cards ·
+            <span className="ml-2">Today: {todayHistory.length} answered · {todayAcc}% accuracy</span> ·
+            <span className="ml-2">Streak: {state.streak || 0}</span> ·
+            <span className="ml-2">Known: {totalKnown}</span>
+          </div>
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={reverse} onChange={e => setReverse(e.target.checked)} />
+            Reverse mode
+          </label>
+        </div>
+
+        <div className="bg-white border rounded-lg p-6 shadow-sm">
+          <div className="text-xs uppercase tracking-wide text-slate-500 mb-2">{promptLabel}</div>
+          <div className="text-lg text-slate-900 font-serif mb-5 leading-relaxed">{promptText}</div>
+          <div className="grid gap-2">
+            {choices.map((c, i) => {
+              const label = reverse ? c.finding : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
+              let cls = "text-left px-4 py-3 rounded border bg-white hover:bg-slate-50";
+              if (pick) {
+                if (c === current) cls = "text-left px-4 py-3 rounded border bg-emerald-50 border-emerald-400 text-emerald-900";
+                else if (c === pick) cls = "text-left px-4 py-3 rounded border bg-rose-50 border-rose-300 text-rose-900";
+                else cls = "text-left px-4 py-3 rounded border bg-slate-50 text-slate-500";
+              }
+              return (
+                <button key={i} className={cls} onClick={() => answer(c)} disabled={!!pick}>
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+          {pick && (
+            <div className="mt-5 flex items-center justify-between">
+              <div className="text-sm text-slate-600">
+                <span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""} —
+                <span className="italic"> {reverse ? current.finding : ""}</span>
+                {current.section_title && (
+                  <button className="ml-3 text-indigo-600 hover:underline" onClick={() => onJump?.(current.section_id)}>
+                    Jump to §{current.section_title}
+                  </button>
+                )}
+              </div>
+              <button className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onClick={pickNext}>
+                Next →
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-4 text-xs text-slate-500">
+          Leitner: new cards appear more often until answered correctly twice in a row.
+          Progress persists in your browser only.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- audit pane -------------------------------------------------------------
+function AuditPane({ suggestions }) {
+  const [decisions, setDecisions] = useState({}); // id -> "approve"|"reject"|"edit"
+  const [edits, setEdits] = useState({});          // id -> edited "after" text
+
+  const exportDecisions = () => {
+    const out = Object.entries(decisions).map(([id, status]) => ({
+      id, status, edited_after: edits[id] ?? null, decided_at: new Date().toISOString(),
+    }));
+    const blob = new Blob([JSON.stringify(out, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "decisions.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  if (!suggestions.length) {
+    return (
+      <div className="flex-1 overflow-y-auto p-8">
+        <div className="max-w-2xl mx-auto text-slate-600">
+          <h2 className="text-xl font-semibold text-slate-900 mb-2">No pending suggestions</h2>
+          <p>The weekly audit writes proposals to <code>suggestions.json</code>. Run the scheduled task or rebuild after it runs.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const byStatus = suggestions.reduce((acc, s) => {
+    const k = decisions[s.id] || "pending";
+    (acc[k] ||= []).push(s);
+    return acc;
+  }, {});
+
+  return (
+    <div className="flex-1 overflow-y-auto">
+      <div className="max-w-3xl mx-auto p-8">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-xl font-semibold text-slate-900">Weekly audit proposals</h2>
+            <div className="text-sm text-slate-600">
+              {suggestions.length} pending · {Object.keys(decisions).length} decided
+            </div>
+          </div>
+          <button
+            onClick={exportDecisions}
+            disabled={!Object.keys(decisions).length}
+            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-slate-300">
+            Export decisions.json
+          </button>
+        </div>
+        <div className="space-y-4">
+          {suggestions.map(s => {
+            const status = decisions[s.id] || "pending";
+            const kindColors = { add: "bg-emerald-100 text-emerald-800", update: "bg-amber-100 text-amber-800", remove: "bg-rose-100 text-rose-800", fix: "bg-blue-100 text-blue-800" };
+            return (
+              <div key={s.id} className={`bg-white border rounded-lg p-5 shadow-sm ${status === "approve" ? "border-emerald-400" : status === "reject" ? "border-rose-300 opacity-60" : ""}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded ${kindColors[s.kind] || "bg-slate-100"}`}>{(s.kind || "edit").toUpperCase()}</span>
+                  <span className="text-sm text-slate-500">§ {s.section_id || "—"}</span>
+                </div>
+                <p className="text-sm text-slate-700 mb-3">{s.rationale}</p>
+                {s.before && (
+                  <div className="mb-2">
+                    <div className="text-xs uppercase text-slate-500">Before</div>
+                    <div className="text-sm bg-rose-50 border border-rose-100 p-2 rounded whitespace-pre-wrap">{s.before}</div>
+                  </div>
+                )}
+                <div className="mb-2">
+                  <div className="text-xs uppercase text-slate-500">After</div>
+                  <textarea
+                    className="w-full text-sm bg-emerald-50 border border-emerald-100 p-2 rounded font-serif"
+                    rows={Math.max(2, Math.min(8, (edits[s.id] ?? s.after ?? "").split("\n").length + 1))}
+                    value={edits[s.id] ?? s.after ?? ""}
+                    onChange={e => setEdits(prev => ({ ...prev, [s.id]: e.target.value }))}
+                  />
+                </div>
+                {s.citations?.length ? (
+                  <div className="text-xs text-slate-500 mb-3">
+                    Citations: {s.citations.map((c, i) => (
+                      <span key={i} className="mr-2">
+                        {c.pmid
+                          ? <a className="text-indigo-600 hover:underline" href={`https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`} target="_blank" rel="noopener noreferrer">{c.author} {c.year}</a>
+                          : <span>{c.author} {c.year}</span>}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+                <div className="flex gap-2">
+                  <button className="px-3 py-1 text-sm bg-emerald-600 text-white rounded hover:bg-emerald-700" onClick={() => setDecisions(d => ({ ...d, [s.id]: "approve" }))}>Approve</button>
+                  <button className="px-3 py-1 text-sm bg-rose-600 text-white rounded hover:bg-rose-700" onClick={() => setDecisions(d => ({ ...d, [s.id]: "reject" }))}>Reject</button>
+                  <button className="px-3 py-1 text-sm bg-slate-200 text-slate-700 rounded hover:bg-slate-300" onClick={() => setDecisions(d => { const n = { ...d }; delete n[s.id]; return n; })}>Reset</button>
+                  <div className="ml-auto text-xs text-slate-500 self-center">
+                    {status !== "pending" ? status : ""}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- app --------------------------------------------------------------------
+function App() {
+  const data = DATA || { sections: [], cards: [], suggestions: [] };
+  const [tab, setTab] = useState("reference");
+  const [query, setQuery] = useState("");
+  const [debounced, setDebounced] = useState("");
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebounced(query), 150);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === "/" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        searchRef.current?.focus();
+      } else if (e.key === "Escape") {
+        setQuery("");
+        searchRef.current?.blur();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
+  const jumpToSection = (id) => {
+    setTab("reference");
+    // let the reference pane mount, then scroll
+    setTimeout(() => {
+      const el = document.querySelector(`[data-anchor="${id}"]`);
+      el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+
+  const totalMatches = useMemo(() => {
+    if (!debounced) return 0;
+    return data.sections.reduce((n, s) => n + countMatches(sectionText(s), debounced), 0);
+  }, [data.sections, debounced]);
+
+  return (
+    <div className="h-screen flex flex-col">
+      <header className="bg-white border-b shrink-0">
+        <div className="flex items-center gap-4 px-4 h-14">
+          <div className="text-slate-900 font-semibold">Endo Rationale Guide</div>
+          <div className="flex items-center gap-4 text-sm">
+            <button className={`pb-1 ${tab === "reference" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("reference")}>Reference</button>
+            <button className={`pb-1 ${tab === "study" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("study")}>
+              Study <span className="text-xs text-slate-500">({data.cards?.length || 0})</span>
+            </button>
+            <button className={`pb-1 ${tab === "audit" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("audit")}>
+              Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded">{data.suggestions.length}</span> : null}
+            </button>
+          </div>
+          <div className="flex-1" />
+          {tab === "reference" && (
+            <div className="flex items-center gap-2">
+              <input
+                ref={searchRef}
+                className="px-3 py-1.5 text-sm border rounded w-64 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                placeholder="Search…  (press / )"
+                value={query}
+                onChange={e => setQuery(e.target.value)}
+              />
+              {debounced && <div className="text-xs text-slate-500">{totalMatches} matches</div>}
+              {query && <button onClick={() => setQuery("")} className="text-xs text-slate-500 hover:text-slate-800">clear</button>}
+            </div>
+          )}
+        </div>
+      </header>
+      {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} />}
+      {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
+      {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
