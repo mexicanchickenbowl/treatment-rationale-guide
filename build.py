@@ -29,7 +29,8 @@ MD = HERE / "endo-guide.md"
 SUGGESTIONS = HERE / "suggestions.json"
 TEMPLATE = HERE / "endo-guide.template.html"
 OUT_JSON = HERE / "guide-data.json"
-OUT_HTML = HERE / "endo-guide.html"
+OUT_HTML = HERE / "index.html"
+OUT_HTML_ALIAS = HERE / "endo-guide.html"  # kept for local-open convenience
 
 
 # -------------------- markdown parser (minimal, tailored) --------------------
@@ -324,9 +325,10 @@ def build() -> None:
         sys.exit("template missing `/*__DATA__*/null` sentinel")
     html = tpl.replace("/*__DATA__*/null", payload)
     OUT_HTML.write_text(html, encoding="utf-8")
+    OUT_HTML_ALIAS.write_text(html, encoding="utf-8")
     print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}")
     print(f"wrote {OUT_JSON.name} ({OUT_JSON.stat().st_size:,} b)")
-    print(f"wrote {OUT_HTML.name} ({OUT_HTML.stat().st_size:,} b)")
+    print(f"wrote {OUT_HTML.name} + {OUT_HTML_ALIAS.name} ({OUT_HTML.stat().st_size:,} b)")
 
 
 if __name__ == "__main__":
