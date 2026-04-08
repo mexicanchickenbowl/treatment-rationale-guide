@@ -11,25 +11,29 @@
 <style>
   html, body { height: 100%; }
   body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
-  .prose-body { font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.65; }
-  .prose-body h3 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 1.05rem; margin-top: 1.25rem; color: #1f2937; }
-  .prose-body h4 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 0.98rem; margin-top: 1rem; color: #374151; }
-  .prose-body p { margin: 0.65rem 0; }
-  .prose-body ul { list-style: disc; padding-left: 1.4rem; margin: 0.6rem 0; }
-  .prose-body ol { list-style: decimal; padding-left: 1.4rem; margin: 0.6rem 0; }
-  .prose-body li { margin: 0.25rem 0; }
-  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 1rem 0; font-family: ui-sans-serif, system-ui, sans-serif; }
-  .prose-body th, .prose-body td { border: 1px solid #e5e7eb; padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
-  .prose-body thead th { background: #f8fafc; position: sticky; top: 0; font-weight: 600; }
-  .prose-body tbody tr:nth-child(even) { background: #fafafa; }
+  .prose-body { font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 17px; line-height: 1.75; color: #1e293b; }
+  .block-h3 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1rem; margin-top: 1.4rem; margin-bottom: 0.3rem; color: #1e293b; border-left: 3px solid #c7d2fe; padding-left: 0.6rem; }
+  .block-h4 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 0.93rem; margin-top: 0.9rem; margin-bottom: 0.2rem; color: #374151; }
+  .prose-body p { margin: 0.75rem 0; }
+  .prose-body ul { list-style: disc; padding-left: 1.5rem; margin: 0.65rem 0; }
+  .prose-body ol { list-style: decimal; padding-left: 1.5rem; margin: 0.65rem 0; }
+  .prose-body li { margin: 0.35rem 0; }
+  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 1.25rem 0; font-family: ui-sans-serif, system-ui, sans-serif; }
+  .prose-body th, .prose-body td { border: 1px solid #e2e8f0; padding: 0.55rem 0.75rem; text-align: left; vertical-align: top; }
+  .prose-body thead th { background: #eef2ff; color: #3730a3; position: sticky; top: 0; font-weight: 600; letter-spacing: 0.01em; }
+  .prose-body tbody tr:nth-child(even) { background: #f8fafc; }
+  .prose-body tbody tr:hover { background: #f1f5f9; }
   .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
   .prose-body mark.current { background: #fb923c; color: #fff; }
   .cite { color: #b45309; font-weight: 500; }
   .pct  { color: #0d9488; font-weight: 500; }
-  .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; }
+  .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; border-left: 2px solid #4338ca; padding-left: calc(0.5rem - 2px); }
   .scroll-table { overflow-x: auto; }
   kbd { font-family: ui-monospace, monospace; background: #f3f4f6; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: 0.75rem; }
-  .tab-active { border-bottom: 2px solid #4338ca; color: #4338ca; font-weight: 600; }
+  .tab-btn { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; transition: background 0.12s, color 0.12s; }
+  .tab-active { background: #4338ca; color: #fff; }
+  .tab-inactive { color: #64748b; }
+  .tab-inactive:hover { background: #f1f5f9; color: #1e293b; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -140,8 +144,8 @@ function sectionText(sec) {
 function Block({ block, query }) {
   const t = block.type;
   if (t === "p") return <p>{renderTextWithCites(block.text, query)}</p>;
-  if (t === "h3") return <h3>{renderTextWithCites(block.text, query)}</h3>;
-  if (t === "h4") return <h4>{renderTextWithCites(block.text, query)}</h4>;
+  if (t === "h3") return <h3 className="block-h3">{renderTextWithCites(block.text, query)}</h3>;
+  if (t === "h4") return <h4 className="block-h4">{renderTextWithCites(block.text, query)}</h4>;
   if (t === "ul") return <ul>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ul>;
   if (t === "ol") return <ol>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ol>;
   if (t === "table") return (
@@ -196,27 +200,27 @@ function ReferencePane({ sections, query }) {
 
   return (
     <div className="flex flex-1 min-h-0">
-      <aside className="sidebar w-72 border-r bg-white overflow-y-auto shrink-0">
-        <nav className="p-3 text-sm">
+      <aside className="sidebar w-64 border-r bg-slate-50 overflow-y-auto shrink-0">
+        <nav className="p-3">
           {filteredSections.length === 0 && query && (
-            <div className="text-slate-500 p-3">No matches.</div>
+            <div className="text-slate-500 p-3 text-sm">No matches.</div>
           )}
           {filteredSections.map(sec => (
-            <div key={sec.id} className="mb-2">
+            <div key={sec.id} className="mb-1">
               <a href={`#${sec.id}`} onClick={e => { e.preventDefault(); jumpTo(sec.id); }}
-                 className={`block rounded px-2 py-1 hover:bg-slate-100 ${activeId === sec.id ? "active" : ""}`}>
-                <span className="text-slate-400 mr-1">{sec.number}</span>
-                {sec.title}
-                {query && matchCounts?.[sec.id] ? <span className="ml-1 text-xs text-amber-700">({matchCounts[sec.id]})</span> : null}
+                 className={`flex items-baseline gap-1.5 rounded-md px-2 py-1.5 text-sm font-medium hover:bg-white hover:shadow-sm transition ${activeId === sec.id ? "active" : "text-slate-700"}`}>
+                <span className={`text-xs tabular-nums shrink-0 w-5 text-right ${activeId === sec.id ? "text-indigo-400" : "text-slate-400"}`}>{sec.number}</span>
+                <span className="truncate leading-snug">{sec.title}</span>
+                {query && matchCounts?.[sec.id] ? <span className="ml-auto shrink-0 text-xs text-amber-600 font-normal">·{matchCounts[sec.id]}</span> : null}
               </a>
               {sec.subsections?.length ? (
-                <ul className="ml-4 mt-0.5">
+                <ul className="ml-4 mt-0.5 pl-2 border-l border-slate-200">
                   {sec.subsections.map(sub => (
                     <li key={sub.id}>
                       <a href={`#${sub.id}`} onClick={e => { e.preventDefault(); jumpTo(sub.id); }}
-                         className={`block rounded px-2 py-0.5 text-slate-600 hover:bg-slate-100 ${activeId === sub.id ? "active" : ""}`}>
-                        <span className="text-slate-400 mr-1">{sub.number}</span>
-                        {sub.title}
+                         className={`flex items-baseline gap-1.5 rounded-md px-2 py-1 text-xs hover:bg-white hover:shadow-sm transition ${activeId === sub.id ? "active" : "text-slate-500"}`}>
+                        <span className={`tabular-nums shrink-0 ${activeId === sub.id ? "text-indigo-400" : "text-slate-400"}`}>{sub.number}</span>
+                        <span className="truncate leading-snug">{sub.title}</span>
                       </a>
                     </li>
                   ))}
@@ -226,27 +230,27 @@ function ReferencePane({ sections, query }) {
           ))}
         </nav>
       </aside>
-      <main ref={mainRef} className="flex-1 overflow-y-auto">
-        <div className="max-w-3xl mx-auto p-8 prose-body">
-          {sections.map(sec => (
-            <section key={sec.id} data-anchor={sec.id} id={sec.id} className="mb-10">
-              <h2 className="text-2xl font-semibold text-slate-900 mt-6 mb-3">
-                <span className="text-slate-400 mr-2 text-lg">{sec.number}</span>
-                {highlight(sec.title, query)}
+      <main ref={mainRef} className="flex-1 overflow-y-auto bg-white">
+        <div className="max-w-2xl mx-auto px-10 py-10 prose-body">
+          {sections.map((sec, si) => (
+            <section key={sec.id} data-anchor={sec.id} id={sec.id} className={`mb-16 ${si > 0 ? "pt-10 border-t border-slate-100" : ""}`}>
+              <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900 mb-5 not-prose">
+                {sec.number && <span className="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded tabular-nums shrink-0">{sec.number}</span>}
+                <span>{highlight(sec.title, query)}</span>
               </h2>
               {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
               {(sec.subsections || []).map(sub => (
-                <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-6">
-                  <h3 className="text-lg font-semibold text-slate-800 mt-5 mb-2">
-                    <span className="text-slate-400 mr-2 text-sm">{sub.number}</span>
-                    {highlight(sub.title, query)}
+                <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-9">
+                  <h3 className="flex items-baseline gap-2 text-base font-bold text-slate-800 mb-3 not-prose">
+                    {sub.number && <span className="text-xs text-slate-400 tabular-nums font-normal shrink-0 w-8">{sub.number}</span>}
+                    <span>{highlight(sub.title, query)}</span>
                   </h3>
                   {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
                 </section>
               ))}
             </section>
           ))}
-          <div className="h-96" />
+          <div className="h-32" />
         </div>
       </main>
     </div>
@@ -357,9 +361,9 @@ function StudyPane({ cards, onJump }) {
           </label>
         </div>
 
-        <div className="bg-white border rounded-lg p-6 shadow-sm">
-          <div className="text-xs uppercase tracking-wide text-slate-500 mb-2">{promptLabel}</div>
-          <div className="text-lg text-slate-900 font-serif mb-5 leading-relaxed">{promptText}</div>
+        <div className="bg-white border border-slate-200 rounded-xl p-7 shadow-sm border-t-4 border-t-indigo-500">
+          <div className="text-xs uppercase tracking-widest text-slate-400 mb-3 font-medium">{promptLabel}</div>
+          <div className="text-xl text-slate-900 font-serif mb-6 leading-relaxed">{promptText}</div>
           <div className="grid gap-2">
             {choices.map((c, i) => {
               const label = reverse ? c.finding : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
@@ -552,16 +556,16 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col">
-      <header className="bg-white border-b shrink-0">
-        <div className="flex items-center gap-4 px-4 h-14">
-          <div className="text-slate-900 font-semibold">Endo Rationale Guide</div>
-          <div className="flex items-center gap-4 text-sm">
-            <button className={`pb-1 ${tab === "reference" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("reference")}>Reference</button>
-            <button className={`pb-1 ${tab === "study" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("study")}>
-              Study <span className="text-xs text-slate-500">({data.cards?.length || 0})</span>
+      <header className="bg-white border-b shadow-sm shrink-0">
+        <div className="flex items-center gap-5 px-5 h-14">
+          <div className="text-indigo-700 font-bold tracking-tight text-sm">Endo Guide</div>
+          <div className="flex items-center gap-1">
+            <button className={`tab-btn ${tab === "reference" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("reference")}>Reference</button>
+            <button className={`tab-btn ${tab === "study" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("study")}>
+              Study <span className={`text-xs ml-0.5 ${tab === "study" ? "opacity-70" : "text-slate-400"}`}>({data.cards?.length || 0})</span>
             </button>
-            <button className={`pb-1 ${tab === "audit" ? "tab-active" : "text-slate-600"}`} onClick={() => setTab("audit")}>
-              Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded">{data.suggestions.length}</span> : null}
+            <button className={`tab-btn ${tab === "audit" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("audit")}>
+              Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded-full">{data.suggestions.length}</span> : null}
             </button>
           </div>
           <div className="flex-1" />
@@ -569,13 +573,13 @@ function App() {
             <div className="flex items-center gap-2">
               <input
                 ref={searchRef}
-                className="px-3 py-1.5 text-sm border rounded w-64 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                placeholder="Search…  (press / )"
+                className="px-3 py-1.5 text-sm border border-slate-200 rounded-lg bg-slate-50 w-64 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:bg-white focus:border-indigo-300 transition"
+                placeholder="Search…  (press /)"
                 value={query}
                 onChange={e => setQuery(e.target.value)}
               />
-              {debounced && <div className="text-xs text-slate-500">{totalMatches} matches</div>}
-              {query && <button onClick={() => setQuery("")} className="text-xs text-slate-500 hover:text-slate-800">clear</button>}
+              {debounced && <div className="text-xs text-slate-400">{totalMatches} match{totalMatches !== 1 ? "es" : ""}</div>}
+              {query && <button onClick={() => setQuery("")} className="text-slate-400 hover:text-slate-700 text-sm leading-none">✕</button>}
             </div>
           )}
         </div>
