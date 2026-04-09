@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T00:22:20.621264+00:00",
+  "built_at": "2026-04-09T00:26:13.418928+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -1365,7 +1365,33 @@
             },
             {
               "type": "p",
-              "text": "Premedication with NSAIDs improves IANB success in symptomatic irreversible pulpitis: 400–800 mg ibuprofen taken 45–60 min before the block nearly doubles the success rate (Nagendrababu; Parirokh). However, the single most effective premedication is oral dexamethasone. {{cite: Pulikkotil 2018 — network meta-analysis of 19 RCTs (n=1654) ranked dexamethasone as the most effective oral premedication for IANB success in irreversible pulpitis (RR 2.92 vs placebo, SUCRA 0.96), beating NSAIDs and tramadol; 0.5 mg dose was optimal}}. {{cite: Hegde 2023 — in a double-blind RCT of 184 patients with SIP, IANB success rates were 60.9% with dexamethasone, 65.2% with ketorolac, 56.5% with prednisolone, vs just 21.7% with placebo}}. {{cite: Kumar 2021 — combination of 0.5 mg dexamethasone + 800 mg ibuprofen was significantly superior to either drug alone for IANB success in SIP mandibular molars}}. Mechanism: corticosteroids reduce PGE2 and inflammatory mediators at the pulp, decreasing nociceptor sensitization and TTX-resistant Na⁺ channel upregulation. Practical protocol: 0.5 mg oral dexamethasone ± 600–800 mg ibuprofen, 45–60 min preoperatively."
+              "text": "NSAIDs improve IANB success in symptomatic irreversible pulpitis: 400–800 mg ibuprofen taken 45–60 min before the block nearly doubles the success rate (Nagendrababu; Parirokh). However, the single most effective premedication is oral dexamethasone. {{cite: Pulikkotil 2018 — network meta-analysis of 19 RCTs (n=1654) ranked dexamethasone as the most effective oral premedication for IANB success in irreversible pulpitis (RR 2.92 vs placebo, SUCRA 0.96), beating NSAIDs and tramadol; 0.5 mg dose was studied for this outcome}}. {{cite: Hegde 2023 — in a double-blind RCT of 184 patients with SIP, IANB success rates were 60.9% with dexamethasone, 65.2% with ketorolac, 56.5% with prednisolone, vs just 21.7% with placebo}}. {{cite: Kumar 2021 — combination of 0.5 mg dexamethasone + 800 mg ibuprofen was significantly superior to either drug alone for IANB success in SIP mandibular molars}}. Mechanism: corticosteroids reduce PGE2 and inflammatory mediators at the pulp, decreasing nociceptor sensitization and TTX-resistant Na⁺ channel upregulation."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "What dose of dexamethasone should be used, and what outcome does each dose target?"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Two dose ranges appear in the endodontic literature, studied for two related but distinct outcomes:"
+            },
+            {
+              "type": "ol",
+              "items": [
+                "**0.5 mg PO** — studied specifically for improving IANB *anesthetic success* in symptomatic irreversible pulpitis. This is the dose ranked in the Pulikkotil 2018 network meta-analysis."
+              ]
+            },
+            {
+              "type": "ol",
+              "items": [
+                "**4–8 mg PO, IM, or submucosal** — studied for reducing *postoperative endodontic pain*. {{cite: Suresh 2020 — 4 mg oral dexamethasone 60 min before single-visit RCT reduced postop pain incidence and severity at 6, 12, 24 h; odds of postop pain at 24 h were 5.3× lower vs placebo — the largest effect of any drug in the trial}}. {{cite: Pochapski 2009 — 4 mg oral dexamethasone significantly reduced postendodontic pain at 4 and 12 h and decreased rescue medication use}}. {{cite: Konagala 2019 — 4 mg dexamethasone equivalent to piroxicam 20 mg and deflazacort 30 mg for postendo pain control at 6, 12, 24 h}}. {{cite: Jorge-Araújo 2018 — 8 mg oral dexamethasone reduced post-endodontic pain intensity and rescue medication use vs placebo; equivalent to 400 mg ibuprofen}}. {{cite: Aksoy 2019 — 8 mg submucosal dexamethasone injected adjacent to SIP mandibular molars significantly reduced postop pain at 6, 12, 48 h and beat submucosal tramadol in the first 12 h}}. {{cite: Mehrvarzfar 2008 — 8 mg supraperiosteal dexamethasone injection around tooth with irreversible pulpitis effectively controlled postop pain for first 24 h}}."
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Clinically, 4–8 mg is a reasonable dose when the primary goal is to prevent postoperative flare-up or pain — especially in hot teeth where pre-op pain is severe. Because both anesthetic success and postop pain reduction share the same anti-inflammatory mechanism (blocking PGE2 and inflammatory-mediator sensitization of nociceptors), a 4 mg dose likely improves IANB success at least as well as 0.5 mg, though head-to-head dose comparisons for the anesthetic-success endpoint are lacking. Practical protocol: 4 mg oral dexamethasone + 600–800 mg ibuprofen, 45–60 min preoperatively, for hot teeth with anticipated difficult anesthesia and high postop flare-up risk."
             },
             {
               "type": "ul",
@@ -4778,7 +4804,7 @@
     {
       "author": "Pulikkotil",
       "year": "2018",
-      "finding": "network meta-analysis of 19 RCTs (n=1654) ranked dexamethasone as the most effective oral premedication for IANB success in irreversible pulpitis (RR 2.92 vs placebo, SUCRA 0.96), beating NSAIDs and tramadol; 0.5 mg dose was optimal",
+      "finding": "network meta-analysis of 19 RCTs (n=1654) ranked dexamethasone as the most effective oral premedication for IANB success in irreversible pulpitis (RR 2.92 vs placebo, SUCRA 0.96), beating NSAIDs and tramadol; 0.5 mg dose was studied for this outcome",
       "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
       "section_title": "Managing the \"Hot\" Tooth",
       "source": "marker"
@@ -4795,6 +4821,54 @@
       "author": "Kumar",
       "year": "2021",
       "finding": "combination of 0.5 mg dexamethasone + 800 mg ibuprofen was significantly superior to either drug alone for IANB success in SIP mandibular molars",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Suresh",
+      "year": "2020",
+      "finding": "4 mg oral dexamethasone 60 min before single-visit RCT reduced postop pain incidence and severity at 6, 12, 24 h; odds of postop pain at 24 h were 5.3× lower vs placebo — the largest effect of any drug in the trial",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Pochapski",
+      "year": "2009",
+      "finding": "4 mg oral dexamethasone significantly reduced postendodontic pain at 4 and 12 h and decreased rescue medication use",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Konagala",
+      "year": "2019",
+      "finding": "4 mg dexamethasone equivalent to piroxicam 20 mg and deflazacort 30 mg for postendo pain control at 6, 12, 24 h",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Jorge-Araújo",
+      "year": "2018",
+      "finding": "8 mg oral dexamethasone reduced post-endodontic pain intensity and rescue medication use vs placebo; equivalent to 400 mg ibuprofen",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Aksoy",
+      "year": "2019",
+      "finding": "8 mg submucosal dexamethasone injected adjacent to SIP mandibular molars significantly reduced postop pain at 6, 12, 48 h and beat submucosal tramadol in the first 12 h",
+      "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
+      "section_title": "Managing the \"Hot\" Tooth",
+      "source": "marker"
+    },
+    {
+      "author": "Mehrvarzfar",
+      "year": "2008",
+      "finding": "8 mg supraperiosteal dexamethasone injection around tooth with irreversible pulpitis effectively controlled postop pain for first 24 h",
       "section_id": "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth",
       "section_title": "Managing the \"Hot\" Tooth",
       "source": "marker"
