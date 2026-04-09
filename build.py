@@ -326,6 +326,10 @@ def build() -> None:
     html = tpl.replace("/*__DATA__*/null", payload)
     OUT_HTML.write_text(html, encoding="utf-8")
     OUT_HTML_ALIAS.write_text(html, encoding="utf-8")
+    # keep local preview dir in sync (outside iCloud Drive so the preview server can read it)
+    preview_dir = Path.home() / "endo-preview"
+    if preview_dir.exists():
+        (preview_dir / "index.html").write_text(html, encoding="utf-8")
     print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}")
     print(f"wrote {OUT_JSON.name} ({OUT_JSON.stat().st_size:,} b)")
     print(f"wrote {OUT_HTML.name} + {OUT_HTML_ALIAS.name} ({OUT_HTML.stat().st_size:,} b)")

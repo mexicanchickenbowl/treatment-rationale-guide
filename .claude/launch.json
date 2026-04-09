@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Endo Guide (static preview)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/nathan/Library/Mobile Documents/com~apple~CloudDocs/Academic-Professional/Endodontics/endo-guide"],
+      "port": 8080
+    }
+  ]
+}
