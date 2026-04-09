@@ -44,6 +44,8 @@
   .tab-active { background: #4338ca; color: #fff; }
   .tab-inactive { color: #64748b; }
   .tab-inactive:hover { background: #f1f5f9; color: #1e293b; }
+  .question-item { list-style: none; margin-left: -1.6rem; font-weight: 650; color: #3730a3; font-size: 1rem; margin-top: 1.4rem; margin-bottom: 0.15rem; line-height: 1.5; }
+  .answer-p { color: #166534; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -279,12 +281,16 @@ function sectionText(sec) {
 }
 
 // --- block renderers --------------------------------------------------------
-function Block({ block, query }) {
+function isQuestionBlock(b) {
+  return b?.type === "ul" && b.items?.some(item => item.trim().endsWith("?"));
+}
+
+function Block({ block, query, isAnswer }) {
   const t = block.type;
-  if (t === "p") return <p>{renderTextWithCites(block.text, query)}</p>;
+  if (t === "p") return <p className={isAnswer ? "answer-p" : ""}>{renderTextWithCites(block.text, query)}</p>;
   if (t === "h3") return <h3 className="block-h3">{renderTextWithCites(block.text, query)}</h3>;
   if (t === "h4") return <h4 className="block-h4">{renderTextWithCites(block.text, query)}</h4>;
-  if (t === "ul") return <ul>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ul>;
+  if (t === "ul") return <ul>{block.items.map((x, i) => <li key={i} className={x.trim().endsWith("?") ? "question-item" : ""}>{renderTextWithCites(x, query)}</li>)}</ul>;
   if (t === "ol") return <ol>{block.items.map((x, i) => <li key={i}>{renderTextWithCites(x, query)}</li>)}</ol>;
   if (t === "table") return (
     <div className="scroll-table">
@@ -401,14 +407,14 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
                 {sec.number && <span className="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded tabular-nums shrink-0">{sec.number}</span>}
                 <span>{highlight(sec.title, query)}</span>
               </h2>
-              {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
+              {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} isAnswer={b.type === "p" && isQuestionBlock(sec.blocks[i - 1])} />)}
               {(sec.subsections || []).map(sub => (
                 <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-10 pt-6 border-t border-slate-100">
                   <h3 className="flex items-baseline gap-2 mb-4 not-prose">
                     {sub.number && <span className="text-xs text-indigo-400 tabular-nums font-semibold shrink-0 w-8">{sub.number}</span>}
                     <span className="text-[15px] font-semibold text-slate-800 tracking-tight leading-snug">{highlight(sub.title, query)}</span>
                   </h3>
-                  {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
+                  {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} isAnswer={b.type === "p" && isQuestionBlock(sub.blocks[i - 1])} />)}
                 </section>
               ))}
             </section>
