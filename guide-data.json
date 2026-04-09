@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T14:02:52.008664+00:00",
+  "built_at": "2026-04-09T14:59:43.763749+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -2437,7 +2437,7 @@
             },
             {
               "type": "p",
-              "text": "Delayed restoration significantly reduces tooth survival and endodontic success. A retrospective study by Gillen et al. (2011) found that the quality of coronal restoration had a greater impact on periapical healing than the quality of root canal treatment. Delaying restoration by more than 4 weeks without an adequate provisional seal is associated with increased failure rates {{cite: Gillen 2011}}."
+              "text": "Delayed restoration significantly reduces tooth survival and endodontic success. A systematic review and meta-analysis by Gillen et al. (2011) found that both the quality of coronal restoration and the quality of root canal treatment had a comparable and significant impact on periapical healing outcomes; neither factor was found to be significantly greater than the other. Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates {{cite: Gillen 2011}}."
             },
             {
               "type": "ul",
@@ -5439,7 +5439,7 @@
     {
       "author": "Gillen",
       "year": "2011",
-      "finding": "Delaying restoration by more than 4 weeks without an adequate provisional seal is associated with increased failure rates .",
+      "finding": "Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates .",
       "section_id": "s8-restoration-81-immediate-vs-delayed-coronal-restoration",
       "section_title": "Immediate vs. Delayed Coronal Restoration",
       "source": "marker"

@@ -850,7 +850,7 @@ Coronal leakage begins within days to weeks after obturation if a proper coronal
 
 - How does delayed restoration affect tooth survival?
 
-Delayed restoration significantly reduces tooth survival and endodontic success. A retrospective study by Gillen et al. (2011) found that the quality of coronal restoration had a greater impact on periapical healing than the quality of root canal treatment. Delaying restoration by more than 4 weeks without an adequate provisional seal is associated with increased failure rates {{cite: Gillen 2011}}.
+Delayed restoration significantly reduces tooth survival and endodontic success. A systematic review and meta-analysis by Gillen et al. (2011) found that both the quality of coronal restoration and the quality of root canal treatment had a comparable and significant impact on periapical healing outcomes; neither factor was found to be significantly greater than the other. Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates {{cite: Gillen 2011}}.
 
 - What is the maximum acceptable delay before permanent restoration?
 
