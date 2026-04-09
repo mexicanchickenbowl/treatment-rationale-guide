@@ -324,14 +324,18 @@ function StudyPane({ cards, onJump }) {
   const [choices, setChoices] = useState([]);
   const [pick, setPick] = useState(null);           // "correct"|"wrong" in typeMode, card obj in choice mode
   const typeInputRef = useRef(null);
+  // Use a ref for boxes so pickNext doesn't change reference on every answer
+  const boxesRef = useRef(state.boxes);
+  useEffect(() => { boxesRef.current = state.boxes; }, [state.boxes]);
 
   const cardKey = (c) => `${(c.author||"").toLowerCase()}|${c.year}|${c.finding.slice(0,60)}`;
 
   const pickNext = useCallback(() => {
     if (!validCards.length) return;
     // Leitner weights: New=3, Learning=4, Known=1
+    const boxes = boxesRef.current;
     const weights = validCards.map(c => {
-      const b = state.boxes[cardKey(c)] ?? 0;
+      const b = boxes[cardKey(c)] ?? 0;
       return b === 0 ? 3 : b === 1 ? 4 : 1;
     });
     const total = weights.reduce((a, b) => a + b, 0);
@@ -360,7 +364,7 @@ function StudyPane({ cards, onJump }) {
     setPick(null);
     setTyped("");
     setTimeout(() => typeInputRef.current?.focus(), 50);
-  }, [validCards, state.boxes, reverse]);
+  }, [validCards, reverse]); // boxes read via ref — no longer a dep, so answers don't retrigger
 
   useEffect(() => { pickNext(); }, [pickNext]);
 
