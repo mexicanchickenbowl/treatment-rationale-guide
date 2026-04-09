@@ -47,9 +47,7 @@ Quick Reference: Evidence-based rationale for each clinical decision point
 |  | Analgesic Prescription | Ibuprofen 400-600mg q6h; combo with acetaminophen | Oxford League Table - 800mg ibuprofen NNT 1.6 |
 |  | Follow-up Scheduling | 6-12 months; longer for large lesions | Murphy - 70% lesions >1 year to heal |
 
-*** Add a section on resorption and it’s treatment ***
-
-1. Diagnosis and Case Assessment
+# 1. Diagnosis and Case Assessment
 
 ## 1.1 Pulp Testing Methodology and Interpretation
 
@@ -105,9 +103,7 @@ Owatz et al established that percussion tenderness represents mechanical allodyn
 
 - What are the AAE diagnostic categories and their defining criteria?
 
-# Endodontic Diagnostic Categories
-
-## Pulpal Diagnostic Categories
+### Pulpal Diagnostic Categories
 
 | Category | Key Findings |
 | --- | --- |
@@ -119,7 +115,7 @@ Owatz et al established that percussion tenderness represents mechanical allodyn
 | Previously Treated | Root canal treatment has been performed; canals filled with obturating material |
 | Previously Initiated Therapy | Partial endodontic treatment has been started (e.g., pulpotomy, pulpectomy) |
 
-## Periapical Diagnostic Categories
+### Periapical Diagnostic Categories
 
 | Category | Clinical Findings | Radiographic Findings |
 | --- | --- | --- |
@@ -130,15 +126,13 @@ Owatz et al established that percussion tenderness represents mechanical allodyn
 | Chronic Apical Abscess | Gradual onset, little or no discomfort, intermittent discharge of pus through a sinus tract | Periapical radiolucency |
 | Condensing Osteitis | Low grade inflammation | Radiopaque area around apex |
 
-.
-
 - How do radiographic findings correlate with histologic disease?
 
-#### Histological disease can often only be observed radiographically if there's perforation through the cortical plate according to Bender and Seltzer’s 1961 paper. Multiple PAs from different angles can help with this; Brynolf found increased diagnostic accuracy when three radiographs were taken versus one (90 versus 74%).
+Bender and Seltzer (1961) demonstrated that periapical bone lesions are typically only visible radiographically once they perforate or involve the cortical plate. Multiple PAs from different angles improve detection: Brynolf found diagnostic accuracy increased from 74% with a single radiograph to 90% when three radiographs were taken from different angles.
 
 - What is the clinical significance of a widened PDL space vs. frank radiolucency?
 
-A radiolucency decreases the chance of root canal success from 93% to 82% (De Chevigne).
+The presence of a periapical radiolucency decreases root canal success from 93% to 82% (de Chevigny).
 
 - When is CBCT indicated for periapical diagnosis?
 
@@ -149,17 +143,16 @@ A radiolucency decreases the chance of root canal success from 93% to 82% (De Ch
 | {{cite: Tewary 2011}} | Only moderate agreement between observers of digital periapical radiographs | Confirms inconsistency in PA interpretation |
 | Tsai | Minimum 1.4 mm lesion diameter required for CBCT detection | Establishes detection threshold for CBCT imaging |
 | Ee | 62% of clinicians changed diagnosis and treatment plan when evaluating cases with CBCT after initially using periapical radiographs | CBCT significantly impacts clinical decision-making |
-| Aminosharie | CBCT is 2× as likely to detect periapical radiolucencies compared to periapical radiographs | Doubled detection rate for periapical pathology |
-| Dutra | Accuracy for detecting PARLS: Conventional 73%.  Digital 72% CBCT 96% |  |
-|  |  |  |
+| Aminoshariae | CBCT is 2× as likely to detect periapical radiolucencies compared to periapical radiographs | Doubled detection rate for periapical pathology |
+| Dutra | Accuracy for detecting PARLs: Conventional 73%, Digital 72%, CBCT 96% | CBCT is significantly more accurate than 2D radiography |
 
 - What is the clinical significance of maxillary molar root proximity to the maxillary sinus?
 
 Pagin et al found that 14% of maxillary molar roots perforate the maxillary sinus — an important consideration in pre-operative assessment and when evaluating CBCT imaging {{cite: Pagin — 14% of maxillary molar roots perforate the maxillary sinus}}. Shanbhag found that maxillary sinus mucositis is 9x more likely adjacent to molars with apical periodontitis, underscoring the importance of treating apical disease in this region {{cite: Shanbhag — Maxillary sinus mucositis 9x more likely adjacent to molars with apical periodontitis}}.
 
-What is stressed pulp syndrome?
+- What is stressed pulp syndrome?
 
-Stressed pulp pulp syndrome is something that was described by Abou-Rass states that overall life of injury or restorative treatment teeth, can become less resilient and more prone to pulpal necrosis. These teeth can have decreased response to cold compared to healthy teeth.
+Stressed pulp syndrome, described by Abou-Rass, refers to the concept that a tooth's cumulative history of injury and restorative treatment progressively reduces pulp resilience and increases susceptibility to necrosis. These teeth often show a blunted or decreased response to cold testing compared to healthy teeth.
 
 ## 1.3 Crack/Fracture Identification and Prognosis
 
@@ -183,7 +176,7 @@ VRF: Hopeless unless it is a multirooted tooth in which the resected root can be
 
 - What role does transillumination play and what are its limitations?
 
-Transillumination can help distinguish superficial cracks from deeper cracks but it is only really useful for coronal cracks and it doesn’t really tell you the extend of the crack.
+Transillumination helps distinguish superficial craze lines from deeper cracks, but its usefulness is limited to coronal cracks and it does not reliably reveal the apical extent of a crack.
 
 - What is the outcome of crowned cracked teeth?
 
@@ -201,7 +194,7 @@ VRFs, extensive/non-reparable root perforations, extensive resorption
 
 - How does ferrule effect influence endodontic treatment decisions?
 
-The recommended ferrule is 1.5 mm to 2 mm vertical wall circumferentially (need source).
+The recommended ferrule is 1.5–2 mm of vertical wall, circumferentially, to support the core and crown and resist fracture.
 
 - When should crown lengthening be considered vs. extraction?
 
@@ -289,33 +282,29 @@ Severe curvatures, isthmuses, obstructed canals, perforations favor surgical app
 
 - What does the evidence show regarding outcomes of single vs. multiple visit RCT?
 
-- The research on calcium hydroxide’s usefulness for clinically relevant bacterial reduction is mixed.
-
-- There is mixed research on one versus multiple visits for pain reduction.
-
-- There is mixed research on prognosis effects. Su et al’s meta-analysis found no difference in overall survival.
+The evidence is mixed across all three relevant outcomes. Calcium hydroxide's contribution to clinically meaningful bacterial reduction between visits is not clearly established. Studies comparing single- versus multiple-visit protocols have not demonstrated a consistent difference in post-operative pain. Su et al.'s meta-analysis found no difference in overall survival or periapical healing between single- and multiple-visit treatment.
 
 - What clinical scenarios favor multiple visit treatment?
 
-- If you cannot get the canal dry before obturating.
+Multiple visits are favored when:
 
-- If there isn’t enough time to finish.
+- The canal cannot be dried adequately before obturation
+- A persistent sinus tract has not resolved
+- Active, purulent drainage is present through the canal
+- The case cannot be completed safely in the time available
 
 - How does diagnosis (vital vs. necrotic) influence visit number?
 
-Several studies show there is no statistically significant difference regardless of diagnosis.
+Several studies show no statistically significant difference in outcomes between single- and multiple-visit treatment regardless of pulpal diagnosis.
 
 - What is the role of inter-appointment medicaments?
 
-- Calcium hydroxide has a pH of 11 to 12.
+Calcium hydroxide is the most commonly used inter-appointment medicament. Its properties include:
 
-- It is antibacterial (though E faecalis may be resistant to it due to the proton pump.
-
-- It neutralizes LPS (decreasing host response to it)
-
-- It potentially dissolves remaining tissue
-
-- Useful for regenerative endodontics because it is less cytotoxic to apical papillae.
+- High alkalinity (pH 11–12), which provides broad-spectrum antibacterial activity — though *E. faecalis* can tolerate this environment via its proton pump
+- Neutralization of bacterial LPS, dampening the host inflammatory response
+- Dissolution of residual pulp tissue and organic debris
+- Relatively low cytotoxicity to apical papilla cells, making it well-suited for regenerative endodontic protocols
 
 ## 2.4 Vital Pulp Therapy Candidacy
 
@@ -395,7 +384,7 @@ Asymptomatic apical periodontitis (AAP) in a previously treated tooth does not a
 
 - What anesthetic techniques are indicated for maxillary vs. mandibular teeth?
 
-For mandibular teeth, two cartridges (3.6 mL) is indicated for IAN block because it is more effective than 1.8 mL (Fowler and Reader). For maxillary first molars, infiltrations and PSA blocks show equivalent effectiveness {{cite: Aggarwal 2011}}. Aggarwal also showed that palatal anesthesia doesn’t increase success but does increase duration of anesthesia.
+For mandibular teeth, two cartridges (3.6 mL) are indicated for the IAN block, as Fowler and Reader showed this volume is more effective than 1.8 mL. For maxillary first molars, buccal infiltrations and PSA blocks show equivalent effectiveness {{cite: Aggarwal 2011}}. Aggarwal also showed that adding palatal anesthesia does not increase the success rate but does prolong the duration of anesthesia.
 
 - When is articaine preferred over lidocaine?
 
@@ -409,9 +398,7 @@ Kung showed no difference between articaine and lidocaine with maxillary SIP cas
 
 - What is the maximum epinephrine dose for cardiac patients?
 
-0.04 mg is the maximum epinephrine dose for cardiac patients
-
-0.2 mg is the max dose for non-cardiac patients
+The maximum epinephrine dose is 0.04 mg for cardiac patients and 0.2 mg for non-cardiac patients.
 
 - Does injection speed matter for success?
 
@@ -419,17 +406,17 @@ No (Kanaa, 2006 and Aggarwal 2012)
 
 - Does buffering anesthetic solution improve outcomes?
 
-No—multiple researchers show no decrease in injection pain, onset time or anesthetic success.
+No — multiple studies show no reduction in injection pain, onset time, or anesthetic success with buffered solutions.
 
-- What can we do post op to decrease pain?
+- What can we do post-op to decrease pain?
 
-Give bupivacaine injection; decreases post op pain for 3rd molar extraction (Gordon). Liposomal formulations have not been shown to be better (Glenn et al).
+A long-acting bupivacaine injection at the end of the procedure reduces post-operative pain — this has been shown for third molar extraction (Gordon). Liposomal bupivacaine formulations have not demonstrated superiority over standard bupivacaine (Glenn et al.).
 
 ## 3.2 Supplemental Anesthesia Decision Tree
 
 - When is intraosseous anesthesia indicated and what are the contraindications?
 
-It is indicated for patients who are not responding to normal anesthesia. It has a 92% success rate according to Walton. It is contraindicated for patients who are immunocompromised due to increased infection risk and patients with bleeding disorders.
+Intraosseous anesthesia is indicated as a supplemental technique when conventional infiltration and block anesthesia fail to achieve profound pulpal anesthesia. Walton reported a 92% success rate. It is contraindicated in immunocompromised patients due to increased infection risk and in patients with bleeding disorders.
 
 - What are the indications and limitations of intrapulpal anesthesia?
 
@@ -439,7 +426,7 @@ Intrapulpal anesthesia is useful as a last resort when other methods have failed
 
 - Why do teeth with irreversible pulpitis have higher anesthetic failure rates?
 
-According to Hargreaves, these teeth have higher failure due to the environment’s acidic pH, tetrodotoxin-sensitive Na+ channels, and altered resting membrane potential, lowered excitability threshold and anxiety.
+Hargreaves identified several mechanisms: the inflamed pulp's acidic local pH impairs local anesthetic uptake, upregulation of tetrodotoxin-resistant Na⁺ channels reduces anesthetic effectiveness, the resting membrane potential is altered, the nociceptor excitability threshold is lowered, and patient anxiety amplifies pain perception.
 
 - What preoperative medications improve anesthetic success?
 
@@ -463,13 +450,13 @@ According to Walton, 92% success with IAN + IO.
 
 - What anxiolytic agents are appropriate for dental treatment?
 
-Triazolam is the safest and most effective anxiolytic for dental treatment (Kaufman).
+Triazolam is considered the safest and most effective oral anxiolytic for dental treatment (Kaufman).
 
 - What are the indications and contraindications for oral sedation in endodontics?
 
-Indications: anxiety, Gag, hx of dental trauma, mild-moderate psychiatric conditions (with med clearance), extended procedures
+**Indications:** dental anxiety, severe gag reflex, history of dental trauma, mild-to-moderate psychiatric conditions (with medical clearance), and extended procedures.
 
-Contraindications: Pregnancy, benzodiazepine allergy, acute narrow angle glaucoma, severe respiratory diease, CNS depression, myasthenia gravis, patients who cannot consent
+**Contraindications:** pregnancy, benzodiazepine allergy, acute narrow-angle glaucoma, severe respiratory disease, CNS depression, myasthenia gravis, and patients unable to provide informed consent.
 
 # 4. Access and Coronal Disassembly
 
@@ -481,31 +468,27 @@ Access design should follow the laws of Krasner and Rankow. This helps avoid mis
 
 - How does access design affect fracture resistance?
 
-It doesn’t really. Most lab studies don’t show a decrease in fracture resistance for ultraconservative accesses {{cite: Silva 2020}}. Moreover accesses in general only reduce tooth stiffness by 5% (Reeh et al).
+Minimally. Most in vitro studies show no significant difference in fracture resistance between traditional and ultraconservative access designs {{cite: Silva 2020}}. Moreover, the access cavity itself reduces overall tooth stiffness by only about 5% — most of the structural loss comes from the original caries or existing restoration, not the endodontic access (Reeh et al.).
 
 ## 4.2 Magnification and Rubber Dam Utilization
 
 - What is the justification for using microscopes in treatment?
 
-It is a part of modern endodontic treatment by making just about everything easier and more precise (AAE 2012 position statement).
+The dental operating microscope is a standard component of modern endodontic practice, improving visualization, precision, and outcomes across nearly every step of treatment (AAE 2012 Position Statement).
 
 - How does isolation affect treatment outcomes and safety?
 
-The dental dam is the standard of care for endodontic treatment {{cite: AAE 2017}}. Lin’s research suggests its use increases survival.
+The rubber dam is the standard of care for endodontic treatment {{cite: AAE 2017}}. Lin's research suggests that rubber dam use is associated with increased tooth survival. The rubber dam also protects patient safety by preventing aspiration or ingestion of instruments, irrigants, and debris.
 
-Rubber dam’s also increase safety by preventing irrigant, sharps, and debris injection or aspiration.
-
-## Post and Core Removal Technique Selection
+## 4.3 Post and Core Removal
 
 - What techniques are available for post removal and when is each indicated?
 
-Traction, ultrasonic vibration, trephine, and post drilling
+Available techniques include traction (Gonon, Ruddle post pullers), ultrasonic vibration to fatigue the cement interface, trephine burs to core around the post, and direct post drilling. Ultrasonics are typically the first-line approach for cast and cemented metal posts; trephines are reserved for posts that cannot be loosened by ultrasonics.
 
 - What are the risks of post removal and how can they be minimized?
 
-Root fracture, perforation, excess dentin removal, heat injury to PDL/bone
-
-These can be minimized with preoperative planning using a CBCT, magnification, conservative troughing, using copious water and working in short bursts
+The principal risks are root fracture, perforation, excessive dentin removal, and heat injury to the PDL and surrounding bone. These are minimized with pre-operative CBCT planning, magnification, conservative troughing, copious water coolant, and working in short bursts to prevent heat buildup.
 
 - When should you consider bypassing a post vs. removing it?
 
@@ -515,23 +498,23 @@ Ideally the post is removed in all cases. If removing the post would risk excess
 
 The maximum safe temperature increase for root surfaces is 10°C (Eriksson and Albrektsson).
 
-## 4.5 Managing Calcified Canals
+## 4.4 Managing Calcified Canals
 
 - What techniques improve success in locating calcified canals?
 
-When looking for calcified canals some techniques that can be used include troughing with a bur or ultrasonic, looking for champagne-like bubbles and staining with methylene blue.
+Useful techniques include troughing with a long-shank round bur or ultrasonic tip under magnification, observing for "champagne bubbles" after flooding the chamber with NaOCl, and staining the pulp floor with methylene blue or other dye to highlight developmental grooves.
 
 - What is the role of CBCT in calcified canal management?
 
-CBCT can give you knowledge about the location and path of the canal.
+CBCT provides information about the location, path, and remaining patency of the calcified canal, and helps the operator stay oriented relative to the original canal anatomy during troughing.
 
 - When should you stop searching for a calcified canal?
 
-When you are in danger of perforating the tooth.
+Searching should stop when further dentin removal would risk perforation or compromise the structural integrity of the root.
 
 - What is the prognosis for teeth with calcified canals?
 
-Like non-calcified canals if they can be negotiated.
+Once successfully negotiated, the prognosis for teeth with calcified canals is comparable to that of non-calcified canals.
 
 # 5. Instrumentation
 
@@ -539,7 +522,7 @@ Like non-calcified canals if they can be negotiated.
 
 - What is the accuracy of electronic apex locators vs. radiographic methods?
 
-The electronic apex locator is most useful because 92.4% of major foramina open short of the anatomical apex (Burch and Hulen). The apex locator is 96% accurate at locating the apical foramen (Shabahang).
+EALs are more reliable than radiographs because 92.4% of major foramina exit short of the anatomical apex (Burch and Hulen), meaning a radiographic "apex" reading will typically overshoot the true foramen. Modern EALs are 96% accurate at locating the apical foramen (Shabahang).
 
 - What is the ideal working length endpoint (apical constriction, radiographic apex)?
 
@@ -547,17 +530,15 @@ The ideal endpoint is the minor apical constriction since it is a biological con
 
 - How should working length be determined with EAL?
 
-The average distance between the major and minor apical foramina is 0.524-0.659 mm {{cite: Kuttler 1955}}-0.5mm in younger teeth and 0.6 mm in older teeth. The apical constriction is 0.2-.3 mm long {{cite: Dummer 1984}}. Since EAL’s are most accurate at locating the major apical foramen than minor foramen (Ounsi and Naaman), it is prudent to subtract 0.5 to 1.0 mm from the EAL 0 or apex reading.
-
-Ricucci and Langeland and Dummer all confirm that the minor apical constriction is 0.5-1 mm sort of the major foramen.
+The average distance between the major and minor apical foramina is 0.524 mm in younger teeth and 0.659 mm in older teeth {{cite: Kuttler 1955}}. The apical constriction itself is 0.2–0.3 mm long {{cite: Dummer 1984}}. Because EALs are more accurate at locating the major foramen than the minor foramen (Ounsi and Naaman), a prudent approach is to subtract 0.5–1.0 mm from the "0" or "apex" reading to approximate the minor constriction. Ricucci, Langeland, and Dummer independently confirm that the minor apical constriction lies approximately 0.5–1.0 mm coronal to the major foramen.
 
 - How do canal conditions affect EAL accuracy?
 
-- Larger than .6 mm foramen size decreases accuracy of EAL (Herrera). Irrigants do not affect EAL accuracy though (unless they are significantly pooled and somehow communicate with the PDL as in large carious teeth).
+Foramen diameters larger than 0.6 mm reduce EAL accuracy (Herrera). Irrigants do not meaningfully affect EAL accuracy unless they pool and communicate with the periodontal ligament — as can occur in teeth with large carious lesions or open margins.
 
 - What is the evidence for maintaining working length during instrumentation?
 
-Maintaining working length during instrumentation decreases the packing of debris at the Apex, decreases vapor lock {{cite: Vera 2012}}, and increases irrigant efficacy at the Apex
+Maintaining apical patency throughout instrumentation reduces packing of debris at the apex, prevents vapor lock, and improves irrigant penetration into the apical third {{cite: Vera 2012}}.
 
 ## 5.2 Glide Path Establishment
 
@@ -661,52 +642,63 @@ NaOCl flushes debris and kills bacteria. This is important because after instrum
 
 - What concentration of NaOCl provides optimal tissue dissolution vs. safety?
 
-5.25% is most effective (Hand).
+5.25% NaOCl demonstrates the greatest tissue-dissolution capacity (Hand). Clinically, concentrations between 2.5% and 5.25% are most commonly used, balancing dissolution power against the risk of periapical injury if extrusion occurs.
 
 - What are the indications for chlorhexidine as an irrigant?
 
-It could be useful for patients with allergies to NaOCl.
-
-Chlorhexidine should not be mixed with NaOCl because it produces parachloroaniline (Basrani et al). But this is being called into question based on newer research by Orhan.
+Chlorhexidine may be useful for patients with a documented NaOCl allergy and as a final rinse to extend substantive antimicrobial activity. Chlorhexidine should not be mixed with NaOCl directly because the combination produces parachloroaniline, a potential cytotoxic and carcinogenic byproduct (Basrani et al.) — though the clinical significance of this finding has been challenged by more recent work from Orhan.
 
 - What is the role of EDTA in the irrigation protocol?
 
-EDTA removes the smear layer (Calt and Serper).
+EDTA chelates inorganic calcium in the smear layer, removing it and exposing the underlying dentinal tubules for irrigant penetration and sealer adaptation (Calt and Serper).
 
 - Should NaOCl and EDTA be alternated throughout instrumentation?
 
-Probably not since research shows that alternating between NaOCl and EDTA irrigation throughout instrumentation resulted in excessive loss of intertubular dentin (Boumgartner and Mader). The recommended protocol would be NaOCl, penultimate EDTA for one minute, followed by a final sodium hypochlorite irrigation. This final NaaOCl irrigation is justified by tthe finding that the smear layer reduced the disinfecting properties of CHX and NaOCl (Sen et al).
+No. Baumgartner and Mader showed that alternating NaOCl and EDTA throughout instrumentation causes excessive loss of intertubular dentin. The recommended protocol is to use NaOCl throughout instrumentation, then EDTA as a one-minute penultimate rinse for smear layer removal, followed by a final NaOCl rinse. The final NaOCl rinse is justified by Sen et al.'s finding that a retained smear layer reduces the disinfecting activity of both CHX and NaOCl.
 
 - Could ozone be useful?
 
-No. It is not as effective as NaOCl and is not more effective when used in combination than NaOCl alone {{cite: Sliva 2020}}.
+No. Ozone is less effective than NaOCl as a root canal irrigant, and combining ozone with NaOCl offers no benefit over NaOCl alone {{cite: Silva 2020}}.
 
 ## 6.2 Irrigation Delivery Method
 
 - What needle gauge and type is optimal for irrigation?
 
-30G {{cite: Boutsioukis 2010}}
+A 30-gauge side-vented needle is optimal. Side-venting reduces the risk of apical extrusion compared with end-venting needles {{cite: Boutsioukis 2010}}.
 
 - How far from working length should the needle be positioned?
 
-1 mm {{cite: Boutsioukis 2010}} and {{cite: Sedley 2005}}
+The needle tip should be positioned approximately 1 mm short of working length to maximize apical irrigant exchange while minimizing extrusion risk {{cite: Boutsioukis 2010}} {{cite: Sedley 2005}}.
 
 - What flow rate and volume is recommended?
 
+No single evidence-based flow rate is universally accepted, but a total irrigation volume of at least 10–20 mL of NaOCl per canal with continuous replenishment is commonly recommended. Slow, passive delivery reduces the risk of apical extrusion.
+
 - What is the evidence for negative pressure irrigation systems?
+
+Negative-pressure systems (e.g., EndoVac) deliver irrigant to working length while evacuating it coronally, which reduces the risk of apical extrusion and may improve apical debridement. Clinical outcome studies have not consistently demonstrated a benefit over conventional side-vented positive-pressure irrigation.
 
 ## 6.3 Activation Technique Selection
 
 - What is the evidence for and against passive ultrasonic irrigation (PUI)?
-- - More effective than syringe irrigation at removing debris from canal depressions (Malki). Liang found no improvement in periapical healing with PUI.
+
+PUI is more effective than conventional syringe irrigation at removing debris from canal depressions, isthmuses, and fins (Malki). However, Liang found no significant improvement in periapical healing outcomes when PUI was added to the protocol.
+
 - How does sonic activation compare to ultrasonic?
-- It has equivalent debridement compared to PUI (Jensen et al).
+
+Sonic activation provides debridement equivalent to PUI (Jensen et al.).
+
 - What is the role of laser-activated irrigation?
-- Research suggests that it leads to greater levels of microbial reduction (Chrepa).
+
+Laser-activated irrigation (LAI, including photon-induced photoacoustic streaming) has been shown to produce greater microbial reduction than conventional irrigation (Chrepa).
+
 - When is activation essential vs. beneficial?
-- While the research doesn’t yet show better outcomes it dows lead to cleaner canls (Virdee et al).
-- What about gentle wave?
-- It appears to be as effective as traditional methos and potentially better for isthmus cleaning (Molina et al). It has similar post op pain (grisby) and healing outcomes at 1 year (Sigurdsson) compared to traditional technique.
+
+While current evidence does not yet demonstrate improved clinical outcomes, irrigant activation consistently produces cleaner canals (Virdee et al.). It is beneficial in most cases and is especially valuable in complex anatomy — isthmuses, fins, and accessory anatomy.
+
+- What about GentleWave?
+
+GentleWave (multisonic irrigation) appears to be as effective as traditional protocols and may be superior for cleaning isthmuses (Molina et al.). Post-operative pain (Grigsby) and one-year healing outcomes (Sigurdsson) are comparable to conventional irrigation.
 
 ## 6.4 Intracanal Medicament Use and Selection
 
@@ -720,16 +712,21 @@ Sjögren (1991) found that 7 days was needed to sufficiently eliminate intracana
 
 - Does it help to use EDTA prior to CaOH placement?
 
-It is important to do edta before placing CaOH (sayef) because it allows for diffusion of the hydroxyl ions through the root.
+Yes — using EDTA before placing calcium hydroxide improves diffusion of hydroxyl ions through dentinal tubules by removing the smear layer (Sayegh).
 
 - Are there indications for other medicaments (antibiotics, steroid combinations)?
-- DAP or TAP can be used in regenerative endododntics ar low concentrations. Ledermix (steroid + antibiotic combo) does decrease pain but it may just be treating the symptoms, not eliminating the etiology and there are no outcome studies that show it to be superior to CaOH.
+
+Double antibiotic paste (DAP) and triple antibiotic paste (TAP) are used at low concentrations in regenerative endodontic procedures. Ledermix (a steroid/antibiotic combination) reduces post-operative pain, but it may treat symptoms rather than the underlying etiology, and no outcome studies have demonstrated superiority over calcium hydroxide.
+
 - How effective is complete medicament removal before obturation?
-- Irrigation alone will leave significant residue. Rotary instrumentation > PUI > hand filing with headstrom {{cite: Kenee 2006}}.
+
+Irrigation alone leaves significant residue. For CaOH removal, rotary instrumentation is most effective, followed by PUI, with hand filing using an H-file being least effective {{cite: Kenee 2006}}.
 
 ## 6.5 Smear Layer Removal Protocol
 
-- What is the evidence for smear layer removal vs. retention? Th evidence for its removal: smear layer contains bacteria, it decreases penetration of sealer into dentin, and it can dissolve over time allowing for microleakage {{cite: Violich and Chandler 2010}}. The counter argument is that here is no difference in outcome with smear layer removal {{cite: Torabinejad 2009}} and that retaining it may decrease permeability (Pashley).
+- What is the evidence for smear layer removal vs. retention?
+
+Arguments for removal: the smear layer harbors bacteria, reduces sealer penetration into dentinal tubules, and can dissolve over time, leaving pathways for microleakage {{cite: Violich and Chandler 2010}}. The counter-argument: systematic reviews have not shown a difference in clinical outcomes with or without smear layer removal {{cite: Torabinejad 2009}}, and some authors argue that retaining the smear layer actually reduces dentinal permeability and therefore bacterial ingress (Pashley).
 - What is the optimal EDTA concentration and contact time?
 
 The optimal contact time is 1 minute for complete smear layer removal; 10 minutes causes excessive erosion (Calt and Serper).
@@ -743,25 +740,33 @@ EDTA followed by NaOCl (Goldman).
 ## 7.1 Obturation Technique Selection
 
 - What is the evidence comparing cold lateral condensation vs. warm vertical?
-- - Warm vertical is better at obturating laeral canals than CLC (Peng: 28% vs 9%), better for oval canals (Gillhooly, Wu)
-- - Watm verical does cause more extrusion though (De Dues)
-- System B is safe: <10 dec centigrade rise at 200 deg C) {{cite: Sweatman and Boumgartner 2001}}
-- -
+
+Warm vertical compaction obturates lateral canals more reliably than cold lateral condensation (Peng: 28% vs 9%) and adapts better to oval canals (Gillhooly, Wu). However, warm vertical does produce more apical extrusion of sealer (De-Deus). System B carrier heat carriers are safe for surrounding tissues: less than a 10°C temperature rise at the external root surface even at a 200°C setting {{cite: Sweatman and Baumgartner 2001}}.
+
 - When is continuous wave technique preferred?
-- In canals with oval or C sshaped calnals {{cite: Fan 2004}}, curved canals {{cite: Gilhooly 2000}}, canls with multiple portals of exit due to pressure from vertical compaction (Peng: WV fills lateral canals at 28% and lateral condensation fills at 9%).
-- C shaped canal classification (Melton)
-- Type I: continuous
-- Type II: semi colon shape: seperation
-- Type III: separated canals
+
+Continuous wave is preferred when hydraulic obturation benefits are greatest:
+
+- Oval or C-shaped canals {{cite: Fan 2004}}
+- Curved canals {{cite: Gillhooly 2000}}
+- Canals with multiple portals of exit, where vertical compaction pressure improves filling of lateral canals (Peng: 28% vs 9% for cold lateral)
 - Isthmuses and fins
-- Resorptive defects (mid canal ballooning of canal space)
-- Retreament cases (may have irregular anatomy after retreatment)
+- Resorptive defects with mid-canal ballooning
+- Retreatment cases with irregular residual anatomy
+
+C-shaped canals are classified by Melton into:
+
+- **Type I:** continuous C-shape
+- **Type II:** semicolon-shaped with separation between mesial and distal components
+- **Type III:** two or more discrete separated canals
 
 - What are the indications for single cone obturation?
-- In canals with approatiale anatomy (round) and preparation and Bioceramic sealer {{cite: Boutsioukis 2021}}.
+
+Single cone obturation is appropriate for canals with favorable (round) anatomy and well-shaped preparations when paired with a bioceramic sealer {{cite: Boutsioukis 2021}}.
 
 - How does obturation technique affect treatment outcomes?
-- No significant difference in outcomes (Ng 2008, 2011)
+
+Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method.
 
 ## 7.2 Sealer Selection
 
@@ -927,21 +932,21 @@ According to Rosenberg, occlusal adjustment decreases post-op pain when there is
 
 - What factors determine prognosis after instrument separation?
 
-The presence of a preoperarive lesion Hadley the biggest impact (Spili and Messer)
+The presence of a pre-operative periapical lesion has the greatest impact on outcome (Spili and Messer). When the canal can be cleaned and obturated to the level of the fragment in a tooth without pre-operative pathosis, long-term success rates are comparable to treatment without separation.
 
 - What techniques are available for separated instrument retrieval?
 
-Bypassing, use of ultrasonics
+The principal retrieval techniques are bypassing the fragment with fine hand files and removing or loosening it with ultrasonic vibration under magnification. Specialized kits (e.g., Instrument Removal System, loop techniques) may be used when ultrasonics alone are insufficient.
 
 - When should you attempt bypass vs. retrieval vs. leave in place?
 
-You should leave it in place and obturate to that level of it would be more damaging and risky to the canal to remove it {{cite: Madarrati 2018}}
+Leave the instrument in place and obturate to that level when attempting removal would cause more structural compromise or perforation risk than the fragment itself {{cite: Madarati 2018}}. Bypassing is preferred over aggressive retrieval whenever feasible.
 
 - How does separated instrument affect treatment outcomes?
 
 No significant effect of instrument separation on treatment outcomes if there was no pre-op PA and the fracture occurred in the apical 1/3 {{cite: Spili 2005}}.
 
-## Perforation Repair Timing and Materials
+## 9.2 Perforation Repair Timing and Materials
 
 - How does perforation location affect prognosis?
 
@@ -997,7 +1002,7 @@ The incidence of flare-ups is 8.4% (Tsesis). The incidence is around 5.8% in tee
 
 - What factors increase flare-up risk?
 
-Diabetes increases the rate of flare-ups and reduces success (Fouad and Burleson). Walton ‘s review discussed thatflare up risk increases with female gender, pulpal necrosis, acute apical abscess, acute apical periodontitis, large periradicular radiolucency, preoperative pain and swelling. Vital pulp, sinus tract and obturation at treatment are associated with decreased incidence according to Walton.
+Diabetes increases the rate of flare-ups and reduces overall success (Fouad and Burleson). Walton's review identified several factors that increase flare-up risk: female sex, pulpal necrosis, acute apical abscess, acute apical periodontitis, large periradicular radiolucency, and pre-operative pain or swelling. Conversely, vital pulps, the presence of a sinus tract, and completion of obturation at the same visit are associated with decreased flare-up incidence.
 
 - What is the management protocol for flare-ups?
 
@@ -1040,15 +1045,22 @@ Lin's systematic review found surgical approach to be most effective for treatme
 ## 10.1 Case Selection Criteria
 
 - What are the indications for apical surgery?
-- - Post treatment disease after non surgical retreatment
+
+Apical surgery is indicated for post-treatment disease that persists after non-surgical retreatment, for cases where non-surgical retreatment is not feasible (e.g., intact crown with well-seated post), and for obtaining biopsy when non-odontogenic pathology is suspected.
+
 - What are the contraindications (local and systemic)?
+
+Local contraindications include inadequate surgical access, proximity to vital anatomical structures that cannot be safely navigated, and hopeless restorability. Systemic contraindications include uncontrolled bleeding disorders, recent myocardial infarction, active chemotherapy or radiation to the surgical field, and bisphosphonate-associated risk of osteonecrosis.
+
 - How do you assess surgical access and anatomical considerations?
 
-Use a CBCT. 14% of maxillary molar roots perforate the maxillary sinus according to Pagin et al.
+CBCT is the imaging modality of choice for pre-surgical planning. It identifies critical anatomy including root position, cortical plate thickness, and proximity to neurovascular structures and the maxillary sinus. Pagin et al. found that 14% of maxillary molar roots perforate the maxillary sinus floor.
 
-- Do oroantral communications effect the outcome of apical. Surgery?
-- No according to Ericson.
-- What antatomical features should be considered for mandibular surgery?
+- Do oroantral communications affect the outcome of apical surgery?
+
+No — Ericson found that oroantral communications during apical surgery do not adversely affect surgical outcomes provided the site is managed appropriately.
+
+- What anatomical features should be considered for mandibular surgery?
 
 1) Proximity to IAN
 
@@ -1072,107 +1084,123 @@ Modern techniques: 94%, Traditional techniques: 59% (Setzer).
 
 25.7% of periapical lesions are scars - this should be considered when evaluating a patient for surgery (Carrillo).
 
-- How long should one weigh until taking out the sutures?
+- How long should one wait before removing sutures?
 
-Hiatt: 2 weeks for 10 x wound stability
+Hiatt reported that wound stability is 10× greater at 2 weeks compared to earlier removal. Velvart and Peters recommended suture removal at 48–96 hours in modern microsurgical technique, when monofilament sutures are used and early healing is already advanced.
 
-Velvart and Peters: 48-96 hours
+- Should aspirin be stopped prior to surgery?
 
-- Should aspirin ve stopped prior to surgery?
-
-No based on a metanalysis of 10 studies (Zhao).
+No. A meta-analysis of 10 studies by Zhao found no clinically significant increase in bleeding with continued aspirin use during dental and periapical surgery, and stopping aspirin exposes patients to unnecessary thromboembolic risk.
 
 ## 10.2 Flap Design Selection
 
 - What are the principles of surgical flap design in endodontic surgery?
-- How do different flap designs (submarginal, sulcular, papilla-based) compare?
-- What factors determine flap selection (esthetics, recession risk, access)?
-- Why would you use 1:50000 epi anesthetic suring surgery?
 
-Use of 1:50000 k epi decreases blood loss by half during surgery (Buckley et al).
+A well-designed flap provides adequate access to the surgical site while preserving blood supply, protecting esthetics, and enabling tension-free closure. Key principles include incisions over sound bone, wide-based flaps for adequate vascularization, preservation of marginal and papillary gingiva when possible, and vertical releasing incisions placed at line angles rather than over root eminences.
+
+- How do different flap designs (submarginal, sulcular, papilla-based) compare?
+
+The **sulcular (full-thickness)** flap provides maximum access and visibility but carries a higher risk of papillary recession and gingival scarring. The **submarginal (Luebke-Ochsenbein)** flap preserves the marginal gingiva and is preferred in esthetic zones with adequate attached gingiva, but it can leave a visible scar. The **papilla-based incision** (Velvart) preserves the interdental papilla and minimizes papillary recession, making it the preferred choice in anterior esthetic cases.
+
+- What factors determine flap selection (esthetics, recession risk, access)?
+
+Flap selection is driven by esthetic demands, the height of attached gingiva, crown margins and restorations in the surgical field, and the extent of access required for the osteotomy and root-end procedures.
+
+- Why would you use 1:50,000 epinephrine anesthetic during surgery?
+
+A 1:50,000 epinephrine concentration roughly halves intra-operative blood loss compared with 1:100,000, improving visibility in the surgical field (Buckley et al.).
 
 - What sutures should be used?
 
-Thin, monofilament and synthetic to decrease bacteria and inflammation (Velvart and Peters)
+Thin, monofilament, synthetic sutures (e.g., 6-0 polypropylene) are preferred because they minimize bacterial wicking and inflammatory tissue reaction (Velvart and Peters).
 
 ## 10.3 Osteotomy Technique
 
 - What size osteotomy provides adequate access while preserving bone?
 
-Large enough for ultrasonics to be used but not too large (Toronto study).
+The osteotomy should be just large enough to allow comfortable ultrasonic root-end preparation and retrofill placement — typically 4–5 mm — while preserving as much cortical and cancellous bone as possible (Toronto Study).
 
 - What instruments and techniques are used for osteotomy?
 
-Either surgical bur or piezotome. Can use TEMS or lead foil radiograph. For the smoothest resection of the root, use a multipurpose bur (Morgan).
+Either a surgical bur (e.g., Lindemann, round carbide) with copious irrigation or a piezoelectric device (piezotome) can be used. Piezosurgery offers selective cutting of hard tissue while sparing adjacent soft tissues such as nerves and the sinus membrane. A radiopaque marker (e.g., lead foil) or CBCT-guided template (TEMS) can aid in localizing the root apex. For the smoothest, flattest resected root surface, a multipurpose fissure bur is recommended (Morgan).
 
 - How do you manage proximity to anatomical structures?
 
-Pre-op CBCT and planning. Visualization and retraction.
+Pre-operative CBCT planning is essential. Intra-operatively, maintain direct visualization with the microscope, use appropriate retraction to protect adjacent structures, and employ piezoelectric instruments in sensitive areas (near the IAN, mental foramen, or maxillary sinus).
 
 ## 10.4 Root-End Resection Depth and Angle
 
 - What is the recommended root-end resection amount and rationale?
 
-3 mm is required because it removes most of the apical delta anatomy (Kim and Kratchman as well as Block). Weller says you need 4 mm to get access to the isthmus in most cases.
+A 3 mm resection removes the majority of apical ramifications and lateral canals within the apical delta (Kim and Kratchman; Block). Weller recommends 4 mm as necessary to reliably expose the isthmus between mesial canals in most cases.
 
 - What angle of resection is optimal and why?
 
-0 percent (Gilheany and Figdor) to limit leakage.
+A 0° (perpendicular) bevel is optimal (Gilheany and Figdor) because it minimizes the number of dentinal tubules exposed on the cut surface and thereby reduces apical microleakage.
 
 - How does resection level affect exposure of anatomical complexities?
-- Best way to get hemostasis?
 
-Epi pellets for 2-4 min (Little systemic effect – Vickers)). Other hemostatic agents can be difficult to remove and can induce inflammation and alter tissue healing (Ibarolla and Bjorensen).
+Deeper resection exposes additional canal morphology — isthmuses, fins, and lateral canals — but at the cost of reduced crown-to-root ratio and increased removal of sound root structure. The goal is to resect enough to address the anatomical source of failure without over-shortening the root.
 
-215. What is the typical blood losss with apical surgery?
+- What is the best way to achieve intra-operative hemostasis?
 
-9.5 ml (time and location were the biggest factors: longer surgery and palatal surgery (4x))
+Epinephrine-soaked cotton pellets packed into the bony crypt for 2–4 minutes provide reliable local hemostasis with minimal systemic effect (Vickers). Other hemostatic agents (bone wax, collagen, ferric sulfate) can be harder to remove and may induce inflammation or alter healing (Ibarrola and Bjorndal).
 
-216. Does every portion of the lesion need to be removed for healing?
+- What is the typical blood loss with apical surgery?
 
-According to Lin and Langland, NO but all fortein debris should be removed..
+Mean blood loss is approximately 9.5 mL. The largest determinants are surgical time (longer procedures bleed more) and anatomical location — palatal surgery causes roughly 4× the blood loss of buccal surgery.
 
-PreOp Management
+- Does every portion of the lesion need to be removed for healing?
 
-800 mg IBU at beginning of appt to decrease postop pain (Dionne)
+No. Lin and Langeland showed that complete curettage of the periapical lesion is not required for healing; however, all foreign debris (extruded sealer, gutta-percha, amalgam fragments) must be removed.
 
-Pre rinse with CHX to decrease bacteria (Martin)
+**Pre-operative management:**
+
+- 800 mg ibuprofen at the start of the appointment reduces post-operative pain (Dionne)
+- A pre-operative chlorhexidine rinse decreases oral bacterial load and surgical-site contamination (Martin)
 
 ## 10.5 Root-End Preparation Depth
 
 - What is the recommended root-end preparation depth?
-- 3 mm (Matisson et al)
+
+3 mm, which provides adequate retention and seal for modern retrofill materials (Mattison et al.).
+
 - What instruments are used for root-end preparation?
 
-Ultrasonic tips because they can access and prep without enlarginf the crypt too much (Mehlhaff).
+Ultrasonic retro-tips are the instruments of choice. They allow the operator to prepare a clean, centered, conservative root-end cavity within the confines of a small osteotomy, without over-enlarging the bony crypt (Mehlhaff).
 
-216. Do ultrasonic tips cause cracks?
+- Do ultrasonic tips cause cracks?
 
-Nobody but existing defects can’t be propagated with the tip based on a clinical study. (Tawil)
+Ultrasonic tips do not create new cracks in sound root dentin, but pre-existing microcracks can propagate under ultrasonic vibration (Tawil, clinical study).
 
 - How does preparation depth affect seal and prognosis?
+
+A root-end cavity depth of 3 mm provides a reliable seal and positions the retrofill well within the walls of the resected root. Shallower preparations leave inadequate retention for the retrofill material; excessive depth is unnecessary and weakens the remaining root.
 
 ## 10.6 Retrofill Material Selection
 
 - What are the properties of an ideal retrofill material?
+
+An ideal retrofill is biocompatible, bacteriostatic, dimensionally stable, moisture-tolerant during setting, adherent to dentinal walls, easy to handle within the surgical crypt, non-resorbable, radiopaque, and capable of supporting cementum and bone regeneration over its surface.
+
 - How do MTA, Biodentine, and other bioceramics compare as retrofill materials?
+
+MTA, Biodentine, and other tricalcium silicate bioceramics (Endosequence Root Repair Material, BioAggregate) share the core advantages of biocompatibility, moisture tolerance, and bioactive hydroxyapatite formation at the dentin interface. Biodentine has a shorter setting time (~12 minutes vs. 2–4 hours for ProRoot MTA) and superior compressive strength. Bioceramic putties offer improved handling within the surgical crypt compared with traditional MTA.
+
 - What is the evidence for success rates with different materials?
 
-1 year healing: 85% MTA vs 28% GP (Christiansen)
+- **Christiansen:** 85% healing at 1 year with MTA retrofill vs. 28% with gutta-percha alone
+- **Chen:** Endosequence Root Repair Material outperformed MTA in a canine healing model
+- **Torabinejad:** MTA superior to amalgam in monkey and dog models
+- **Baek and Kim:** MTA produced better healing than Super EBA and amalgam
 
-Chen Found better healing with ESSRM than MTA in dogs
+- What are the indications for guided tissue regeneration in apical surgery?
 
-Torebinejad MTA > amalgam in mopnkeys and dogs
+GTR is indicated for:
 
-Baek and Kim: MTA > Super EBA and Amalgam
-
-220. What are the indications for guided tissue regeneration in apical surgery?
-
-Large periapical lesions greater than 10 mm. (Tsesis)
-
-Through and through lesions (Tsesis)
-
-Apical-marginal defects (Douthitt, Deitrich)
+- Large periapical lesions greater than 10 mm (Tsesis)
+- Through-and-through lesions (Tsesis)
+- Apical-marginal (endo-perio) communication defects (Douthitt; Dietrich)
 
 ## 10.7 Hemisection/Root Amputation Decisions
 
@@ -1185,26 +1213,52 @@ Apical-marginal defects (Douthitt, Deitrich)
 ## 11.1 Recall Interval Determination
 
 - What recall intervals are recommended after endodontic treatment?
+
+Standard recall intervals are 6 months, 1 year, and then annually as needed. Larger lesions and retreatment cases warrant longer follow-up because healing may take several years. Teeth treated for asymptomatic apical periodontitis should be reviewed at 1, 2, and 4 years if the lesion is not yet fully resolved.
+
 - How does preoperative diagnosis affect follow-up schedule?
+
+Teeth treated for vital pulp pathology can generally be assessed at a single 1-year recall, since healing is typically straightforward and there is no pre-existing lesion to monitor. Necrotic cases with periapical lesions require longer follow-up to confirm radiographic resolution.
+
 - What is the minimum follow-up period to assess healing?
+
+One year is the minimum meaningful follow-up interval. Lesions larger than 1 cm may require up to 4 years for complete radiographic resolution.
 
 ## 11.2 Healing Assessment Criteria and Timing
 
 - What are the clinical and radiographic criteria for healed vs. healing vs. disease?
+
+**Healed:** absence of symptoms, normal PDL space, intact lamina dura, no radiolucency. **Healing:** asymptomatic tooth with progressive reduction in periapical radiolucency on serial radiographs. **Persistent disease:** symptoms, unresolved or enlarging radiolucency, sinus tract, or percussion sensitivity.
+
 - What is the expected timeline for periapical healing?
-- 70% of lesions take more than 1 year to heal (Murphy et al).
+
+70% of periapical lesions require more than 1 year to heal completely (Murphy et al.). Most lesions show progressive improvement over 1–4 years.
+
 - What role does CBCT play in healing assessment?
 
-CBCTs can assess healing in 3 dimensions but may overestimate persistent disease. Torabinejad found apical hypodensities >1 mm in 20% of endodontically treated teeth using CBCT.
+CBCT enables 3-dimensional assessment of healing but tends to overestimate persistent disease compared with conventional radiographs. Torabinejad found apical hypodensities greater than 1 mm in 20% of endodontically treated teeth on CBCT, many of which would be considered healed by 2D criteria.
 
 - How do you define success vs. survival in endodontics?
+
+**Success** is a strict radiographic and clinical definition — absence of pathology on follow-up imaging and resolution of all symptoms. **Survival** simply means the tooth remains functional in the mouth, regardless of the presence or absence of periapical radiolucency. Survival rates are consistently higher than strict success rates.
 
 ## 11.3 When to Intervene on Asymptomatic Apical Periodontitis
 
 - What is the natural history of asymptomatic apical periodontitis?
+
+Asymptomatic apical periodontitis (AAP) in a previously treated tooth can remain stable for years without causing symptoms, but it represents persistent infection or an unresolved inflammatory process. Some lesions heal slowly over time; others enlarge.
+
 - When is intervention indicated for asymptomatic lesions?
+
+Intervention is indicated when the lesion fails to decrease over 1–2 years of observation, is enlarging, becomes symptomatic, is adjacent to a proposed abutment, or when the patient is about to undergo immunosuppression or head/neck radiation.
+
 - What factors determine observation vs. treatment?
+
+Factors include lesion size and trajectory, patient age and medical status, strategic value of the tooth, presence of a coronal restoration issue, and patient preference.
+
 - How does lesion size affect the decision?
+
+Larger lesions are more likely to warrant intervention because they are less likely to heal spontaneously and carry greater risk of progression. Small stable lesions in asymptomatic teeth can often be monitored.
 
 # 12. Pharmacology and Pain Management
 
@@ -1219,14 +1273,22 @@ The NNT for 800 mg ibuprofen to achieve 50% pain relief is 1.6 (Oxford League Ta
 Maximum is 3.2 grams (Jeske). Even in short durations (8-30 days), dosages above 1.2 grams per day increase cardiovascular risk. Use the lowest effective dose for the least amount of time.
 
 - What combination analgesic regimens are most effective for endodontic pain?
+
+The combination of 600 mg ibuprofen with 1000 mg acetaminophen is considered the most effective oral analgesic combination for acute dental pain. This combination produces lower NNT values than either drug alone and is superior to most opioid-containing formulations.
+
 - When are opioids indicated in endodontic pain management?
+
+Opioids are reserved for patients with severe pain who have a contraindication to or inadequate response from maximum-dose NSAIDs plus acetaminophen. When opioids are required, short courses of the lowest effective dose should be used, ideally in combination with a non-opioid to reduce the total opioid exposure.
 
 ## 12.2 Antibiotic Selection and Indications
 
 - What are the indications for antibiotics in endodontic infections?
+
+Antibiotics are indicated only when there is evidence of systemic involvement or spreading infection — fever, malaise, diffuse cellulitis crossing fascial planes, trismus, lymphadenopathy, or an immunocompromised host. Antibiotics are **not** indicated for localized, fluctuant abscesses that can be adequately managed with local treatment (incision and drainage, pulpectomy).
+
 - What is the first-line antibiotic for endodontic infections?
 
-Pen VK or amoxicillin are the recommended first-line drugs (AAE position statement).
+Penicillin VK or amoxicillin are the first-line drugs recommended by the AAE Position Statement on Antibiotic Use in Endodontics.
 
 - When is Augmentin (amoxicillin/clavulanate) indicated?
 
@@ -1240,15 +1302,9 @@ Azithromycin is the recommended first-line drug for penicillin-allergic patients
 
 3 to 7 day course (European Society of Endodontology).
 
-240. Do ABX decrease pain when used in combination with NSAIDS and endo treatment?
+- Do antibiotics decrease pain when added to NSAIDs and endodontic treatment?
 
-NO
-
-5. Fouad, A. F., Rivera, E. M., & Walton, R. E. (1996). Penicillin as a supplement in resolving the localized acute apical abscess. Oral Surgery, Oral Medicine, Oral Pathology, Oral Radiology, and Endodontics.
-
-- Methods: A prospective, double-blind, randomized controlled trial involving 32 patients with a localized acute apical abscess (LAAA). After standard local treatment (root canal debridement and/or incision), patients were assigned to one of three groups: (1) penicillin VK, (2) a placebo, or (3) no supplemental medication. All patients received ibuprofen. Pain and swelling were tracked for 72 hours.
-- Findings: There was no statistically significant difference in the reduction of symptoms or the course of recovery among the three groups. The majority of patients in all groups recovered quickly with just local treatment and ibuprofen.
-- Takeaway: For a localized dental abscess without signs of systemic spread (e.g., fever, malaise), adding penicillin to the treatment regimen offers no demonstrable clinical benefit over performing the necessary local dental procedure and managing pain with anti-inflammatories.
+No. Fouad, Rivera, and Walton (1996) conducted a prospective, double-blind, randomized controlled trial of 32 patients with a localized acute apical abscess. After standard local treatment (root canal debridement and/or incision and drainage), patients were randomized to penicillin VK, placebo, or no supplemental medication — all patients received ibuprofen. There was no statistically significant difference in symptom reduction or recovery among the three groups. The clinical takeaway: for a localized dental abscess without signs of systemic spread, adding an antibiotic to proper local treatment and NSAID therapy provides no demonstrable benefit.
 
 ## 12.3 Antibiotic Prophylaxis Guidelines
 
@@ -1259,7 +1315,12 @@ Per 2007 American Heart Association guidelines, prophylaxis is indicated for: 1)
 The 2012 joint ADA and AAOS systematic review found that antibiotic prophylaxis reduces bacteria, but not infections. Antibiotics are not recommended prophylactically for patient with prosthetic joints.
 
 - What dental procedures require prophylaxis in at-risk patients?
+
+Procedures that involve manipulation of gingival tissue, the periapical region, or perforation of the oral mucosa require prophylaxis in patients meeting AHA criteria. This includes most endodontic procedures that extend beyond the orifice.
+
 - What is the recommended prophylactic regimen?
+
+Amoxicillin 2 g orally, 30–60 minutes before the procedure. For penicillin-allergic patients: clindamycin is no longer recommended; azithromycin 500 mg, cephalexin 2 g (if no history of anaphylaxis), or doxycycline 100 mg are acceptable alternatives per current AHA guidance.
 
 # 13. Systemic Conditions and Endodontics
 
@@ -1270,7 +1331,12 @@ The 2012 joint ADA and AAOS systematic review found that antibiotic prophylaxis 
 Diabetes increases the rate of flare-ups and reduces success (Fouad and Burleson).
 
 - What modifications should be considered for diabetic patients?
+
+Diabetic patients should be treated in short morning appointments after eating and taking their usual medications. Profound anesthesia with stress reduction is important. Glycemic status should be confirmed before treatment, and elective procedures postponed if the patient is poorly controlled (HbA1c > 8). Antibiotic prophylaxis is not routinely indicated based on diabetes alone.
+
 - How does glycemic control influence prognosis?
+
+Poorly controlled diabetes (elevated HbA1c) is associated with higher rates of post-treatment flare-up, persistent periapical pathosis, and treatment failure. Patients with well-controlled diabetes have outcomes approaching those of non-diabetic patients.
 
 ## 13.2 Cardiovascular Considerations
 
@@ -1279,26 +1345,36 @@ Diabetes increases the rate of flare-ups and reduces success (Fouad and Burleson
 Patients with chronic apical periodontitis have 2.8x greater risk of developing coronary heart disease (Costa et al., 2014, 2024).
 
 - What precautions are needed for patients on anticoagulants?
+
+Routine non-surgical endodontic treatment can generally be performed without modifying anticoagulation. For patients on warfarin, an INR within the therapeutic range (typically ≤3.5) is acceptable for most endodontic procedures. For patients on direct oral anticoagulants (DOACs), dose interruption is not required for non-surgical work. Apical surgery may require coordination with the prescribing physician but rarely requires discontinuation of therapy.
+
 - How should epinephrine use be modified in cardiac patients?
 
-Maximum epinephrine dose is 0.04 mg for cardiac patients.
+The maximum recommended epinephrine dose for cardiac patients is 0.04 mg (approximately two cartridges of 1:100,000 lidocaine with epinephrine). Use aspirating technique, avoid intravascular injection, and minimize epinephrine-containing retraction cord.
 
 ## 13.3 Sickle Cell Disease
 
 - How does sickle cell disease affect pulp vitality?
 
-Sickle cell anemia is associated with 8.3x higher risk of spontaneous pulp necrosis.
+Sickle cell anemia is associated with an 8.3× higher risk of spontaneous pulp necrosis, likely due to microvascular infarction of the pulp's end-arterial blood supply.
 
 - What special considerations apply to endodontic treatment in sickle cell patients?
+
+Appointments should be scheduled for times of good hydration and oxygenation. Stress and anxiety should be minimized because they can precipitate a sickle crisis. Profound local anesthesia is essential, and long procedures should be avoided when possible. Antibiotic prophylaxis may be considered in consultation with the hematologist for patients with functional asplenia.
 
 ## 13.4 Head and Neck Radiation
 
 - How does radiation therapy affect pulp testing?
 
-Radiation treatment reduces sensitivity to cold sensibility testing, but does not alter pulp histology.
+Head and neck radiation reduces the tooth's response to cold sensibility testing without altering the underlying pulp histology. Clinicians should be aware that thermal testing may underestimate vitality in irradiated patients.
 
 - What considerations apply to endodontic treatment in irradiated patients?
+
+Endodontic treatment is generally preferred over extraction in previously irradiated jaws because extraction carries a risk of osteoradionecrosis. Root canal therapy should be performed atraumatically, with gentle instrumentation and avoidance of over-instrumentation past the apex.
+
 - What is the risk of osteoradionecrosis with endodontic procedures?
+
+The risk of osteoradionecrosis from routine non-surgical endodontic treatment is low, and RCT is considered safer than extraction in irradiated patients. Apical surgery in the radiation field should generally be avoided.
 
 # 14. Pulp Biology and Dental Anatomy
 
@@ -1313,16 +1389,30 @@ The mineral content of mature dentin is 50%.
 0.5 mm of remaining dentin thickness is required to cause pulpal injury (Murray, 2002; same finding by Reeves and Stanley, 1966). Stanley found that the damage from bacteria getting within 0.5 mm of the pulp is significant and irreversible.
 
 - What are the zones of the pulp and their functions?
+
+Moving from the dentin inward, the four histologic zones of the pulp are: (1) the **odontoblastic layer**, which produces primary, secondary, and reparative dentin; (2) the **cell-free zone of Weil**, sparsely populated with cells and containing the nerve plexus of Raschkow and capillary networks; (3) the **cell-rich zone**, containing fibroblasts and undifferentiated mesenchymal cells that can differentiate into odontoblast-like cells following injury; and (4) the **pulp core**, containing the main vasculature, nerves, connective tissue, and cellular elements.
+
 - How does pulp respond to injury at the cellular level?
+
+Mild injury elicits reactionary dentin formation by existing odontoblasts. Severe injury that kills odontoblasts triggers recruitment of mesenchymal stem cells from the cell-rich zone, which differentiate into odontoblast-like cells and deposit reparative (tertiary) dentin. The pulp also mounts an inflammatory response — initially innate immunity (dendritic cells, macrophages, neutrophils) followed by acquired immunity with B and T cells {{cite: Hahn and Liewehr 2007}}. Unresolved microbial challenge drives RANKL expression, activating osteoclasts and leading to periapical bone resorption.
 
 ## 14.2 Anatomical Variations and Anomalies
 
 - What is the Oehlers classification of dens invaginatus?
 
-Oehlers has three classifications of dens invaginatus.
+Oehlers classified dens invaginatus into three types based on the extent of the invagination:
+
+- **Type I:** invagination confined to the crown, not extending beyond the CEJ
+- **Type II:** invagination extending apical to the CEJ into the root, ending as a blind sac but not communicating with the PDL
+- **Type III:** invagination extending through the root and communicating with the PDL laterally (IIIa) or apically (IIIb)
 
 - What are the common anatomical variations by tooth type?
+
+Common variations include: MB2 canals in maxillary first molars (present in 60–95%), middle mesial canals in mandibular molars (1–15%), second canals in mandibular incisors (15–40%), C-shaped canals in mandibular second molars (up to 30% in Asian populations), dens invaginatus in maxillary lateral incisors, and taurodontism.
+
 - How do you identify and manage C-shaped canals?
+
+C-shaped canals are identified pre-operatively by fused roots on radiograph, a catenary line between the mesial and distal canals on the pulp floor, and CBCT imaging. Management requires meticulous irrigation and activation because the isthmus connecting the canal components cannot be mechanically instrumented. Warm vertical or carrier-based obturation is preferred because cold lateral condensation cannot reliably fill the isthmus anatomy.
 
 ## 14.3 Periapical Pathology
 
@@ -1331,52 +1421,67 @@ Oehlers has three classifications of dens invaginatus.
 The immunologic theory (Torabinejad) suggests cysts increase due to inflammatory mediators stimulating epithelial cells to proliferate. This differs from the abscess theory which states cysts arise from proliferating epithelial cells around an existing abscess cavity (Nair). Ten Cate proposed the nutritional deficiency theory which states the center of a cyst necroses due to loss of nutritional supply.
 
 - What are the histologic differences between periapical granuloma and cyst?
+
+A **periapical granuloma** is composed of granulation tissue infiltrated with lymphocytes, plasma cells, macrophages, and fibroblasts, without an epithelial lining. A **periapical cyst** contains a fluid- or semi-solid–filled cavity lined by stratified squamous epithelium derived from the epithelial rests of Malassez. Nair further distinguished **pocket cysts**, which open into the root canal and can heal with orthograde RCT, from **true cysts**, which are fully enclosed and typically require surgical management.
+
 - How does the immune response contribute to periapical pathosis?
 
-#### Initially the immune response is innate immunity (dendritic cells, macrophages and neutrophils) and then it transitions to an acquired immunity {{cite: Hahn and Liewehr 2007}}. Unresolved microbial challenge then leads RANKL (receptor activator of NFkB ligand) causing bone resorption.
+The response begins with innate immunity (dendritic cells, macrophages, and neutrophils) and transitions to acquired immunity dominated by B and T lymphocytes {{cite: Hahn and Liewehr 2007}}. Unresolved microbial challenge drives RANKL (receptor activator of NF-κB ligand) expression, which activates osteoclasts and produces periapical bone resorption.
 
 # 15. Dental Trauma
 
-## Managing trauma patients
+## 15.0 Managing Trauma Patients
 
-According to Croll (rapid neurological assessment and initial management of the patient with traumatic injury) et al it is important to asses the overall neurological health of pt to rule out cranial nerve injury prior to treatment. Do a cranial nerve exam first and asses for alertness in time and space (ABCD, airway breathing, circulation and disability).
+Croll et al. emphasized that the initial assessment of a dental trauma patient must include a brief neurological evaluation to rule out intracranial or cranial nerve injury before any dental treatment is initiated. Begin with an ABCD survey (Airway, Breathing, Circulation, Disability), assess alertness and orientation to person, place, and time, and perform a focused cranial nerve examination. Dental care is addressed only after the patient is medically stable.
 
-## Concussion, Intrusion and Subluxation Management
+## 15.1 Concussion, Subluxation, and Intrusion
 
-## According to Andreasen, it is important to assess root development because that is the most significant factor with intrusion. An immature root is the most important factor for success with intrusion. 1 day of delay does not affect outcome with intrusion.
+Andreasen emphasized that stage of root development is the most significant prognostic factor in intrusion injuries — immature (open-apex) teeth have the best prognosis because they retain the capacity for continued root development and spontaneous re-eruption. A delay of 1 day in treating intrusion does not adversely affect outcome.
 
-## Luxation Management
-
-## Fracture Management
-
-## 15.1 Avulsion Management
+## 15.2 Avulsion Management
 
 - What is the incidence of replacement resorption after replantation?
 
-Replacement resorption is common after replantation of avulsed teeth (Souza).
+Replacement resorption (ankylosis) is a common long-term complication after replantation of avulsed teeth, particularly when extra-alveolar dry time exceeds 60 minutes (Souza).
 
 - What are the optimal storage media and extra-alveolar times?
-- What factors influence prognosis after replantation?
-- Intact PDL is the most important determent of healing (Van Hassel)
 
-## 15.2 Splinting Guidelines
+In decreasing order of preference, suitable storage media are: Hank's Balanced Salt Solution (HBSS, ideal), cold milk, saliva, and saline. Water is the least favorable because its hypotonicity causes PDL cell lysis. Extra-alveolar time should be minimized — ideally under 15 minutes — to preserve PDL cell viability.
+
+- What factors influence prognosis after replantation?
+
+An intact, viable periodontal ligament is the single most important determinant of healing after replantation (Van Hassel). Other key factors include extra-oral dry time, storage medium, patient age, stage of root development, and promptness of replantation.
+
+## 15.3 Splinting Guidelines
 
 - What are the IADT guidelines for splinting?
 
-IADT guidelines state the maximum wire diameter should be 0.4 mm for splinting. Cervical root fractures should be splinted for 4 months (IADT).
+IADT guidelines recommend a flexible, physiologic splint using a wire no thicker than 0.4 mm. Cervical (coronal third) root fractures are an exception and require rigid splinting for up to 4 months.
 
 - What is the recommended splinting duration for different injuries?
 
-## 15.3 Replacement Resorption and Decoronation
+- **Concussion / subluxation:** no splint required
+- **Extrusive luxation:** 2 weeks, flexible
+- **Lateral luxation:** 4 weeks, flexible
+- **Avulsion (closed apex, <60 min dry time):** 2 weeks, flexible
+- **Avulsion (extended dry time):** 4 weeks, flexible
+- **Root fracture — apical or middle third:** 4 weeks, flexible
+- **Root fracture — cervical third:** up to 4 months, rigid
+- **Alveolar fracture:** 4 weeks, rigid
+
+## 15.4 Replacement Resorption and Decoronation
 
 - When is decoronation indicated?
 
-If a tooth is infrapositioned 1 mm and undergoing replacement resorption and the patient is prior to growth spurt, decoronation should be performed (Malmgren). This maintains bone while the tooth is resorbed and allows eventual implant placement.
+Decoronation is indicated when a replanted tooth is undergoing replacement resorption and becomes infrapositioned (typically ≥1 mm) in a growing patient before the pubertal growth spurt (Malmgren). Decoronation preserves the alveolar ridge as the root resorbs, enabling eventual implant placement at skeletal maturity.
 
 - What is the technique for decoronation?
-- You remove tooth structure 2 mm below the osseous level.
+
+The crown is removed and the root structure is reduced to approximately 2 mm below the osseous crest. The remaining root is left in place and covered with a mucoperiosteal flap. The resorbing root is gradually replaced by bone.
+
 - Is decoronation successful?
-- Systematic review says yes especially if done pre pubety (Mohadeb).
+
+Yes. A systematic review by Mohadeb found decoronation to be a reliable technique for preserving alveolar ridge volume, particularly when performed before the pubertal growth spurt.
 
 # 16. Differential Diagnosis and Disease Mimickers
 
@@ -1398,124 +1503,115 @@ Ameloblastomas can appear like endodontic radiolucencies - most often in the pos
 
 - How do you differentiate true endodontic pathology from mimickers?
 
-# 17. Notes and Additional Topics
+The decisive test is pulp vitality. A vital pulp response in a tooth associated with a radiolucency strongly argues against an endodontic origin and should prompt evaluation for a non-endodontic lesion. Other helpful features include: lesion location (midline nasopalatine duct cyst, multiple radiolucencies in brown tumors, posterior mandible for ameloblastoma), the relationship of the lesion to the root apex (endodontic lesions are centered on the apex), and the presence or absence of symptoms. Biopsy is indicated whenever the diagnosis is uncertain or the lesion has atypical features.
 
-Use this section to add additional decision points or topics as you identify them during your board preparation.
+# 17. High-Yield Board Review Topics
 
-TRAUMA
+## 17.1 Trauma Quick Reference
 
-Q: What should you do first in a case of trauma?
+- What should you do first in a case of dental trauma?
 
-A: Cranial nerve exam (Croll).
+Perform a cranial nerve examination and neurological assessment before any dental treatment (Croll).
 
-Q: How likely is it that a tooth will go necrotic with an uncomplicated crown fracture?
+- How likely is a tooth to become necrotic after an uncomplicated crown fracture?
 
-A: 6%
+Approximately 6% of uncomplicated crown fractures progress to pulp necrosis.
 
-Q: How successful are Cvek pulpomies?
+- How successful are Cvek pulpotomies?
 
-A: 96% (Cvek)
+96% success rate (Cvek).
 
-Q: How successful is it to just treat the coronal portion of a horizontal root fracture?
+- How successful is treating only the coronal portion of a horizontal root fracture?
 
-A: 86% (Cvek)
+86% success rate when the coronal segment is treated and the apical segment is left undisturbed (Cvek).
 
-Q: If there is a root fracture what is the chance there will be necrosis of the coronal segment?
+- If there is a horizontal root fracture, what is the chance the coronal segment becomes necrotic?
 
-A: 22% (Andreasen)
+22% (Andreasen).
 
-Q: According to Andreason how likely are different luxation injuries?
-A: Intrusion: 85%, Lateral: 58%, Extrusion: 26%, Subluxation: 6%, Concussion 3%
+- According to Andreasen, what is the incidence of pulp necrosis for different luxation injuries?
 
-Q; Do you have to do the root canal on an avulsed open apex tooth with <1hr dry time?
+- Intrusion: 85%
+- Lateral luxation: 58%
+- Extrusive luxation: 26%
+- Subluxation: 6%
+- Concussion: 3%
 
-A: No it may not become necrotic
+- Do you have to perform a root canal on an avulsed open-apex tooth replanted within 1 hour of dry time?
 
-Q: What can you do tooth e root of an avulsed tooth with a closed apex and over 1 hr dry time?
+No — open-apex teeth replanted promptly may revascularize and remain vital.
 
-A: Soak in 2% stannous fluoride prior to replanting
+- What can you do to the root of an avulsed tooth with a closed apex and extended (>1 hour) dry time before replanting?
 
-Q: According to Andreason if the tooth is replanted in under 30 mins how likely is resorption? What if it’s over 90 minutes?
+Soak the root in 2% stannous fluoride prior to replantation to slow replacement resorption.
 
-A: 10% if under 30 mins; resorption likely if over 90 minutes
+- According to Andreasen, what is the risk of resorption after replantation if the tooth is replanted in under 30 minutes vs. over 90 minutes?
 
-Q: Is the tooth socket important when replanting?
+Approximately 10% risk of resorption if replanted under 30 minutes; resorption is nearly certain if dry time exceeds 90 minutes.
 
-A: No according to Oswald who replanted teeth monkey teeth into surgically created sockets.
+- Is the tooth socket itself important when replanting?
 
-Q: What does AAE say for when to follow up after trauma? 
-A: 2 weeks, 4 weeks, 6-8 weeks, 6 mo, 1 yr, 5 yrs
+No. Oswald replanted monkey teeth into surgically created sockets and demonstrated that healing does not depend on the original socket being preserved.
 
-Q: For luxated teeth how likely is PCO? Of the teeth that develop PCO who likely is necrosis?
+- What does the AAE recommend for follow-up intervals after trauma?
 
-A: 40% develop PCO, 7% of the teeth that develop PCO develop necrosis
+2 weeks, 4 weeks, 6–8 weeks, 6 months, 1 year, and 5 years.
 
-Q: What injury factors are most associated with necrosis? 
-A: extent of injury, the age of the patient/the development of the tooth, late necrosis (Andreasen). Sometimes there is transient apical breakdown, that doesn’t necessarily mean there is necrosis
+- For luxated teeth, how likely is pulp canal obliteration (PCO), and what fraction of PCO teeth become necrotic?
 
-Q: How do you know fi a tooth is ankylosed?
+Approximately 40% of luxated teeth develop PCO; 7% of teeth that develop PCO subsequently become necrotic.
 
-A: Anderson (ankylosis) found that sound and lack of mobility are the best indicators of ankylosis
+- What injury factors are most associated with pulp necrosis?
 
-Q: How does systemic tetracycline compare to amoxicillin? What are absolute contraindications to TCN use?
+Extent of injury, patient age and stage of tooth development, and late-onset necrosis (Andreasen). Transient apical breakdown is a normal finding and does not necessarily indicate necrosis.
 
-A: Systemic TCN is better than amoxicillin or placebo. Can’t use on children or pregnant patients. Sae-Lim.
+- How do you confirm that a tooth is ankylosed?
 
-Q: What causes internal resorption and what is the success rate for nonperforated lesions? What about perforated lesions? How do you treat it?
+Andersson found that a high-pitched metallic percussion sound and lack of physiologic mobility are the most reliable clinical indicators of ankylosis.
 
-A: Involves loss of protective predentin. Treated with long term CaOH. 100% of nonperforating lesions, versus 25% of perforated lesions. (N=4, long term CaOH) (Caliskan)
+- How does systemic tetracycline compare to amoxicillin for avulsion management, and what are the absolute contraindications to tetracycline?
 
-Q: What is TCA used and how dows it work?
+Systemic tetracycline is superior to amoxicillin and placebo for preventing replacement resorption after avulsion (Sae-Lim). Tetracycline is absolutely contraindicated in children and pregnant patients.
 
-A: Trichloracetic acid. It deactivates resorptive cells with coagulative necrosis.
+## 17.2 Resorption
 
-Q: What are the classification systems for incasive cervical resoprtion?
+- What causes internal resorption, and what are the success rates for treatment of perforated and non-perforated lesions?
 
-A: Hithersay’s classification system is used to classify invasive cervical resorption.
+Internal resorption involves loss of the protective predentin layer, allowing clastic cells to access and resorb root dentin. Treatment is with long-term calcium hydroxide followed by obturation with MTA or a bioceramic. Caliskan reported 100% success for non-perforating lesions vs. 25% for perforated lesions (small sample size, long-term CaOH).
 
-Class I and II: small and localized.
+- What is TCA and how does it work?
 
-Class III: moderate size extending into coronal 1/3 of the root
+Trichloroacetic acid (TCA) deactivates clastic cells on the resorptive front via coagulative necrosis of soft tissue.
 
-Class IV: Extensive lesion extending past coronal 1/3 of root
+- What is the classification system for invasive cervical resorption?
 
-Q: What is the treatment for ICR and how successful is the treatment ?
+Heithersay's classification is the most widely used system:
 
-A: Place glycerol on gingiva. Mechanical debridement with bur and curette. 90% TCA (trichloracetic acid). GI restoration (geristore). NSRCT may or may not be needed, sicne the predentin is often intact and protective of the pulp.
+- **Class I and II:** small, localized lesions
+- **Class III:** moderate lesions extending into the coronal third of the root
+- **Class IV:** extensive lesions extending past the coronal third
 
-Class I and II 100%
+- What is the treatment for invasive cervical resorption and how successful is it?
 
-Class III 78%
+Treatment protocol: isolate with glycerin to protect the gingiva, mechanically debride with bur and curette, apply 90% TCA to inactivate resorptive cells, and restore with a bioactive material such as Geristore. Non-surgical root canal treatment may or may not be needed since the predentin often remains intact and the pulp is protected. Heithersay's reported success rates:
 
-Class IV 12%
+- **Class I and II:** 100%
+- **Class III:** 78%
+- **Class IV:** 12%
 
-Success rates are from Hithersay’s research.
+- What causes invasive cervical resorption (also called ECRR)?
 
-Pulpal pathology and immunology
+The most commonly identified etiologic factors are orthodontic treatment, dental trauma, and internal bleaching.
 
-_ IgG predominates, Helepr T cells predominate in eearly active phase of periapical lesion development
+## 17.3 Pulpal Pathology and Immunology
 
-Anacholresis is the theory that bacteria are attracted to and localize to areas of chronic inflammation. This was refuted by Delivanis who injected bacteria into cants afnd found that even with bacteremia the bacteria did not localize to the unfilled canal space.
+- IgG and helper T cells predominate during the early active phase of periapical lesion development.
+- **Anachoresis** is the theory that circulating bacteria are attracted to and localize in areas of chronic inflammation such as an untreated canal. This was refuted by Delivanis, who induced bacteremia in animals and found that bacteria did not seed into empty canal spaces.
+- Nair's landmark histologic study of periapical biopsies found that 50% were granulomas, 35% were abscesses, and 15% were cysts. This contradicted the earlier belief that roughly half of periapical lesions were cysts. Nair further distinguished "pocket cysts" (which communicate with the canal and can heal after orthograde RCT) from "true cysts" (which are self-contained and typically require surgical management to resolve).
 
-Nair found that of periapical biopsies 50% were granulomas, 35% were granulomas and 15% were cysts. This differs form a widely held belief that half of periapical lesions are cysts. Nair believes that pocket cysts can heal with RCT but true cysts are less likely to heal.
+## 17.4 Coronal Seal and Restoration Timing
 
-WOUND HEALING AND FOLLOW UP
-
-Citations
-
-Ketterl W.
-
-“Differential diagnosis of pulpal involvement.”
-
-Quintessence International, 1990
-
-Kang SH, Kim BS, Kim Y. Cracked teeth: distribution, characteristics, and survival after root canal treatment. J Endod. 2016;42:557–62.
-
-- Add Lamers cavit leakeage study to my research (note to self). Also oral fluids can reach the apex within 3 days of exposure to the oral environment (Swanson and Madison). This supports the use of a orifice barrier and same day core placement.
-
-Q: What causes ICR (aka ECRR)?
-
-A: Trauma, ortho, bleaching.
+Oral fluids can reach the apex within 3 days of exposure to the oral environment if no coronal seal is present (Swanson and Madison). This finding supports the routine use of an orifice barrier and same-day core placement.
 
 # References
 
