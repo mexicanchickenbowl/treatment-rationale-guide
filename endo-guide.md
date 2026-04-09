@@ -443,7 +443,7 @@ According to Hargreaves, these teeth have higher failure due to the environment�
 
 - What preoperative medications improve anesthetic success?
 
-Premedication with 400 mg ibuprofen (Nagendrabu)
+Premedication with NSAIDs improves IANB success in symptomatic irreversible pulpitis: 400–800 mg ibuprofen taken 45–60 min before the block nearly doubles the success rate (Nagendrababu; Parirokh). However, the single most effective premedication is oral dexamethasone. {{cite: Pulikkotil 2018 — network meta-analysis of 19 RCTs (n=1654) ranked dexamethasone as the most effective oral premedication for IANB success in irreversible pulpitis (RR 2.92 vs placebo, SUCRA 0.96), beating NSAIDs and tramadol; 0.5 mg dose was optimal}}. {{cite: Hegde 2023 — in a double-blind RCT of 184 patients with SIP, IANB success rates were 60.9% with dexamethasone, 65.2% with ketorolac, 56.5% with prednisolone, vs just 21.7% with placebo}}. {{cite: Kumar 2021 — combination of 0.5 mg dexamethasone + 800 mg ibuprofen was significantly superior to either drug alone for IANB success in SIP mandibular molars}}. Mechanism: corticosteroids reduce PGE2 and inflammatory mediators at the pulp, decreasing nociceptor sensitization and TTX-resistant Na⁺ channel upregulation. Practical protocol: 0.5 mg oral dexamethasone ± 600–800 mg ibuprofen, 45–60 min preoperatively.
 
 - What combination techniques provide highest success rates for hot mandibular molars?
 
