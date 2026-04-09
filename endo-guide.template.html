@@ -486,10 +486,12 @@ function StudyPane({ cards, onJump }) {
           {pick && (
             <div className="mt-5 flex items-center justify-between">
               <div className="text-sm text-slate-600">
-                <span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""} —
-                <span className="italic"> {(reverse || typeMode) ? current.finding : ""}</span>
+                {!typeMode && (
+                  <><span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""}
+                  {reverse && <span className="italic"> — {current.finding}</span>}</>
+                )}
                 {current.section_title && (
-                  <button className="ml-3 text-indigo-600 hover:underline" onClick={() => onJump?.(current.section_id)}>
+                  <button className={`text-indigo-600 hover:underline ${typeMode ? "" : "ml-3"}`} onClick={() => onJump?.(current.section_id)}>
                     Jump to §{current.section_title}
                   </button>
                 )}
