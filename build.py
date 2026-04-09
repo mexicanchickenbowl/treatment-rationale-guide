@@ -120,7 +120,7 @@ def parse_markdown(md: str) -> list[dict]:
             i += 1
             continue
         if level in (3, 4):
-            add_block({"type": f"h{level}", "text": htext})
+            add_block({"type": f"h{level}", "text": htext, "raw": line})
             i += 1
             continue
 
@@ -131,6 +131,7 @@ def parse_markdown(md: str) -> list[dict]:
 
         # table: line starts with '|' and next line is a separator
         if line.lstrip().startswith("|"):
+            start = i
             tbl = [line]
             i += 1
             while i < n and lines[i].lstrip().startswith("|"):
@@ -147,27 +148,29 @@ def parse_markdown(md: str) -> list[dict]:
             else:
                 headers = rows[0]
                 body = rows[1:]
-            add_block({"type": "table", "headers": headers, "rows": body})
+            add_block({"type": "table", "headers": headers, "rows": body, "raw": "\n".join(lines[start:i])})
             continue
 
         # list
         if re.match(r"^\s*-\s+", line) or re.match(r"^\s*\d+\.\s+", line):
+            start = i
             ordered = bool(re.match(r"^\s*\d+\.\s+", line))
             items = []
             while i < n and (re.match(r"^\s*-\s+", lines[i]) or re.match(r"^\s*\d+\.\s+", lines[i])):
                 item = re.sub(r"^\s*(?:-|\d+\.)\s+", "", lines[i])
                 items.append(item)
                 i += 1
-            add_block({"type": "ol" if ordered else "ul", "items": items})
+            add_block({"type": "ol" if ordered else "ul", "items": items, "raw": "\n".join(lines[start:i])})
             continue
 
         # paragraph — collect until blank line or block break
+        start = i
         buf = [line]
         i += 1
         while i < n and lines[i].strip() and not re.match(r"^#{1,6}\s", lines[i]) and not lines[i].lstrip().startswith("|") and not re.match(r"^\s*-\s+", lines[i]) and not re.match(r"^\s*\d+\.\s+", lines[i]):
             buf.append(lines[i])
             i += 1
-        add_block({"type": "p", "text": " ".join(s.strip() for s in buf)})
+        add_block({"type": "p", "text": " ".join(s.strip() for s in buf), "raw": "\n".join(lines[start:i])})
 
     if current_section:
         sections.append(current_section)

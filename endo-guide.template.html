@@ -62,6 +62,20 @@
   .note-ed-acts .nh { font-size:.7rem; color:#94a3b8; flex:1; }
   .user-ann { cursor:default; }
   .ann-active .user-ann { cursor:pointer; outline:1px solid rgba(0,0,0,.09); outline-offset:1px; }
+  /* live-edit: double-click any paragraph/heading in edit mode → inline editor writes back to endo-guide.md */
+  .ann-active .editable-block { border-radius:4px; padding:1px 3px; margin:0 -3px; transition:background .12s, box-shadow .12s; cursor:text; }
+  .ann-active .editable-block:hover { background:#fff7ed; box-shadow:inset 0 0 0 1px #fdba7460; }
+  .block-ed { background:#fff7ed; border:1px solid #f59e0b80; border-radius:6px; padding:.6rem; margin:.8rem 0; }
+  .block-ed textarea { width:100%; border:1px solid #fbbf2470; border-radius:4px; padding:.5rem .6rem; background:#fffdf7; resize:vertical; font-family:inherit; font-size:.95rem; color:#1e293b; outline:none; line-height:1.65; min-height:80px; }
+  .block-ed textarea:focus { border-color:#f59e0b; box-shadow:0 0 0 2px #fcd34d60; }
+  .block-ed-acts { display:flex; align-items:center; gap:.5rem; margin-top:.45rem; flex-wrap:wrap; }
+  .block-ed-acts .bs { font-size:.78rem; padding:.3rem .8rem; background:#f59e0b; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600; }
+  .block-ed-acts .bs:hover:not(:disabled) { background:#d97706; }
+  .block-ed-acts .bs:disabled { background:#fbbf24; opacity:.7; cursor:wait; }
+  .block-ed-acts .bc { font-size:.78rem; padding:.3rem .65rem; background:#f1f5f9; color:#475569; border:none; border-radius:4px; cursor:pointer; }
+  .block-ed-acts .bc:hover { background:#e2e8f0; }
+  .block-ed-acts .bh { font-size:.72rem; color:#94a3b8; flex:1; min-width:0; }
+  .block-ed-acts .be { font-size:.72rem; color:#dc2626; font-weight:500; background:#fef2f2; padding:.15rem .4rem; border-radius:3px; border:1px solid #fecaca; }
   /* Fact-checked corrections */
   .factcheck { background: #e2e8f0; border-radius: 3px; padding: 0 3px; border-bottom: 2px solid #94a3b8; }
 </style>
@@ -140,10 +154,47 @@ const AUTHOR_PASSES = [
 const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
 const FlagCtx  = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
 
+// --- environment detection / Cloudflare Access auth ------------------------
+// On the deployed site, Cloudflare Access sits in front of /api/* and sets
+// an HttpOnly session cookie after login. The client doesn't touch a token —
+// it just checks /cdn-cgi/access/get-identity to see who (if anyone) is
+// signed in, and triggers /cdn-cgi/access/login when it needs to sign the
+// user in. On localhost the old serve.py password flow is used.
+const CLOUD_MODE = (() => {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  return host !== "localhost" && host !== "127.0.0.1" && host !== "";
+})();
+
+async function checkCloudIdentity() {
+  if (!CLOUD_MODE) return "";
+  try {
+    const r = await fetch("/cdn-cgi/access/get-identity", {
+      credentials: "same-origin",
+      cache: "no-store",
+    });
+    if (!r.ok) return "";
+    const data = await r.json();
+    return data?.email || "";
+  } catch { return ""; }
+}
+
+function goToCloudLogin() {
+  if (!CLOUD_MODE) return;
+  const ret = encodeURIComponent(window.location.href);
+  window.location.href = `/cdn-cgi/access/login?redirect_uri=${ret}`;
+}
+
+function goToCloudLogout() {
+  if (!CLOUD_MODE) return;
+  window.location.href = "/cdn-cgi/access/logout";
+}
+
 // --- annotation system -------------------------------------------------------
-const ANNO_KEY    = "endo-guide.annotations.v1";
+const ANNO_KEY     = "endo-guide.annotations.v1";
 const ANNO_PWD_KEY = "endo-guide.anno-pwd";
 const ANNO_SES_KEY = "endo-guide.anno-sess";
+const ANNO_PW_PLAIN = "endo-guide.anno-pw-plain"; // session-only plaintext, required for server writes
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
 function loadAnnotations() {
@@ -161,6 +212,7 @@ const AnnotateCtx = React.createContext({
   annotateMode: false, marks: [], notes: [],
   addMark: ()=>{}, removeMark: ()=>{},
   addNote: ()=>{}, updateNote: ()=>{}, removeNote: ()=>{},
+  saveBlock: async ()=>({ ok:false, error:"no_ctx" }),
 });
 
 // Find a text range inside rootEl matching a stored mark's context + selectedText
@@ -419,25 +471,75 @@ function Block({ block, query, isAnswer }) {
 // --- annotation components --------------------------------------------------
 
 function PasswordModal({ onSuccess, onCancel }) {
-  const isNew = !localStorage.getItem(ANNO_PWD_KEY);
-  const [pw, setPw] = useState(""); const [pw2, setPw2] = useState(""); const [err, setErr] = useState("");
+  const [status, setStatus] = useState("checking"); // "checking"|"has"|"none"|"offline"
+  const [pw, setPw] = useState(""); const [pw2, setPw2] = useState("");
+  const [err, setErr] = useState(""); const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/auth/status", { cache: "no-store" })
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(d => setStatus(d.has_password ? "has" : "none"))
+      .catch(() => setStatus("offline"));
+  }, []);
+
+  const hasLocalPw = !!localStorage.getItem(ANNO_PWD_KEY);
+  // "New" means we need to create a password: server has none, or we're offline with no local hash.
+  const isNew = status === "none" || (status === "offline" && !hasLocalPw);
+
   const submit = async () => {
-    if (!pw.trim()) return;
-    if (isNew) {
-      if (pw !== pw2) { setErr("Passwords don't match"); return; }
-      localStorage.setItem(ANNO_PWD_KEY, await hashPw(pw));
-      sessionStorage.setItem(ANNO_SES_KEY, "1"); onSuccess();
-    } else {
-      if (await hashPw(pw) === localStorage.getItem(ANNO_PWD_KEY)) {
-        sessionStorage.setItem(ANNO_SES_KEY, "1"); onSuccess();
-      } else { setErr("Incorrect password"); setPw(""); }
-    }
+    if (busy || !pw.trim()) return;
+    setBusy(true); setErr("");
+    try {
+      if (isNew) {
+        if (pw !== pw2) { setErr("Passwords don't match"); return; }
+        if (status === "none") {
+          const r = await fetch("/api/auth/set", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ password: pw }),
+          }).catch(() => null);
+          const d = r ? await r.json().catch(() => ({})) : {};
+          if (!r || !r.ok || !d.ok) { setErr(`Server: ${d.error || "unreachable"}`); return; }
+        }
+        localStorage.setItem(ANNO_PWD_KEY, await hashPw(pw));
+        sessionStorage.setItem(ANNO_SES_KEY, "1");
+        sessionStorage.setItem(ANNO_PW_PLAIN, pw);
+        onSuccess();
+      } else {
+        let ok = false;
+        if (status === "has") {
+          try {
+            const r = await fetch("/api/auth/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ password: pw }),
+            });
+            const d = await r.json().catch(() => ({}));
+            ok = !!d.ok;
+          } catch { ok = false; }
+        } else {
+          ok = (await hashPw(pw)) === localStorage.getItem(ANNO_PWD_KEY);
+        }
+        if (ok) {
+          sessionStorage.setItem(ANNO_SES_KEY, "1");
+          sessionStorage.setItem(ANNO_PW_PLAIN, pw);
+          if (!hasLocalPw) localStorage.setItem(ANNO_PWD_KEY, await hashPw(pw));
+          onSuccess();
+        } else { setErr("Incorrect password"); setPw(""); }
+      }
+    } finally { setBusy(false); }
   };
+
+  const headline = status === "checking" ? "Checking…" : (isNew ? "Set edit-mode password" : "Unlock edit mode");
+  const sub = status === "offline"
+    ? "Server unreachable — edits won't write to source. Highlights & notes still work."
+    : (isNew ? "Choose a password. Needed for highlights, notes, and live source edits." : null);
+
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center" onClick={onCancel}>
       <div className="bg-white rounded-xl p-6 shadow-2xl w-80" onClick={e => e.stopPropagation()}>
-        <h2 className="text-base font-semibold text-slate-900 mb-1">{isNew ? "Set edit-mode password" : "Unlock edit mode"}</h2>
-        {isNew && <p className="text-sm text-slate-500 mb-1">Choose a password to protect annotations and notes.</p>}
+        <h2 className="text-base font-semibold text-slate-900 mb-1">{headline}</h2>
+        {sub && <p className="text-sm text-slate-500 mb-1">{sub}</p>}
         <input autoFocus type="password"
           className="w-full px-3 py-2 border border-slate-200 rounded-lg mt-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
           placeholder="Password" value={pw}
@@ -452,8 +554,8 @@ function PasswordModal({ onSuccess, onCancel }) {
         )}
         {err && <p className="text-rose-600 text-sm mt-2">{err}</p>}
         <div className="flex gap-2 mt-4">
-          <button className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium" onClick={submit}>
-            {isNew ? "Set password" : "Unlock"}
+          <button className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-indigo-300 text-sm font-medium" onClick={submit} disabled={busy || status === "checking"}>
+            {busy ? "…" : (isNew ? "Set password" : "Unlock")}
           </button>
           <button className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 text-sm" onClick={onCancel}>Cancel</button>
         </div>
@@ -613,6 +715,78 @@ function AddNoteInline({ sectionId, subsectionId, afterBlockIndex }) {
   );
 }
 
+// Inline source-editor for a paragraph / h3 / h4. Double-click the block to open;
+// Save posts to /api/save-block, which rewrites endo-guide.md and reruns build.py.
+function EditableBlockWrap({ block, sectionId, subsectionId, blockIndex, query, isAnswer }) {
+  const { annotateMode, saveBlock } = React.useContext(AnnotateCtx);
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(block.text || "");
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState("");
+
+  const canEdit = annotateMode && !!block.raw && (block.type === "p" || block.type === "h3" || block.type === "h4");
+
+  useEffect(() => { if (!editing) setText(block.text || ""); }, [block.text, editing]);
+
+  const startEdit = (e) => {
+    // Don't steal dbl-clicks on existing annotation marks — those have their own remove flow
+    if (e.target.closest?.(".user-ann")) return;
+    // Browsers auto-select a word on dblclick; clear it so the selection toolbar doesn't linger
+    window.getSelection?.().removeAllRanges();
+    setText(block.text || "");
+    setErr("");
+    setEditing(true);
+  };
+
+  const commit = async () => {
+    const trimmed = text.replace(/\s+/g, " ").trim();
+    if (!trimmed) { setErr("cannot be empty"); return; }
+    if (trimmed === (block.text || "").trim()) { setEditing(false); return; }
+    setSaving(true); setErr("");
+    const res = await saveBlock({
+      sectionId, subsectionId: subsectionId || null, blockIndex,
+      type: block.type, oldRaw: block.raw, newText: trimmed,
+    });
+    setSaving(false);
+    if (res.ok) setEditing(false);
+    else setErr(res.error || "save failed");
+  };
+
+  const cancel = () => { setEditing(false); setErr(""); setText(block.text || ""); };
+
+  if (editing) {
+    return (
+      <div className="block-ed">
+        <textarea
+          value={text}
+          autoFocus
+          rows={Math.max(3, Math.min(14, Math.ceil((text.length || 1) / 70) + 1))}
+          onChange={e => setText(e.target.value)}
+          onKeyDown={e => {
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); commit(); }
+            else if (e.key === "Escape") { e.preventDefault(); cancel(); }
+          }}
+          disabled={saving}
+        />
+        <div className="block-ed-acts">
+          <button className="bs" onClick={commit} disabled={saving}>{saving ? "Saving…" : "Save"}</button>
+          <button className="bc" onClick={cancel} disabled={saving}>Cancel</button>
+          <span className="bh">⌘Enter · Esc · writes to endo-guide.md</span>
+          {err && <span className="be">{err}</span>}
+        </div>
+      </div>
+    );
+  }
+
+  const rendered = <Block block={block} query={query} isAnswer={isAnswer} />;
+  if (!canEdit) return rendered;
+  return (
+    <div className="editable-block" onDoubleClick={startEdit} title="Double-click to edit — saves to endo-guide.md">
+      {rendered}
+    </div>
+  );
+}
+
 // Renders blocks interleaved with saved notes + add-note buttons (in edit mode)
 function BlocksWithNotes({ blocks, sectionId, subsectionId, query }) {
   const { annotateMode, notes, updateNote, removeNote } = React.useContext(AnnotateCtx);
@@ -625,7 +799,8 @@ function BlocksWithNotes({ blocks, sectionId, subsectionId, query }) {
     );
     return (
       <React.Fragment key={i}>
-        <Block block={b} query={query} isAnswer={isAns} />
+        <EditableBlockWrap block={b} sectionId={sectionId} subsectionId={subsectionId || null}
+          blockIndex={i} query={query} isAnswer={isAns} />
         {blockNotes.map(note => (
           <NoteBlock key={note.id} note={note} annotateMode={annotateMode}
             onUpdate={updateNote} onDelete={removeNote} />
@@ -1286,7 +1461,7 @@ function AuthorPane({ cards, onJump }) {
 
 // --- app --------------------------------------------------------------------
 function App() {
-  const data = DATA || { sections: [], cards: [], suggestions: [] };
+  const [data, setData] = useState(() => DATA || { sections: [], cards: [], suggestions: [] });
   const [tab, setTab] = useState("reference");
   const [query, setQuery] = useState("");
   const [debounced, setDebounced] = useState("");
@@ -1301,9 +1476,93 @@ function App() {
   const addNote    = useCallback(note=> setAnnData(d => { const n={...d,notes:[...d.notes,note]};            saveAnnotations(n); return n; }), []);
   const updateNote = useCallback((id,text)=> setAnnData(d => { const n={...d,notes:d.notes.map(x=>x.id===id?{...x,text}:x)};saveAnnotations(n); return n; }), []);
   const removeNote = useCallback(id  => setAnnData(d => { const n={...d,notes:d.notes.filter(x=>x.id!==id)};saveAnnotations(n); return n; }), []);
-  const toggleAnnotate = () => {
+
+  // Cloud (Pages + Access) auth state. On localhost this stays empty.
+  const [cloudUser, setCloudUser] = useState("");
+  useEffect(() => {
+    if (!CLOUD_MODE) return;
+    checkCloudIdentity().then(email => { if (email) setCloudUser(email); });
+  }, []);
+
+  // Live source editing. Two backends:
+  //   • Cloud (deployed site): POST /api/save-block (Cloudflare Pages Function
+  //     gated by Cloudflare Access). Access injects the authenticated email
+  //     into the request; the function commits endo-guide.md via the GitHub API.
+  //   • Local (serve.py): POST /api/save-block with the session password;
+  //     the local server rewrites endo-guide.md and reruns build.py.
+  // Either way, we patch the in-memory sections tree on success so the edit is
+  // visible immediately without reloading.
+  const saveBlock = useCallback(async ({ sectionId, subsectionId, blockIndex, type, oldRaw, newText }) => {
+    const headers = { "Content-Type": "application/json" };
+    let payload;
+    if (CLOUD_MODE) {
+      payload = JSON.stringify({ type, oldRaw, newText });
+    } else {
+      const pw = sessionStorage.getItem(ANNO_PW_PLAIN) || "";
+      if (!pw) return { ok: false, error: "unlock edit mode first" };
+      payload = JSON.stringify({ password: pw, type, oldRaw, newText });
+    }
+    let body;
+    try {
+      const r = await fetch("/api/save-block", {
+        method: "POST",
+        headers,
+        body: payload,
+        credentials: "same-origin",
+      });
+      if ((r.status === 401 || r.status === 403) && CLOUD_MODE) {
+        setCloudUser("");
+        goToCloudLogin();
+        return { ok: false, error: "session expired — redirecting to sign in" };
+      }
+      body = await r.json().catch(() => ({ ok: false, error: "bad_response" }));
+    } catch {
+      return { ok: false, error: CLOUD_MODE ? "network error talking to server" : "offline — server needed for source edits" };
+    }
+    if (!body.ok) return { ok: false, error: body.error || "save failed" };
+    setData(d => ({
+      ...d,
+      sections: d.sections.map(sec => {
+        if (sec.id !== sectionId) return sec;
+        const patchBlocks = (blocks) => blocks.map((b, i) =>
+          i === blockIndex ? { ...b, text: newText, raw: body.newRaw } : b
+        );
+        if (subsectionId) {
+          return {
+            ...sec,
+            subsections: (sec.subsections || []).map(sub =>
+              sub.id === subsectionId ? { ...sub, blocks: patchBlocks(sub.blocks || []) } : sub
+            ),
+          };
+        }
+        return { ...sec, blocks: patchBlocks(sec.blocks || []) };
+      }),
+    }));
+    return { ok: true };
+  }, []);
+
+  const logout = () => {
+    setAnnotateMode(false);
+    setCloudUser("");
+    goToCloudLogout();
+  };
+
+  const toggleAnnotate = async () => {
     if (annotateMode) { setAnnotateMode(false); return; }
-    if (sessionStorage.getItem(ANNO_SES_KEY) === "1") { setAnnotateMode(true); return; }
+    if (CLOUD_MODE) {
+      const email = cloudUser || await checkCloudIdentity();
+      if (email) {
+        if (!cloudUser) setCloudUser(email);
+        setAnnotateMode(true);
+        return;
+      }
+      goToCloudLogin();
+      return;
+    }
+    // Local dev: existing password modal flow
+    if (sessionStorage.getItem(ANNO_SES_KEY) === "1" && sessionStorage.getItem(ANNO_PW_PLAIN)) {
+      setAnnotateMode(true); return;
+    }
     setShowPwModal(true);
   };
 
@@ -1372,7 +1631,7 @@ function App() {
   }, [data.sections, debounced]);
 
   return (
-    <AnnotateCtx.Provider value={{ annotateMode, marks: annData.marks, notes: annData.notes, addMark, removeMark, addNote, updateNote, removeNote }}>
+    <AnnotateCtx.Provider value={{ annotateMode, marks: annData.marks, notes: annData.notes, addMark, removeMark, addNote, updateNote, removeNote, saveBlock }}>
     <FlagCtx.Provider value={{ flagged, toggleFlag }}>
     <div className="h-screen flex flex-col">
       <header className="bg-white border-b shadow-sm shrink-0">
@@ -1390,9 +1649,18 @@ function App() {
             <button
               className={`tab-btn shrink-0 ${annotateMode ? "bg-amber-500 text-white" : "tab-inactive"}`}
               onClick={toggleAnnotate}
-              title={annotateMode ? "Click to exit edit mode" : "Enter edit mode"}>
+              title={annotateMode ? "Click to exit edit mode" : (CLOUD_MODE ? "Sign in to edit" : "Enter edit mode")}>
               {annotateMode ? "Editing" : "Edit"}{!annotateMode && (annData.marks.length + annData.notes.length) > 0 && <span className="ml-1 text-xs text-slate-400">({annData.marks.length + annData.notes.length})</span>}
             </button>
+            {CLOUD_MODE && cloudUser && (
+              <span className="shrink-0 inline-flex items-center gap-1.5 text-xs text-slate-500 ml-1">
+                <span className="hidden md:inline truncate max-w-[12rem]" title={cloudUser}>{cloudUser}</span>
+                <button
+                  onClick={logout}
+                  className="text-[10px] uppercase tracking-wide text-slate-400 hover:text-rose-600 border border-slate-200 rounded px-1.5 py-0.5"
+                  title="Sign out">out</button>
+              </span>
+            )}
           </div>
           <div className="flex-1 hidden md:block" />
           {tab === "reference" && (
