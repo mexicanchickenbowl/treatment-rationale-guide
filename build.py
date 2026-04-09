@@ -28,7 +28,6 @@ HERE = Path(__file__).parent
 MD = HERE / "endo-guide.md"
 SUGGESTIONS = HERE / "suggestions.json"
 ABSTRACTS = HERE / "abstracts.json"
-SITE_CONFIG = HERE / "site-config.json"
 TEMPLATE = HERE / "endo-guide.template.html"
 OUT_JSON = HERE / "guide-data.json"
 OUT_HTML = HERE / "index.html"
@@ -317,22 +316,12 @@ def build() -> None:
         except Exception as e:
             print(f"warn: could not read abstracts.json: {e}", file=sys.stderr)
 
-    site_config: dict = {}
-    if SITE_CONFIG.exists():
-        try:
-            raw = json.loads(SITE_CONFIG.read_text(encoding="utf-8"))
-            # Strip underscore-prefixed comment keys before injection
-            site_config = {k: v for k, v in raw.items() if not k.startswith("_")}
-        except Exception as e:
-            print(f"warn: could not read site-config.json: {e}", file=sys.stderr)
-
     data = {
         "built_at": datetime.now(timezone.utc).isoformat(),
         "sections": sections,
         "cards": cards,
         "suggestions": suggestions,
         "abstracts": abstracts,
-        "site_config": site_config,
     }
     OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 

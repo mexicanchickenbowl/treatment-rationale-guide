@@ -152,38 +152,41 @@ const AUTHOR_PASSES = [
 const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
 const FlagCtx  = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
 
-// --- remote auth / API routing ----------------------------------------------
-// On the deployed site, API_BASE points at the Cloudflare Worker (set via
-// site-config.json). On localhost we talk to the local serve.py password flow.
-const SITE_CONFIG = (typeof DATA === "object" && DATA && DATA.site_config) || {};
-const API_BASE = (() => {
-  const host = typeof window !== "undefined" ? window.location.hostname : "";
-  if (host === "localhost" || host === "127.0.0.1" || host === "") return "";
-  return (SITE_CONFIG.apiBase || "").replace(/\/+$/, "");
+// --- environment detection / Cloudflare Access auth ------------------------
+// On the deployed site, Cloudflare Access sits in front of /api/* and sets
+// an HttpOnly session cookie after login. The client doesn't touch a token —
+// it just checks /cdn-cgi/access/get-identity to see who (if anyone) is
+// signed in, and triggers /cdn-cgi/access/login when it needs to sign the
+// user in. On localhost the old serve.py password flow is used.
+const CLOUD_MODE = (() => {
+  if (typeof window === "undefined") return false;
+  const host = window.location.hostname;
+  return host !== "localhost" && host !== "127.0.0.1" && host !== "";
 })();
-const IS_REMOTE = API_BASE !== "";
-const JWT_KEY  = "endo-guide.jwt";
-const USER_KEY = "endo-guide.user";
-function getJWT()  { try { return localStorage.getItem(JWT_KEY) || ""; } catch { return ""; } }
-function getUser() { try { return localStorage.getItem(USER_KEY) || ""; } catch { return ""; } }
-function setAuth(jwt, user) {
-  try { localStorage.setItem(JWT_KEY, jwt); localStorage.setItem(USER_KEY, user); } catch {}
+
+async function checkCloudIdentity() {
+  if (!CLOUD_MODE) return "";
+  try {
+    const r = await fetch("/cdn-cgi/access/get-identity", {
+      credentials: "same-origin",
+      cache: "no-store",
+    });
+    if (!r.ok) return "";
+    const data = await r.json();
+    return data?.email || "";
+  } catch { return ""; }
 }
-function clearAuth() {
-  try { localStorage.removeItem(JWT_KEY); localStorage.removeItem(USER_KEY); } catch {}
+
+function goToCloudLogin() {
+  if (!CLOUD_MODE) return;
+  const ret = encodeURIComponent(window.location.href);
+  window.location.href = `/cdn-cgi/access/login?redirect_uri=${ret}`;
 }
-// Capture OAuth redirect token from the URL fragment on page load.
-(function captureTokenFromHash() {
-  if (typeof window === "undefined" || !window.location.hash) return;
-  const params = new URLSearchParams(window.location.hash.slice(1));
-  const token = params.get("endo_token");
-  const user  = params.get("endo_user");
-  if (token && user) {
-    setAuth(token, user);
-    const clean = window.location.pathname + window.location.search;
-    try { window.history.replaceState(null, "", clean); } catch {}
-  }
-})();
+
+function goToCloudLogout() {
+  if (!CLOUD_MODE) return;
+  window.location.href = "/cdn-cgi/access/logout";
+}
 
 // --- annotation system -------------------------------------------------------
 const ANNO_KEY     = "endo-guide.annotations.v1";
@@ -1453,24 +1456,25 @@ function App() {
   const updateNote = useCallback((id,text)=> setAnnData(d => { const n={...d,notes:d.notes.map(x=>x.id===id?{...x,text}:x)};saveAnnotations(n); return n; }), []);
   const removeNote = useCallback(id  => setAnnData(d => { const n={...d,notes:d.notes.filter(x=>x.id!==id)};saveAnnotations(n); return n; }), []);
 
-  // Remote (cloud) auth state — empty string when logged out
-  const [remoteUser, setRemoteUser] = useState(IS_REMOTE ? getUser() : "");
+  // Cloud (Pages + Access) auth state. On localhost this stays empty.
+  const [cloudUser, setCloudUser] = useState("");
+  useEffect(() => {
+    if (!CLOUD_MODE) return;
+    checkCloudIdentity().then(email => { if (email) setCloudUser(email); });
+  }, []);
 
   // Live source editing. Two backends:
-  //   • Remote (deployed site): POST to <worker>/api/save-block with a bearer
-  //     JWT; worker verifies and commits endo-guide.md via the GitHub API.
-  //   • Local (serve.py): POST to /api/save-block with the session password;
+  //   • Cloud (deployed site): POST /api/save-block (Cloudflare Pages Function
+  //     gated by Cloudflare Access). Access injects the authenticated email
+  //     into the request; the function commits endo-guide.md via the GitHub API.
+  //   • Local (serve.py): POST /api/save-block with the session password;
   //     the local server rewrites endo-guide.md and reruns build.py.
   // Either way, we patch the in-memory sections tree on success so the edit is
   // visible immediately without reloading.
   const saveBlock = useCallback(async ({ sectionId, subsectionId, blockIndex, type, oldRaw, newText }) => {
-    const url = `${API_BASE}/api/save-block`;
     const headers = { "Content-Type": "application/json" };
     let payload;
-    if (IS_REMOTE) {
-      const jwt = getJWT();
-      if (!jwt) return { ok: false, error: "session expired — click Edit to sign in again" };
-      headers.Authorization = `Bearer ${jwt}`;
+    if (CLOUD_MODE) {
       payload = JSON.stringify({ type, oldRaw, newText });
     } else {
       const pw = sessionStorage.getItem(ANNO_PW_PLAIN) || "";
@@ -1479,14 +1483,20 @@ function App() {
     }
     let body;
     try {
-      const r = await fetch(url, { method: "POST", headers, body: payload });
-      if (r.status === 401 && IS_REMOTE) {
-        clearAuth(); setRemoteUser("");
-        return { ok: false, error: "session expired — click Edit to sign in again" };
+      const r = await fetch("/api/save-block", {
+        method: "POST",
+        headers,
+        body: payload,
+        credentials: "same-origin",
+      });
+      if ((r.status === 401 || r.status === 403) && CLOUD_MODE) {
+        setCloudUser("");
+        goToCloudLogin();
+        return { ok: false, error: "session expired — redirecting to sign in" };
       }
       body = await r.json().catch(() => ({ ok: false, error: "bad_response" }));
     } catch {
-      return { ok: false, error: IS_REMOTE ? "network error talking to worker" : "offline — server needed for source edits" };
+      return { ok: false, error: CLOUD_MODE ? "network error talking to server" : "offline — server needed for source edits" };
     }
     if (!body.ok) return { ok: false, error: body.error || "save failed" };
     setData(d => ({
@@ -1510,15 +1520,22 @@ function App() {
     return { ok: true };
   }, []);
 
-  const logout = () => { clearAuth(); setRemoteUser(""); setAnnotateMode(false); };
+  const logout = () => {
+    setAnnotateMode(false);
+    setCloudUser("");
+    goToCloudLogout();
+  };
 
-  const toggleAnnotate = () => {
+  const toggleAnnotate = async () => {
     if (annotateMode) { setAnnotateMode(false); return; }
-    if (IS_REMOTE) {
-      if (getJWT()) { setRemoteUser(getUser()); setAnnotateMode(true); return; }
-      // Kick off GitHub OAuth — worker redirects back with a token in the fragment
-      const ret = encodeURIComponent(window.location.href);
-      window.location.href = `${API_BASE}/api/auth/login?return=${ret}`;
+    if (CLOUD_MODE) {
+      const email = cloudUser || await checkCloudIdentity();
+      if (email) {
+        if (!cloudUser) setCloudUser(email);
+        setAnnotateMode(true);
+        return;
+      }
+      goToCloudLogin();
       return;
     }
     // Local dev: existing password modal flow
@@ -1611,12 +1628,12 @@ function App() {
             <button
               className={`tab-btn shrink-0 ${annotateMode ? "bg-amber-500 text-white" : "tab-inactive"}`}
               onClick={toggleAnnotate}
-              title={annotateMode ? "Click to exit edit mode" : (IS_REMOTE ? "Sign in with GitHub to edit" : "Enter edit mode")}>
+              title={annotateMode ? "Click to exit edit mode" : (CLOUD_MODE ? "Sign in to edit" : "Enter edit mode")}>
               {annotateMode ? "Editing" : "Edit"}{!annotateMode && (annData.marks.length + annData.notes.length) > 0 && <span className="ml-1 text-xs text-slate-400">({annData.marks.length + annData.notes.length})</span>}
             </button>
-            {IS_REMOTE && remoteUser && (
+            {CLOUD_MODE && cloudUser && (
               <span className="shrink-0 inline-flex items-center gap-1.5 text-xs text-slate-500 ml-1">
-                <span className="hidden md:inline">@{remoteUser}</span>
+                <span className="hidden md:inline truncate max-w-[12rem]" title={cloudUser}>{cloudUser}</span>
                 <button
                   onClick={logout}
                   className="text-[10px] uppercase tracking-wide text-slate-400 hover:text-rose-600 border border-slate-200 rounded px-1.5 py-0.5"
