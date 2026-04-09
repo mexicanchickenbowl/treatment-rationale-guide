@@ -904,9 +904,9 @@ Cuspal coverage is indicated for posterior teeth (premolars and molars) after ro
 
 - How does cuspal coverage affect tooth survival?
 
-Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. Molars and premolars without cuspal coverage are 6x more likely to fracture than those with crowns {{cite: Aquilino and Caplan 2002}}. The survival benefit is greatest for posterior teeth under heavy occlusal loading.
+Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns {{cite: Aquilino and Caplan 2002}}. The study measured overall tooth loss/survival, not fracture specifically. The survival benefit is greatest for posterior teeth under heavy occlusal loading.
 
-The quality of coronal restoration is more important for endodontic outcomes than the quality of the root canal (Ray and Trope).
+Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth. However, the subsequent Gillen et al. (2011) systematic review and meta-analysis found no statistically significant difference in healing odds between the two factors — both adequate restoration and adequate root canal treatment are independently critical for success.
 
 - What factors influence the decision (tooth type, remaining structure, occlusal forces)?
 
@@ -918,7 +918,7 @@ Direct composite overlays provide an adhesive, minimally invasive option for tee
 
 - What percentage of crowned vital teeth will eventually need RCT?
 
-17% of crowned vital teeth will need RCT within 25 years (Valderhaug et al). This rate is higher for partial denture abutments which need RCT at a rate of 32% (Cheung).
+17% of crowned teeth (vital and root-filled combined) developed pulpal complications requiring endodontic treatment over 25 years (Valderhaug et al). The Cheung 2005 study reported 33.8% pulp necrosis in bridge retainer teeth at 10 years — note this applies to fixed bridge retainers, not removable partial denture abutments.
 
 ## 8.5 Post-Operative Pain and Occlusal Adjustment
 
