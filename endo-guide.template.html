@@ -4,23 +4,27 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Endo Rationale Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
   html, body { height: 100%; }
-  body { font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; }
-  .prose-body { font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 17px; line-height: 1.75; color: #1e293b; }
-  .block-h3 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 700; font-size: 1rem; margin-top: 1.4rem; margin-bottom: 0.3rem; color: #1e293b; border-left: 3px solid #c7d2fe; padding-left: 0.6rem; }
-  .block-h4 { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; font-size: 0.93rem; margin-top: 0.9rem; margin-bottom: 0.2rem; color: #374151; }
-  .prose-body p { margin: 0.75rem 0; }
-  .prose-body ul { list-style: disc; padding-left: 1.5rem; margin: 0.65rem 0; }
-  .prose-body ol { list-style: decimal; padding-left: 1.5rem; margin: 0.65rem 0; }
-  .prose-body li { margin: 0.35rem 0; }
-  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.875rem; margin: 1.25rem 0; font-family: ui-sans-serif, system-ui, sans-serif; }
-  .prose-body th, .prose-body td { border: 1px solid #e2e8f0; padding: 0.55rem 0.75rem; text-align: left; vertical-align: top; }
-  .prose-body thead th { background: #eef2ff; color: #3730a3; position: sticky; top: 0; font-weight: 600; letter-spacing: 0.01em; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  /* Reference pane body */
+  .prose-body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 15.5px; line-height: 1.8; color: #1e293b; }
+  .block-h3 { font-weight: 650; font-size: 0.97rem; margin-top: 1.75rem; margin-bottom: 0.5rem; color: #1e293b; border-left: 3px solid #a5b4fc; padding-left: 0.65rem; letter-spacing: -0.01em; }
+  .block-h4 { font-weight: 600; font-size: 0.9rem; margin-top: 1.1rem; margin-bottom: 0.3rem; color: #475569; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.78rem; }
+  .prose-body p { margin: 1rem 0; }
+  .prose-body ul { list-style: disc; padding-left: 1.6rem; margin: 0.9rem 0; }
+  .prose-body ol { list-style: decimal; padding-left: 1.6rem; margin: 0.9rem 0; }
+  .prose-body li { margin: 0.55rem 0; line-height: 1.65; }
+  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.845rem; margin: 1.5rem 0; }
+  .prose-body th, .prose-body td { border: 1px solid #e2e8f0; padding: 0.6rem 0.85rem; text-align: left; vertical-align: top; line-height: 1.55; }
+  .prose-body thead th { background: #eef2ff; color: #3730a3; position: sticky; top: 0; font-weight: 600; letter-spacing: 0.02em; font-size: 0.8rem; text-transform: uppercase; }
   .prose-body tbody tr:nth-child(even) { background: #f8fafc; }
   .prose-body tbody tr:hover { background: #f1f5f9; }
   .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
@@ -249,19 +253,19 @@ function ReferencePane({ sections, query }) {
         </nav>
       </aside>
       <main ref={mainRef} className="flex-1 overflow-y-auto bg-white">
-        <div className="max-w-2xl mx-auto px-10 py-10 prose-body">
+        <div className="max-w-2xl mx-auto px-10 py-12 prose-body">
           {sections.map((sec, si) => (
-            <section key={sec.id} data-anchor={sec.id} id={sec.id} className={`mb-16 ${si > 0 ? "pt-10 border-t border-slate-100" : ""}`}>
-              <h2 className="flex items-center gap-3 text-2xl font-bold text-slate-900 mb-5 not-prose">
+            <section key={sec.id} data-anchor={sec.id} id={sec.id} className={`mb-20 ${si > 0 ? "pt-12 border-t-2 border-slate-100" : ""}`}>
+              <h2 className="flex items-center gap-3 text-xl font-bold text-slate-900 mb-6 not-prose tracking-tight">
                 {sec.number && <span className="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded tabular-nums shrink-0">{sec.number}</span>}
                 <span>{highlight(sec.title, query)}</span>
               </h2>
               {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
               {(sec.subsections || []).map(sub => (
-                <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-9">
-                  <h3 className="flex items-baseline gap-2 text-base font-bold text-slate-800 mb-3 not-prose">
-                    {sub.number && <span className="text-xs text-slate-400 tabular-nums font-normal shrink-0 w-8">{sub.number}</span>}
-                    <span>{highlight(sub.title, query)}</span>
+                <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-10 pt-6 border-t border-slate-100">
+                  <h3 className="flex items-baseline gap-2 mb-4 not-prose">
+                    {sub.number && <span className="text-xs text-indigo-400 tabular-nums font-semibold shrink-0 w-8">{sub.number}</span>}
+                    <span className="text-[15px] font-semibold text-slate-800 tracking-tight leading-snug">{highlight(sub.title, query)}</span>
                   </h3>
                   {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} />)}
                 </section>
