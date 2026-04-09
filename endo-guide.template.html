@@ -46,6 +46,22 @@
   .tab-inactive:hover { background: #f1f5f9; color: #1e293b; }
   .question-item { list-style: none; margin-left: -1.6rem; font-weight: 650; color: #3730a3; font-size: 1rem; margin-top: 1.4rem; margin-bottom: 0.15rem; line-height: 1.5; }
   .answer-p { color: #166534; }
+  /* ── annotation / edit mode ─────────────────────────────────────────────── */
+  .inline-note { background:#fffbeb; border-left:3px solid #f59e0b; padding:.5rem .85rem; margin:.5rem 0; border-radius:0 6px 6px 0; font-size:.9rem; color:#78350f; line-height:1.6; position:relative; white-space:pre-wrap; word-break:break-word; }
+  .inline-note-acts { position:absolute; top:.35rem; right:.4rem; display:flex; gap:.25rem; }
+  .inline-note-acts button { font-size:.7rem; padding:.1rem .4rem; background:#f59e0b20; border:1px solid #f59e0b40; border-radius:4px; cursor:pointer; color:#92400e; }
+  .inline-note-acts button:hover { background:#f59e0b40; }
+  .add-note-btn { display:block; font-size:.73rem; color:#cbd5e1; margin:.1rem 0 .3rem; padding:.1rem .45rem; border-radius:4px; border:1px dashed transparent; cursor:pointer; background:none; transition:all .12s; }
+  .add-note-btn:hover { color:#f59e0b; border-color:#f59e0b60; background:#fffbeb; }
+  .note-ed { background:#fffbeb; border:1px solid #f59e0b80; border-radius:6px; padding:.5rem; margin:.4rem 0; }
+  .note-ed textarea { width:100%; border:none; background:transparent; resize:vertical; font-family:inherit; font-size:.9rem; color:#78350f; outline:none; min-height:56px; line-height:1.6; }
+  .note-ed-acts { display:flex; align-items:center; gap:.5rem; margin-top:.25rem; }
+  .note-ed-acts .ns { font-size:.75rem; padding:.2rem .65rem; background:#f59e0b; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600; }
+  .note-ed-acts .ns:hover { background:#d97706; }
+  .note-ed-acts .nc { font-size:.75rem; padding:.2rem .55rem; background:#f1f5f9; color:#64748b; border:none; border-radius:4px; cursor:pointer; }
+  .note-ed-acts .nh { font-size:.7rem; color:#94a3b8; flex:1; }
+  .user-ann { cursor:default; }
+  .ann-active .user-ann { cursor:pointer; outline:1px solid rgba(0,0,0,.09); outline-offset:1px; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -53,7 +69,7 @@
 <script type="text/babel" data-presets="react">
 const DATA = /*__DATA__*/null;
 
-const { useState, useMemo, useEffect, useRef, useCallback } = React;
+const { useState, useMemo, useEffect, useLayoutEffect, useRef, useCallback } = React;
 
 // --- utilities --------------------------------------------------------------
 const CITE_MARKER = /\{\{cite:\s*([^}]+?)\}\}/g;
@@ -121,6 +137,82 @@ const AUTHOR_PASSES = [
 // --- contexts ---------------------------------------------------------------
 const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
 const FlagCtx  = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
+
+// --- annotation system -------------------------------------------------------
+const ANNO_KEY    = "endo-guide.annotations.v1";
+const ANNO_PWD_KEY = "endo-guide.anno-pwd";
+const ANNO_SES_KEY = "endo-guide.anno-sess";
+const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+function loadAnnotations() {
+  try { const d = JSON.parse(localStorage.getItem(ANNO_KEY) || "{}"); return { marks: d.marks || [], notes: d.notes || [] }; }
+  catch { return { marks: [], notes: [] }; }
+}
+function saveAnnotations(d) { try { localStorage.setItem(ANNO_KEY, JSON.stringify(d)); } catch {} }
+
+async function hashPw(pw) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+const AnnotateCtx = React.createContext({
+  annotateMode: false, marks: [], notes: [],
+  addMark: ()=>{}, removeMark: ()=>{},
+  addNote: ()=>{}, updateNote: ()=>{}, removeNote: ()=>{},
+});
+
+// Find a text range inside rootEl matching a stored mark's context + selectedText
+function findMarkRange(rootEl, mark) {
+  const nodes = []; let text = "";
+  const wk = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, {
+    acceptNode: n => {
+      const tag = n.parentElement?.tagName?.toLowerCase();
+      return (tag === "script" || tag === "style" || tag === "option") ? NodeFilter.FILTER_SKIP : NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  let n;
+  while ((n = wk.nextNode())) { nodes.push({ node: n, start: text.length }); text += n.textContent; }
+  const needle = mark.contextBefore + mark.selectedText;
+  const pos = text.indexOf(needle);
+  const sp = pos >= 0 ? pos + mark.contextBefore.length : text.indexOf(mark.selectedText);
+  if (sp < 0) return null;
+  const ep = sp + mark.selectedText.length;
+  let sN=null, sO=0, eN=null, eO=0;
+  for (const { node, start } of nodes) {
+    const end = start + node.textContent.length;
+    if (!sN && sp >= start && sp < end) { sN=node; sO=sp-start; }
+    if (!eN && ep > start && ep <= end) { eN=node; eO=ep-start; }
+    if (sN && eN) break;
+  }
+  if (!sN || !eN) return null;
+  try { const r = document.createRange(); r.setStart(sN,sO); r.setEnd(eN,eO); return r; } catch { return null; }
+}
+
+// Re-apply all text marks to the DOM (runs after every React render via useLayoutEffect)
+function applyMarks(containerEl, marks) {
+  if (!containerEl) return;
+  // Unwrap existing mark spans
+  for (const s of Array.from(containerEl.querySelectorAll(".user-ann"))) {
+    const p = s.parentNode;
+    while (s.firstChild) p.insertBefore(s.firstChild, s);
+    p.removeChild(s);
+    try { p.normalize(); } catch {}
+  }
+  // Re-apply each mark
+  for (const mark of marks) {
+    const sec = containerEl.querySelector(`[data-anchor="${mark.sectionId}"]`);
+    if (!sec) continue;
+    const range = findMarkRange(sec, mark);
+    if (!range) continue;
+    const sp = document.createElement("span");
+    sp.className = "user-ann"; sp.dataset.annId = mark.id; sp.dataset.annType = mark.type;
+    sp.style.cssText = mark.type === "highlight"
+      ? `background:${mark.color};border-radius:2px;padding:0 1px`
+      : `text-decoration:underline;text-decoration-color:${mark.color||"#4338ca"};text-decoration-thickness:2px`;
+    try { range.surroundContents(sp); }
+    catch { try { const frag = range.extractContents(); sp.appendChild(frag); range.insertNode(sp); } catch {} }
+  }
+}
 
 // Long-press hook (works on mouse and touch)
 function useLongPress(onLong, ms = 500) {
@@ -303,6 +395,226 @@ function Block({ block, query, isAnswer }) {
   return null;
 }
 
+// --- annotation components --------------------------------------------------
+
+function PasswordModal({ onSuccess, onCancel }) {
+  const isNew = !localStorage.getItem(ANNO_PWD_KEY);
+  const [pw, setPw] = useState(""); const [pw2, setPw2] = useState(""); const [err, setErr] = useState("");
+  const submit = async () => {
+    if (!pw.trim()) return;
+    if (isNew) {
+      if (pw !== pw2) { setErr("Passwords don't match"); return; }
+      localStorage.setItem(ANNO_PWD_KEY, await hashPw(pw));
+      sessionStorage.setItem(ANNO_SES_KEY, "1"); onSuccess();
+    } else {
+      if (await hashPw(pw) === localStorage.getItem(ANNO_PWD_KEY)) {
+        sessionStorage.setItem(ANNO_SES_KEY, "1"); onSuccess();
+      } else { setErr("Incorrect password"); setPw(""); }
+    }
+  };
+  return (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center" onClick={onCancel}>
+      <div className="bg-white rounded-xl p-6 shadow-2xl w-80" onClick={e => e.stopPropagation()}>
+        <h2 className="text-base font-semibold text-slate-900 mb-1">{isNew ? "Set edit-mode password" : "Unlock edit mode"}</h2>
+        {isNew && <p className="text-sm text-slate-500 mb-1">Choose a password to protect annotations and notes.</p>}
+        <input autoFocus type="password"
+          className="w-full px-3 py-2 border border-slate-200 rounded-lg mt-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+          placeholder="Password" value={pw}
+          onChange={e => { setPw(e.target.value); setErr(""); }}
+          onKeyDown={e => e.key === "Enter" && (!isNew || pw2) && submit()} />
+        {isNew && (
+          <input type="password"
+            className="w-full px-3 py-2 border border-slate-200 rounded-lg mt-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+            placeholder="Confirm password" value={pw2}
+            onChange={e => { setPw2(e.target.value); setErr(""); }}
+            onKeyDown={e => e.key === "Enter" && submit()} />
+        )}
+        {err && <p className="text-rose-600 text-sm mt-2">{err}</p>}
+        <div className="flex gap-2 mt-4">
+          <button className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm font-medium" onClick={submit}>
+            {isNew ? "Set password" : "Unlock"}
+          </button>
+          <button className="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 text-sm" onClick={onCancel}>Cancel</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Floating toolbar: appears on text selection (to add mark) or click on existing mark (to remove)
+function AnnotationToolbar({ mainRef }) {
+  const { annotateMode, addMark, removeMark } = React.useContext(AnnotateCtx);
+  const [pos, setPos] = useState(null);          // {x, y, annId|null}
+  const [pendingRange, setPendingRange] = useState(null);
+  const [pendingSec, setPendingSec] = useState(null);
+  const tbRef = useRef(null);
+
+  useEffect(() => {
+    if (!annotateMode) { setPos(null); return; }
+    const onUp = e => {
+      if (tbRef.current?.contains(e.target)) return;
+      // Click on existing mark → show remove option
+      const annSp = e.target.closest?.(".user-ann");
+      if (annSp) {
+        const rect = annSp.getBoundingClientRect();
+        setPos({ x: rect.left + rect.width / 2, y: rect.top, annId: annSp.dataset.annId });
+        setPendingRange(null); setPendingSec(null); return;
+      }
+      // Text selection → show mark options
+      const sel = window.getSelection();
+      if (!sel || sel.isCollapsed || !sel.toString().trim()) { setPos(null); setPendingRange(null); return; }
+      const range = sel.getRangeAt(0);
+      let el = range.commonAncestorContainer;
+      if (el.nodeType === Node.TEXT_NODE) el = el.parentElement;
+      const sec = el.closest?.("[data-anchor]");
+      if (!sec) { setPos(null); return; }
+      const rect = range.getBoundingClientRect();
+      setPos({ x: rect.left + rect.width / 2, y: rect.top, annId: null });
+      setPendingRange(range.cloneRange()); setPendingSec(sec.getAttribute("data-anchor"));
+    };
+    document.addEventListener("mouseup", onUp);
+    return () => document.removeEventListener("mouseup", onUp);
+  }, [annotateMode]);
+
+  const applyMark = (type, color) => {
+    const secEl = mainRef.current?.querySelector(`[data-anchor="${pendingSec}"]`);
+    if (!secEl || !pendingRange) return;
+    const selectedText = pendingRange.toString();
+    if (!selectedText.trim()) return;
+    let contextBefore = "", contextAfter = "";
+    try {
+      const br = document.createRange(); br.setStart(secEl, 0); br.setEnd(pendingRange.startContainer, pendingRange.startOffset);
+      contextBefore = br.toString().slice(-20);
+      const ar = document.createRange(); ar.setStart(pendingRange.endContainer, pendingRange.endOffset); ar.setEnd(secEl, secEl.childNodes.length);
+      contextAfter = ar.toString().slice(0, 20);
+    } catch {}
+    addMark({ id: uid(), sectionId: pendingSec, selectedText, contextBefore, contextAfter, type, color });
+    window.getSelection()?.removeAllRanges();
+    setPos(null); setPendingRange(null);
+  };
+
+  if (!pos || !annotateMode) return null;
+
+  const HL = [["#fde68a","Yellow"],["#bfdbfe","Blue"],["#bbf7d0","Green"],["#fecaca","Pink"]];
+  return (
+    <div ref={tbRef}
+      style={{ position:"fixed", left:pos.x, top:pos.y - 4, transform:"translate(-50%,-100%)", zIndex:9999 }}
+      className="flex items-center gap-1 bg-slate-800 rounded-lg px-2 py-1.5 shadow-xl select-none"
+      onMouseDown={e => e.preventDefault()}>
+      {pos.annId ? (
+        <>
+          <span className="text-slate-300 text-xs px-1">Remove mark?</span>
+          <button className="text-xs px-2 py-0.5 bg-rose-500 text-white rounded hover:bg-rose-600"
+            onClick={() => { removeMark(pos.annId); setPos(null); }}>Remove</button>
+          <button className="text-slate-400 hover:text-white text-xs px-1 ml-1" onClick={() => setPos(null)}>✕</button>
+        </>
+      ) : (
+        <>
+          {HL.map(([bg, label]) => (
+            <button key={bg} title={`Highlight ${label}`} style={{ background: bg }}
+              className="w-5 h-5 rounded-sm border border-white/20 hover:scale-110 transition-transform"
+              onClick={() => applyMark("highlight", bg)} />
+          ))}
+          <div className="w-px h-4 bg-white/20 mx-0.5" />
+          <button title="Underline" className="text-white text-xs px-1.5 py-0.5 rounded hover:bg-white/20"
+            onClick={() => applyMark("underline", "#818cf8")}>
+            <span style={{ textDecoration:"underline", textDecorationColor:"#a5b4fc" }}>U</span>
+          </button>
+          <div className="w-px h-4 bg-white/20 mx-0.5" />
+          <button className="text-slate-400 hover:text-white text-xs px-1"
+            onClick={() => { setPos(null); window.getSelection()?.removeAllRanges(); }}>✕</button>
+        </>
+      )}
+    </div>
+  );
+}
+
+// Inline note display (saved state)
+function NoteBlock({ note, annotateMode, onUpdate, onDelete }) {
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(note.text);
+  if (editing) {
+    return (
+      <div className="note-ed">
+        <textarea value={text} autoFocus rows={Math.max(2, text.split("\n").length + 1)}
+          onChange={e => setText(e.target.value)}
+          onKeyDown={e => {
+            if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { onUpdate(note.id, text); setEditing(false); }
+            else if (e.key === "Escape") { setText(note.text); setEditing(false); }
+          }} />
+        <div className="note-ed-acts">
+          <button className="ns" onClick={() => { onUpdate(note.id, text); setEditing(false); }}>Save</button>
+          <span className="nh">⌘Enter · Esc to cancel</span>
+          <button className="nc" onClick={() => { setText(note.text); setEditing(false); }}>Cancel</button>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div className="inline-note" style={annotateMode ? { paddingRight:"5.5rem" } : {}}>
+      {note.text}
+      {annotateMode && (
+        <div className="inline-note-acts">
+          <button onClick={() => setEditing(true)}>Edit</button>
+          <button onClick={() => onDelete(note.id)}>×</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// "+ note" button that expands to an inline text editor
+function AddNoteInline({ sectionId, subsectionId, afterBlockIndex }) {
+  const { addNote } = React.useContext(AnnotateCtx);
+  const [active, setActive] = useState(false);
+  const [text, setText] = useState("");
+  const save = () => {
+    if (text.trim()) addNote({ id: uid(), sectionId, subsectionId: subsectionId || null, afterBlockIndex, text: text.trim() });
+    setActive(false); setText("");
+  };
+  if (!active) return (
+    <button className="add-note-btn" onClick={() => setActive(true)} title="Add a note here">+ note</button>
+  );
+  return (
+    <div className="note-ed">
+      <textarea autoFocus value={text} rows={3} placeholder="Add your note…"
+        onChange={e => setText(e.target.value)}
+        onKeyDown={e => {
+          if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) save();
+          else if (e.key === "Escape") { setActive(false); setText(""); }
+        }} />
+      <div className="note-ed-acts">
+        <button className="ns" onClick={save}>Save</button>
+        <span className="nh">⌘Enter to save · Esc to cancel</span>
+        <button className="nc" onClick={() => { setActive(false); setText(""); }}>Cancel</button>
+      </div>
+    </div>
+  );
+}
+
+// Renders blocks interleaved with saved notes + add-note buttons (in edit mode)
+function BlocksWithNotes({ blocks, sectionId, subsectionId, query }) {
+  const { annotateMode, notes, updateNote, removeNote } = React.useContext(AnnotateCtx);
+  return blocks.map((b, i) => {
+    const isAns = b.type === "p" && isQuestionBlock(blocks[i - 1]);
+    const blockNotes = notes.filter(n =>
+      n.sectionId === sectionId &&
+      (n.subsectionId || null) === (subsectionId || null) &&
+      n.afterBlockIndex === i
+    );
+    return (
+      <React.Fragment key={i}>
+        <Block block={b} query={query} isAnswer={isAns} />
+        {blockNotes.map(note => (
+          <NoteBlock key={note.id} note={note} annotateMode={annotateMode}
+            onUpdate={updateNote} onDelete={removeNote} />
+        ))}
+        {annotateMode && <AddNoteInline sectionId={sectionId} subsectionId={subsectionId} afterBlockIndex={i} />}
+      </React.Fragment>
+    );
+  });
+}
+
 // --- reference pane ---------------------------------------------------------
 function ReferencePane({ sections, query, authorPool, pctPool }) {
   const [activeId, setActiveId] = useState(sections[0]?.id);
@@ -312,6 +624,10 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
   const mainRef = useRef(null);
   const onAnswer = useCallback((ok) => setScore(s => ({ c: s.c + (ok ? 1 : 0), t: s.t + 1 })), []);
   const toggleQuiz = () => { setQuizMode(m => !m); setScore({ c: 0, t: 0 }); };
+
+  const { annotateMode, marks } = React.useContext(AnnotateCtx);
+  // Re-apply text marks after every render (before browser paint)
+  useLayoutEffect(() => { applyMarks(mainRef.current, marks); });
 
   // IntersectionObserver for active section
   useEffect(() => {
@@ -394,7 +710,7 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
           ))}
         </nav>
       </aside>
-      <main ref={mainRef} className="flex-1 overflow-y-auto bg-white">
+      <main ref={mainRef} className={`flex-1 overflow-y-auto bg-white${annotateMode ? " ann-active" : ""}`}>
         <div className="md:hidden sticky top-0 z-10 bg-white/95 backdrop-blur border-b px-4 py-2.5 flex items-center">
           <button onClick={() => setSidebarOpen(true)} className="flex items-center gap-2 text-sm text-indigo-700 font-semibold">
             <span>☰</span> Sections
@@ -407,20 +723,21 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
                 {sec.number && <span className="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded tabular-nums shrink-0">{sec.number}</span>}
                 <span>{highlight(sec.title, query)}</span>
               </h2>
-              {(sec.blocks || []).map((b, i) => <Block key={i} block={b} query={query} isAnswer={b.type === "p" && isQuestionBlock(sec.blocks[i - 1])} />)}
+              <BlocksWithNotes blocks={sec.blocks || []} sectionId={sec.id} subsectionId={null} query={query} />
               {(sec.subsections || []).map(sub => (
                 <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-10 pt-6 border-t border-slate-100">
                   <h3 className="flex items-baseline gap-2 mb-4 not-prose">
                     {sub.number && <span className="text-xs text-indigo-400 tabular-nums font-semibold shrink-0 w-8">{sub.number}</span>}
                     <span className="text-[15px] font-semibold text-slate-800 tracking-tight leading-snug">{highlight(sub.title, query)}</span>
                   </h3>
-                  {(sub.blocks || []).map((b, i) => <Block key={i} block={b} query={query} isAnswer={b.type === "p" && isQuestionBlock(sub.blocks[i - 1])} />)}
+                  <BlocksWithNotes blocks={sub.blocks || []} sectionId={sec.id} subsectionId={sub.id} query={query} />
                 </section>
               ))}
             </section>
           ))}
           <div className="h-32" />
         </div>
+        <AnnotationToolbar mainRef={mainRef} />
       </main>
     </div>
     </QuizCtx.Provider>
@@ -463,38 +780,24 @@ function loadAbstractCache() { try { return JSON.parse(localStorage.getItem(ABST
 function saveAbstractCache(c) { try { localStorage.setItem(ABSTRACT_CACHE_KEY, JSON.stringify(c)); } catch {} }
 
 function useAbstract(author, year) {
-  const [state, setState] = useState({ status: "idle" });
-  useEffect(() => {
-    if (!author || !year) return;
-    const key = `${normalizeAuthorForSearch(author).toLowerCase()}|${year}`;
-    const cached = loadAbstractCache()[key];
-    if (cached) { setState({ status: "done", ...cached }); return; }
-    setState({ status: "loading" });
-    let cancelled = false;
-    const term = encodeURIComponent(`${normalizeAuthorForSearch(author)}[Author] ${year}[PDAT]`);
-    fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${term}&retmode=json&retmax=1`)
-      .then(r => r.json())
-      .then(data => {
-        if (cancelled) return;
-        const pmid = data.esearchresult?.idlist?.[0];
-        if (!pmid) { setState({ status: "notfound" }); return; }
-        return fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${pmid}&rettype=abstract&retmode=xml`)
-          .then(r => r.text())
-          .then(xml => {
-            if (cancelled) return;
-            const doc = new DOMParser().parseFromString(xml, "text/xml");
-            const result = {
-              pmid,
-              title: doc.querySelector("ArticleTitle")?.textContent || "",
-              abstract: doc.querySelector("AbstractText")?.textContent || "",
-            };
-            saveAbstractCache({ ...loadAbstractCache(), [key]: result });
-            setState({ status: "done", ...result });
-          });
-      })
-      .catch(() => { if (!cancelled) setState({ status: "error" }); });
-    return () => { cancelled = true; };
-  }, [author, year]);
+  const [state, setState] = useState(() => {
+    // 1. Check pre-built abstracts embedded at build time
+    const key = `${author}|${year}`;
+    const prebuilt = DATA?.abstracts?.[key];
+    if (prebuilt?.status === "ok" && prebuilt.abstract) {
+      return { status: "done", pmid: prebuilt.pmid, title: prebuilt.title, abstract: prebuilt.abstract };
+    }
+    if (prebuilt?.status === "not_found") {
+      return { status: "notfound" };
+    }
+    // 2. Fall back to localStorage cache from previous runtime fetches
+    if (author && year) {
+      const cacheKey = `${normalizeAuthorForSearch(author).toLowerCase()}|${year}`;
+      const cached = loadAbstractCache()[cacheKey];
+      if (cached) return { status: "done", ...cached };
+    }
+    return { status: "idle" };
+  });
   return state;
 }
 
@@ -526,7 +829,12 @@ function AbstractPanel({ author, year, finding }) {
         <div className="px-4 py-3 bg-slate-50 text-slate-400 italic animate-pulse">Fetching abstract from PubMed…</div>
       )}
       {(status === "notfound" || status === "error") && (
-        <div className="px-4 py-3 bg-slate-50 text-slate-400 italic">Abstract not found on PubMed.</div>
+        <div className="px-4 py-3 bg-slate-50 text-slate-500 text-[13px] flex items-center gap-2">
+          <span className="italic">Abstract not indexed in PubMed.</span>
+          <a href={`https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(author + " " + year)}`}
+             target="_blank" rel="noopener noreferrer"
+             className="text-indigo-600 hover:underline whitespace-nowrap not-italic">Search PubMed ↗</a>
+        </div>
       )}
       {status === "done" && (
         <div className="bg-blue-50 border-blue-200">
@@ -963,6 +1271,21 @@ function App() {
   const [debounced, setDebounced] = useState("");
   const searchRef = useRef(null);
 
+  // Annotation / edit-mode state
+  const [annotateMode, setAnnotateMode] = useState(false);
+  const [showPwModal, setShowPwModal] = useState(false);
+  const [annData, setAnnData] = useState(loadAnnotations);
+  const addMark    = useCallback(m   => setAnnData(d => { const n={...d,marks:[...d.marks,m]};              saveAnnotations(n); return n; }), []);
+  const removeMark = useCallback(id  => setAnnData(d => { const n={...d,marks:d.marks.filter(m=>m.id!==id)};saveAnnotations(n); return n; }), []);
+  const addNote    = useCallback(note=> setAnnData(d => { const n={...d,notes:[...d.notes,note]};            saveAnnotations(n); return n; }), []);
+  const updateNote = useCallback((id,text)=> setAnnData(d => { const n={...d,notes:d.notes.map(x=>x.id===id?{...x,text}:x)};saveAnnotations(n); return n; }), []);
+  const removeNote = useCallback(id  => setAnnData(d => { const n={...d,notes:d.notes.filter(x=>x.id!==id)};saveAnnotations(n); return n; }), []);
+  const toggleAnnotate = () => {
+    if (annotateMode) { setAnnotateMode(false); return; }
+    if (sessionStorage.getItem(ANNO_SES_KEY) === "1") { setAnnotateMode(true); return; }
+    setShowPwModal(true);
+  };
+
   // Pools for inline quiz mode
   const authorPool = useMemo(() =>
     [...new Set((data.cards || []).filter(c => c.author).map(c => c.author))],
@@ -1028,6 +1351,7 @@ function App() {
   }, [data.sections, debounced]);
 
   return (
+    <AnnotateCtx.Provider value={{ annotateMode, marks: annData.marks, notes: annData.notes, addMark, removeMark, addNote, updateNote, removeNote }}>
     <FlagCtx.Provider value={{ flagged, toggleFlag }}>
     <div className="h-screen flex flex-col">
       <header className="bg-white border-b shadow-sm shrink-0">
@@ -1041,6 +1365,12 @@ function App() {
             <button className={`tab-btn shrink-0 ${tab === "authors" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("authors")}>Authors</button>
             <button className={`tab-btn shrink-0 ${tab === "audit" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("audit")}>
               Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded-full">{data.suggestions.length}</span> : null}
+            </button>
+            <button
+              className={`tab-btn shrink-0 ${annotateMode ? "bg-amber-500 text-white" : "tab-inactive"}`}
+              onClick={toggleAnnotate}
+              title={annotateMode ? "Click to exit edit mode" : "Enter edit mode"}>
+              {annotateMode ? "Editing" : "Edit"}{!annotateMode && (annData.marks.length + annData.notes.length) > 0 && <span className="ml-1 text-xs text-slate-400">({annData.marks.length + annData.notes.length})</span>}
             </button>
           </div>
           <div className="flex-1 hidden md:block" />
@@ -1064,7 +1394,14 @@ function App() {
       {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
     </div>
+    {showPwModal && (
+      <PasswordModal
+        onSuccess={() => { setShowPwModal(false); setAnnotateMode(true); }}
+        onCancel={() => setShowPwModal(false)}
+      />
+    )}
     </FlagCtx.Provider>
+    </AnnotateCtx.Provider>
   );
 }
 

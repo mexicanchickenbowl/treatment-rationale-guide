@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T13:22:39.702031+00:00",
+  "built_at": "2026-04-09T14:02:52.008664+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -5565,5 +5565,767 @@
       "source": "marker"
     }
   ],
-  "suggestions": []
+  "suggestions": [],
+  "abstracts": {
+    "AAE|2017": {
+      "pmid": "41078154",
+      "title": "Ethical considerations and legal allegations in endodontic practice.",
+      "abstract": "Endodontics is often cited as one of the leading dental disciplines involved in malpractice claims. This focus article aims to explore the ethical and legal aspects of endodontic treatment, with particular focus on identifying the underlying reasons for malpractice allegations, while highlighting the standard of care (SOC). A literature search was conducted to identify patterns in malpractice claims and adverse events related to endodontic treatment. Findings are organized into a clinically relevant classification of adverse events, as local, regional, or systemic, based on the location and response to injury. Not all adverse events result in negative outcomes, nor do they necessarily lead to litigation. Common dental malpractice claims often arise from diagnostic failures, lack of informed consent, deviation from SOC, and delays in referring patients when necessary. Allegations related to root perforation, lack of rubber dam usage, wrong tooth therapy, and infections have generally favored the plaintiffs. Ethical principles form a foundation for professional responsibility. Good communication, risk assessment, and record keeping are prerequisites to enforce patient safety and reduce the risk of malpractice. Targeted improvements in organizations, competence, resources, research, and education can ultimately benefit both patients and practitioners, ensuring higher SOCs and safety.",
+      "journal": "European journal of oral sciences",
+      "pub_year": "2026",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Aggarwal|2011": {
+      "pmid": "22000449",
+      "title": "A prospective, randomized, single-blind comparative evaluation of anesthetic efficacy of posterior superior alveolar nerve blocks, buccal infiltrations, and buccal plus palatal infiltrations in patients with irreversible pulpitis.",
+      "abstract": "INTRODUCTION: The purpose of this study was to evaluate and compare the anesthetic efficacy of posterior superior alveolar (PSA) nerve blocks, buccal infiltrations, and buccal plus palatal infiltrations with 2% lidocaine with 1:200,000 epinephrine in maxillary first molars with irreversible pulpitis. METHODS: Ninety-four adult patients participated in this prospective, randomized, single-blinded study. The patients were divided into 3 treatment groups on a random basis. Twenty-eight patients received a PSA nerve block, 33 patients received buccal infiltrations, and 33 patients received buccal plus palatal infiltrations with 2% lidocaine with 1:200,000 epinephrine. Endodontic access preparation was initiated 15 minutes after injection. Pain during treatment was recorded using a Heft-Parker visual analog scale. Success was recorded as \"none\" or \"mild\" pain. RESULTS: Statistical analysis using nonparametric chi-square tests revealed that there was no statistical difference between the anesthetic success of PSA nerve blocks (64%), buccal infiltrations (54%), and buccal plus palatal infiltrations (70%). CONCLUSIONS: None of the tested methods gave 100% anesthetic success rates in maxillary first molars with irreversible pulpitis.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.75,
+      "query": "Aggarwal[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Aksoy|2019": {
+      "pmid": "31702056",
+      "title": "The effect of pretreatment submucosal injections of tramadol and dexamethasone on post-endodontic pain in mandibular molar teeth with symptomatic irreversible pulpitis: a randomized controlled clinical trial.",
+      "abstract": "AIM: To establish the effects of submucosal single doses of two medicines on postoperative pain after root canal treatment in mandibular molar teeth with symptomatic irreversible pulpitis. METHODOLOGY: In this randomized controlled, double-blind clinical trial, 90 patients with the diagnosis of symptomatic irreversible pulpitis in their mandibular first or second molars were included and randomly divided into three groups (n = 30): a control group that received normal saline and two experimental groups that received a single dose of either tramadol (100 mg 2 mL-1 ) or dexamethasone (8 mg 2 mL-1 ). After local anaesthesia and before treatment, submucosal injections were administered into the mucobuccal fold adjacent to the mandibular molars, and a routine single-visit root canal treatment procedure was performed in all groups. After the root canal treatments, the patients were asked to score their pain level using the Heft-Parker visual analogue scale (0-170 mm) at 6, 12, 24, 48 and 72 h. The experimental groups were compared using one-way anova or Kruskal-Wallis H-test. The groups that were significantly different were compared pairwise using Student's t-test or the Mann-Whitney U-test. The findings were expressed as the mean ± standard deviation or median (min-max). The categorical variables were tested using the chi-square test or Fisher's exact chi-square test, and the results were expressed as counts and percentages. RESULTS: At the 6-h and 48-h time intervals, the intensity of pain was significantly less in both the dexamethasone and tramadol groups than in the control group (P < 0.0167). At the end of 12 h, the pain level in the dexamethasone group was significantly less compared to the other groups (P < 0.0167). CONCLUSIONS: Pretreatment submucosal dexamethasone and tramadol injections significantly diminished post-treatment endodontic pain of patients with symptomatic irreversible pulpitis following single-visit root canal treatment. However, dexamethasone was more effective than tramadol in pain reduction in the first 12 h.",
+      "journal": "International endodontic journal",
+      "pub_year": "2020",
+      "status": "ok",
+      "score": 0.75,
+      "query": "Aksoy[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Alomari|": {
+      "pmid": "21366625",
+      "title": "Responses of pulp sensibility tests during orthodontic treatment and retention.",
+      "abstract": "AIM: To investigate the effect of orthodontic tooth movement involving the six maxillary anterior teeth on the pulp response to both thermal and electric stimuli during active orthodontic treatment and retention. METHODOLOGY: Forty-seven subjects who required fixed orthodontic appliances were used as a study group with 23 non-orthodontic subjects recruited as a control group. Cold and electrical stimuli were applied to the maxillary incisors and canines immediately before and after the placement of fixed appliances and at regular intervals for both groups during active treatment and 12 months into retention. The numbers of negative responses for each tooth at each time interval were recorded for both groups. The data were collected and tabulated, and chi-square tests were used to determine significant difference between the numbers of negative responses for the two types of tests used on the same tooth and between different teeth. The mean values of the electric pulp testing (EPT) thresholds were also obtained and used to assist in analysing the results. RESULTS: In the control group, all teeth tested positively to the EPT and thermal pulp tests at all time intervals. In the orthodontic group, two teeth failed to respond to EPT and only one tooth to thermal testing at baseline (Time 0). After that, the number of negative responses to both tests increased gradually at each time interval reaching a peak after 2 months of active treatment (Time 3) and then declined gradually towards the end of observation period (Time 14). At baseline, response thresholds to electric testing were typically higher for orthodontic subjects, particularly for the maxillary lateral incisor tooth. For the control group, the response threshold over the study period was relatively constant. For the orthodontic group, application of force immediately increased the response threshold to EPT (Time 1), which peaked after 2 months (Time 3) and then gradually reduced. At the end of the active treatment, response thresholds remained elevated, but they returned to pre-treatment values towards the end of the retention phase. CONCLUSION: Dental practitioners should interpret responses to electrical pulp testing cautiously in orthodontic patients; thermal testing may be more reliable.",
+      "journal": "International endodontic journal",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 1.0
+    },
+    "Aquilino and Caplan|2002": {
+      "pmid": "11941351",
+      "title": "Relationship between crown placement and the survival of endodontically treated teeth.",
+      "abstract": "STATEMENT OF PROBLEM: Crowns have been considered the restoration of choice for endodontically treated teeth, but their selection has been based primarily on anecdotal evidence. PURPOSE: This study tested the hypothesis that crown placement (coronal coverage) is associated with improved survival of endodontically treated teeth when preaccess, endodontic, and restorative factors are controlled. MATERIAL AND METHODS: A University of Iowa College of Dentistry treatment database was used to identify permanent teeth that had undergone initial obturation between July 1, 1985, and December 31, 1987. Study patients were restricted to persons with at least 1 dental visit in each 2-year interval from 1985 to 1996; a simple random sample of 280 patients (n = 400 teeth) was selected. Dental charts, radiographs, and computerized databases were examined to ascertain variables of interest and to verify study inclusion criteria. Kaplan-Meier survival estimates were generated for the 203 teeth that satisfied study inclusion criteria. Multivariate Cox proportional hazards regression models were developed, with standard errors adjusted to account for clustering of teeth within patients. RESULTS: When tooth type and radiographic evidence of caries at access were controlled, the final Cox model showed that endodontically treated teeth not crowned after obturation were lost at a 6.0 times greater rate than teeth crowned after obturation (95% confidence interval: 3.2 to 11.3). CONCLUSION: Within the limitations of this study, a strong association between crown placement and the survival of endodontically treated teeth was observed. These results may impact treatment planning if long-term tooth retention is the primary goal.",
+      "journal": "The Journal of prosthetic dentistry",
+      "pub_year": "2002",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Bender|": {
+      "pmid": "2921428",
+      "title": "The optimum placement-site of the electrode in electric pulp testing of the 12 anterior teeth.",
+      "abstract": "The present study of 2,387 recordings of 12 anterior teeth in 53 patients indicates that the incisal edge is the optimal placement-site for the electric pulp tester to determine the lowest response threshold. The results show significant individual variations in the lowest threshold responses of the cervical-third, middle-third, incisal one-third, and incisal edge sites on a tooth, with a confidence level of 99%, according to the analysis of variance. The maxillary teeth gave a higher response threshold than the mandibular teeth and different types of teeth (canines and incisors) had statistically significant different response thresholds. The application of the electric pulp tester to the incisal-edge region with exposed dentin produced the most significant decrease in the threshold response.",
+      "journal": "Journal of the American Dental Association (1939)",
+      "pub_year": "1989",
+      "status": "ok",
+      "score": 0.6
+    },
+    "Bender and Rossman|": {
+      "pmid": "8247504",
+      "title": "Intentional replantation of endodontically treated teeth.",
+      "abstract": "This article reports 31 cases of intentional replantation with an overall success rate of 80.6% with six recorded failures. Survival times varied from 1 day to 22 years. A second mandibular molar that failed after 3 weeks was replanted successfully a second time with no signs of failure after a 46-month follow-up period. Two cases of intentional replantation of deciduous molars are also reported. We suggest that intentional replantation reduces adverse outcomes and should be considered as another treatment modality and not as a procedure of last resort. This procedure is recommended as the treatment of choice in the following instances: for lower second molars, for single-rooted teeth, and lower first molars when there is difficulty in accessibility to perform apical surgery; when the mental foramen is superimposed over the apex of the premolars; when the molar apex is in proximity to the mandibular canal; when patients object to periradicular surgery; when failures occur after apical surgery, or when surgery would create a periodontal pocket as a result of extensive bone removal. Periradicular surgery with a retroseal is more advantageous for first molars when roots are more curved, widespread, and are more prone to fracture compared with second molars whose roots are more tapered and close together.",
+      "journal": "Oral surgery, oral medicine, and oral pathology",
+      "pub_year": "1993",
+      "status": "ok",
+      "score": 1.0
+    },
+    "Bender and Seltzer|1961": {
+      "pmid": "13867083",
+      "title": "The oral fistula: its diagnosis and treatment.",
+      "abstract": "",
+      "journal": "Oral surgery, oral medicine, and oral pathology",
+      "pub_year": "1961",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Bhaskar and Rappaport|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy."
+    },
+    "Bierma|": {
+      "pmid": "22794215",
+      "title": "Comparison of heat-testing methodology.",
+      "abstract": "INTRODUCTION: Patients with irreversible pulpitis occasionally present with a chief complaint of sensitivity to heat. To appropriately diagnose the offending tooth, a variety of techniques have been developed to reproduce this chief complaint. Such techniques cause temperature increases that are potentially damaging to the pulp. Newer electronic instruments control the temperature of a heat-testing tip that is placed directly against a tooth. The aim of this study was to determine which method produced the most consistent and safe temperature increase within the pulp. This consistency facilitates the clinician's ability to differentiate between a normal pulp and irreversible pulpitis. METHODS: Four operators applied the following methods to each of 4 extracted maxillary premolars (for a total of 16 trials per method): heated gutta-percha, heated ball burnisher, hot water, and a System B unit or Elements unit with a heat-testing tip. Each test was performed for 60 seconds, and the temperatures were recorded via a thermocouple in the pulp chamber. Analysis of the data was performed by using the intraclass correlation coefficient. RESULTS: The least consistent warming was found with hot water. The heat-testing tip also demonstrated greater consistency between operators compared with the other methods. Hot water and the heated ball burnisher caused temperature increases high enough to damage pulp tissue. CONCLUSIONS: The Elements unit with a heat-testing tip provides the most consistent warming of the dental pulp.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2012",
+      "status": "ok",
+      "score": 0.778,
+      "query": "Bierma[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Bimstein and Rotstein|2016": {
+      "pmid": "27397639",
+      "title": "Cvek pulpotomy - revisited.",
+      "abstract": "BACKGROUND/AIM: While some studies support the notion that the time elapsed from coronal fracture and treatment with Cvek pulpotomy in permanent teeth plays an important role in minimizing the possibility of pain and discomfort, microbial pulp invasion, and ensuring pulp and periodontal healing, others consider that neither time between the accident and treatment nor size of exposure is critical if the inflamed superficial pulp tissue is amputated to the level of a healthy pulp. This study compares published data in an attempt to assess whether the outcome of Cvek pulpotomies is affected by these factors. RESULTS AND CONCLUSIONS: Evidence in the literature suggests to treat a permanent tooth with a complicated crown fracture as soon as possible to diminish the possibility of pain and prevent necrosis and infection of the pulp. Delay of treatment by 9 days or less may have minimal effect on the outcome of Cvek pulpotomies. While the literature indicates that pulp exposures of 4 mm or less may have a good prognosis after a Cvek pulpotomy, the prognosis in teeth with pulp exposures of more than 4 mm has not yet been clarified. Although the literature is not conclusive regarding a difference in the outcomes of Cvek pulpotomies in teeth with open or closed apices, it appears that teeth with open apices have a better prognosis. The outcome of a Cvek pulpotomy may be compromised by a luxation injury that diminishes the tooth's blood supply and innervation. A good restoration that prevents bacterial penetration into the tooth is essential for the success of a Cvek pulpotomy.",
+      "journal": "Dental traumatology : official publication of International Association for Dental Traumatology",
+      "pub_year": "2016",
+      "status": "ok",
+      "score": 0.429,
+      "query": "Bimstein[Author] AND 2016[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Boutsioukis|2010": {
+      "pmid": "20618877",
+      "title": "The effect of root canal taper on the irrigant flow: evaluation using an unsteady Computational Fluid Dynamics model.",
+      "abstract": "AIM: To evaluate the effect of root canal taper on irrigant flow inside a prepared root canal during final irrigation with a syringe and two types of needles, using a Computational Fluid Dynamics (CFD) model. METHODOLOGY: A validated CFD model was used to simulate irrigant flow from either a side-vented or a flat 30G needle positioned inside size 30, .02 taper, 30, .04, 30, .06, ProTaper F3 or size 60, .02 taper root canals, at 3 mm short of working length (WL). Velocity, pressure and shear stress in the root canal were evaluated. RESULTS: The side-vented needle could not achieve irrigant replacement to the WL in any of the cases. Significant irrigant replacement was evident further than 2 mm apically to the tip of the flat needle in the size 30, .06 taper, F3 and size 60, .02 taper canal. A wider distribution of wall shear stress was noted as the canal taper increased but the maximum shear stress decreased. The flat needle led to higher mean pressure at the apical foramen. Both needles showed a similar gradual decrease in apical pressure as the taper increased, but the least pressure was calculated in the size 60, .02 taper canal. CONCLUSIONS: An increase in root canal taper improved irrigant replacement and wall shear stress whilst reducing the risk for irrigant extrusion. Irrigant flow in a minimally tapered root canal with a large apical preparation size also improved irrigant replacement and wall shear stress and reduced the risk for irrigant extrusion, compared to the tapered root canals with a smaller apical preparation size.",
+      "journal": "International endodontic journal",
+      "pub_year": "2010",
+      "status": "ok",
+      "score": 0.611,
+      "query": "Boutsioukis[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Boutsioukis|2021": {
+      "pmid": "19460000",
+      "title": "Ex-vivo area-metric analysis of root canal obturation using gutta-percha cones of different taper.",
+      "abstract": "AIM: To evaluate the percentage of gutta-percha and sealer-filled canal area when four different types of master gutta-percha cones were used. METHODOLOGY: Sixty mandibular premolars with straight canals were instrumented using System ProTaper rotary instruments with a crown-down technique and assigned to four groups. Canals were obturated with AH-26 sealer either using lateral condensation and 0.02 taper gutta-percha cones (group A), 0.04 taper gutta-percha cones (group B), nonstandardized F- medium (group C) master gutta-percha cones, or a single System ProTaper gutta-percha cone (group D). The percentage of gutta-percha and sealer-filled area was calculated in horizontal sections of the apical portion of each canal, using image analysis software. The data was statistically analysed using Kruskal-Wallis test. RESULTS: The distribution of filling materials amongst groups was not significantly different at each level of sectioning (P > 0.05). CONCLUSION: The percentage of gutta-percha and sealer-filled canal area was similar when canals were filled with different master cones using lateral condensation or single cone techniques.",
+      "journal": "International endodontic journal",
+      "pub_year": "2009",
+      "status": "ok",
+      "score": 0.308
+    },
+    "Carnevale|1998": {
+      "pmid": "9543191",
+      "title": "Long-term effects of root-resective therapy in furcation-involved molars. A 10-year longitudinal study.",
+      "abstract": "The present investigation was designed to evaluate the long-term effect of root-resective therapy in the treatment of furcation-involved molars. The patient sample included 72 patients, 21-62 years of age, who presented periodontal lesions in the posteriors segments of the mouth including furcation involvement of various degrees. After an initial examination, each patient was subjected to a series of full-mouth scaling and root planing. They were recalled 1-3 months later for a presurgical examination and subsequently underwent the corrective phase of therapy. During the surgical procedure, the furcation-involved teeth were subjected to root-resective therapy in conjunction with osseous recontouring and apically positioned flaps (test sites). A surgical procedure identical to the test procedure was performed in the non-furcation-involved teeth (control sites) with the exception of the root resection. At the completion of the active phase of treatment, 175 test and 175 control sites were available for the study. After a period of 6 months of healing and plaque control supervision following surgical procedures, the patients were recalled for a baseline examination. They were then enrolled in a maintenance program including professional tooth cleaning every 26 months. The patients were re-examined 3, 5 and 10 years post-operatively. The results of the assessments demonstrated that the survival rate, during the 10-year period of observation, reached 93% at test and 99% at control sites. The positive treatment outcome at the root-resected, furcation-involved teeth as well as at non-furcation-involved teeth was probably the consequence of the reestablishment of a tissue morphology favorable for oral hygiene and careful plaque control by the patients.",
+      "journal": "Journal of clinical periodontology",
+      "pub_year": "1998",
+      "status": "ok",
+      "score": 0.429
+    },
+    "Cotter and Panzarino|": {
+      "pmid": "16728256",
+      "title": "Intentional replantation: a case report.",
+      "abstract": "Nonsurgical retreatment and surgical endodontics are not always viable solutions to endodontic disease. Access for retreatment may be limited by posts. Surgical endodontics may be limited by anatomical features including bone thickness and nerve and sinus proximity. Anatomical limitations and complex restorations may prevent implant placement. Intentional replantation is considered by many as a procedure of last resort when nonsurgical or surgical endodontics is contra-indicated. The treatment described demonstrates intentional replantation as a procedure to be considered when endodontic procedures or a dental implant are not possible.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2006",
+      "status": "ok",
+      "score": 0.429
+    },
+    "Dammaschke|2010": {
+      "pmid": "20416425",
+      "title": "Direct pulp capping with mineral trioxide aggregate: an immunohistologic comparison with calcium hydroxide in rodents.",
+      "abstract": "INTRODUCTION: The aim was to evaluate the proliferation of pulp cells 1, 3, and 7 days after direct pulp capping with ProRoot MTA (MTA) and to compare the results with calcium hydroxide (Ca(OH)(2)). METHODS: An occlusal cavity was prepared in 36 molar teeth of 18 Wistar rats. Then MTA or Ca(OH)(2) was placed on the exposed pulp. All cavities were restored with composite. After 1, 3, and 7 days the animals were killed. One hour before scarification 5-bromo-2'-deoxyuridine (BrdU) was injected into the intraperitoneal cavity for immunohistologic analysis. BrdU was incorporated into the cell nucleus during the S phase of the cell cycle. Proliferating cells were tagged and counted by using alkaline phosphatase and anti-alkaline phosphatase antibody staining. Three animals (6 molar teeth) served as controls and were not further treated. The number of the tagged cells was statistically analyzed by comparing the results of the 3 groups. A Bonferroni correction was performed, because the data of the Ca(OH)(2)- group was used 3 times for pairwise comparison. RESULTS: The marked cells were identified as fibroblasts, endothelial cells (after 1, 3, and 7 days), and Höhl cells (after 7 days). The MTA group showed a similar amount of Höhl cells when compared with the Ca(OH)(2) group (P > .05). One day and 7 days after capping, no significant differences were observed between the 2 tested groups and the controls (P > .05). After 3 days, significantly more cells were stained in the MTA and Ca(OH)(2) groups than in the control group (P < .016). CONCLUSIONS: Immunohistologic analysis demonstrated that MTA showed similar results when compared with Ca(OH)(2) within the first week after direct pulp capping.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2010",
+      "status": "ok",
+      "score": 0.5,
+      "query": "Dammaschke[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Doyle|2006": {
+      "pmid": "16934623",
+      "title": "Retrospective cross sectional comparison of initial nonsurgical endodontic treatment and single-tooth implants.",
+      "abstract": "Initial root canal treatment and the replacement of a single tooth with implants are both viable treatment options, but various success rates have been reported for each treatment modality. This study compared 196 implant restorations and 196 matched initial nonsurgical root canal treatment (NSRCT) teeth in patients for four possible outcomes- success, survival, survival with subsequent treatment intervention and failure. Cross classifications/tabulations were analyzed using Pearson's chi(2) test for association of the two classifications (endo vs. implant and outcome). Polytomous regression with likelihood ratio tests were used in testing association with tooth location and outcome. Outcomes were as follows for implants and NSRCT outcomes, respectively: success 73.5% and 82.1%; survival with no intervention 2.6% and 8.2%; survival with intervention 17.9% and 3.6%; and failure 6.1% and 6.1%. Location of the restoration in the mouth did not affect outcome. This study suggests that restored endodontically treated teeth and single-tooth implant restorations have similar failure rates, although the implant group showed a longer average and median time to function and a higher incidence of postoperative complications requiring subsequent treatment intervention.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2006",
+      "status": "ok",
+      "score": 0.5,
+      "query": "Doyle[Author] AND 2006[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Dummer|1984": {
+      "pmid": "6593303",
+      "title": "The position and topography of the apical canal constriction and apical foramen.",
+      "abstract": "",
+      "journal": "International endodontic journal",
+      "pub_year": "1984",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Fan|2004": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Farsi|2005": {
+      "pmid": "30514371",
+      "title": "Characterization of the apical bridge barrier formed following amelogenin apexification.",
+      "abstract": "BACKGROUND: Recombinant amelogenin protein (RAP) is reported to induce complete root apex formation in dog model when used as apexification therapy. It also induces pulp regeneration in 85% of the treated group. Thus, the aim of this study was to investigate the nature of the remaining regenerated calcified tissues of the RAP group that showed no pulp regeneration compared to the calcium hydroxide treated group (CH). METHODS: A total of 240 dogs' open apex root canals were used, after establishment of canals contamination. Canals were cleaned, irrigated, and filled with RAP as an apexification material and compared with CH. Treated teeth were assessed by H&E, trichrome staining, and/or immunohistochemistry technique, at 1, 3, and 6 months. RESULTS: A time-dependent increase in the calcified tissue barrier was observed in the apex of the RAP-treated group compared to the CH-treated group. The newly formed dentin in this RAP group was mainly tubular dentin and was functionally attached to the bone by periodontal ligament, while the CH group showed dentin-associated mineralized tissue (DAMT) associated with the newly formed apical barrier. CONCLUSIONS: Out results suggest that RAP can be used as novel apexification material, resulting in a thickening and strengthening of the canal walls, and achieving apical closure.",
+      "journal": "BMC oral health",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.4
+    },
+    "Fernandes|2003": {
+      "pmid": "14668756",
+      "title": "Factors determining post selection: a literature review.",
+      "abstract": "Most endodontically treated teeth require a post-and-core build-up for restoring the teeth to optimum health and function. Selection of an appropriate post-and-core system from the wide variety of those available may be a clinical dilemma. Therefore, the purpose of this article is to review the literature to identify the various factors that influence the selection of the post-and-core assembly. English-language peer-reviewed articles between 1961 and 2002 were identified using MEDLINE, as well as a hand search. The following key words were used: post, design, retention, fracture resistance, survivability, and esthetics. Selection of a post and core system should satisfy many interrelated biologic, mechanical, and esthetic factors to optimally restore the endodontically treated tooth to adequate form and function. This review may serve as a guide to aid the clinician in the selection of a post-and-core system.",
+      "journal": "The Journal of prosthetic dentistry",
+      "pub_year": "2003",
+      "status": "ok",
+      "score": 0.053
+    },
+    "Fouad and Burleson|2003": {
+      "pmid": "15980710",
+      "title": "The effect of antibiotics and endodontic antimicrobials on the polymerase chain reaction.",
+      "abstract": "The effectiveness of endodontic antimicrobial treatment could be determined using sensitive molecular methods. The purpose of this study was to determine if antibiotics or endodontic reagents interfere with the ability of PCR to detect Enterococcus faecalis in vitro. Amoxicillin (25 mg/ml), clindamycin (15 mg/ml), tetracycline (25 mg/ml), doxycycline (10 mg/ml), calcium hydroxide, 1% buffered sodium hypochlorite (NaOCl1), 3% and 6% unbuffered NaOCl (NaOCl3 and NaOCl6), 2% chlorhexidine (CHX), 5% tincture iodine (TI), 2% iodine potassium iodide (IKI), chloroform (CF), 70% ethyl alcohol, 5% sodium thiosulphate, 5% citric acid or saline were added to 10 or 10 cells/ml E. faecalis ATCC 19433 for 1 h (1 wk for Ca(OH)2). Using PCR, all specimens were positive except for NaOCl3 and NaOCl6. PCR with Ca(OH)2 was positive with 10 cells/ml but negative with 10 cells/ml. The following reagents yielded negative culturing results: all antibiotics, Ca(OH)2, CHX, IKI, TI, NaOCl3, NaOCl6, and CF. BacLight nuclear staining revealed the presence of viable cells in all PCR positive, culture negative combinations, except for those with CF. Therefore, in the presence of threshold values of bacterial concentrations, all reagents tested except for NaOCl3 and NaOCl6 do not interfere with the detection of E. faecalis using PCR.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2005",
+      "status": "ok",
+      "score": 0.444
+    },
+    "Fowler|": {
+      "pmid": "25442725",
+      "title": "Does acetaminophen/hydrocodone affect cold pulpal testing in patients with symptomatic irreversible pulpitis? A prospective, randomized, double-blind, placebo-controlled study.",
+      "abstract": "INTRODUCTION: The purpose of this prospective randomized, double-blind, placebo-controlled study was to determine the effects of a combination dose of 1000 mg acetaminophen/10 mg hydrocodone on cold pulpal testing in patients experiencing symptomatic irreversible pulpitis. METHODS: One hundred emergency patients in moderate to severe pain diagnosed with symptomatic irreversible pulpitis of a mandibular posterior tooth randomly received, in a double-blind manner, identical capsules of either a combination of 1000 mg acetaminophen/10 hydrocodone or placebo. Cold testing with Endo-Ice (1,1,1,2 tetrafluoroethane; Hygenic Corp, Akron, OH) was performed at baseline and every 10 minutes for 60 minutes. Pain to cold testing was recorded by the patient using a Heft-Parker visual analog scale. Patients' reaction to the cold application was also rated. RESULTS: Cold testing at baseline and at 10 minutes resulted in severe pain for both the acetaminophen/hydrocodone and placebo groups. Although pain ratings decreased from 20-60 minutes, the ratings still resulted in moderate pain. Patient reaction to cold testing showed that 56%-62% had a severe reaction. Although the reactions decreased in severity over the 60 minutes, 20%-34% still had severe reactions at 60 minutes. Regarding pain and patients' reactions to cold testing, there were no significant differences between the combination acetaminophen/hydrocodone and placebo groups at any time period. CONCLUSIONS: A combination dose of 1000 mg of acetaminophen/10 mg of hydrocodone did not statistically affect cold pulpal testing in patients presenting with symptomatic irreversible pulpitis. Patients experienced moderate to severe pain and reactions to cold testing.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2014",
+      "status": "ok",
+      "score": 1.0
+    },
+    "Fuss and Trope|1996": {
+      "pmid": "9206372",
+      "title": "Root perforations: classification and treatment choices based on prognostic factors.",
+      "abstract": "Root perforations are common complications of endodontic treatment or post preparation and often lead to tooth extraction. Successful treatment depends mainly on immediate sealing of the perforation and prevention of infection. Several factors affect the achievement of these goals, most important of which are: time of occurrence, size, and location of the perforation. A classification of root perforations, based on the above factors, is presented to assist the clinician in the choice of the treatment protocol which will give the best possible results when a perforation is diagnosed.",
+      "journal": "Endodontics & dental traumatology",
+      "pub_year": "1996",
+      "status": "ok",
+      "score": 0.6,
+      "query": "Fuss[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Gillen|2011": {
+      "pmid": "21689541",
+      "title": "Impact of the quality of coronal restoration versus the quality of root canal fillings on success of root canal treatment: a systematic review and meta-analysis.",
+      "abstract": "INTRODUCTION: Thorough cleaning and shaping of root canals are essential for periapical healing. Restoration of endodontically treated teeth is also required for them to function and prevent coronal leakage. This study compared the impact of the quality of root canal treatment versus the quality of coronal restoration in treatment outcomes. METHODS: Literature search was conducted using the search terms \"coronal restoration,\" \"root canal,\" \"periapical status,\" and \"quality.\" Articles that evaluated the effect of the quality of root filling and coronal restoration or both on the success of root canal treatment were selected. Nine articles were identified and were reviewed by 3 investigators. Data were collected based on predetermined criteria. Percentages of teeth without apical periodontitis were recorded for each category: adequate root canal treatment (AE), inadequate root canal treatment (IE), adequate restoration (AR), and inadequate restoration (IR). Data were analyzed using meta-analysis for odds ratios (ORs). RESULTS: After adjusting for significant covariates to reduce heterogeneity, the results were combined to obtain pooled estimates of the common OR for the comparison of AR/AE versus AR/IE (OR = 2.734; 95% confidence interval [CI], 2.61-2.88; P < .001) and AR/AE versus IR/AE (OR = 2.808; 95% CI, 2.64-2.97; P < .001). CONCLUSIONS: On the basis of the current best available evidence, the odds for healing of apical periodontitis increase with both adequate root canal treatment and adequate restorative treatment. Although poorer clinical outcomes may be expected with adequate root filling-inadequate coronal restoration and inadequate root filling-adequate coronal restoration, there is no significant difference in the odds of healing between these 2 combinations.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.286,
+      "query": "Gillen[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Gillhooly|2000": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Grossman|1976": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Gupta|": {
+      "pmid": "21976845",
+      "title": "A sequential approach in treatment of perio-endo lesion.",
+      "abstract": "The success of a combined periodontal and endodontic lesion depends on the elimination of both of these disease processes. In the case of a combined endo-perio lesion, the endodontic therapy results in healing of the endodontic component of involvement while the prognosis of tooth would finally depend on the healing of the periodontal structures. This case report evaluates the efficacy of bioactive glass in the management of furcation defect associated with an endo-perio lesion in a right mandibular first molar. A 22-year-old male patient with an endo-perio lesion in the right mandibular first molar was initially treated with endodontic therapy. Following the endodontic treatment, the furcation defect was treated using bioactive glass in a putty form. At the end of 9 months, there was a gain in the clinical attachment level and reduction in probing depth. Radiographic evidence showed that there was a significant bony fill.",
+      "journal": "Journal of Indian Society of Periodontology",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.444
+    },
+    "Haapasalo|2010": {
+      "pmid": "17916071",
+      "title": "Bacterial penetration along different root canal filling materials in the presence or absence of smear layer.",
+      "abstract": "AIM: To study the effect of the smear layer on the penetration of bacteria along different root canal filling materials and to examine the dentine/sealer and sealer/core material interfaces for the presence of bacteria. METHODOLOGY: A total of 110 human root segments were instrumented to size 80 under irrigation with 1% sodium hypochlorite. Half of the roots were irrigated with a 5-mL rinse of 17% EDTA. Roots with and without smear layer were filled with gutta-percha (GP) and AH Plus sealer (AH), GP and Apexit sealer (AP), or RealSeal cones and sealer (RS). Following storage in humid conditions at 37 degrees C for 7 days, the specimens were mounted into a bacterial leakage test model for 135 days. Survival analyses were performed to calculate the median time of leakage and log-rank test was used for pairwise comparisons of groups. The level of significance was set at P = 0.05. Selected specimens were longitudinally sectioned and inspected by scanning electron microscopy for the presence of bacteria at the interfaces. RESULTS: In the presence of the smear layer, RS and AP leaked significantly more slowly than in its absence. In the absence of the smear layer, AH leaked significantly more slowly than RS. SEM results indicated a differential pattern of bacterial penetration among the sealers. CONCLUSIONS: Removal of the smear layer did not impair bacterial penetration along root canal fillings. A comparison of the sealers revealed no difference except that AH performed better than RS in the absence of the smear layer.",
+      "journal": "International endodontic journal",
+      "pub_year": "2008",
+      "status": "ok",
+      "score": 0.273
+    },
+    "Hahn and Liewehr|2007": {
+      "pmid": "17509400",
+      "title": "Innate immune responses of the dental pulp to caries.",
+      "abstract": "Various cells and inflammatory mediators are involved in the initial pulpal responses to caries. This review focuses on the cellular, neuronal, and vascular components of pulpal innate responses to caries. Discussion will include dentinal fluid, odontoblasts, neuropeptides, and neurogenic inflammation, which are not classic immune components but actively participate in the inflammatory response as the caries progress pulpally. Summaries of innate immune cells as well as their cytokines and chemokines in healthy and reversible pulpitis tissues are presented.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2007",
+      "status": "ok",
+      "score": 0.25
+    },
+    "Harrington|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Peyronie's-like changes in the tunica albuginea were identified in reconstruction patients."
+    },
+    "Hegde|2023": {
+      "pmid": "36736586",
+      "title": "Effect of Preoperative Oral Steroids in Comparison to Anti-inflammatory on Anesthetic Success of Inferior Alveolar Nerve Block in Mandibular Molars with Symptomatic Irreversible Pulpitis-A Double-blinded Randomized Clinical Trial.",
+      "abstract": "INTRODUCTION: This randomized double-blinded trial aimed to compare the anesthetic success of inferior alveolar nerve blocks (IANBs) with 2% lidocaine in mandibular molars with symptomatic irreversible pulpitis (SIP) after oral premedication of prednisolone, dexamethasone, and ketorolac with placebo. METHODS: One hundred eighty-four patients diagnosed with SIP in mandibular molars randomly received prednisolone, dexamethasone, ketorolac, or placebo (n = 46 each) 60 minutes before the administration of an IANB. The access cavity preparation was initiated after successfully confirming lip numbness and two consecutive negative responses to electric pulp testing. The success of the anesthesia was clinically confirmed when pain was absent during the endodontic access or instrumentation. A one-way analysis of variance test was used to compare quantitative variables among the groups, and chi-square tests were used for comparing categorical variables. Binary logistic regression was performed to analyze the relationship of age, preoperative pain, and preoperative medications. RESULTS: When premedicated with oral dexamethasone, ketorolac, prednisolone, and placebo, the success rate of IANB was determined to be 60.86 %, 65.21 %, 56.52 %, and 21.73 %, respectively. Compared to the placebo, the success rate of IANB was significantly increased when patients were premedicated with prednisolone, dexamethasone, or ketorolac. However, there were no statistically significant differences among prednisolone, dexamethasone, and ketorolac. One individual in the ketorolac group reported gastritis, whereas no adverse effects were reported in the dexamethasone or prednisolone groups. CONCLUSIONS: Preoperative use of oral ketorolac, dexamethasone, or prednisolone may increase the anesthetic efficacy of IANB in mandibular molars with SIP.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2023",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Hulsmann|2000": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Management of a ruptured cerebral aneurysm in infancy. Report of a case of a ten-month-old boy."
+    },
+    "Jorge-Araújo|2018": {
+      "pmid": "29972451",
+      "title": "Effect of Premedication with Anti-inflammatory Drugs on Post-Endodontic Pain: A Randomized Clinical Trial.",
+      "abstract": "In spite of advances in root canal therapy and better knowledge of pulpal and periapical inflammation, up 40% of endodontic patients report varying degrees of pain. The aim of this present study was to compare the effect of single preoperative dose of ibuprofen or dexamethasone on post-endodontic pain. Sixty volunteers were divided into three groups (n=20 per group): PL, placebo; IB, 400 mg of ibuprofen; and DE, 8 mg of dexamethasone. The primary outcome was the post-endodontic pain intensity measured with a numerical rating scale (4, 8, 12, 24, and 48 h). Secondary outcomes included number of anesthetic cartridges used and consumption of rescue medication. Data were analyzed by one-way ANOVA, chi-square and Kruskal-Wallis tests. There was no significant difference among groups (p>0.05) considering the pain intensity. Only 37% of IB group patients and 28% of DE group patients used some rescue medication. On the other hand, 74% of PL group patients mentioned the consumption of rescue medication; PL group had a statistically significant difference (p<0.05) in comparison with IB and DE groups. The number of anesthetic cartridges used had no statistically significant difference among the groups (p>0.05). Significant differences were not found in the reduction of pain intensity and the number of anesthetic cartridges used. Considering the consumption of rescue medication (secondary outcome), preoperative administration of Ibuprofen or dexamethasone reduces post-endodontic pain and discomfort in comparison with a placebo. Premedication with anti-inflammatory drugs drugs could be contributed to control of the post-endodontic pain, mainly in patients more sensible for pain.",
+      "journal": "Brazilian dental journal",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.75,
+      "query": "Jorge-Araújo[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Kanaa|2012": {
+      "pmid": "26543456",
+      "title": "Articaine and mepivacaine buccal infiltration in securing mandibular first molar pulp anesthesia following mepivacaine inferior alveolar nerve block: A randomized, double-blind crossover study.",
+      "abstract": "AIMS: A crossover double-blind, randomized study was designed to explore the efficacy of 2% mepivacaine with 1:100,000 adrenaline buccal infiltration and 4% articaine with 1:100,000 adrenaline buccal infiltration following 2% mepivacaine with 1:100,000 adrenaline inferior alveolar nerve block (IANB) for testing pulp anesthesia of mandibular first molar teeth in adult volunteers. MATERIALS AND METHODS: A total of 23 healthy adult volunteers received two regimens with at least 1-week apart; one with 4% articaine buccal infiltration and 2% mepivacaine IANB (articaine regimen) and another with 2% mepivacaine buccal infiltration supplemented to 2% mepivacaine IANB (mepivacaine regimen). Pulp testing of first molar tooth was electronically measured twice at baseline, then at intervals of 2 min for the first 10 min, then every 5 min until 45 min postinjection. Anesthetic success was considered when two consecutive maximal stimulation on pulp testing readings without sensation were obtained within 10 min and continuously sustained for 45 min postinjection. RESULTS: In total, the number of no sensations to maximum pulp testing for first molar teeth were significantly higher after articaine regimen than mepivacaine during 45 min postinjection (267 vs. 250 episodes, respectively, P < 0.001), however, both articaine and mepivacaine buccal infiltrations are equally effective in securing anesthetic success for first molar pulp anesthesia when supplemented to mepivacaine IANB injections (P > 0.05). Interestingly, volunteers in the articaine regimen provided faster onset and longer duration (means 2.78 min, 42.22 min, respectively) than mepivacaine regimen (means 4.26 min, 40.74 min, respectively) for first molar pulp anesthesia (P < 0.001). CONCLUSIONS: Supplementary mepivacaine and articaine buccal infiltrations produced similar successful first molar pulp anesthesia following mepivacaine IANB injections in volunteers. Articaine buccal infiltration produced faster onset and longer duration than mepivacaine buccal infiltration following mepivacaine IANB injections.",
+      "journal": "Saudi journal of anaesthesia",
+      "pub_year": "2015",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Kenee|2006": {
+      "pmid": "16728252",
+      "title": "A quantitative assessment of efficacy of various calcium hydroxide removal techniques.",
+      "abstract": "This study evaluated the amount of calcium hydroxide [Ca(OH)(2))] remaining in canals after removal with various techniques including combinations of NaOCl with EDTA irrigation, hand filing, rotary instrumentation, or ultrasonics. The mesial canals of 12 mandibular molars were uniformly instrumented. Teeth were sectioned longitudinally along the length of the instrumented canals. Acrylic jigs were fabricated, allowing reapproximation of the opposing segments. After Ca(OH)2 placement into the canals, four techniques were used for its removal. In the first method, the master apical file was placed to working length in between two 5-ml rinses of NaOCl. The other three techniques combined with the first method either a 2.5-ml EDTA rinse, a rotary file (MAF size) to working length, or passive ultrasonication. Results showed that no technique removed all Ca(OH)2. Rotary and ultrasonic techniques, while not different from each other, removed significantly more Ca(OH)2 than irrigant only techniques. The irrigant only techniques were not different from each other.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2006",
+      "status": "ok",
+      "score": 0.545,
+      "query": "Kenee[Author] AND 2006[PDAT]"
+    },
+    "Konagala|2019": {
+      "pmid": "30820083",
+      "title": "Effect of pretreatment medication on postendodontic pain: A double-blind, placebo-controlled study.",
+      "abstract": "BACKGROUND: Posttreatment endodontic pain has been reported in 25%-40% of all endodontic patients. Effective management of endodontic pain represents a continuing challenge. AIM: To evaluate and compare the efficacy of preoperative single dose of nonsteroidal anti-inflammatory drug, piroxicam (20 mg), with two types of corticosteroid drugs - dexamethasone (4 mg) or deflazacort (30 mg) - for the prevention and control of postendodontic pain. MATERIALS AND METHODS: A total of 132 volunteers selected for nonsurgical root canal therapy were randomly divided into the following four groups (n = 30 each) according to preoperative medication given: Group 1, piroxicam (20 mg); Group 2, dexamethasone (4 mg); Group 3, deflazacort (30 mg); and Group 4, placebo. The preoperative medications were administrated 1 h before the start of standard endodontic treatment. Patients were instructed to complete a pain diary using Visual Analog Scale preoperatively and at 6-, 12-, 24-, 48-, and 72-h intervals after root canal instrumentation. STATISTICAL ANALYSIS: The correlation between preoperative endodontic pain to postoperative pain and pair-wise comparison of four groups was evaluated by Kruskal-Wallis analysis of variance test followed by Mann-Whitney U-test. RESULTS: Compared to the placebo group, piroxicam, dexamethasone, and deflazacort resulted in a statistically significant reduction in postendodontic pain at 6, 12, and 24 h (P < 0.05). CONCLUSION: Preoperative single oral dose of piroxicam or dexamethasone or deflazacort is equally effective in controlling postendodontic pain.",
+      "journal": "Journal of conservative dentistry : JCD",
+      "pub_year": "2019",
+      "status": "ok",
+      "score": 0.857,
+      "query": "Konagala[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Kontakiotis|2015": {
+      "pmid": "29304003",
+      "title": "A High-Resolution Proteomic Landscaping of Primary Human Dental Stem Cells: Identification of SHED- and PDLSC-Specific Biomarkers.",
+      "abstract": "Dental stem cells (DSCs) have emerged as a promising tool for basic research and clinical practice. A variety of adult stem cell (ASC) populations can be isolated from different areas within the dental tissue, which, due to their cellular and molecular characteristics, could give rise to different outcomes when used in potential applications. In this study, we performed a high-throughput molecular comparison of two primary human adult dental stem cell (hADSC) sub-populations: Stem Cells from Human Exfoliated Deciduous Teeth (SHEDs) and Periodontal Ligament Stem Cells (PDLSCs). A detailed proteomic mapping of SHEDs and PDLSCs, via employment of nano-LC tandem-mass spectrometry (MS/MS) revealed 2032 identified proteins in SHEDs and 3235 in PDLSCs. In total, 1516 proteins were expressed in both populations, while 517 were unique for SHEDs and 1721 were exclusively expressed in PDLSCs. Further analysis of the recorded proteins suggested that SHEDs predominantly expressed molecules that are involved in organizing the cytoskeletal network, cellular migration and adhesion, whereas PDLSCs are highly energy-producing cells, vastly expressing proteins that are implicated in various aspects of cell metabolism and proliferation. Applying the Rho-GDI signaling pathway as a paradigm, we propose potential biomarkers for SHEDs and for PDLSCs, reflecting their unique features, properties and engaged molecular pathways.",
+      "journal": "International journal of molecular sciences",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.286
+    },
+    "Kratchman|": {
+      "pmid": "9248694",
+      "title": "Intentional replantation.",
+      "abstract": "A list of what was once advocated when performing a replantation versus what is done now follows: 1. It used to be advocated always to curettage the socket after removing the tooth. Now clinicians know not to touch the walls of the socket and only to aspirate gently the apical region if needed. 2. After removal, the tooth used to be held in gauze, desiccating viable PDL cells. Now the tooth is kept bathed in an emesis basin filled with HBSS, which maintains the viability of the PDL for 30 minutes. 3. All clinicians were able to do was visual inspection; now the microscope is used to illuminate and magnify the working area. 4. Splinting was done on every case; now clinicians rarely splint after replantation. 5. Narcotic pain medication was prescribed routinely; now clinicians premedicate with chlorhexidine rinse, anti-inflammatory medication, and sometimes antibiotics, rarely using narcotics. With increased understanding of the periodontium and improved techniques, replantation should no longer be viewed as a treatment of last resort, but rather a successful treatment alternative.",
+      "journal": "Dental clinics of North America",
+      "pub_year": "1997",
+      "status": "ok",
+      "score": 0.364
+    },
+    "Kumar|2021": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Kuttler|1955": {
+      "pmid": "14366934",
+      "title": "Microscopic investigation of root apexes.",
+      "abstract": "",
+      "journal": "Journal of the American Dental Association (1939)",
+      "pub_year": "1955",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Langeland|": {
+      "pmid": "9206437",
+      "title": "Periradicular curettage.",
+      "abstract": "Periradicular curettage is a part of the treatment procedure of periradicular surgery. Its main purpose is to remove pathological periradicular tissues for visibility and accessibility to facilitate the treatment of the apical root canal system, or sometimes for the removal of harmful foreign materials present in the periradicular area. Inflammatory periradicular lesions (granuloma and cysts) are the responses of the periradicular tissues to irritants from the root canal and not from the periradicular area unless medicaments and/or filling materials have been forced through the apical foramina or perforations into the periodontium. Histologically, the inflammatory periradicular lesion is similar to healing granulation tissue, which is composed of cells which have natural and specific immunological defence capability and cooperate by means of cytokines to amplify the protective mechanisms of the host. Accordingly, it is not necessary to completely curette out all the inflamed periradicular tissues during surgery, since this granulation-like tissue will be incorporated into the new granulation tissue as part of the healing process. To control the source of irritants in the root canal is far more important than to remove all periradicular tissues affected by the irritants. The successful removal of all irritants from the root canal system results in resolution of pulpally induced periradicular lesions. In the case where the periradicular lesion is caused by endodontic instruments or cytotoxic filling materials placed in the periradicular tissues, removal of these foreign objects is required for resolution of the lesion.",
+      "journal": "International endodontic journal",
+      "pub_year": "1996",
+      "status": "ok",
+      "score": 0.5,
+      "query": "Langeland[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Lawley|2004": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Assessment of the epidemic potential of a new strain of rotavirus associated with the novel G9 serotype which caused an outbreak in the United States for the first time in the 1995-1996 season."
+    },
+    "Lofthag-Hansen|2007": {
+      "pmid": "17178504",
+      "title": "Limited cone-beam CT and intraoral radiography for the diagnosis of periapical pathology.",
+      "abstract": "OBJECTIVE: To compare intraoral periapical radiography with 3D images for the diagnosis of periapical pathology. STUDY DESIGN: Maxillary molars and premolars and mandibular molars with endodontic problems and examined with periapical radiographs and a 3D technique (3D Accuitomo) were retrospectively selected and evaluated by 3 oral radiologists. Numbers of roots and root canals, presence and location of periapical lesions, and their relation to neighboring structures were studied. RESULTS: Among 46 teeth, both techniques demonstrated lesions in 32 teeth, and an additional 10 teeth were found in the Accuitomo images. As regards individual roots, 53 lesions were found in both techniques, and 33 more roots were found to have lesions in Accuitomo images. Artefacts were sometimes a problem in Accuitomo images. In 32 of the 46 cases, all observers agreed that additional clinically relevant information was obtained with Accuitomo images. CONCLUSIONS: A high-resolution 3D technique can be of value for diagnosis of periapical problems.",
+      "journal": "Oral surgery, oral medicine, oral pathology, oral radiology, and endodontics",
+      "pub_year": "2007",
+      "status": "ok",
+      "score": 0.333,
+      "query": "Lofthag-Hansen[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Madarati|2018": {
+      "pmid": "31435361",
+      "title": "The efficacy of retreatment and new reciprocating systems in removing a gutta-percha-based filling material.",
+      "abstract": "OBJECTIVES: To investigate the efficacy of retreatment and reciprocating rotary systems in removing gutta-percha filling material from root-canal systems. METHODS: A total of 90 single-canal human teeth were instrumented using a F3 ProTaper file and obturated with gutta-percha and the Tubliseal sealer using the lateral-compaction technique. They were divided into five groups according to the rotary system used to remove the filling material: Reciproc, which used the Reciproc-R25 file; WaveOne, which used the WaveOne-Primary file; S1, which used the S1 (25/.06) file; ProTaper-R, which used the ProTaper-Retreatment system; and Mtwo-R, which used the Mtwo®-Retreatment system. The time required to remove the filling material (min) and the associated instrument separation, if any, were recorded. Teeth were cleaved longitudinally and photographed with a high-resolution camera. Images were imported to the AutoCAD application to measure the remaining filling material and the root-canal space. Data were analysed using the one-way analysis of variance and Chi-squared tests. RESULTS: The Mtwo-R group showed the highest mean remaining filling material (51%) (p < 0.001), with no significant differences among the other groups. The ProTaper group required the least time for filling-material removal (4.95 min), with significant differences compared to the other groups (p < 0.05), except the WaveOne group (5.83 min; p = 1.000). Overall, 13 instruments (15.9%) were used for filling-material removal, with a significantly greater proportion in the Mtwo-R group (33.3%) compared to the other groups (p = 0.009). CONCLUSIONS: Within the limitations of this in vitro study, reciprocating rotary systems were as effective as retreatment rotary systems in removing root-canal filling material. The Mtwo-R system showed the poorest performance with respect to removal effectiveness and instrument separation. أهداف البحث: يهدف البحث للتحقق من فعالية أنظمة إعادة معالجة الآلية والأنظمة الآلية ذات الحركة التبادلية في إزالة حشوات الأقنية الجذرية ذات الأساس المكون من الكوتابيركا. طرق البحث: تم تحضير الأقنية ل٩٠ سن سليمة باستخدام نظام البروتيبر الآلي حتى قياس إف٣. وحشيت الأقنية المضرة بالكوتابيركا ومُغلق من نوع تيوبلسيل باستخدام تقنية التكثيف الجانبي. وقسمت الأسنان إلى ٥ مجموعات حسب أنظمة إعادة المعالجة الآلية المستخدمة كالتالي: مجموعة الريسبروك التي استخدمت فيها مبارد الريسبروك قياس ٢٥، ومجموعة الويف ون التي استخدمت فيها مبارد الويف ون الأساسية، ومجموعة أس ون التي استخدمت فيها مبارد أس ون ذات القياس ٢٥ والاستدقاق بمقدار ٠.٠٦ ومجموعة نظام إعادة المعالجة من نوع البروتيبر، ومجموعة نظام إعادة المعالجة من نوع ام تو. كما تم تسجيل الوقت اللازم لإزالة المادة الحاشية (دقيقة) وحوادث انكسار المبارد كاختلاط مرافق لإعادة المعالجة إن وجد. وبعد إعادة المعالجة، تم شطر كل سن طوليا إلى نصفين وصور كل نصف بكاميرا ذات دقة عالية. وأدخلت الصور إلى برنامج أوتو كاد من أجل قياس كمية المادة الحاشية المتبقية ضمن القناة بعد إعادة المعالجة. ثم خضعت البيانات لتحليل احصائي باستخدام اختبارات ون وي انوفا وكاي سكوير. النتائج: أظهرت مجموعة ام تو لإعادة المعالجة أعلى متوسط من المادة الحاشية المتبقية بعد إعادة المعالجة (٥١٪) ولم يكن هناك فارق إحصائي بين المجموعات الأخرى. واحتاجت مجموعة البروتيبر أقل وقت لإزالة المادة الحاشية (٥.٨٣ دقيقة). بشكل عام، حدث انكسار المبارد ١٣ مرة خلال إعادة المعالجة، حيث كانت نسبة الانكسار ضمن مجموعة ام تو هي الأعلى إحصائيا (٣٣.٣٪). الاستنتاجات: ضمن محددات هذه الدراسة في المختبر، كانت الأنظمة الدوارة ذات الحركة التبادلية فعالة مثل أنظمة إعادة المعالجة الآلية في إزالة حشوة الأقنية الجذرية. وأظهر نظام ام تو لأعادة المعالجة أسوء النتائج من حيث قلة الفعالية في إزالة حشوة الأقنية ومن حيث ارتفاع نسبة انكسار المبارد خلال إعادة المعالجة.",
+      "journal": "Journal of Taibah University Medical Sciences",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.286,
+      "query": "Madarati[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Mainkar and Kim|2018": {
+      "pmid": "29571914",
+      "title": "Diagnostic Accuracy of 5 Dental Pulp Tests: A Systematic Review and Meta-analysis.",
+      "abstract": "INTRODUCTION: The aim of this systematic review was to investigate and compare the diagnostic accuracy including sensitivity, specificity, adjusted accuracy, adjusted positive predictive value (PPV), and adjusted negative predictive value (NPV) of cold pulp testing (CPT), heat pulp testing (HPT), electric pulp testing (EPT), laser Doppler flowmetry (LDF), and pulse oximetry (PO). METHODS: Three electronic databases were searched from January 1964 to December 2016. True-positive, false-positive, true-negative, and false-negative values were extracted from data in each study. Sensitivity, specificity, adjusted accuracy, adjusted PPV, and adjusted NPV were calculated from those values, if not presented. A random effects model was used to calculate pooled estimates of sensitivity, specificity, adjusted accuracy, adjusted PPV, and adjusted NPV. RESULTS: A total of 125 articles were identified, and 28 studies were included for the final review. The pooled estimates of sensitivity for CPT, EPT, HPT, LDF, and PO were 0.87, 0.72, 0.78, 0.98, and 0.97, respectively. Those of specificity were 0.84, 0.93, 0.67, 0.95, and 0.95, respectively. Those of adjusted accuracy were 0.84, 0.82, 0.72, 0.97, and 0.97, respectively. For adjusted PPV, they were 0.81, 0.89, 0.62, 0.94, and 0.94, respectively, and for adjusted NPV, they were 0.87, 0.80, 0.79, 1.00, and 0.99, respectively. CONCLUSIONS: LDF and PO were the most accurate diagnostic methods, and HPT was the least accurate diagnostic method. EPT showed high accuracy when testing vital teeth (specificity = 0.93) but low accuracy when assessing nonvital teeth (sensitivity = 0.72). CPT had moderate accuracy when evaluating vital (specificity = 0.84) and nonvital (sensitivity = 0.87) teeth.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.615,
+      "query": "Mainkar[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Maltz|2012": {
+      "pmid": "23207420",
+      "title": "Partial removal of carious dentine: a multicenter randomized controlled trial and 18-month follow-up results.",
+      "abstract": "AIM: The aim of this study was to evaluate the effectiveness of partial removal of carious dentine and restoration in a single session (PDR) and stepwise excavation (SW), both of which are treatments for deep carious lesions, in Public Health Services in Brazil. INCLUSION CRITERIA: patients ≥6 years old, permanent molars with deep caries lesions (having a radiolucency halfway or more into dentine) and pulp vitality but absence of spontaneous pain, positive percussion test, and periapical alterations. The subjects received either PDR (test group) or SW (control group). The radiological and clinical exams were performed after a mean time of 18 months. OUTCOMES: success was defined as pulp sensitivity to cold test and absence of periapical alterations. RESULTS: Of the 299 treatments performed, 146 were SW and 153 were PDR; 122 were amalgam restorations and 168 resin-composite restorations. There were no differences between the groups regarding the baseline characteristics (i.e. age, gender and family income). After 18 months, 212 evaluations were performed, which indicated 99 and 86% success rates in the PDR and SW groups, respectively (p = 0.016). Reasons for failure were: PDR - 1 pulpitis; SW - 8 pulpitis; 1 osteitis; 4 necrosis; 1 endodontic treatment. None of the baseline variables were significantly associated with the outcomes. CONCLUSION: The retention of carious dentine does not interfere in pulp vitality. Data from this 18-month study suggest that the procedure of reopening the cavity to remove the residual infected dentine is not necessary.",
+      "journal": "Caries research",
+      "pub_year": "2013",
+      "status": "ok",
+      "score": 0.75,
+      "query": "Maltz[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Mehrvarzfar|2008": {
+      "pmid": "18352900",
+      "title": "Effect of supraperiosteal injection of dexamethasone on postoperative pain.",
+      "abstract": "Many patients suffer from mild, moderate or severe pain during or after root canal therapy. The purpose of this study was to evaluate the efficacy of supraperiosteal injection of dexamethasone into the periapical tissues to prevent postoperative pain associated with inflammation. In a double-blind, placebo-controlled clinical trial, 100 patients with moderate or severe pain who were referred to dental school of Tehran Islamic Azad University participated in this study. All patients had a tooth with clinical diagnosis of irreversible pulpitis. After administration of local anaesthesia, access cavity was prepared. Then, the root canals were instrumented to a minimum of a No. 25 K-file. One millilitre dexamethasone (8 mg 2 mL(-1)) or placebo was injected around the tooth. The severity of pain was assessed with regard to a modified visual analogue scale after 6, 12, 24 and 48 h. The data was analysed statistically with chi-square test. Dexamethasone was considerably effective on controlling the severity of pain during the first 24 h; in contrast, there was no difference between dexamethasone and placebo groups 48 h after the first appointment. A single dose of dexamethasone infiltrated around the apex of a tooth with irreversible pulpitis could be effective in reduction or prevention of postoperative endodontic pain during the first 24 h.",
+      "journal": "Australian endodontic journal : the journal of the Australian Society of Endodontology Inc",
+      "pub_year": "2008",
+      "status": "ok",
+      "score": 0.909,
+      "query": "Mehrvarzfar[Author] AND 2008[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Mente|2010": {
+      "pmid": "20416424",
+      "title": "Mineral trioxide aggregate or calcium hydroxide direct pulp capping: an analysis of the clinical treatment outcome.",
+      "abstract": "INTRODUCTION: The use of mineral trioxide aggregate (MTA) might improve the prognosis of teeth after pulp exposure. The treatment outcome of teeth after direct pulp capping, either with mineral trioxide aggregate (MTA) or calcium hydroxide (controls), was investigated, taking into account possible confounding factors. METHODS: One hundred forty-nine patients treated between 2001 and 2006 who received direct pulp capping treatment in 167 teeth met the inclusion criteria. Treatment was performed by supervised undergraduate students (72%) and dentists (28%). Assessment of clinical and radiographic outcomes was performed by calibrated examiners 12-80 months after treatment (median, 27 months). RESULTS: One hundred eight patients (122 treated teeth) were available for follow-up (72.5% recall rate). A successful outcome was recorded for 78% of teeth (54 of 69) in the MTA group and for 60% of teeth (32 of 53) in the the calcium hydroxide group. The univariate analysis (generalized estimation equations model [GEE model] showed a significant difference in the success rate (odds ratio [OR], 2.36; 95% confidence interval [CI], 1.05-5.32; P = .04). In the multiple analysis (GEE model), the OR is marginally inside the nonsignificant range (OR, 0.43; 95% CI, 0.19-1.02; P = .05) when conspicuous confounding factors are stabilized (univariate analysis). Multiple analysis showed that teeth that were permanently restored >or=2 days after capping had a significantly worse prognosis in both groups (OR, 0.24; 95% CI, 0.09-0.66; P = .01). CONCLUSIONS: MTA appears to be more effective than calcium hydroxide for maintaining long-term pulp vitality after direct pulp capping. The immediate and definitive restoration of teeth after direct pulp capping should always be aimed for.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2010",
+      "status": "ok",
+      "score": 0.75,
+      "query": "Mente[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Mente|2014": {
+      "pmid": "25227216",
+      "title": "Treatment outcome of mineral trioxide aggregate or calcium hydroxide direct pulp capping: long-term results.",
+      "abstract": "INTRODUCTION: This controlled, historic cohort study project continues a previously reported trial aiming to assess treatment outcome of direct pulp capping with mineral trioxide aggregate (MTA) versus calcium hydroxide (CH). Potential prognostic factors were re-evaluated on the basis of a larger sample size and longer follow-up periods. METHODS: Clinical and radiographic outcomes of 229 teeth treated with direct pulp capping between 2001 and 2011 were investigated 24 up to 123 months post-treatment (median = 42 months). Pre-, intra-, and postoperative information was evaluated and statistically analyzed using a logistic regression model as well as generalized estimating equation logit models. RESULTS: Two hundred five patients (229 teeth) were available for follow-up (74% recall rate). The overall success rates were 80.5% (95% confidence interval [CI], 74.5-86.5) of teeth in the MTA group (137/170) and 59% (95% CI, 46.5-71.5) of teeth in the CH group (35/59). Multivariate analyses (generalized estimating equation logit model) indicated a significantly increased risk of failure for teeth that were directly pulp capped with CH compared with MTA (odds ratio = 2.67; 95% CI, 1.36-5.25; P = .001). Teeth that were permanently restored ≥ 2 days after direct pulp capping had a significantly worse prognosis irrespective of the pulp capping material chosen (odds ratio = 3.18; 95% CI, 1.61-6.3; P = .004). CONCLUSIONS: The results of this study indicate that MTA provides better long-term results after direct pulp capping compared with CH. Placing a permanent restoration immediately after direct pulp capping is recommended.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2014",
+      "status": "ok",
+      "score": 0.875,
+      "query": "Mente[Author] AND 2014[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Miller|": {
+      "pmid": "15448461",
+      "title": "Cold testing through full-coverage restorations.",
+      "abstract": "Endodontic diagnosis often requires thermal testing through porcelain fused-to-metal (PFM) and all-ceramic restorations. The purpose of this study was to measure and compare the temperature change during thermal testing by three commonly used methods occurring at the pulp-dentin junction (PDJ) of nonrestored teeth and teeth restored with full coverage restorations made of PFM, all-porcelain, or gold. The methods used to produce a thermal change were (a) an ice stick, (b) 1,1,1,2-tetrafluoroethane (TFE), and (c) carbon dioxide snow. A thermocouple measured temperature changes occurring at the PDJ in 10 extracted premolars when thermal tested by each method over a period of 30 seconds. Temperature reduction was also measured for the same samples restored with full gold crowns, PFM, and Empress crowns. Results showed intact premolars and those restored with PFM or all-ceramic restorations to respond similarly to thermal testing. In these teeth, TFE produced a significantly greater temperature decrease than carbon dioxide snow between 10 and 25 seconds (p < 0.05). In conclusion, application of TFE on a saturated #2 cotton pellet was the most effective method for producing a temperature reduction at the PDJ of intact teeth and those restored with gold, PFM, and all-porcelain when testing for less than 15 seconds.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2004",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Murphy|": {
+      "pmid": "2047106",
+      "title": "Healing of periapical radiolucencies after nonsurgical endodontic therapy.",
+      "abstract": "Eighty-nine periapical radiolucencies treated by nonsurgical endodontic therapy were evaluated to better understand the healing rates of these lesions. After at least 3 months after treatment, radiographs revealed that 46.1% of the lesions had resolved, 48.3% had undergone partial resolution, 2.2% were unchanged, and 3.4% were larger. The average radiographic rate of repair was 3.2 mm2/mo. Less than 6 months after treatment, 17.6% of lesions demonstrated complete radiographic resolution, whereas 70.6% showed radiographic resolution at 12 months or longer.",
+      "journal": "Oral surgery, oral medicine, and oral pathology",
+      "pub_year": "1991",
+      "status": "ok",
+      "score": 0.571
+    },
+    "Nattress and Martin|1994": {
+      "pmid": "26630864",
+      "title": "Dental Management of a Patient with Multiple Idiopathic Cervical Root Resorption.",
+      "abstract": "Multiple Idiopathic Cervical Root Resorption (MICRR) is a rare condition. It initiates at the cemento-enamel junction of multiple teeth. The lesions continue to grow until they unite, thereby undermining the entire coronal structure of affected teeth. Its distribution can vary from a single region to the entire dentition and the number of teeth affected by resorption tends to increase as the condition is followed over time. The teeth themselves appear clinically normal. The aetiology of MICRR is unknown and it is considered to be a diagnosis of exclusion. The condition tends to be progressive. Consequently, root treatments/surgical curettage and restoration of the lesions have been unsuccessful at arresting the condition. Affected teeth are often extracted in anticipation of catastrophic fracture and have been replaced with partial or complete dentures. In this case report, we describe how a young female patient was dentally managed over 10 years and ultimately rehabilitated with dental implants. CPD/CLINICAL RELEVANCE: Patients suspected of having multiple idiopathic cervical root resorption may require specialist, multidisciplinary care and require referral to an appropriate secondary care unit for treatment planning and potential oral rehabilitation.",
+      "journal": "Dental update",
+      "pub_year": "2015",
+      "status": "ok",
+      "score": 0.25
+    },
+    "Neves|2017": {
+      "pmid": "28951030",
+      "title": "Determination of the Influence of Chronic Periodontitis on Pulp Sensibility by Means of Electric and Thermal Cold Testing.",
+      "abstract": "INTRODUCTION: Communication between pulp and periodontal tissue has been well established. However, it is unknown when periodontal disease begins to affect the clinical response of pulp tissue. The aim of this study was to assess the influence of periodontal severity on pulp sensibility by means of electric and thermal cold testing. METHODS: The teeth assessed in this study were allocated into 3 groups considering radiographic alveolar bone loss (ABL) as follows: slight periodontitis (SP, ABL ≤7 mm without reaching the apex, n = 25), moderate periodontitis (ABL >7 mm without reaching the apex, n = 23), and severe periodontitis (SvP, ABL >7 reaching the apex, n = 8). Gingival recession (GR), probing depth (PD), and clinical attachment level (CAL) were also measured. RESULTS: The results showed higher levels of PD and CAL in the SvP group compared with the SP group (P < .05), with no significant difference in GR (P > .05). The SvP group showed significant ABL compared with the other groups (P > .05). The SP group showed a significant number of teeth with a positive pulp response, whereas the SvP group showed a significant number of teeth with a negative pulp response (P < .05); no significant differences were observed between the thermal cold and electric tests (P > .05). CONCLUSIONS: Within the limits of this study, it can be concluded that pulp clinical involvement with a negative response to thermal cold and electric testing occurs only in the most advanced stage of chronic periodontitis with apical involvement.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2017",
+      "status": "ok",
+      "score": 0.312
+    },
+    "Ng|2008": {
+      "pmid": "19133093",
+      "title": "Outcome of secondary root canal treatment: a systematic review of the literature.",
+      "abstract": "UNLABELLED: AIMS (I): To investigate the effects of study characteristics on the reported success rates of secondary root canal treatment (2 degrees RCT or root canal retreatment); and (ii) to investigate the effects of clinical factors on the success of 2 degrees RCT. METHODOLOGY: Longitudinal human clinical studies investigating outcome of 2 degrees RCT which were published upto the end of 2006 were identified electronically (MEDLINE and Cochrane database 1966-2006 Dec, week 4). Four journals (Dental Traumatology, International Endodontic Journal, Journal of Endodontics, Oral Surgery Oral Medicine Oral Pathology Endodontics Radiology), bibliographies of all relevant papers and review articles were hand-searched. Two reviewers (Y-LN, KG) independently assessed and selected the studies based on specified inclusion criteria and extracted the data onto a pre-designed proforma, independently. The criteria were: (i) Clinical studies on 2 degrees RCT; (ii) Stratified analyses available for 2 degrees RCT where 1 degrees RCT data included; (iii) Sample size given and larger than 10; (iv) At least 6-month post-operative review; (v) Success based on clinical and/or radiographic criteria (strict = absence of apical radiolucency; loose = reduction in size of radiolucency); and (vi) Overall success rate given or could be calculated from the raw data. Three strands of evidence or analyses were used to triangulate a consensus view. The reported findings from individual studies, including those excluded for quantitative analysis, were utilized for the intuitive synthesis which constituted the first strand of evidence. Secondly, the pooled weighted success rates by each study characteristic and potential prognostic factor were estimated using the random effect model. Thirdly, the effects of study characteristics and prognostic factors (expressed as odds ratios) on success rates were estimated using fixed and random effects meta-analysis with DerSimonean and Laird's methods. Meta-regression models were used to explore potential sources of statistical heterogeneity. Study characteristics considered in the meta-regression analyses were: decade of publication, study-specific criteria for success (radiographic, combined radiographic & clinical), unit of outcome measure (tooth, root), duration after treatment when assessing success ('at least 4 years' or '<4 years'), geographic location of the study (North American, Scandinavian, other countries), and qualification of the operator (undergraduate students, postgraduate students, general dental practitioners, specialist or mixed group). RESULTS: Of the 40 papers identified, 17 studies published between 1961 and 2005 were included; none were published in 2006. The majority of studies were retrospective (n = 12) and only five prospective. The pooled weighted success rate of 2 degrees RCT judged by complete healing was 76.7% (95% CI 73.6%, 89.6%) and by incomplete healing, 77.2% (95% CI 61.1%, 88.1%). The success rates by 'decade of publication' and 'geographic location of study' were not significantly different at the 5% level. Eighteen clinical factors had been investigated in various combinations in previous studies. The most frequently and thoroughly investigated were 'periapical status' (n = 13), 'size of lesion' (n = 7), and 'apical extent of RF' (n = 5) which were found to be significant prognostic factors. The effect of different aspects of primary treatment history and re-treatment procedures has been poorly tested. CONCLUSIONS: The pooled estimated success rate of secondary root canal treatment was 77%. The presence of pre-operative periapical lesion, apical extent of root filling and quality of coronal restoration proved significant prognostic factors with concurrence between all three strands of evidence whilst the effects of 1 degrees RCT history and 2 degrees RCT protocol have been poorly investigated.",
+      "journal": "International endodontic journal",
+      "pub_year": "2008",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Ng|2011": {
+      "pmid": "21366627",
+      "title": "A prospective study of the factors affecting outcomes of non-surgical root canal treatment: part 2: tooth survival.",
+      "abstract": "AIM: To investigate the probability of and factors influencing tooth survival following primary (1°RCTx) or secondary (2°RCTx) root canal treatment. METHODOLOGY: This prospective study involved annual follow-up of 2 (100%) to 4 years (50%) of 1°RCTx (759 teeth, 572 patients) and 2°RCTx (858 teeth, 642 patients) carried out by Endodontic postgraduate students. Pre-, intra- and post-operative data were collected prospectively from consented patients. Information about extraction of the root filled tooth was sought from the patient, the referring dentist or derived from the patient's records and included the timing and reasons for extraction. Tooth survival was estimated and prognostic factors were investigated using Cox regression. Clustering effects within patients were adjusted in all models using robust standard error. RESULTS: The 4-year cumulative tooth survival following 1°RCTx [95.4% (93.6%, 96.8%)] or 2°RCTx [95.3% (93.6%, 96.5%)] was similar. Thirteen prognostic factors were identified. Significant patient factors included history of diabetes and systemic steroid therapy. Significant pre-operative factors included narrow but deep periodontal probing depth; pain; discharging sinus; and iatrogenic perforation (for 2°RCTx cases only). Significant intra-operative factors included iatrogenic perforation; patency at apical terminus; and extrusion of root fillings. Significant post-operative restorative factors included presence of cast restoration versus temporary restoration; presence of cast post and core; proximal contacts with both mesial and distal adjacent teeth; and terminal location of the tooth. The presence of pre-operative pain had a profound effect on tooth loss within the first 22 months after treatment [hazard ratio (HR) = 3.1; P = 0.001] with a lesser effect beyond 22 months (HR = 2.4; P = 0.01). Patency at the apical terminus reduced tooth loss (HR = 0.3; P < 0.01) within the first 22 months after treatment but had no significant effect on tooth survival beyond 22 months. Extrusion of gutta-percha root filling did not have any effect on tooth survival (HR = 1.1; P = 0.2) within the first 22 months but significantly increased the hazard of tooth loss beyond 22 months (HR = 3.0; P = 0.003). CONCLUSIONS: The 4-year tooth survival following primary or secondary root canal treatment was 95%, with thirteen prognostic factors common to both.",
+      "journal": "International endodontic journal",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Owatz|": {
+      "pmid": "17804314",
+      "title": "Measurement of mechanical allodynia and local anesthetic efficacy in patients with irreversible pulpitis and acute periradicular periodontitis.",
+      "abstract": "An essential feature of symptomatic periradicular inflammation is mechanical allodynia, defined as reduced mechanical pain thresholds. A previous study evaluating a new digital force transducer showed that it reliably measures mechanical pain thresholds of teeth with normal periradicular tissues. In this study, we tested the hypothesis that the force transducer quantitatively measures mechanical allodynia in teeth with acute periradicular periodontitis (APP) and detects the effects of local anesthetic injection. Mechanical pain thresholds were measured in patients (n = 30) with irreversible pulpitis (IP) and APP and compared with their contralateral teeth. The results show that the mechanical pain thresholds of teeth with IP and APP were reduced by 77% compared with contralateral control teeth. The administration of local anesthesia reversed the mechanical allodynia by 62%, and significant sex-specific effects were observed. In addition, the normal teeth contralateral to the symptomatic teeth had lower mechanical thresholds than those observed in healthy volunteers, suggesting that central sensitization occurs during this type of odontalgia. Thus, we show that the mechanical pain thresholds are significantly reduced in teeth with IP and APP and that the force transducer has potential application as a diagnostic aid in measuring mechanical allodynia and as an outcome measure in endodontic clinical trials such as pharmacologic studies and mechanistic research.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2007",
+      "status": "ok",
+      "score": 0.4,
+      "query": "Owatz[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Pagin|": {
+      "pmid": "23683273",
+      "title": "Maxillary sinus and posterior teeth: accessing close relationship by cone-beam computed tomographic scanning in a Brazilian population.",
+      "abstract": "INTRODUCTION: This study aimed to evaluate the close proximity established between the maxillary sinus floor and posterior teeth roots apices by using cone-beam computed tomographic scanning. METHODS: The relationship of maxillary sinuses and posterior teeth roots, which were divided into 2 groups, was analyzed using i-CAT Vision software (Imaging Sciences, Hatfield, PA). Group 1 included all root apices found in close contact with the maxillary sinus floor without sinus floor elevation, whereas group 2 included all root apices that were protruded within the sinus producing an elevation of the bony cortical. RESULTS: A total of 100 maxillary sinuses and 601 roots apices were evaluated. Group 1 presented 130 of 601 (21.6%) roots and group 2 presented 86 of 601 (14.3%) roots. CONCLUSIONS: The second molar mesiobuccal root apex is frequently found in close proximity with the sinus floor, and the relation between these anatomic structures should be considered in order to prevent an iatrogenic procedure and minimize the risks from an infectious disease within the sinus.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2013",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Parirokh and Torabinejad|2010": {
+      "pmid": "21702853",
+      "title": "The ability of pulp sensibility tests to evaluate the pulp status in primary teeth.",
+      "abstract": "BACKGROUND. Accurate determination of the pulp status is the most important part of conservative pulp therapy. AIM. The aim of this study was to assess the ability of thermal and electrical pulp tests to assess the pulp status in primary teeth. DESIGN. Seventy-eight primary molar teeth in 36 children were investigated. Fifty-six teeth had unknown pulp status in need of endodontic treatment, and 22 were intact teeth with no signs of pulp disease. Cold, hot and electrical pulp testing (EPT) were performed on each tooth. The gold standard was established by direct inspection of the pulp after an access cavity had been made. The sensitivity, specificity, positive and negative predictive values for each test and different sequential combinations of pulp testing were calculated. Sequential combination test analysis was used for data analysis. RESULTS. The highest accuracy was found for EPT, followed by heat and cold tests. No significant difference was found between the accuracy of EPT and the heat test (P-values > 0.05); however, the accuracy of EPT was significantly higher than that of the cold test (P-value< 0.05). CONCLUSION. Based on this study, EPT can be used as a reliable test for diagnosing the pulp status in primary teeth.",
+      "journal": "International journal of paediatric dentistry",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.6
+    },
+    "Peng|2007": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Comparative Efficacy and Safety of Jintrolong and Other Long-Acting Growth Hormones for Growth Hormone Deficiency in East Asia: A Systematic Review and Network Meta-Analysis."
+    },
+    "Peters|2004": {
+      "pmid": "15548276",
+      "title": "An analysis of endodontic treatment with three nickel-titanium rotary root canal preparation techniques.",
+      "abstract": "AIM: To investigate clinical results of root canal treatment performed with the aid of nickel-titanium (NiTi) rotary instruments. SUMMARY: A total of 179 patients underwent root canal treatment with either (A) Lightspeed, or (B) ProFile .04 or (C) ProFile .04 and .06 or GT rotary instruments to create tapered preparations. In groups A and B, laterally condensed gutta-percha and AH Plus were used. Canals in group C were obturated with System B, Obtura II and Roth's 801 sealer. Initial and recall radiographs were assessed using the periapical index (PAI). Outcomes were analysed using chi-square tests, event-time analyses and logistic regression models. Two hundred and thirty-three teeth were radiographically assessed after a mean interval of 25.4 +/- 11.8 months. Favourable outcome of treatment, defined as PAI < 3 at recall was 86.7%. Logistic regression analysis and univariate analyses indicated that teeth with preoperative PAI scores >2 and retreated teeth had a significantly lower chance of healing compared with periapically healthy teeth and primary treatments, respectively. Preparation technique, length of fill and the type of sealer did not significantly affect healing rates. KEY LEARNING POINTS: Root canal treatment with NiTi root canal instrumentation systems renders favourable outcomes in more than 86% of the cases. Outcome is significantly affected by preoperative diagnoses but not by the specific choice of instrumentation system.",
+      "journal": "International endodontic journal",
+      "pub_year": "2004",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Pochapski|2009": {
+      "pmid": "19748294",
+      "title": "Effect of pretreatment dexamethasone on postendodontic pain.",
+      "abstract": "OBJECTIVE: This study evaluates the use of a preoperative single oral dose of dexamethasone for the prevention and control of postendodontic pain. STUDY DESIGN: Forty-seven patients were randomly assigned to 2 groups: placebo and dexamethasone (4 mg). The medications were administered 1 hour before the start of endodontic treatment. Postoperative pain was assessed after 4, 12, 24, and 48 hours. RESULTS: Dexamethasone resulted in a statistically significant reduction in postendodontic pain at 4 and 12 hours (P < .05). However, no statistical difference (P > .05) was observed at 24 and 48 hours (Mann-Whitney test). The placebo group exhibited higher rescue medication intake (P < .05; Student t test). No side effects were reported for any of the medications used. CONCLUSION: Preoperative single oral dose of dexamethasone substantially reduced postendodontic pain. Further studies are needed to evaluate the applicability of these findings to other clinical conditions and drug regimens.",
+      "journal": "Oral surgery, oral medicine, oral pathology, oral radiology, and endodontics",
+      "pub_year": "2009",
+      "status": "ok",
+      "score": 0.875,
+      "query": "Pochapski[Author] AND 2009[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Pulikkotil|2018": {
+      "pmid": "29480930",
+      "title": "Effect of oral premedication on the anaesthetic efficacy of inferior alveolar nerve block in patients with irreversible pulpitis - A systematic review and network meta-analysis of randomized controlled trials.",
+      "abstract": "This systematic review (SR; PROSPERO database: CRD42017075160) and network meta-analysis (NMA) identified the most effective oral premedication for anaesthetic success of inferior alveolar nerve blocks (IANB) in cases of irreversible pulpitis. Medline and Ebscohost databases were searched up until 10/2017. Randomized controlled trials (RCT) studying the effect of oral premedication, alone or in combination, on the success of IANB for cases of irreversible pulpitis, compared to placebo or other oral premedications, were included. Quality of the included studies was appraised by the revised Cochrane risk of bias tool for randomized trials. Pairwise analysis, NMA and quality of evidence assessment using GRADE criteria were performed. Nineteen studies (n = 1654 participants) were included. NMA demonstrated that compared to placebo, dexamethasone was most effective in increasing anaesthetic success (RR, 2.92 [95% CI 1.74,4.91]; SUCRA = 0.96), followed by NSAIDs (RR, 1.92 [95% CI 1.63,2.27], SUCRA = 0.738) and Tramadol (RR, 2.03 [95% CI 1.18,3.49], SUCRA = 0.737). Premedication with acetaminophen added to NSAIDs demonstrated similar efficacy as NSAIDs alone (RR, 1.06 [95% CI 0.79,1.43]). Sensitivity analyses proved the superiority of dexamethasone or NSAIDs over any other premedications. Subgroup analyses of specific dosages in comparison with placebo demonstrated that dexamethasone 0.5 mg was most effective, followed by ketorolac 10 mg, piroxicam 20 mg, ibuprofen 400 mg + acetaminophen 500 mg and Tramadol 50 mg. Ibuprofen 400 mg, 600 mg and 800 mg had a significantly improved IANB success, while Ibuprofen 300 mg had no effect. Oral premedication with dexamethasone, NSAIDs or Tramadol significantly increased anaesthetic success. More trials are needed to evaluate the premedication effects of dexamethasone or Tramadol for improved anaesthetic success of IANB when treating irreversible pulpitis.",
+      "journal": "International endodontic journal",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.7,
+      "query": "Pulikkotil[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Read|": {
+      "pmid": "25069908",
+      "title": "Effect of Ibuprofen on masking endodontic diagnosis.",
+      "abstract": "INTRODUCTION: An accurate diagnosis is of upmost importance before initiating endodontic treatment; yet, there are occasions when the practitioner cannot reproduce the patient's chief complaint because the patient has become asymptomatic. Ibuprofen taken beforehand may \"mask\" or eliminate the patient's symptoms. In fact, 64%-83% of patients with dental pain take analgesics before seeing a dentist. The purpose of this study was to examine the possible \"masking\" effect of ibuprofen on endodontic diagnostic tests. METHODS: Forty-two patients with endodontic pain underwent testing (cold, percussion, palpation, and bite force measurement) and then received either placebo or 800 mg ibuprofen. Both patients and operators were blinded to the medication received. One hour later, diagnostic testing was repeated and compared with pretreatment testing. RESULTS: Ibuprofen affected testing values for vital teeth by masking palpation 40%, percussion 25%, and cold 25% on affected teeth with symptomatic irreversible pulpitis and symptomatic apical periodontitis. There was no observed masking effect in the placebo group on palpation, percussion, or cold values. When nonvital teeth were included, the masking effect of ibuprofen was decreased. However, little masking occurred with the bite force measurement differences. CONCLUSIONS: Analgesics taken before the dental appointment can affect endodontic diagnostic testing results. Bite force measurements can assist in identifying the offending tooth in cases in which analgesics \"mask\" the endodontic diagnosis.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2014",
+      "status": "ok",
+      "score": 0.875
+    },
+    "Ruddle|2004": {
+      "pmid": "16196235",
+      "title": "Thermal injury through intraradicular heat transfer using ultrasonic devices: precautions and practical preventive strategies.",
+      "abstract": "BACKGROUND: The use of ultrasonic energy is a highly efficient method of removing obstructions and cements within the root canal space when re-treatment or rehabilitation of that ultrasonic energy dislodges and removes cemented objects from the bonded interface of the canal wall. When using this method, there is less potential for structural loss or root damage and significantly less operator stress than when using other methods. CASE DESCRIPTIONS: There is little evidence in published research of the considerable heat transfer that occurs during use of ultrasonic devices to remove posts, pastes and separated instruments in teeth. The authors present three cases of patients who experienced serious burn injuries during application of ultrasonic energy for restorative dentistry. The authors also offer techniques and strategies for safe and effective use of ultrasonic devices. CLINICAL IMPLICATIONS: On the basis of the best available evidence, the authors recommend strategies to provide safe and effective therapy while using ultrasonic devices in intraradicular obstruction removal. The intent of the suggested protocols is to provide advanced and sophisticated therapies in a safe and regulated manner with patient safety as an overriding priority.",
+      "journal": "Journal of the American Dental Association (1939)",
+      "pub_year": "2005",
+      "status": "ok",
+      "score": 0.222
+    },
+    "Salehrabi and Rotstein|": {
+      "pmid": "20416420",
+      "title": "Epidemiologic evaluation of the outcomes of orthograde endodontic retreatment.",
+      "abstract": "INTRODUCTION: Teeth undergoing initial endodontic therapy have a very high survival rate. Some teeth that continue to show signs of pathosis after the initial therapy will require nonsurgical (orthograde) retreatment. Outcome assessment of endodontic retreatment is crucial for appropriate case selection and treatment planning. However, reports on outcomes of orthograde endodontic retreatment performed by endodontists are limited in number, and the reported data vary. In this study, outcomes of orthograde endodontic retreatment performed on 4744 teeth were assessed during a period of 5 years. METHODS: Data were obtained from retreatments that were performed by endodontists participating in the Delta Dental Insurance plan that insures approximately 15 million individuals in the USA. RESULTS: Overall, 89% of teeth were retained in the oral cavity 5 years after the endodontic retreatment. Four percent of all teeth underwent apical surgery that occurred mostly within 2 years from completion of orthograde retreatment. Eleven percent of teeth were extracted at the end of the 5-year observation period. CONCLUSIONS: It appears that orthograde endodontic retreatment yields high incidence of tooth retention after 5 years.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2010",
+      "status": "ok",
+      "score": 0.333,
+      "query": "Salehrabi[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Saunders and Saunders|1994": {
+      "pmid": "7814130",
+      "title": "Assessment of coronal leakage in teeth root filled with gutta-percha and a glass of ionomer root canal sealer.",
+      "abstract": "The effect on coronal leakage of the use of either a single gutta-percha cone or cold lateral condensation of gutta-percha, with a glass ionomer sealer cement was studied. In addition, the effect of the removal of the smear layer was also determined. Eighty-eight single-rooted teeth were prepared chemomechanically using hand files, with the balanced force technique. Lubrication was provided by either Hibiscrub (maintaining the smear layer) or an EDTA-containing paste (to remove the smear layer). Copious irrigation was carried out with 2.2% sodium hypochlorite. The teeth were allocated randomly to four groups of 20 teeth each, the remaining eight teeth served as controls. Two groups of teeth, one with and one without smear layer, were obturated with either a single gutta-percha cone or cold laterally condensed gutta-percha, with Ketac Endo as the sealer. The teeth were stored for 6 weeks, thermocycled, and the extent of coronal leakage determined for each group after immersion in India ink for 90 h. The teeth were demineralized, dehydrated and immersed in methyl salicylate, which rendered them transparent. Linear measurement of maximum dye penetration was recorded. The mean depth (+SD) of leakage for the groups in which the smear layer was left intact was 1.68 mm (+0.38) for the single cone (A1) and 2.29 mm (+1.58) for lateral condensation (B1). When the smear layer was removed the mean depth of leakage for the single cone group (A2) was 2.04 mm (+0.73) and 2.37 mm (+1.70) for the laterally condensed group (B2). There was no significant difference in coronal leakage between the groups (P > 0.05).",
+      "journal": "International endodontic journal",
+      "pub_year": "1994",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Sedley|2005": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Seltzer|1965": {
+      "pmid": "9515403",
+      "title": "Hypersensitivity and pain induced by operative procedures and the \"cracked tooth\" syndrome.",
+      "abstract": "Various dental conditions are responsible for tooth hypersensitivity and pain. They include hypersensitive dentin; the \"cracked tooth\" syndrome; pulp and periapical irritation, inflammation and/or degeneration; barodontalgia (aerodontalgia); and periodontal pathoses, particularly the pulpal-periodontal syndrome. Each operative condition is reviewed with respect to its etiology, symptomatology, and diagnosis. Some treatment recommendations are made to prevent or reduce symptoms.",
+      "journal": "General dentistry",
+      "pub_year": "1997",
+      "status": "ok",
+      "score": 0.25
+    },
+    "Shanbhag|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Silva|2020": {
+      "pmid": "33219876",
+      "title": "Does the type of endodontic access influence in the cyclic fatigue resistance of reciprocating instruments?",
+      "abstract": "INTRODUCTION: The aim of the present study was to compare the cyclic fatigue resistance of Reciproc R25 (R25) and Reciproc Blue R25 (R25B) instruments, after simulated clinical use in traditional (TradAC) and ultraconservative (UltraAC) endodontic access cavities. METHODS: Forty mandibular molars were randomly assigned into the following groups, according to the type of access and instrument to be used: TradAC and R25, TradAC and R25B, UltraAC and R25, and UltraAC and R25B. Teeth were accessed accordingly, and the root canals were prepared using \"RECIPROC ALL\" kinematics. The cyclic fatigue resistance of the forty used instruments was obtained measuring the time to fracture in an artificial stainless-steel canal. Ten brand new R25 and R25B were used as control groups. The fracture surfaces and the side cutting edges of the instruments were examined with a scanning electron microscope. Data were statistically analyzed using one-way ANOVA and post hoc Tukey tests with a significance level of P < 0.05. RESULTS: R25B instruments showed significantly higher cyclic fatigue resistance than R25, regardless of the access cavity type (P < 0.05). No differences were observed in the cyclic fatigue resistance between instruments without simulated clinical use and used in TradAC (P > 0.05). R25 and R25B used in UltraAC showed significantly lower cyclic fatigue resistance compared with the instruments used in TradAC and without simulated clinical use (P < 0.05). CONCLUSIONS: R25B files showed improved cyclic fatigue resistance than R25. The use of R25B and R25 files in mandibular molars with UltraACs decreased their cyclic fatigue resistance, compared with TradAC. CLINICAL RELEVANCE: The use of Reciproc and Reciproc Blue files in mandibular molars with ultra-conservative endodontic access cavities reduced their cyclic fatigue resistance. Clinicians should be aware about the reduced cyclic fatigue resistance of these files when used in mandibular molars with UltraAC, due to the synergistic effect of access angulation and severe curvature induced in the endodontic files.",
+      "journal": "Clinical oral investigations",
+      "pub_year": "2021",
+      "status": "ok",
+      "score": 0.412
+    },
+    "Spili|2005": {
+      "pmid": "16306815",
+      "title": "The impact of instrument fracture on outcome of endodontic treatment.",
+      "abstract": "Adoption of rotary nickel-titanium instruments has renewed concerns regarding instrument fracture and its consequences. The frequency of instrument fracture and its impact on treatment outcome were determined from an analysis of specialist endodontic practice records involving 8460 cases. A case-control study of treatment outcomes was conducted on a subset of 146 teeth with a retained instrument fragment (plus 146 matched controls), for which clinical and radiographic follow-up of at least 1 year was available. Masked radiographs were assessed by two calibrated examiners. Overall prevalence of retained fractured instruments was 3.3% of treated teeth. In the case-control study, overall healing rates were 91.8% for cases with a fractured instrument and 94.5% for matched controls (p > 0.05, Fisher's exact test). Healing in both groups was lower in teeth with a preoperative periapical radiolucency (86.7% versus 92.9%, p > 0.05). In the hands of skilled endodontists prognosis was not significantly affected by the presence of a retained fractured instrument.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2005",
+      "status": "ok",
+      "score": 0.667,
+      "query": "Spili[Author] AND 2005[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Sundqvist|1998": {
+      "pmid": "9474621",
+      "title": "Microbiologic analysis of teeth with failed endodontic treatment and the outcome of conservative re-treatment.",
+      "abstract": "OBJECTIVE: The purposes of this study were to determine what microbial flora were present in teeth after failed root canal therapy and to establish the outcome of conservative re-treatment. STUDY DESIGN: Fifty-four root-filled teeth with persisting periapical lesions were selected for re-treatment. After removal of the root filling, canals were sampled by means of advanced microbiologic techniques. The teeth were then re-treated and followed for up to 5 years. RESULTS: The microbial flora was mainly single species of predominantly gram-positive organisms. The isolates most commonly recovered were bacteria of the species Enterococcus faecalis. The overall success rate of re-treatment was 74%. CONCLUSIONS: The microbial flora in canals after failed endodontic therapy differed markedly from the flora in untreated teeth. Infection at the time of root filling and size of the periapical lesion were factors that had a negative influence on the prognosis. Three of four endodontic failures were successfully managed by re-treatment.",
+      "journal": "Oral surgery, oral medicine, oral pathology, oral radiology, and endodontics",
+      "pub_year": "1998",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Suresh|2020": {
+      "pmid": "32976660",
+      "title": "Effect of preoperative oral administration of steroids in comparison to an anti-inflammatory drug on postoperative pain following single-visit root canal treatment - a double-blind, randomized clinical trial.",
+      "abstract": "AIM: This randomized, double-blinded, clinical trial evaluated the effect of oral premedication of piroxicam, prednisolone, dexamethasone or placebo on postoperative pain after single-visit root canal treatment in teeth with symptomatic irreversible pulpitis and symptomatic apical periodontitis. METHODOLOGY: The trial is reported according to the Preferred Reporting Items for RAndomized Trials in Endodontics (PRIRATE) 2020 guidelines. The protocol was registered at the clinical trial registry (India) (CTRI/2019/06/019818). In total, 160 patients, assigned to four groups, received orally either 20 mg piroxicam, 20 mg prednisolone, 4 mg dexamethasone or a placebo 60 min before root canal treatment. Patients recorded their postoperative pain intensity at 6, 12, 24, 48 and 72 h using a 10-cm visual analogue scale. Intergroup comparison was performed using Kruskal-Wallis tests with post hoc analysis using Dunns test. Incidence of pain was analysed using chi-square tests. A P value < 0.05 was considered to be statistically significant. Binary logistic regression was used to determine the odds of postoperative pain, with incidence of pain as the dependent variable and intervention groups, gender, age and type of tooth as independent variables. RESULTS: In total, 156 patients were analysed in the trial, since four patients dropped out during follow-up. All drugs were associated with a significantly lower incidence of postoperative pain compared to the placebo at 6 h (P = 0.009), 12 h (P = 0.003) and 24 h (P = 0.008). Mean intensity of pain was significantly more intense at 6, 12 and 24 h with the use of placebo in comparison to the other three intervention groups (P < 0.05). Intensity of pain was not significantly different between the premedications used (P > 0.05). One patient in the piroxicam group reported gastritis, whereas no adverse effects were recorded in other groups. CONCLUSION: Preoperative oral administration of a single dose of 4 mg dexamethasone, 20 mg piroxicam or 20 mg prednisolone reduced the incidence and severity of postoperative pain following single-visit root canal treatment compared to a placebo in patients with symptomatic irreversible pulpitis and symptomatic apical periodontitis up to 24 h. The odds of postoperative pain at 24 h for patients premedicated with 4 mg dexamethasone or 20 mg piroxicam or 20 mg prednisolone were 5.3 times, 3.4 times and 2.5 times less compared to the placebo, respectively.",
+      "journal": "International endodontic journal",
+      "pub_year": "2021",
+      "status": "ok",
+      "score": 0.933
+    },
+    "Sweatman and Baumgartner|2001": {
+      "pmid": "11501588",
+      "title": "Radicular temperatures associated with thermoplasticized gutta-percha.",
+      "abstract": "Thermoplasticized gutta-percha has been used to obturate root canals. The continuous wave of condensation technique uses the System B Heat Source with the choice of different-sized pluggers. The purpose of this study was to measure the temperatures within the root canal and on the root surface at different radicular levels while using the System B Heat Source. Fine, Fine-Medium, and Medium pluggers were evaluated at temperature settings of 200 degrees C, 250 degrees C, and 300 degrees C. The Obtura II gutta-percha delivery system following the manufacturer's instructions and ultrasonically thermoplasticized gutta-percha were used for comparative purposes. The highest mean temperature change on the internal root surface was 74.19 degrees C with the system B at the 6 mm level (6 mm coronal to working length) when the Fine-Medium plugger was set at 300 degrees C. The lowest mean temperature change on the internal root surface was 2.09 degrees C at the 0 mm level (at working length) when the F plugger was set at 200 degrees C. With the Obtura II, the lowest mean internal temperature change was 5.22 degrees C at the 0 mm level, whereas the highest mean internal temperature change was 26.63 degrees C at the 6 mm level. With ultrasonic lateral compaction the lowest mean internal temperature change was 5.01 degrees C at the 0 mm level, whereas the highest mean internal temperature change was 28.95 degrees C at the 6 mm level. At no time did the System B, the Obtura II, or ultrasonic delivery of warm gutta-percha exceed an increase of 10 degrees C at any thermocouple level on the external root surface.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2001",
+      "status": "ok",
+      "score": 0.429,
+      "query": "Sweatman[Author] AND 2001[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Tewary|2011": {
+      "pmid": "21689544",
+      "title": "Endodontic radiography: who is reading the digital radiograph?",
+      "abstract": "INTRODUCTION: Digital radiographic imaging systems have undergone tremendous improvements since their introduction. Advantages of digital radiographs over conventional films include lower radiation doses compared with conventional films, instantaneous images, archiving and sharing images easily, and manipulation of several radiographic properties that might help in diagnosis. METHODS: A total of 6 observers including 2 endodontic residents, 3 endodontists, and 1 oral radiologist evaluated 150 molar digital periapical radiographs to determine which of the following conditions existed: normal periapical tissue, widened periodontal ligament, or presence of periapical radiolucency. The evaluators had full control over the radiograph's parameters of the Planmeca Dimaxis software program. All images were viewed on the same computer monitor with ideal vie-wing conditions. The same 6 observers evaluated the same 150 digital images 3 months later. The data were analyzed to determine how well the evaluators agreed with each other (interobserver agreement) for 2 rounds of observations and with themselves (intraobserver agreement). RESULTS: Fleiss kappa statistical analysis was used to measure the level of agreement among multiple raters. The overall Fleiss kappa value for interobserver agreement for the first round of interpretation was 0.34 (P < .001). The overall Fleiss kappa value for interobserver agreement for the second round of interpretation was 0.35 (P < .001). This resulted in fair (0.2-0.4) agreement among the 6 raters at both observation periods. A weighted kappa analysis was used to determine intraobserver agreement, which showed on average a moderate agreement. CONCLUSIONS: The results indicate that the interpretation of a dental radiograph is subjective, irrespective of whether conventional or digital radiographs are used. The factors that appeared to have the most impact were the years of experience of the examiner and familiarity of the operator with a given digital system.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2011",
+      "status": "ok",
+      "score": 0.235,
+      "query": "Tewary[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Torabinejad|2007": {
+      "pmid": "17936128",
+      "title": "Outcomes of root canal treatment and restoration, implant-supported single crowns, fixed partial dentures, and extraction without replacement: a systematic review.",
+      "abstract": "STATEMENT OF PROBLEM: Dentists and patients are regularly confronted by a difficult treatment question: should a tooth be saved through root canal treatment and restoration (RCT), be extracted without any tooth replacement, be replaced with a fixed partial denture (FPD) or an implant-supported single crown (ISC)? PURPOSE: The purpose of this systematic review was to compare the outcomes, benefits, and harms of endodontic care and restoration compared to extraction and placement of ISCs, FPDs, or extraction without tooth replacement. MATERIAL AND METHODS: Searches performed in MEDLINE, Cochrane, and EMBASE databases were enriched by hand searches, citation mining, and expert recommendation. Evidence tables were developed following quality and inclusion criteria assessment. Pooled and weighted mean success and survival rates, with associated confidence intervals, were calculated for single implant crowns, fixed partial dentures, and initial nonsurgical root canal treatments. Data related to extraction without tooth replacement and psychosocial outcomes were evaluated by a narrative review due to literature limitations. RESULTS: The 143 selected studies varied considerably in design, success definition, assessment methods, operator type, and sample size. Direct comparison of treatment types was extremely rare. Limited psychosocial data revealed the traumatic effect of loss of visible teeth. Economic data were largely absent. Success rates for ISCs were higher than for RCTs and FPDs, respectively; however, success criteria differed greatly among treatment types, rendering direct comparison of success rates futile. Long-term survival rates for ISCs and RCTs were similar and superior to those for FPDs. CONCLUSIONS: Lack of comparative studies with similar outcomes criteria with comparable time intervals limited comparison of these treatments. ISC and RCT treatments resulted in superior long-term survival, compared to FPDs. Limited data suggested that extraction without replacement resulted in inferior psychosocial outcomes compared to alternatives. Long-term, prospective clinical trials with large sample sizes and clearly defined outcomes criteria are needed.",
+      "journal": "The Journal of prosthetic dentistry",
+      "pub_year": "2007",
+      "status": "ok",
+      "score": 0.5,
+      "query": "Torabinejad[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Torabinejad|2009": {
+      "pmid": "19567310",
+      "title": "Outcomes of nonsurgical retreatment and endodontic surgery: a systematic review.",
+      "abstract": "INTRODUCTION: The purpose of this systematic review was to compare the clinical and radiographic outcomes of nonsurgical retreatment with those of endodontic surgery to determine which modality offers more favorable outcomes. METHODS: The study began with targeted electronic searches of MEDLINE, PubMed, and Cochrane databases, followed with exhaustive hand searching and citation mining for all articles reporting clinical and/or radiographic outcomes for at least a mean follow-up of 2 years for these procedures. Pooled and weighted success rates were determined from a meta-analysis of the data abstracted from the articles. RESULTS: A significantly higher success rate was found for endodontic surgery at 2-4 years (77.8%) compared with nonsurgical retreatment for the same follow-up period (70.9%; P < .05). At 4-6 years, however, this relationship was reversed, with nonsurgical retreatment showing a higher success rate of 83.0% compared with 71.8% for endodontic surgery (P < .05). Insufficient numbers of articles were available to make comparisons after 6 years of follow-up period. Endodontic surgery studies showed a statistically significant decrease in success with each increasing follow-up interval (P < .05). The weighted success for 2-4 years was 77.8%, which declined at 4-6 years to 71.8% and further declined at 6+ years to 62.9% (P < .05). Conversely, the nonsurgical retreatment success rates demonstrated a statistically significant increase in weighted success from 2-4 years (70.9%) to 4-6 years (83.0%; P < .05). CONCLUSIONS: On the basis of these results it appears that endodontic surgery offers more favorable initial success, but nonsurgical retreatment offers a more favorable long-term outcome.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2009",
+      "status": "ok",
+      "score": 0.5
+    },
+    "Trowbridge|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "rejected_title": "Modification of the Gorlin equation for use with heart valve substitutes."
+    },
+    "Vera|2012": {
+      "pmid": "22980174",
+      "title": "Effect of maintaining apical patency on irrigant penetration into the apical two millimeters of large root canals: an in vivo study.",
+      "abstract": "INTRODUCTION: Factors such as complex root canal anatomy and the vapor lock phenomenon have been shown to limit the penetration of irrigating solutions into the apical third in both in vivo and in vitro studies involving small and wide canals. Hence, the aim of this study was to determine whether the use of a patency file is related to the presence of a radiopaque irrigating solution in the apical 2 mm of large human root canals. METHODS: Forty-three large human root canals were randomly divided into 2 groups. Apical patency was maintained in 1 group (P, n = 22) during shaping and cleaning procedures with a no. 10 K-file 1 mm beyond the working length (WL) but not in the other group (no patency [NP], n = 21). In both groups, the canals were shaped with the K3 system. Irrigation was performed with 1 mL of a solution prepared with a radiopaque contrast medium and 5.25% sodium hypochlorite. Digital images were taken, and 2 calibrated readers determined the presence or absence of the irrigating solution in the apical 2 mm of the root canals. RESULTS: There were significantly more canals with irrigant in the apical 2 mm when apical patency was maintained with a no. 10- Kfile 1 mm beyond the WL than when apical patency was not maintained throughout the cleaning and shaping procedures (P = .04). CONCLUSIONS: Maintaining apical patency improves the delivery of irrigants into the apical third of large human root canals.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2012",
+      "status": "ok",
+      "score": 0.263,
+      "query": "Vera[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Violich and Chandler|2010": {
+      "pmid": "20002799",
+      "title": "The smear layer in endodontics - a review.",
+      "abstract": "Root canal instrumentation produces a layer of organic and inorganic material called the smear layer that may also contain bacteria and their by-products. It can prevent the penetration of intracanal medicaments into dentinal tubules and influence the adaptation of filling materials to canal walls. This article provides an overview of the smear layer, focusing on its relevance to endodontics. The PubMed database was used initially; the reference list for smear layer featured 1277 articles, and for both smear layer dentine and smear layer root canal revealed 1455 publications. Smear layer endodontics disclosed 408 papers. A forward search was undertaken on selected articles and using some author names. Potentially relevant material was also sought in contemporary endodontic texts, whilst older books revealed historic information and primary research not found electronically, such that this paper does not represent a 'classical' review. Data obtained suggests that smear layer removal should enhance canal disinfection. Current methods of smear removal include chemical, ultrasonic and laser techniques - none of which are totally effective throughout the length of all canals or are universally accepted. If smear is to be removed, the method of choice seems to be the alternate use of ethylenediaminetetraacetic acid and sodium hypochlorite solutions. Conflict remains regarding the removal of the smear layer before filling root canals, with investigations required to determine the role of the smear layer in the outcomes of root canal treatment.",
+      "journal": "International endodontic journal",
+      "pub_year": "2010",
+      "status": "ok",
+      "score": 0.438,
+      "query": "Violich[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Walton|1996": {
+      "pmid": "8734709",
+      "title": "Penicillin as a supplement in resolving the localized acute apical abscess.",
+      "abstract": "PROBLEM: Antibiotics are often prescribed indiscriminately to treat endodontic emergencies. OBJECTIVES: This study examined (1) the effect of penicillin supplementation on reduction of symptoms and (2) the course of recovery of localized acute apical abscess after emergency treatment. STUDY DESIGN: Patients with pulp necrosis and periapical pain and/or localized swelling were considered. Those eligible did not have any signs of spreading infections. Patients received appropriate local treatment, and a double-blind protocol was used to randomly assign them to one of three groups: penicillin VK group, placebo group, or neither medication group. All received ibuprofen 600 mg four times daily for 24 hours. Patients entered their pre- and postoperative pain and swelling experience on a visual analog scale for up to 72 hours. RESULTS: Resolution was fairly rapid in most patients. Statistical analysis of the scores of 32 respondents revealed no significant differences (at p < 0.05) between the three groups in course of recovery or symptoms at any time period. CONCLUSIONS: Patients with localized periapical pain or swelling generally recovered quickly with local treatment. The data did not show a demonstrable benefit from penicillin supplementation.",
+      "journal": "Oral surgery, oral medicine, oral pathology, oral radiology, and endodontics",
+      "pub_year": "1996",
+      "status": "ok",
+      "score": 0.429,
+      "query": "Walton[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+    },
+    "Wang|": {
+      "pmid": "29580724",
+      "title": "Application of Enamel Matrix Derivative (Emdogain) in Endodontic Therapy: A Comprehensive Literature Review.",
+      "abstract": "INTRODUCTION: Enamel matrix derivative (EMD) is a protein extract used for the treatment of periodontal defects and soft tissue recession. Its use in endodontics has been a subject of exploration, especially in regenerative procedures. The aim of this review was to evaluate the current literature available on the application of EMD in the field of endodontics. METHODS: An initial literature search of databases using different combinations of the search terms yielded 1089 articles. From the 29 qualified studies, there were 17 animal studies and 12 human case series and clinical trials. RESULTS: The evidence for the application of EMD as a direct pulp capping agent was relatively dichotomous. In determining the possible effect of EMD on pulpotomy procedures, only 1 animal study qualified under the criteria set forth previously. When comparing EMD against calcium hydroxide (Ca[OH]2), Portland cement, and mineral trioxide aggregate (MTA), Ca(OH)2 induced more histologic hard tissue formation, whereas MTA performed best clinically and radiographically. The scientific literature available is inconclusive on the effectiveness of EMD in preventing root resorption. In regeneration, EMD treatment induced mainly the formation of a cementumlike tissue at the apical region of the root's external surface and showed an ingrowth of newly formed hard tissues into the root canal space. CONCLUSIONS: The results of EMD application in endodontic treatments are highly variable, warranting additional research, specifically in the subjects of replantation and regeneration/revascularization.",
+      "journal": "Journal of endodontics",
+      "pub_year": "2018",
+      "status": "ok",
+      "score": 0.5
+    }
+  }
 }

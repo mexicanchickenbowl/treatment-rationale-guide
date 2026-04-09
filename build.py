@@ -27,6 +27,7 @@ from pathlib import Path
 HERE = Path(__file__).parent
 MD = HERE / "endo-guide.md"
 SUGGESTIONS = HERE / "suggestions.json"
+ABSTRACTS = HERE / "abstracts.json"
 TEMPLATE = HERE / "endo-guide.template.html"
 OUT_JSON = HERE / "guide-data.json"
 OUT_HTML = HERE / "index.html"
@@ -305,11 +306,19 @@ def build() -> None:
         except Exception as e:
             print(f"warn: could not read suggestions.json: {e}", file=sys.stderr)
 
+    abstracts: dict = {}
+    if ABSTRACTS.exists():
+        try:
+            abstracts = json.loads(ABSTRACTS.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"warn: could not read abstracts.json: {e}", file=sys.stderr)
+
     data = {
         "built_at": datetime.now(timezone.utc).isoformat(),
         "sections": sections,
         "cards": cards,
         "suggestions": suggestions,
+        "abstracts": abstracts,
     }
     OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -330,7 +339,7 @@ def build() -> None:
     preview_dir = Path.home() / "endo-preview"
     if preview_dir.exists():
         (preview_dir / "index.html").write_text(html, encoding="utf-8")
-    print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}")
+    print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}  abstracts: {len(abstracts)}")
     print(f"wrote {OUT_JSON.name} ({OUT_JSON.stat().st_size:,} b)")
     print(f"wrote {OUT_HTML.name} + {OUT_HTML_ALIAS.name} ({OUT_HTML.stat().st_size:,} b)")
 
