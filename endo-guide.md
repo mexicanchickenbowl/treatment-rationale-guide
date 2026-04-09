@@ -340,6 +340,22 @@ Indirect pulp capping (IPC) is indicated when a deep carious lesion approaches t
 
 Direct pulp capping (DPC) is most likely to succeed when: the pulp exposure is small (<1 mm), mechanical rather than carious (e.g., from instrumentation), bleeding is controlled and not profuse or dark (indicating normal vital pulp), the patient is relatively young (better healing capacity), and there are no signs of irreversible pulpitis. Carious exposures carry a higher risk of failure because bacteria already contaminate the pulp prior to exposure. {{cite: Mente 2010 — MTA direct pulp cap showed 89.9% success vs 63.3% for calcium hydroxide at 5 years}}. {{cite: Dammaschke 2010 — long-term success of direct pulp capping with calcium hydroxide drops to 37% at 10 years}}.
 
+- How long should you wait for hemostasis after pulp exposure, and what does the bleeding response tell you?
+
+Achieving hemostasis within **5 minutes** of gentle pressure with a sterile cotton pellet moistened with saline or 6% NaOCl is the clinical go/no-go threshold for proceeding with VPT. If bleeding does not stop within 5 minutes, the inflammation extends beyond the exposure site into the radicular pulp — the clinical diagnosis should be revised to irreversible pulpitis and the procedure abandoned in favor of pulpectomy {{cite: ESE de Souza 2021 — ESE vital pulp therapy position statement: hemostasis within 5 minutes is the clinical threshold for proceeding with VPT; failure to achieve hemostasis indicates irreversible radicular inflammation}}.
+
+The quality of bleeding is equally informative:
+
+| Bleeding Character | Interpretation | Action |
+| --- | --- | --- |
+| Bright red, stops within 5 min | Healthy superficial pulp, reversible zone | Proceed with VPT |
+| Dark, sluggish, or does not stop within 5 min | Irreversible inflammatory infiltration | Abandon VPT → pulpectomy/RCT |
+| Profuse, uncontrolled | Deep necrosis, suppuration, or abscess | Contraindicated |
+
+**Why NaOCl rather than saline?** A cotton pellet wetted with 6% NaOCl simultaneously lyses surface organic debris at the wound edge and achieves hemostasis, producing a cleaner preparation surface before bioceramic placement. Some protocols use 3% NaOCl to reduce cytotoxicity while retaining this dual effect. Ferric sulfate is not recommended as a hemostatic agent for VPT because it leaves a residue that impairs the biocompatibility of the capping interface.
+
+**For full pulpotomy** (entire coronal pulp removed), the 5-minute threshold applies to each successive amputation level. If hemostasis is not achieved at the coronal pulp level, remove additional pulp tissue (deepen the pulpotomy) and reassess before abandoning — up to the canal orifices. Persistent bleeding at the level of the canal orifices is the definitive indication to proceed to full pulpectomy {{cite: Bjørndal 2019 — stepwise pulpotomy approach: achieve hemostasis at each level before placing capping material; persistent bleeding at orifice level = pulpectomy indicated}}.
+
 - When is full pulpotomy indicated in permanent teeth?
 
 Full pulpotomy is indicated when there is clinical evidence of irreversible pulpitis (spontaneous or lingering pain) in a tooth with a closed apex, but where preserving vitality is desirable. The entire coronal pulp is removed and a bioceramic material placed to maintain radicular pulp vitality. Cvek pulpotomy (partial/cervical pulpotomy) is the technique of choice for traumatized teeth with open apices and partial pulp exposure, achieving 96% success {{cite: Bimstein and Rotstein 2016 — Cvek pulpotomy in traumatized teeth with immature apices achieves approximately 96% success}}. Full pulpotomy in mature permanent teeth with MTA has shown success rates of 79–98% in recent literature, making it a viable alternative to root canal treatment in appropriate cases.

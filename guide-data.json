@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T20:25:46.517106+00:00",
+  "built_at": "2026-04-09T20:55:55.905487+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -1062,6 +1062,53 @@
             {
               "type": "p",
               "text": "Direct pulp capping (DPC) is most likely to succeed when: the pulp exposure is small (<1 mm), mechanical rather than carious (e.g., from instrumentation), bleeding is controlled and not profuse or dark (indicating normal vital pulp), the patient is relatively young (better healing capacity), and there are no signs of irreversible pulpitis. Carious exposures carry a higher risk of failure because bacteria already contaminate the pulp prior to exposure. {{cite: Mente 2010 — MTA direct pulp cap showed 89.9% success vs 63.3% for calcium hydroxide at 5 years}}. {{cite: Dammaschke 2010 — long-term success of direct pulp capping with calcium hydroxide drops to 37% at 10 years}}."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "How long should you wait for hemostasis after pulp exposure, and what does the bleeding response tell you?"
+              ]
+            },
+            {
+              "type": "p",
+              "text": "Achieving hemostasis within **5 minutes** of gentle pressure with a sterile cotton pellet moistened with saline or 6% NaOCl is the clinical go/no-go threshold for proceeding with VPT. If bleeding does not stop within 5 minutes, the inflammation extends beyond the exposure site into the radicular pulp — the clinical diagnosis should be revised to irreversible pulpitis and the procedure abandoned in favor of pulpectomy {{cite: ESE de Souza 2021 — ESE vital pulp therapy position statement: hemostasis within 5 minutes is the clinical threshold for proceeding with VPT; failure to achieve hemostasis indicates irreversible radicular inflammation}}."
+            },
+            {
+              "type": "p",
+              "text": "The quality of bleeding is equally informative:"
+            },
+            {
+              "type": "table",
+              "headers": [
+                "Bleeding Character",
+                "Interpretation",
+                "Action"
+              ],
+              "rows": [
+                [
+                  "Bright red, stops within 5 min",
+                  "Healthy superficial pulp, reversible zone",
+                  "Proceed with VPT"
+                ],
+                [
+                  "Dark, sluggish, or does not stop within 5 min",
+                  "Irreversible inflammatory infiltration",
+                  "Abandon VPT → pulpectomy/RCT"
+                ],
+                [
+                  "Profuse, uncontrolled",
+                  "Deep necrosis, suppuration, or abscess",
+                  "Contraindicated"
+                ]
+              ]
+            },
+            {
+              "type": "p",
+              "text": "**Why NaOCl rather than saline?** A cotton pellet wetted with 6% NaOCl simultaneously lyses surface organic debris at the wound edge and achieves hemostasis, producing a cleaner preparation surface before bioceramic placement. Some protocols use 3% NaOCl to reduce cytotoxicity while retaining this dual effect. Ferric sulfate is not recommended as a hemostatic agent for VPT because it leaves a residue that impairs the biocompatibility of the capping interface."
+            },
+            {
+              "type": "p",
+              "text": "**For full pulpotomy** (entire coronal pulp removed), the 5-minute threshold applies to each successive amputation level. If hemostasis is not achieved at the coronal pulp level, remove additional pulp tissue (deepen the pulpotomy) and reassess before abandoning — up to the canal orifices. Persistent bleeding at the level of the canal orifices is the definitive indication to proceed to full pulpectomy {{cite: Bjørndal 2019 — stepwise pulpotomy approach: achieve hemostasis at each level before placing capping material; persistent bleeding at orifice level = pulpectomy indicated}}."
             },
             {
               "type": "ul",
@@ -5221,6 +5268,22 @@
       "author": "Dammaschke",
       "year": "2010",
       "finding": "long-term success of direct pulp capping with calcium hydroxide drops to 37% at 10 years",
+      "section_id": "s2-treatment-planning-24-vital-pulp-therapy-candidacy",
+      "section_title": "Vital Pulp Therapy Candidacy",
+      "source": "marker"
+    },
+    {
+      "author": "ESE de Souza",
+      "year": "2021",
+      "finding": "ESE vital pulp therapy position statement: hemostasis within 5 minutes is the clinical threshold for proceeding with VPT; failure to achieve hemostasis indicates irreversible radicular inflammation",
+      "section_id": "s2-treatment-planning-24-vital-pulp-therapy-candidacy",
+      "section_title": "Vital Pulp Therapy Candidacy",
+      "source": "marker"
+    },
+    {
+      "author": "Bjørndal",
+      "year": "2019",
+      "finding": "stepwise pulpotomy approach: achieve hemostasis at each level before placing capping material; persistent bleeding at orifice level = pulpectomy indicated",
       "section_id": "s2-treatment-planning-24-vital-pulp-therapy-candidacy",
       "section_title": "Vital Pulp Therapy Candidacy",
       "source": "marker"
