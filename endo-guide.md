@@ -368,7 +368,7 @@ Combined retreatment followed by surgery is indicated when: (1) the coronal caus
 
 - How long should you wait to assess healing before considering retreatment?
 
-The standard minimum follow-up period to assess healing is 1 year post-treatment, though lesions greater than 1 cm may require up to 4 years to demonstrate complete radiographic resolution. {{cite: Murphy — lesions greater than 1 cm require more than 1 year for complete radiographic healing}}. Orstavik's Periapical Index (PAI) is a useful standardized tool for tracking lesion size and density changes over serial follow-up visits. For small lesions (<5 mm) in asymptomatic teeth, re-evaluation at 1 year is typically sufficient to determine if retreatment is needed.
+The standard minimum follow-up period to assess healing is 1 year post-treatment, though lesions greater than 1 cm may require up to 4 years to demonstrate complete radiographic resolution. {{cite: Murphy — lesions greater than 1 cm require more than 1 year for complete radiographic healing}}. Orstavik's Periapical Index (PAI) is a useful standardized tool for tracking lesion size and density changes over serial follow-up visits. For small lesions (<5 mm) in asymptomatic teeth, re-evaluation at 1 year is typically sufficient to determine if retreatment is needed. sdfdf
 
 - What distinguishes a healing lesion from persistent disease?
 
