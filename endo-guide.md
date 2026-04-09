@@ -19,7 +19,7 @@ Quick Reference: Evidence-based rationale for each clinical decision point
 |  | Radiographic Examination | PA radiographs; CBCT if indicated | Low - CBCT detects 34% more lesions in posterior maxilla; Aminoshariae - CBCT 2x detection rate |
 |  | Diagnosis & Treatment Plan | AAE pulpal and periapical classification | de Chevigny - radiolucency decreases success 93%→82% |
 |  | Informed Consent | Discuss prognosis, alternatives, risks | Salehrabi & Rotstein - 97% survival rate |
-| ANESTHESIA | Local Anesthetic Selection | Lidocaine or articaine based on case | Garisto 2010 - articaine 3.6x paresthesia risk with IAN blocks |
+| ANESTHESIA | Local Anesthetic Selection | Lidocaine or articaine based on case | ==Garisto 2010 - articaine 3.6x excess paresthesia reports vs. expected based on market share (not a direct comparison to lidocaine)== |
 |  | Primary Block/Infiltration | IAN block (3.6 mL) or maxillary infiltration | Fowler & Reader - 2 cartridges more effective; Aggarwal - palatal doesn't increase success |
 |  | Supplemental Anesthesia PRN | Buccal articaine, IO, PDL, intrapulpal if needed | Kanaa 2012 - buccal articaine 84%, IO 68%, PDL 48%, repeat IAN 32% |
 | ACCESS | Rubber Dam Isolation | Standard of care - prevents aspiration, improves asepsis | AAE 2017 Position Statement |
@@ -39,7 +39,7 @@ Quick Reference: Evidence-based rationale for each clinical decision point
 |  | Sealer Application | Thin layer; bioceramic or resin-based | Sealer fills discrepancies |
 |  | Obturation Technique | Warm vertical, lateral condensation, or single cone | Technique less important than coronal seal - Ray & Trope |
 |  | Radiographic Confirmation | Verify fill to WL, density, no voids | Sjögren - Dense fill 0-2mm from apex optimal |
-| RESTORATION | Orifice Barrier | Prevents coronal leakage | Swanson & Madison - oral fluids reach apex in 3 days |
+| RESTORATION | Orifice Barrier | Prevents coronal leakage | ==Swanson & Madison - dye penetrated 79–85% of root length after just 3 days of coronal exposure (not necessarily to the apex)== |
 |  | Core Placement | Same-day if possible; minimum 3.5mm Cavit if temp | Webber - 3.5mm Cavit for adequate seal |
 |  | Cuspal Coverage Planning | Crown for posteriors; assess remaining structure | Ray & Trope - coronal restoration more important than fill quality |
 | POST-OP | Occlusal Adjustment | Reduce if pre-op pain, percussion sensitivity, vital | Rosenberg - decreases pain with specific indications |
@@ -390,7 +390,7 @@ For mandibular teeth, two cartridges (3.6 mL) are indicated for the IAN block, a
 
 Dressman found that 4% articaine infiltration provided successful pulpal anesthesia in the premolar region 80-87% of the time and 92-94% successful with additional anesthesia.
 
-Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. Garisto et al., 2010 (and Gaffeen separately) found increased paresthesias with articaine IAN blocks compared to lidocaine IAN blocks (3.6x increased risk).
+Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. ==Garisto et al., 2010 (and Gaffen separately) found that 4% articaine was associated with 3.6x more paresthesia reports than expected based on its market share — a retrospective FDA adverse event analysis, not a head-to-head comparison to lidocaine. Prilocaine showed an even higher signal (7.3x). Clinicians should note that this represents a pharmacovigilance signal, not a controlled clinical trial result.==
 
 - What is the evidence for buccal infiltration of articaine in mandibular molars?
 
@@ -850,7 +850,7 @@ Coronal leakage begins within days to weeks after obturation if a proper coronal
 
 - How does delayed restoration affect tooth survival?
 
-Delayed restoration significantly reduces tooth survival and endodontic success. A retrospective study by Gillen et al. (2011) found that the quality of coronal restoration had a greater impact on periapical healing than the quality of root canal treatment. Delaying restoration by more than 4 weeks without an adequate provisional seal is associated with increased failure rates {{cite: Gillen 2011}}.
+Delayed restoration significantly reduces tooth survival and endodontic success. ==A systematic review and meta-analysis by Gillen et al. (2011) found that both the quality of coronal restoration and the quality of root canal treatment had a comparable and significant impact on periapical healing outcomes; neither factor was found to be significantly greater than the other. Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates== {{cite: Gillen 2011}}.
 
 - What is the maximum acceptable delay before permanent restoration?
 
@@ -904,9 +904,9 @@ Cuspal coverage is indicated for posterior teeth (premolars and molars) after ro
 
 - How does cuspal coverage affect tooth survival?
 
-Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. Molars and premolars without cuspal coverage are 6x more likely to fracture than those with crowns {{cite: Aquilino and Caplan 2002}}. The survival benefit is greatest for posterior teeth under heavy occlusal loading.
+Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. ==Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns== {{cite: Aquilino and Caplan 2002}}. ==The study measured overall tooth loss/survival, not fracture specifically.== The survival benefit is greatest for posterior teeth under heavy occlusal loading.
 
-The quality of coronal restoration is more important for endodontic outcomes than the quality of the root canal (Ray and Trope).
+==Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth. However, the subsequent Gillen et al. (2011) systematic review and meta-analysis found no statistically significant difference in healing odds between the two factors — both adequate restoration and adequate root canal treatment are independently critical for success.==
 
 - What factors influence the decision (tooth type, remaining structure, occlusal forces)?
 
@@ -918,7 +918,7 @@ Direct composite overlays provide an adhesive, minimally invasive option for tee
 
 - What percentage of crowned vital teeth will eventually need RCT?
 
-17% of crowned vital teeth will need RCT within 25 years (Valderhaug et al). This rate is higher for partial denture abutments which need RCT at a rate of 32% (Cheung).
+==17% of crowned teeth (vital and root-filled combined) developed pulpal complications requiring endodontic treatment over 25 years (Valderhaug et al). The Cheung 2005 study reported 33.8% pulp necrosis in bridge retainer teeth at 10 years — note this applies to fixed bridge retainers, not removable partial denture abutments.==
 
 ## 8.5 Post-Operative Pain and Occlusal Adjustment
 
