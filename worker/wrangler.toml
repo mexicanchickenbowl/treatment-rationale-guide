@@ -1,0 +1,16 @@
+name = "endo-guide-editor"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+
+# Non-secret config. Edit these before your first `wrangler deploy`.
+[vars]
+GITHUB_REPO      = "mexicanchickenbowl/treatment-rationale-guide"
+GITHUB_BRANCH    = "main"
+SITE_ORIGIN      = "https://mexicanchickenbowl.github.io"
+ALLOWED_GH_USERS = "mexicanchickenbowl"
+
+# Secrets (set via `wrangler secret put <NAME>`):
+#   GITHUB_CLIENT_ID      — OAuth App client ID
+#   GITHUB_CLIENT_SECRET  — OAuth App client secret
+#   GITHUB_TOKEN          — fine-grained PAT with Contents:write on this repo only
+#   JWT_SECRET            — any long random string (used to sign session JWTs)

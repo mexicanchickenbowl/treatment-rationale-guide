@@ -1,0 +1,4 @@
+{
+  "apiBase": "",
+  "_comment": "After `wrangler deploy` succeeds, set apiBase to your worker URL (e.g. https://endo-guide-editor.<subdomain>.workers.dev), commit, and the GH Action will rebuild the site."
+}
