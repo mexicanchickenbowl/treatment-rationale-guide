@@ -275,6 +275,29 @@ function ReferencePane({ sections, query }) {
   );
 }
 
+// --- study pane helpers -----------------------------------------------------
+function levenshtein(a, b) {
+  const dp = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let prev = i;
+    for (let j = 1; j <= b.length; j++) {
+      const val = a[i-1] === b[j-1] ? dp[j-1] : Math.min(dp[j-1], dp[j], prev) + 1;
+      dp[j-1] = prev; prev = val;
+    }
+    dp[b.length] = prev;
+  }
+  return dp[b.length];
+}
+function authorMatch(typed, correct) {
+  const norm = s => s.toLowerCase().replace(/[^a-z]/g, " ").trim().replace(/\s+/g, " ");
+  const t = norm(typed), c = norm(correct);
+  if (!t) return false;
+  if (c.includes(t) || t.includes(c)) return true;         // substring match
+  const first = c.split(" ")[0];                           // first surname only
+  if (t === first) return true;
+  return levenshtein(t, first) <= 2;                       // typo tolerance ≤2
+}
+
 // --- study pane: author ↔ finding matching quiz -----------------------------
 const LS_KEY = "endo-guide.study.v1";
 
@@ -295,9 +318,12 @@ function StudyPane({ cards, onJump }) {
     };
   });
   const [reverse, setReverse] = useState(false); // false: show finding, pick author
+  const [typeMode, setTypeMode] = useState(false); // type the author name
+  const [typed, setTyped] = useState("");           // current text-input value
   const [current, setCurrent] = useState(null);
   const [choices, setChoices] = useState([]);
-  const [pick, setPick] = useState(null);
+  const [pick, setPick] = useState(null);           // "correct"|"wrong" in typeMode, card obj in choice mode
+  const typeInputRef = useRef(null);
 
   const cardKey = (c) => `${(c.author||"").toLowerCase()}|${c.year}|${c.finding.slice(0,60)}`;
 
@@ -332,6 +358,8 @@ function StudyPane({ cards, onJump }) {
     setCurrent(card);
     setChoices(all);
     setPick(null);
+    setTyped("");
+    setTimeout(() => typeInputRef.current?.focus(), 50);
   }, [validCards, state.boxes, reverse]);
 
   useEffect(() => { pickNext(); }, [pickNext]);
@@ -340,6 +368,21 @@ function StudyPane({ cards, onJump }) {
     if (pick) return;
     setPick(choice);
     const correct = choice === current;
+    setState(s => {
+      const next = { ...s, boxes: { ...s.boxes }, history: [...s.history, { t: Date.now(), correct }] };
+      const k = cardKey(current);
+      const cur = next.boxes[k] ?? 0;
+      next.boxes[k] = correct ? Math.min(2, cur + 1) : 0;
+      next.streak = correct ? (s.streak || 0) + 1 : 0;
+      saveStudyState(next);
+      return next;
+    });
+  };
+
+  const submitTyped = () => {
+    if (pick || !typed.trim() || !current) return;
+    const correct = authorMatch(typed, current.author);
+    setPick(correct ? "correct" : "wrong");
     setState(s => {
       const next = { ...s, boxes: { ...s.boxes }, history: [...s.history, { t: Date.now(), correct }] };
       const k = cardKey(current);
@@ -373,36 +416,78 @@ function StudyPane({ cards, onJump }) {
             <span className="ml-2">Streak: {state.streak || 0}</span> ·
             <span className="ml-2">Known: {totalKnown}</span>
           </div>
-          <label className="flex items-center gap-2">
-            <input type="checkbox" checked={reverse} onChange={e => setReverse(e.target.checked)} />
-            Reverse mode
-          </label>
+          <div className="flex items-center gap-4">
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" checked={reverse && !typeMode}
+                onChange={e => { setReverse(e.target.checked); if (e.target.checked) setTypeMode(false); }} />
+              Reverse mode
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer select-none font-medium text-indigo-700">
+              <input type="checkbox" checked={typeMode}
+                onChange={e => { setTypeMode(e.target.checked); if (e.target.checked) setReverse(false); }} />
+              Type-it mode
+            </label>
+          </div>
         </div>
 
         <div className="bg-white border border-slate-200 rounded-xl p-7 shadow-sm border-t-4 border-t-indigo-500">
           <div className="text-xs uppercase tracking-widest text-slate-400 mb-3 font-medium">{promptLabel}</div>
           <div className="text-xl text-slate-900 font-serif mb-6 leading-relaxed">{promptText}</div>
-          <div className="grid gap-2">
-            {choices.map((c, i) => {
-              const label = reverse ? c.finding : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
-              let cls = "text-left px-4 py-3 rounded border bg-white hover:bg-slate-50";
-              if (pick) {
-                if (c === current) cls = "text-left px-4 py-3 rounded border bg-emerald-50 border-emerald-400 text-emerald-900";
-                else if (c === pick) cls = "text-left px-4 py-3 rounded border bg-rose-50 border-rose-300 text-rose-900";
-                else cls = "text-left px-4 py-3 rounded border bg-slate-50 text-slate-500";
-              }
-              return (
-                <button key={i} className={cls} onClick={() => answer(c)} disabled={!!pick}>
-                  {label}
-                </button>
-              );
-            })}
-          </div>
+          {typeMode ? (
+            /* ---- TYPE-IT MODE ---- */
+            <div>
+              <div className="flex gap-2 mb-3">
+                <input
+                  ref={typeInputRef}
+                  className="flex-1 px-4 py-2.5 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300"
+                  placeholder="Type the author's name…"
+                  value={typed}
+                  onChange={e => setTyped(e.target.value)}
+                  onKeyDown={e => { if (e.key === "Enter" && !pick && typed.trim()) submitTyped(); }}
+                  disabled={!!pick}
+                  autoFocus
+                />
+                {!pick && (
+                  <button
+                    className="px-4 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-slate-300 transition"
+                    onClick={submitTyped}
+                    disabled={!typed.trim()}
+                  >Submit</button>
+                )}
+              </div>
+              {pick && (
+                <div className={`px-4 py-3 rounded-lg text-sm font-medium mb-1 ${pick === "correct" ? "bg-emerald-50 border border-emerald-300 text-emerald-900" : "bg-rose-50 border border-rose-300 text-rose-900"}`}>
+                  {pick === "correct"
+                    ? `✓ Correct! ${current.author}${current.year ? " (" + current.year + ")" : ""}`
+                    : `✗ Answer: ${current.author}${current.year ? " (" + current.year + ")" : ""}`
+                  }
+                </div>
+              )}
+            </div>
+          ) : (
+            /* ---- CHOICE MODE ---- */
+            <div className="grid gap-2">
+              {choices.map((c, i) => {
+                const label = reverse ? c.finding : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
+                let cls = "text-left px-4 py-3 rounded border bg-white hover:bg-slate-50";
+                if (pick) {
+                  if (c === current) cls = "text-left px-4 py-3 rounded border bg-emerald-50 border-emerald-400 text-emerald-900";
+                  else if (c === pick) cls = "text-left px-4 py-3 rounded border bg-rose-50 border-rose-300 text-rose-900";
+                  else cls = "text-left px-4 py-3 rounded border bg-slate-50 text-slate-500";
+                }
+                return (
+                  <button key={i} className={cls} onClick={() => answer(c)} disabled={!!pick}>
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          )}
           {pick && (
             <div className="mt-5 flex items-center justify-between">
               <div className="text-sm text-slate-600">
                 <span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""} —
-                <span className="italic"> {reverse ? current.finding : ""}</span>
+                <span className="italic"> {(reverse || typeMode) ? current.finding : ""}</span>
                 {current.section_title && (
                   <button className="ml-3 text-indigo-600 hover:underline" onClick={() => onJump?.(current.section_id)}>
                     Jump to §{current.section_title}
@@ -531,6 +616,77 @@ function AuditPane({ suggestions }) {
   );
 }
 
+// --- author index -----------------------------------------------------------
+function AuthorPane({ cards, onJump }) {
+  const [filter, setFilter] = useState("");
+
+  const authors = useMemo(() => {
+    const map = {};
+    for (const c of cards) {
+      if (!c.author || !c.finding || c.finding.length < 10) continue;
+      const key = c.author.toLowerCase();
+      if (!map[key]) map[key] = { author: c.author, entries: [] };
+      map[key].entries.push(c);
+    }
+    return Object.values(map).sort((a, b) => a.author.localeCompare(b.author));
+  }, [cards]);
+
+  const filtered = useMemo(() => {
+    if (!filter) return authors;
+    const q = filter.toLowerCase();
+    return authors.filter(a => a.author.toLowerCase().includes(q));
+  }, [authors, filter]);
+
+  const validCount = useMemo(() => cards.filter(c => c.author && c.finding?.length >= 10).length, [cards]);
+
+  return (
+    <div className="flex-1 overflow-y-auto">
+      <div className="max-w-2xl mx-auto p-8">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-xl font-semibold text-slate-900">Author Index</h2>
+            <div className="text-sm text-slate-500 mt-0.5">{authors.length} authors · {validCount} findings</div>
+          </div>
+          <input
+            className="px-3 py-1.5 text-sm border border-slate-200 rounded-lg bg-slate-50 w-48 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:bg-white"
+            placeholder="Filter by name…"
+            value={filter}
+            onChange={e => setFilter(e.target.value)}
+          />
+        </div>
+        <div className="space-y-3">
+          {filtered.map(({ author, entries }) => (
+            <div key={author} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="font-semibold text-amber-700 text-base">{author}</span>
+                <span className="text-xs text-slate-400 font-normal">{entries.length} {entries.length === 1 ? "finding" : "findings"}</span>
+              </div>
+              <ul className="space-y-2.5">
+                {entries.map((e, i) => (
+                  <li key={i} className="flex gap-3 items-start text-sm">
+                    <span className="text-slate-400 shrink-0 tabular-nums mt-0.5 text-xs w-10">{e.year || "—"}</span>
+                    <span className="text-slate-700 flex-1 leading-snug">{e.finding}</span>
+                    {e.section_id && (
+                      <button
+                        className="text-indigo-500 hover:text-indigo-700 hover:underline shrink-0 text-xs mt-0.5 whitespace-nowrap"
+                        onClick={() => onJump?.(e.section_id)}
+                      >§ {e.section_title || e.section_id}</button>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {filtered.length === 0 && filter && (
+            <div className="text-slate-500 text-center py-16">No authors matching "{filter}"</div>
+          )}
+        </div>
+        <div className="h-16" />
+      </div>
+    </div>
+  );
+}
+
 // --- app --------------------------------------------------------------------
 function App() {
   const data = DATA || { sections: [], cards: [], suggestions: [] };
@@ -582,6 +738,7 @@ function App() {
             <button className={`tab-btn ${tab === "study" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("study")}>
               Study <span className={`text-xs ml-0.5 ${tab === "study" ? "opacity-70" : "text-slate-400"}`}>({data.cards?.length || 0})</span>
             </button>
+            <button className={`tab-btn ${tab === "authors" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("authors")}>Authors</button>
             <button className={`tab-btn ${tab === "audit" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("audit")}>
               Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded-full">{data.suggestions.length}</span> : null}
             </button>
@@ -604,6 +761,7 @@ function App() {
       </header>
       {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} />}
       {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
+      {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
     </div>
   );
