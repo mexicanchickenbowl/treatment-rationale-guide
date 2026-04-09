@@ -59,30 +59,62 @@ const CITE_MARKER = /\{\{cite:\s*([^}]+?)\}\}/g;
 // Matches: 84%  77.8%  84–97%  70-90%
 const PCT_RE = /(\d+(?:\.\d+)?(?:[–\-]\d+(?:\.\d+)?)?)%/g;
 
+// Extended letter chars valid in author names (covers ö, ü, ø, å, é, ñ, etc.)
+const CH = `A-Za-z\\u00C0-\\u024F\\-'`;
 // Optional lowercase name particle: de, van, von, du, le, la, el, den, der
-// e.g. "de Chevigny", "van der Sluis", "du Toit"
-const P = `(?:(?:de|van|von|du|le|la|el|den|der)\\s+)?`;
+const P  = `(?:(?:de|van|von|du|le|la|el|den|der)\\s+)?`;
+// Core name fragment (uppercase + lowercase 2nd char required to avoid acronyms)
+const NM = `${P}[A-Z][a-z][${CH}]*`;
 
-// Pass A — author + year (4-digit). Requires 2nd char lowercase to avoid acronyms.
-// Handles: "Torabinejad et al (2009)", "Kang et al., 2016", "Ricucci 2014",
-//          "Fowler and Reader 2001", "(Ricucci, 2014)", "de Chevigny (2008)"
+// Pass A — author + year
+// "Torabinejad et al (2009)", "Sjögren (1991)", "de Chevigny (2008)", "Low (2011)"
 const PROSE_AUTHOR_YEAR_RE = new RegExp(
-  `\\b(${P}[A-Z][a-z][A-Za-z\\-']*(?:(?:\\s+et\\s+al\\.?|\\s+(?:and|&)\\s+${P}[A-Z][a-z][A-Za-z\\-']*))?)`+
+  `\\b(${NM}(?:(?:\\s+et\\s+al\\.?|\\s+(?:and|&)\\s+${NM}))?)`+
   `\\s*(?:\\((\\d{4})\\)|[,]?\\s*(\\d{4})(?=[;).,\\s]|$))`, "g");
 
-// Pass B — "Author et al." / "Author et al" without a year
-// Handles: "de Chevigny et al", "(Jensen et al)", "Low et al found..."
-const ET_AL_RE = new RegExp(`\\b${P}[A-Z][a-z][A-Za-z\\-']*\\s+et\\s+al\\.?`, "g");
+// Pass B — "Name et al." without year
+// "de Chevigny et al", "(Jensen et al)", "Sjögren et al found..."
+const ET_AL_RE = new RegExp(`\\b${NM}\\s+et\\s+al\\.?`, "g");
 
 // Pass C — two-name pairs without year: "Krasner and Rankow", "Calt and Serper"
-const AUTHOR_PAIR_RE = new RegExp(
-  `\\b${P}[A-Z][a-z][A-Za-z\\-']*\\s+(?:and|&)\\s+${P}[A-Z][a-z][A-Za-z\\-']*`, "g");
+const AUTHOR_PAIR_RE = new RegExp(`\\b${NM}\\s+(?:and|&)\\s+${NM}`, "g");
 
-// Pass D — "Name - finding" / "Name – finding" / "Name — finding" in table cells
-// Uses a lookahead so only the name is colored, not the dash.
-// Handles: "Low - CBCT detects…", "de Chevigny - radiolucency…", "Reeh et al - …"
+// Pass D — "Name - finding" table cells (lookahead; only name is colored)
+// "Low - CBCT…", "de Chevigny - radiolucency…", "Sjögren - Dense fill…"
 const AUTHOR_DASH_RE = new RegExp(
-  `\\b${P}[A-Z][a-z][A-Za-z\\-']*(?:\\s+et\\s+al\\.?)?(?=\\s+[—–\\-]\\s)`, "g");
+  `\\b${NM}(?:\\s+et\\s+al\\.?)?(?=\\s+[—–\\-]\\s)`, "g");
+
+// Pass E — "(Name)" bare parens without year, e.g. "(Webber)"
+// Lookbehind + lookahead so only the name inside is colored
+const BARE_PAREN_RE = new RegExp(`(?<=\\()${NM}(?:\\s+et\\s+al\\.?)?(?=\\))`, "g");
+
+// Pass F — "According to Name" / "per Name" attribution phrases
+const ACCORDING_TO_RE = new RegExp(
+  `(?<=\\b[Aa]ccording\\s+to\\s|\\b[Pp]er\\s|\\b[Bb]y\\s)${NM}`, "g");
+
+// Pass G — "Name found/showed/demonstrated/..." reporting verbs
+const REPORTING_VERB_RE = new RegExp(
+  `\\b${NM}(?=\\s+(?:found|showed|demonstrated|reported|noted|observed|concluded|` +
+  `suggested|determined|identified|confirmed|stated|described|revealed|showed))`, "g");
+
+// Applies a sequence of regex passes to remaining text nodes
+function applyPasses(text, passes, type = "cite") {
+  let nodes = [{ t: "text", v: text }];
+  for (const re of passes) {
+    const next = [];
+    for (const n of nodes) {
+      if (n.t !== "text") { next.push(n); continue; }
+      for (const n2 of splitByRegex(n.v, re, type)) next.push(n2);
+    }
+    nodes = next;
+  }
+  return nodes;
+}
+
+const AUTHOR_PASSES = [
+  PROSE_AUTHOR_YEAR_RE, ET_AL_RE, AUTHOR_PAIR_RE,
+  AUTHOR_DASH_RE, BARE_PAREN_RE, ACCORDING_TO_RE, REPORTING_VERB_RE,
+];
 
 // --- contexts ---------------------------------------------------------------
 const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
@@ -189,24 +221,13 @@ function renderTextWithCites(text, query) {
   }
   if (lastIndex < text.length) pass1.push({ t: "text", v: text.slice(lastIndex) });
 
-  // Passes 2–5: pct → author+year → et-al-only → author-pairs
+  // Passes 2+: pct → author passes (A–G)
   const result = [];
   for (const node of pass1) {
     if (node.t !== "text") { result.push(node); continue; }
     for (const n2 of splitByRegex(node.v, PCT_RE, "pct")) {
       if (n2.t !== "text") { result.push(n2); continue; }
-      for (const n3 of splitByRegex(n2.v, PROSE_AUTHOR_YEAR_RE, "cite")) {
-        if (n3.t !== "text") { result.push(n3); continue; }
-        for (const n4 of splitByRegex(n3.v, ET_AL_RE, "cite")) {
-          if (n4.t !== "text") { result.push(n4); continue; }
-          for (const n5 of splitByRegex(n4.v, AUTHOR_PAIR_RE, "cite")) {
-            if (n5.t !== "text") { result.push(n5); continue; }
-            for (const n6 of splitByRegex(n5.v, AUTHOR_DASH_RE, "cite")) {
-              result.push(n6);
-            }
-          }
-        }
-      }
+      for (const n3 of applyPasses(n2.v, AUTHOR_PASSES)) result.push(n3);
     }
   }
 
