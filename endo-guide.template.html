@@ -450,6 +450,100 @@ function authorMatch(typed, correct) {
   return levenshtein(t, first) <= 2;                       // typo tolerance ≤2
 }
 
+// --- abstract panel (PubMed) ------------------------------------------------
+function normalizeAuthorForSearch(author) {
+  return author
+    .replace(/\s+et\s+al\.?/gi, "")
+    .replace(/\s+(and|&)\s+.*/i, "")
+    .trim();
+}
+
+const ABSTRACT_CACHE_KEY = "endo-guide.abstracts.v1";
+function loadAbstractCache() { try { return JSON.parse(localStorage.getItem(ABSTRACT_CACHE_KEY) || "{}"); } catch { return {}; } }
+function saveAbstractCache(c) { try { localStorage.setItem(ABSTRACT_CACHE_KEY, JSON.stringify(c)); } catch {} }
+
+function useAbstract(author, year) {
+  const [state, setState] = useState({ status: "idle" });
+  useEffect(() => {
+    if (!author || !year) return;
+    const key = `${normalizeAuthorForSearch(author).toLowerCase()}|${year}`;
+    const cached = loadAbstractCache()[key];
+    if (cached) { setState({ status: "done", ...cached }); return; }
+    setState({ status: "loading" });
+    let cancelled = false;
+    const term = encodeURIComponent(`${normalizeAuthorForSearch(author)}[Author] ${year}[PDAT]`);
+    fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${term}&retmode=json&retmax=1`)
+      .then(r => r.json())
+      .then(data => {
+        if (cancelled) return;
+        const pmid = data.esearchresult?.idlist?.[0];
+        if (!pmid) { setState({ status: "notfound" }); return; }
+        return fetch(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${pmid}&rettype=abstract&retmode=xml`)
+          .then(r => r.text())
+          .then(xml => {
+            if (cancelled) return;
+            const doc = new DOMParser().parseFromString(xml, "text/xml");
+            const result = {
+              pmid,
+              title: doc.querySelector("ArticleTitle")?.textContent || "",
+              abstract: doc.querySelector("AbstractText")?.textContent || "",
+            };
+            saveAbstractCache({ ...loadAbstractCache(), [key]: result });
+            setState({ status: "done", ...result });
+          });
+      })
+      .catch(() => { if (!cancelled) setState({ status: "error" }); });
+    return () => { cancelled = true; };
+  }, [author, year]);
+  return state;
+}
+
+const ABSTRACT_STOP = new Set(["that","with","from","this","than","have","been","more","also","when","after","before","which","their","there","these","those","using","used","were","could","should","would","about","both","into","each","they","some","then","them","will","such","only","very","most","much","many","over","under","during","following","within","without","between","among","significantly","significant","patients","results","study","studies","treatment","clinical","associated","compared","showed","found","reported","observed"]);
+
+function highlightInAbstract(abstract, finding) {
+  if (!abstract) return abstract;
+  const words = [...new Set((finding || "").toLowerCase().match(/\b[a-z]{5,}\b/g)?.filter(w => !ABSTRACT_STOP.has(w)) || [])];
+  if (!words.length) return abstract;
+  const re = new RegExp(`\\b(${words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`, "gi");
+  const out = [];
+  let last = 0, m;
+  re.lastIndex = 0;
+  while ((m = re.exec(abstract))) {
+    if (m.index > last) out.push(abstract.slice(last, m.index));
+    out.push(<mark key={m.index} style={{ background: "#bfdbfe", borderRadius: "2px", padding: "0 1px" }}>{m[0]}</mark>);
+    last = m.index + m[0].length;
+  }
+  out.push(abstract.slice(last));
+  return out;
+}
+
+function AbstractPanel({ author, year, finding }) {
+  const { status, title, abstract, pmid } = useAbstract(author, year);
+  if (status === "idle") return null;
+  return (
+    <div className="mt-3 rounded-xl border overflow-hidden text-sm">
+      {status === "loading" && (
+        <div className="px-4 py-3 bg-slate-50 text-slate-400 italic animate-pulse">Fetching abstract from PubMed…</div>
+      )}
+      {(status === "notfound" || status === "error") && (
+        <div className="px-4 py-3 bg-slate-50 text-slate-400 italic">Abstract not found on PubMed.</div>
+      )}
+      {status === "done" && (
+        <div className="bg-blue-50 border-blue-200">
+          <div className="px-4 pt-3 pb-1 flex items-start justify-between gap-3">
+            <span className="font-semibold text-slate-800 leading-snug text-[13px]">{title}</span>
+            <a href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}`} target="_blank" rel="noopener noreferrer"
+               className="shrink-0 text-xs text-indigo-600 hover:underline mt-0.5 whitespace-nowrap">PubMed ↗</a>
+          </div>
+          <p className="px-4 pb-4 pt-2 text-slate-700 leading-relaxed text-[13px]">
+            {abstract ? highlightInAbstract(abstract, finding) : <span className="italic text-slate-400">No abstract available.</span>}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // --- study pane: author ↔ finding matching quiz -----------------------------
 const LS_KEY = "endo-guide.study.v1";
 
@@ -672,6 +766,9 @@ function StudyPane({ cards, onJump }) {
           )}
         </div>
 
+        {pick && current && (
+          <AbstractPanel author={current.author} year={current.year} finding={current.finding} />
+        )}
         <div className="mt-4 text-xs text-slate-500">
           Leitner: new cards appear more often until answered correctly twice in a row.
           Progress persists in your browser only.
