@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T20:55:55.905487+00:00",
+  "built_at": "2026-04-09T21:02:14.539028+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -1043,6 +1043,10 @@
           "title": "Vital Pulp Therapy Candidacy",
           "level": 2,
           "blocks": [
+            {
+              "type": "p",
+              "text": "**Clinical threshold note:** VPT is appropriate only when all candidacy criteria are met with high diagnostic confidence. In adult patients presenting with deep carious lesions — the most common real-world scenario — two factors shift the balance toward RCT: (1) exposure type is the strongest predictor of VPT success, and carious exposures perform substantially worse than mechanical/iatrogenic ones because bacteria precede the exposure and contaminate the pulp before the clinician arrives {{cite: Mente 2010 — MTA DPC showed 89.9% success vs 63.3% for calcium hydroxide; success rates are weighted toward mechanical exposures and lower for carious exposures}}; (2) clinical pulpal diagnosis correlates imperfectly with histology — approximately 15% of pulp diagnoses may be incorrect {{cite: Ricucci 2014 — 84–97% clinical-histologic correlation for pulp diagnosis; up to 15% of diagnoses may not match the true histologic pulpal status}}, meaning a tooth diagnosed as reversibly inflamed may already have irreversible radicular involvement. A failed VPT does not merely return the tooth to baseline — it produces a calcifying canal system that is harder to instrument and obturate. In ambiguous adult carious cases where irreversible pulpitis cannot be confidently excluded, RCT eliminates diagnostic uncertainty and avoids the compounding consequence of treatment escalation."
+            },
             {
               "type": "ul",
               "items": [
@@ -5246,6 +5250,22 @@
       "finding": "E. faecalis survives high-pH Ca(OH)2 environments via a membrane-bound H⁺-ATPase that actively extrudes hydroxyl ions, maintaining near-neutral intracellular pH",
       "section_id": "s2-treatment-planning-23-single-visit-vs-multiple-visit-treatment",
       "section_title": "Single Visit vs. Multiple Visit Treatment",
+      "source": "marker"
+    },
+    {
+      "author": "Mente",
+      "year": "2010",
+      "finding": "MTA DPC showed 89.9% success vs 63.3% for calcium hydroxide; success rates are weighted toward mechanical exposures and lower for carious exposures",
+      "section_id": "s2-treatment-planning-24-vital-pulp-therapy-candidacy",
+      "section_title": "Vital Pulp Therapy Candidacy",
+      "source": "marker"
+    },
+    {
+      "author": "Ricucci",
+      "year": "2014",
+      "finding": "84–97% clinical-histologic correlation for pulp diagnosis; up to 15% of diagnoses may not match the true histologic pulpal status",
+      "section_id": "s2-treatment-planning-24-vital-pulp-therapy-candidacy",
+      "section_title": "Vital Pulp Therapy Candidacy",
       "source": "marker"
     },
     {
