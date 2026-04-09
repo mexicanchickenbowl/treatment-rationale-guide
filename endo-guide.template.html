@@ -59,18 +59,30 @@ const CITE_MARKER = /\{\{cite:\s*([^}]+?)\}\}/g;
 // Matches: 84%  77.8%  84–97%  70-90%
 const PCT_RE = /(\d+(?:\.\d+)?(?:[–\-]\d+(?:\.\d+)?)?)%/g;
 
+// Optional lowercase name particle: de, van, von, du, le, la, el, den, der
+// e.g. "de Chevigny", "van der Sluis", "du Toit"
+const P = `(?:(?:de|van|von|du|le|la|el|den|der)\\s+)?`;
+
 // Pass A — author + year (4-digit). Requires 2nd char lowercase to avoid acronyms.
 // Handles: "Torabinejad et al (2009)", "Kang et al., 2016", "Ricucci 2014",
-//          "Fowler and Reader 2001", "(Ricucci, 2014)", "Gillen et al. (2011)"
-const PROSE_AUTHOR_YEAR_RE = /\b([A-Z][a-z][A-Za-z\-']*(?:(?:\s+et\s+al\.?|\s+(?:and|&)\s+[A-Z][a-z][A-Za-z\-']*))?)\s*(?:\((\d{4})\)|[,]?\s*(\d{4})(?=[;).,\s]|$))/g;
+//          "Fowler and Reader 2001", "(Ricucci, 2014)", "de Chevigny (2008)"
+const PROSE_AUTHOR_YEAR_RE = new RegExp(
+  `\\b(${P}[A-Z][a-z][A-Za-z\\-']*(?:(?:\\s+et\\s+al\\.?|\\s+(?:and|&)\\s+${P}[A-Z][a-z][A-Za-z\\-']*))?)`+
+  `\\s*(?:\\((\\d{4})\\)|[,]?\\s*(\\d{4})(?=[;).,\\s]|$))`, "g");
 
-// Pass B — "Author et al." / "Author et al" without a year (et al is unmistakably academic)
-// Handles: "(Jensen et al)", "(Mattison et al)", "Lam et al found that..."
-const ET_AL_RE = /\b[A-Z][a-z][A-Za-z\-']*\s+et\s+al\.?/g;
+// Pass B — "Author et al." / "Author et al" without a year
+// Handles: "de Chevigny et al", "(Jensen et al)", "Low et al found..."
+const ET_AL_RE = new RegExp(`\\b${P}[A-Z][a-z][A-Za-z\\-']*\\s+et\\s+al\\.?`, "g");
 
-// Pass C — two-name pairs without year: "Krasner and Rankow", "(Calt and Serper)"
-// Both names must start capital + lowercase to avoid acronym pairs
-const AUTHOR_PAIR_RE = /\b[A-Z][a-z][A-Za-z\-']*\s+(?:and|&)\s+[A-Z][a-z][A-Za-z\-']*/g;
+// Pass C — two-name pairs without year: "Krasner and Rankow", "Calt and Serper"
+const AUTHOR_PAIR_RE = new RegExp(
+  `\\b${P}[A-Z][a-z][A-Za-z\\-']*\\s+(?:and|&)\\s+${P}[A-Z][a-z][A-Za-z\\-']*`, "g");
+
+// Pass D — "Name - finding" / "Name – finding" / "Name — finding" in table cells
+// Uses a lookahead so only the name is colored, not the dash.
+// Handles: "Low - CBCT detects…", "de Chevigny - radiolucency…", "Reeh et al - …"
+const AUTHOR_DASH_RE = new RegExp(
+  `\\b${P}[A-Z][a-z][A-Za-z\\-']*(?:\\s+et\\s+al\\.?)?(?=\\s+[—–\\-]\\s)`, "g");
 
 // --- contexts ---------------------------------------------------------------
 const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
@@ -188,7 +200,10 @@ function renderTextWithCites(text, query) {
         for (const n4 of splitByRegex(n3.v, ET_AL_RE, "cite")) {
           if (n4.t !== "text") { result.push(n4); continue; }
           for (const n5 of splitByRegex(n4.v, AUTHOR_PAIR_RE, "cite")) {
-            result.push(n5);
+            if (n5.t !== "text") { result.push(n5); continue; }
+            for (const n6 of splitByRegex(n5.v, AUTHOR_DASH_RE, "cite")) {
+              result.push(n6);
+            }
           }
         }
       }
