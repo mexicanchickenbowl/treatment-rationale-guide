@@ -74,12 +74,13 @@
     "score": 0.5
   },
   "Bhaskar and Rappaport|": {
-    "pmid": null,
-    "title": "",
+    "pmid": "4404999",
+    "title": "Dental vitality tests and pulp status.",
     "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy."
+    "journal": "Journal of the American Dental Association (1939)",
+    "pub_year": "1973",
+    "status": "ok",
+    "score": 0.9
   },
   "Bierma|": {
     "pmid": "22794215",
@@ -336,13 +337,13 @@
     "query": "Konagala[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
   },
   "Kontakiotis|2015": {
-    "pmid": "29304003",
-    "title": "A High-Resolution Proteomic Landscaping of Primary Human Dental Stem Cells: Identification of SHED- and PDLSC-Specific Biomarkers.",
-    "abstract": "Dental stem cells (DSCs) have emerged as a promising tool for basic research and clinical practice. A variety of adult stem cell (ASC) populations can be isolated from different areas within the dental tissue, which, due to their cellular and molecular characteristics, could give rise to different outcomes when used in potential applications. In this study, we performed a high-throughput molecular comparison of two primary human adult dental stem cell (hADSC) sub-populations: Stem Cells from Human Exfoliated Deciduous Teeth (SHEDs) and Periodontal Ligament Stem Cells (PDLSCs). A detailed proteomic mapping of SHEDs and PDLSCs, via employment of nano-LC tandem-mass spectrometry (MS/MS) revealed 2032 identified proteins in SHEDs and 3235 in PDLSCs. In total, 1516 proteins were expressed in both populations, while 517 were unique for SHEDs and 1721 were exclusively expressed in PDLSCs. Further analysis of the recorded proteins suggested that SHEDs predominantly expressed molecules that are involved in organizing the cytoskeletal network, cellular migration and adhesion, whereas PDLSCs are highly energy-producing cells, vastly expressing proteins that are implicated in various aspects of cell metabolism and proliferation. Applying the Rho-GDI signaling pathway as a paradigm, we propose potential biomarkers for SHEDs and for PDLSCs, reflecting their unique features, properties and engaged molecular pathways.",
-    "journal": "International journal of molecular sciences",
-    "pub_year": "2018",
+    "pmid": "25069906",
+    "title": "Levels of evidence for the outcome of regenerative endodontic therapy.",
+    "abstract": "The aim of this systematic review was to assign levels of evidence (LOEs) to existing clinical articles related to the outcome of regenerative endodontic therapy and to evaluate the clinical and radiographic outcomes of this treatment modality. Electronic search was executed in PubMed, Scopus, and Cochrane databases by using appropriate Medical Subject Headings terms covering the period from January 1993 to December 2013. Additional publications from hand-searching and reference section of each relevant article enriched the article list. The LOE of each article was assessed according to guidelines provided by the Oxford Centre of Evidence-Based Medicine. Quality assessment of the observational studies was executed by using the Newcastle-Ottawa scale. Fifty-one relevant publications were included in this review. There were 2 high-level cohort studies (LOE 2), 8 case series (LOE 4), and 41 case reports (LOE 5). The vast majority of the treated teeth in those publications showed resolution of clinical signs, symptoms, and periapical radiolucencies at follow-up period. Furthermore, the majority of treated teeth presented further increase in root length and root wall thickness and apical closure at the follow-up period. However, because of lack of sufficient high-level evidence it was not possible to answer totally the review question and determine definitely the outcome of regenerative endodontic therapy. The lack of adequate high-level studies that could possibly strengthen the satisfactory current data and allow practicing more evidence-based dentistry constitutes a significant knowledge gap in the endodontic literature. However, the current best available evidence undeniably allows clinicians to provide this treatment modality safely to patients.",
+    "journal": "Journal of endodontics",
+    "pub_year": "2014",
     "status": "ok",
-    "score": 0.286
+    "score": 0.9
   },
   "Kratchman|": {
     "pmid": "9248694",
@@ -476,13 +477,12 @@
     "score": 0.571
   },
   "Nattress and Martin|1994": {
-    "pmid": "26630864",
-    "title": "Dental Management of a Patient with Multiple Idiopathic Cervical Root Resorption.",
-    "abstract": "Multiple Idiopathic Cervical Root Resorption (MICRR) is a rare condition. It initiates at the cemento-enamel junction of multiple teeth. The lesions continue to grow until they unite, thereby undermining the entire coronal structure of affected teeth. Its distribution can vary from a single region to the entire dentition and the number of teeth affected by resorption tends to increase as the condition is followed over time. The teeth themselves appear clinically normal. The aetiology of MICRR is unknown and it is considered to be a diagnosis of exclusion. The condition tends to be progressive. Consequently, root treatments/surgical curettage and restoration of the lesions have been unsuccessful at arresting the condition. Affected teeth are often extracted in anticipation of catastrophic fracture and have been replaced with partial or complete dentures. In this case report, we describe how a young female patient was dentally managed over 10 years and ultimately rehabilitated with dental implants. CPD/CLINICAL RELEVANCE: Patients suspected of having multiple idiopathic cervical root resorption may require specialist, multidisciplinary care and require referral to an appropriate secondary care unit for treatment planning and potential oral rehabilitation.",
-    "journal": "Dental update",
-    "pub_year": "2015",
-    "status": "ok",
-    "score": 0.25
+    "pmid": null,
+    "title": "",
+    "abstract": "",
+    "status": "not_found",
+    "score": 0,
+    "rejected_title": "Dental Management of a Patient with Multiple Idiopathic Cervical Root Resorption."
   },
   "Neves|2017": {
     "pmid": "28951030",
@@ -531,13 +531,13 @@
     "score": 0.5
   },
   "Parirokh and Torabinejad|2010": {
-    "pmid": "21702853",
-    "title": "The ability of pulp sensibility tests to evaluate the pulp status in primary teeth.",
-    "abstract": "BACKGROUND. Accurate determination of the pulp status is the most important part of conservative pulp therapy. AIM. The aim of this study was to assess the ability of thermal and electrical pulp tests to assess the pulp status in primary teeth. DESIGN. Seventy-eight primary molar teeth in 36 children were investigated. Fifty-six teeth had unknown pulp status in need of endodontic treatment, and 22 were intact teeth with no signs of pulp disease. Cold, hot and electrical pulp testing (EPT) were performed on each tooth. The gold standard was established by direct inspection of the pulp after an access cavity had been made. The sensitivity, specificity, positive and negative predictive values for each test and different sequential combinations of pulp testing were calculated. Sequential combination test analysis was used for data analysis. RESULTS. The highest accuracy was found for EPT, followed by heat and cold tests. No significant difference was found between the accuracy of EPT and the heat test (P-values > 0.05); however, the accuracy of EPT was significantly higher than that of the cold test (P-value< 0.05). CONCLUSION. Based on this study, EPT can be used as a reliable test for diagnosing the pulp status in primary teeth.",
-    "journal": "International journal of paediatric dentistry",
-    "pub_year": "2011",
+    "pmid": "20171353",
+    "title": "Mineral trioxide aggregate: a comprehensive literature review--Part III: Clinical applications, drawbacks, and mechanism of action.",
+    "abstract": "Mineral trioxide aggregate (MTA) has been recommended for various uses in endodontics. Two previous publications provided a comprehensive list of articles from November 1993-September 2009 regarding the chemical and physical properties, sealing ability, antibacterial activity, leakage, and biocompatibility of MTA. The purpose of Part III of this literature review is to present a comprehensive list of articles regarding animal studies, clinical applications, drawbacks, and mechanism of action of MTA. A review of the literature was performed by using electronic and hand-searching methods for the clinical applications of MTA in experimental animals and humans as well as its drawbacks and mechanism of action from November 1993-September 2009. MTA is a promising material for root-end filling, perforation repair, vital pulp therapy, and apical barrier formation for teeth with necrotic pulps and open apexes. Despite the presence of numerous case reports and case series regarding these applications, there are few designed research studies regarding clinical applications of this material. MTA has some known drawbacks such as a long setting time, high cost, and potential of discoloration. Hydroxyapatite crystals form over MTA when it comes in contact with tissue synthetic fluid. This can act as a nidus for the formation of calcified structures after the use of this material in endodontic treatments. On the basis of available information, it appears that MTA is the material of choice for some clinical applications. More clinical studies are needed to confirm its efficacy compared with other materials.",
+    "journal": "Journal of endodontics",
+    "pub_year": "2010",
     "status": "ok",
-    "score": 0.6
+    "score": 0.9
   },
   "Peng|2007": {
     "pmid": null,
