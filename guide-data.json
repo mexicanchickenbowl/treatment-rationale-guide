@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T15:08:21.927401+00:00",
+  "built_at": "2026-04-09T15:15:46.094422+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -91,7 +91,7 @@
               "ANESTHESIA",
               "Local Anesthetic Selection",
               "Lidocaine or articaine based on case",
-              "Garisto 2010 - articaine 3.6x excess paresthesia reports vs. expected based on market share (not a direct comparison to lidocaine)"
+              "==Garisto 2010 - articaine 3.6x excess paresthesia reports vs. expected based on market share (not a direct comparison to lidocaine)=="
             ],
             [
               "",
@@ -211,7 +211,7 @@
               "RESTORATION",
               "Orifice Barrier",
               "Prevents coronal leakage",
-              "Swanson & Madison - dye penetrated 79–85% of root length after just 3 days of coronal exposure (not necessarily to the apex)"
+              "==Swanson & Madison - dye penetrated 79–85% of root length after just 3 days of coronal exposure (not necessarily to the apex)=="
             ],
             [
               "",
@@ -1199,7 +1199,7 @@
             },
             {
               "type": "p",
-              "text": "Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. Garisto et al., 2010 (and Gaffen separately) found that 4% articaine was associated with 3.6x more paresthesia reports than expected based on its market share — a retrospective FDA adverse event analysis, not a head-to-head comparison to lidocaine. Prilocaine showed an even higher signal (7.3x). Clinicians should note that this represents a pharmacovigilance signal, not a controlled clinical trial result."
+              "text": "Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. ==Garisto et al., 2010 (and Gaffen separately) found that 4% articaine was associated with 3.6x more paresthesia reports than expected based on its market share — a retrospective FDA adverse event analysis, not a head-to-head comparison to lidocaine. Prilocaine showed an even higher signal (7.3x). Clinicians should note that this represents a pharmacovigilance signal, not a controlled clinical trial result.=="
             },
             {
               "type": "ul",
@@ -2437,7 +2437,7 @@
             },
             {
               "type": "p",
-              "text": "Delayed restoration significantly reduces tooth survival and endodontic success. A systematic review and meta-analysis by Gillen et al. (2011) found that both the quality of coronal restoration and the quality of root canal treatment had a comparable and significant impact on periapical healing outcomes; neither factor was found to be significantly greater than the other. Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates {{cite: Gillen 2011}}."
+              "text": "Delayed restoration significantly reduces tooth survival and endodontic success. ==A systematic review and meta-analysis by Gillen et al. (2011) found that both the quality of coronal restoration and the quality of root canal treatment had a comparable and significant impact on periapical healing outcomes; neither factor was found to be significantly greater than the other. Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates== {{cite: Gillen 2011}}."
             },
             {
               "type": "ul",
@@ -2581,11 +2581,11 @@
             },
             {
               "type": "p",
-              "text": "Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns {{cite: Aquilino and Caplan 2002}}. The study measured overall tooth loss/survival, not fracture specifically. The survival benefit is greatest for posterior teeth under heavy occlusal loading."
+              "text": "Cuspal coverage dramatically improves survival of endodontically treated posterior teeth. ==Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns== {{cite: Aquilino and Caplan 2002}}. ==The study measured overall tooth loss/survival, not fracture specifically.== The survival benefit is greatest for posterior teeth under heavy occlusal loading."
             },
             {
               "type": "p",
-              "text": "Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth. However, the subsequent Gillen et al. (2011) systematic review and meta-analysis found no statistically significant difference in healing odds between the two factors — both adequate restoration and adequate root canal treatment are independently critical for success."
+              "text": "==Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth. However, the subsequent Gillen et al. (2011) systematic review and meta-analysis found no statistically significant difference in healing odds between the two factors — both adequate restoration and adequate root canal treatment are independently critical for success.=="
             },
             {
               "type": "ul",
@@ -2615,7 +2615,7 @@
             },
             {
               "type": "p",
-              "text": "17% of crowned teeth (vital and root-filled combined) developed pulpal complications requiring endodontic treatment over 25 years (Valderhaug et al). The Cheung 2005 study reported 33.8% pulp necrosis in bridge retainer teeth at 10 years — note this applies to fixed bridge retainers, not removable partial denture abutments."
+              "text": "==17% of crowned teeth (vital and root-filled combined) developed pulpal complications requiring endodontic treatment over 25 years (Valderhaug et al). The Cheung 2005 study reported 33.8% pulp necrosis in bridge retainer teeth at 10 years — note this applies to fixed bridge retainers, not removable partial denture abutments.=="
             }
           ]
         },
@@ -5439,7 +5439,7 @@
     {
       "author": "Gillen",
       "year": "2011",
-      "finding": "Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates .",
+      "finding": "Inadequate coronal restoration, even with adequate root canal treatment, was associated with substantially reduced healing rates== .",
       "section_id": "s8-restoration-81-immediate-vs-delayed-coronal-restoration",
       "section_title": "Immediate vs. Delayed Coronal Restoration",
       "source": "marker"
@@ -5463,7 +5463,7 @@
     {
       "author": "Aquilino and Caplan",
       "year": "2002",
-      "finding": "Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns .",
+      "finding": "==Endodontically treated teeth without crowns are 6x more likely to be lost than those with crowns== .",
       "section_id": "s8-restoration-84-cuspal-coverage-decisions",
       "section_title": "Cuspal Coverage Decisions",
       "source": "marker"
@@ -5471,7 +5471,7 @@
     {
       "author": "Ray and Trope",
       "year": "1995",
-      "finding": "Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth.",
+      "finding": "==Ray and Trope (1995) reported that the quality of coronal restoration had a greater impact on periapical health than the quality of the root canal filling in their retrospective cross-sectional study of 1,010 teeth.",
       "section_id": "s8-restoration-84-cuspal-coverage-decisions",
       "section_title": "Cuspal Coverage Decisions",
       "source": "prose"

@@ -62,6 +62,8 @@
   .note-ed-acts .nh { font-size:.7rem; color:#94a3b8; flex:1; }
   .user-ann { cursor:default; }
   .ann-active .user-ann { cursor:pointer; outline:1px solid rgba(0,0,0,.09); outline-offset:1px; }
+  /* Fact-checked corrections */
+  .factcheck { background: #e2e8f0; border-radius: 3px; padding: 0 3px; border-bottom: 2px solid #94a3b8; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -301,6 +303,25 @@ function splitByRegex(text, re, type) {
 }
 
 function renderTextWithCites(text, query) {
+  // Pass 0: fact-check highlights ==corrected text==
+  if (text.includes("==")) {
+    const fcRe = /==([\s\S]+?)==/g;
+    const segs = []; let fcLast = 0, fcM;
+    fcRe.lastIndex = 0;
+    while ((fcM = fcRe.exec(text))) {
+      if (fcM.index > fcLast) segs.push({ fc: false, v: text.slice(fcLast, fcM.index) });
+      segs.push({ fc: true, v: fcM[1] });
+      fcLast = fcM.index + fcM[0].length;
+    }
+    if (fcLast < text.length) segs.push({ fc: false, v: text.slice(fcLast) });
+    if (segs.some(s => s.fc)) {
+      return segs.map((s, i) => s.fc
+        ? <span key={i} className="factcheck">{renderTextWithCites(s.v, query)}</span>
+        : <React.Fragment key={i}>{renderTextWithCites(s.v, query)}</React.Fragment>
+      );
+    }
+  }
+
   // Pass 1: split on {{cite:}} markers
   const pass1 = [];
   let lastIndex = 0;
