@@ -29,8 +29,14 @@
   .prose-body tbody tr:hover { background: #f1f5f9; }
   .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
   .prose-body mark.current { background: #fb923c; color: #fff; }
-  .cite { color: #b45309; font-weight: 500; }
-  .pct  { color: #0d9488; font-weight: 500; }
+  .cite { color: #b45309; font-weight: 500; cursor: pointer; }
+  .pct  { color: #0d9488; font-weight: 500; cursor: pointer; }
+  .cite-flagged { color: #be123c; font-weight: 600; text-decoration: underline dotted; cursor: pointer; }
+  .pct-flagged  { color: #be123c; font-weight: 600; text-decoration: underline dotted; cursor: pointer; }
+  .quiz-select { display: inline; font-size: inherit; font-family: inherit; background: #fef9c3; border: 1.5px dashed #ca8a04; border-radius: 4px; padding: 1px 4px; cursor: pointer; color: #78350f; font-weight: 500; vertical-align: baseline; max-width: 200px; }
+  .quiz-select.pct-q { background: #ccfbf1; border-color: #0d9488; color: #0f766e; }
+  .quiz-correct { color: #16a34a; font-weight: 600; }
+  .quiz-wrong-chosen { color: #dc2626; text-decoration: line-through; }
   .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; border-left: 2px solid #4338ca; padding-left: calc(0.5rem - 2px); }
   .scroll-table { overflow-x: auto; }
   kbd { font-family: ui-monospace, monospace; background: #f3f4f6; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: 0.75rem; }
@@ -65,6 +71,80 @@ const ET_AL_RE = /\b[A-Z][a-z][A-Za-z\-']*\s+et\s+al\.?/g;
 // Pass C — two-name pairs without year: "Krasner and Rankow", "(Calt and Serper)"
 // Both names must start capital + lowercase to avoid acronym pairs
 const AUTHOR_PAIR_RE = /\b[A-Z][a-z][A-Za-z\-']*\s+(?:and|&)\s+[A-Z][a-z][A-Za-z\-']*/g;
+
+// --- contexts ---------------------------------------------------------------
+const QuizCtx = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
+const FlagCtx  = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
+
+// Long-press hook (works on mouse and touch)
+function useLongPress(onLong, ms = 500) {
+  const timer = useRef(null);
+  const cancel = () => clearTimeout(timer.current);
+  return {
+    onMouseDown:  () => { timer.current = setTimeout(onLong, ms); },
+    onMouseUp:    cancel,
+    onMouseLeave: cancel,
+    onTouchStart: (e) => { e.preventDefault(); timer.current = setTimeout(onLong, ms); },
+    onTouchEnd:   cancel,
+  };
+}
+
+// Colored span that can be long-pressed to flag
+function FlaggableSpan({ type, text, query }) {
+  const { flagged, toggleFlag } = React.useContext(FlagCtx);
+  const isFlagged = flagged.has(text);
+  const lp = useLongPress(() => toggleFlag(text));
+  const cls = isFlagged ? (type === "cite" ? "cite-flagged" : "pct-flagged") : type;
+  return (
+    <span className={cls}
+      title={isFlagged ? "Flagged — long-press to unflag" : "Long-press to flag as weak"}
+      {...lp}>
+      {highlight(text, query)}
+    </span>
+  );
+}
+
+// Inline quiz dropdown
+function QuizSpan({ type, correct, pool }) {
+  const { onAnswer } = React.useContext(QuizCtx);
+  const [status, setStatus] = useState("idle");
+  const [chosen, setChosen] = useState("");
+  const options = useMemo(() => {
+    const others = pool.filter(p => p !== correct).sort(() => Math.random() - 0.5).slice(0, 3);
+    return [correct, ...others].sort(() => Math.random() - 0.5);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (status === "correct") return <span className={`${type} quiz-correct`}>{correct}</span>;
+  if (status === "wrong") return (
+    <span>
+      <span className="quiz-wrong-chosen">{chosen}</span>
+      {" "}<span className={type}>{correct}</span>
+    </span>
+  );
+  return (
+    <select className={`quiz-select${type === "pct" ? " pct-q" : ""}`} value=""
+      onChange={e => {
+        const v = e.target.value; if (!v) return;
+        const ok = v === correct;
+        setChosen(v); setStatus(ok ? "correct" : "wrong"); onAnswer(ok);
+      }}>
+      <option value="">···</option>
+      {options.map(o => <option key={o} value={o}>{o}</option>)}
+    </select>
+  );
+}
+
+// Decides quiz vs flaggable based on context
+function CiteNode({ text, query }) {
+  const { quizMode, authorPool } = React.useContext(QuizCtx);
+  if (quizMode) return <QuizSpan type="cite" correct={text} pool={authorPool} />;
+  return <FlaggableSpan type="cite" text={text} query={query} />;
+}
+function PctNode({ text, query }) {
+  const { quizMode, pctPool } = React.useContext(QuizCtx);
+  if (quizMode) return <QuizSpan type="pct" correct={text} pool={pctPool} />;
+  return <FlaggableSpan type="pct" text={text} query={query} />;
+}
 
 function splitByRegex(text, re, type) {
   // Returns [{t:"text"|type, v:string}]
@@ -116,8 +196,8 @@ function renderTextWithCites(text, query) {
   }
 
   return result.map((n, i) => {
-    if (n.t === "cite") return <span key={i} className="cite">{highlight(n.v, query)}</span>;
-    if (n.t === "pct")  return <span key={i} className="pct">{highlight(n.v, query)}</span>;
+    if (n.t === "cite") return <CiteNode key={i} text={n.v} query={query} />;
+    if (n.t === "pct")  return <PctNode  key={i} text={n.v} query={query} />;
     return <React.Fragment key={i}>{highlight(n.v, query)}</React.Fragment>;
   });
 }
@@ -182,9 +262,13 @@ function Block({ block, query }) {
 }
 
 // --- reference pane ---------------------------------------------------------
-function ReferencePane({ sections, query }) {
+function ReferencePane({ sections, query, authorPool, pctPool }) {
   const [activeId, setActiveId] = useState(sections[0]?.id);
+  const [quizMode, setQuizMode] = useState(false);
+  const [score, setScore] = useState({ c: 0, t: 0 });
   const mainRef = useRef(null);
+  const onAnswer = useCallback((ok) => setScore(s => ({ c: s.c + (ok ? 1 : 0), t: s.t + 1 })), []);
+  const toggleQuiz = () => { setQuizMode(m => !m); setScore({ c: 0, t: 0 }); };
 
   // IntersectionObserver for active section
   useEffect(() => {
@@ -221,8 +305,19 @@ function ReferencePane({ sections, query }) {
   };
 
   return (
+    <QuizCtx.Provider value={{ quizMode, authorPool, pctPool, onAnswer }}>
     <div className="flex flex-1 min-h-0">
       <aside className="sidebar w-64 border-r bg-slate-50 overflow-y-auto shrink-0">
+        <div className="px-3 pt-3 pb-2 border-b border-slate-100 flex items-center justify-between">
+          <button
+            onClick={toggleQuiz}
+            className={`text-xs font-semibold px-2.5 py-1 rounded-full transition ${quizMode ? "bg-indigo-600 text-white" : "bg-slate-200 text-slate-600 hover:bg-slate-300"}`}>
+            {quizMode ? "📝 Quiz on" : "Quiz mode"}
+          </button>
+          {quizMode && score.t > 0 && (
+            <span className="text-xs text-slate-500 tabular-nums">{score.c}/{score.t} ✓</span>
+          )}
+        </div>
         <nav className="p-3">
           {filteredSections.length === 0 && query && (
             <div className="text-slate-500 p-3 text-sm">No matches.</div>
@@ -253,7 +348,7 @@ function ReferencePane({ sections, query }) {
         </nav>
       </aside>
       <main ref={mainRef} className="flex-1 overflow-y-auto bg-white">
-        <div className="max-w-2xl mx-auto px-10 py-12 prose-body">
+        <div key={quizMode ? "quiz" : "read"} className="max-w-2xl mx-auto px-10 py-12 prose-body">
           {sections.map((sec, si) => (
             <section key={sec.id} data-anchor={sec.id} id={sec.id} className={`mb-20 ${si > 0 ? "pt-12 border-t-2 border-slate-100" : ""}`}>
               <h2 className="flex items-center gap-3 text-xl font-bold text-slate-900 mb-6 not-prose tracking-tight">
@@ -276,6 +371,7 @@ function ReferencePane({ sections, query }) {
         </div>
       </main>
     </div>
+    </QuizCtx.Provider>
   );
 }
 
@@ -311,7 +407,13 @@ function loadStudyState() {
 function saveStudyState(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
 
 function StudyPane({ cards, onJump }) {
-  const validCards = useMemo(() => cards.filter(c => c.author && c.finding && c.finding.length > 20), [cards]);
+  const { flagged } = React.useContext(FlagCtx);
+  const [flaggedOnly, setFlaggedOnly] = useState(false);
+  const validCards = useMemo(() => {
+    const base = cards.filter(c => c.author && c.finding && c.finding.length > 20);
+    if (!flaggedOnly || flagged.size === 0) return base;
+    return base.filter(c => flagged.has(c.author));
+  }, [cards, flaggedOnly, flagged]);
   const [state, setState] = useState(() => {
     const s = loadStudyState();
     return {
@@ -435,6 +537,13 @@ function StudyPane({ cards, onJump }) {
                 onChange={e => { setTypeMode(e.target.checked); if (e.target.checked) setReverse(false); }} />
               Type-it mode
             </label>
+            {flagged.size > 0 && (
+              <label className="flex items-center gap-2 cursor-pointer select-none font-medium text-rose-700">
+                <input type="checkbox" checked={flaggedOnly}
+                  onChange={e => setFlaggedOnly(e.target.checked)} />
+                Flagged only ({flagged.size})
+              </label>
+            )}
           </div>
         </div>
 
@@ -705,6 +814,37 @@ function App() {
   const [debounced, setDebounced] = useState("");
   const searchRef = useRef(null);
 
+  // Pools for inline quiz mode
+  const authorPool = useMemo(() =>
+    [...new Set((data.cards || []).filter(c => c.author).map(c => c.author))],
+    [data.cards]);
+
+  const pctPool = useMemo(() => {
+    const set = new Set();
+    const re = new RegExp(PCT_RE.source, "g");
+    for (const sec of data.sections || []) {
+      const text = sectionText(sec);
+      re.lastIndex = 0;
+      let m;
+      while ((m = re.exec(text))) set.add(m[0]);
+    }
+    return [...set];
+  }, [data.sections]);
+
+  // Long-press flagging — persisted in localStorage
+  const [flagged, setFlagged] = useState(() => {
+    try { return new Set(JSON.parse(localStorage.getItem("endo-guide.flagged.v1") || "[]")); }
+    catch { return new Set(); }
+  });
+  const toggleFlag = useCallback((text) => {
+    setFlagged(prev => {
+      const next = new Set(prev);
+      if (next.has(text)) next.delete(text); else next.add(text);
+      localStorage.setItem("endo-guide.flagged.v1", JSON.stringify([...next]));
+      return next;
+    });
+  }, []);
+
   useEffect(() => {
     const t = setTimeout(() => setDebounced(query), 150);
     return () => clearTimeout(t);
@@ -739,6 +879,7 @@ function App() {
   }, [data.sections, debounced]);
 
   return (
+    <FlagCtx.Provider value={{ flagged, toggleFlag }}>
     <div className="h-screen flex flex-col">
       <header className="bg-white border-b shadow-sm shrink-0">
         <div className="flex items-center gap-5 px-5 h-14">
@@ -769,11 +910,12 @@ function App() {
           )}
         </div>
       </header>
-      {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} />}
+      {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} authorPool={authorPool} pctPool={pctPool} />}
       {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
     </div>
+    </FlagCtx.Provider>
   );
 }
 
