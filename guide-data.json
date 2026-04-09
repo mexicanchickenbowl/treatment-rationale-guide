@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-09T14:59:43.763749+00:00",
+  "built_at": "2026-04-09T15:03:17.625013+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -91,7 +91,7 @@
               "ANESTHESIA",
               "Local Anesthetic Selection",
               "Lidocaine or articaine based on case",
-              "Garisto 2010 - articaine 3.6x paresthesia risk with IAN blocks"
+              "Garisto 2010 - articaine 3.6x excess paresthesia reports vs. expected based on market share (not a direct comparison to lidocaine)"
             ],
             [
               "",
@@ -211,7 +211,7 @@
               "RESTORATION",
               "Orifice Barrier",
               "Prevents coronal leakage",
-              "Swanson & Madison - oral fluids reach apex in 3 days"
+              "Swanson & Madison - dye penetrated 79–85% of root length after just 3 days of coronal exposure (not necessarily to the apex)"
             ],
             [
               "",
@@ -1199,7 +1199,7 @@
             },
             {
               "type": "p",
-              "text": "Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. Garisto et al., 2010 (and Gaffeen separately) found increased paresthesias with articaine IAN blocks compared to lidocaine IAN blocks (3.6x increased risk)."
+              "text": "Kung showed no difference between articaine and lidocaine with maxillary SIP cases. Articaine is preferred for supplemental buccal infiltration. Garisto et al., 2010 (and Gaffen separately) found that 4% articaine was associated with 3.6x more paresthesia reports than expected based on its market share — a retrospective FDA adverse event analysis, not a head-to-head comparison to lidocaine. Prilocaine showed an even higher signal (7.3x). Clinicians should note that this represents a pharmacovigilance signal, not a controlled clinical trial result."
             },
             {
               "type": "ul",
