@@ -283,32 +283,48 @@ function applyMarks(containerEl, marks) {
 }
 
 // Long-press hook (works on mouse and touch)
-// onShortClick fires on quick click; onLong fires after ms hold.
-function useLongPress(onLong, onShortClick, ms = 500) {
-  const timer   = useRef(null);
-  const didFire = useRef(false);
-  const cancel  = () => clearTimeout(timer.current);
+function useLongPress(onLong, ms = 500) {
+  const timer = useRef(null);
+  const cancel = () => clearTimeout(timer.current);
   return {
-    onMouseDown:  () => { didFire.current = false; timer.current = setTimeout(() => { didFire.current = true; onLong(); }, ms); },
+    onMouseDown:  () => { timer.current = setTimeout(onLong, ms); },
     onMouseUp:    cancel,
     onMouseLeave: cancel,
-    onClick:      () => { if (!didFire.current && onShortClick) onShortClick(); },
-    onTouchStart: (e) => { e.preventDefault(); didFire.current = false; timer.current = setTimeout(() => { didFire.current = true; onLong(); }, ms); },
+    onTouchStart: (e) => { e.preventDefault(); timer.current = setTimeout(onLong, ms); },
     onTouchEnd:   cancel,
   };
 }
 
-// Colored span that can be long-pressed to flag, or clicked to open abstract
+// Colored span: quick click opens abstract (cite only), long-press flags
 function FlaggableSpan({ type, text, query, onClickCite }) {
   const { flagged, toggleFlag } = React.useContext(FlagCtx);
   const isFlagged = flagged.has(text);
-  const lp = useLongPress(() => toggleFlag(text), type === "cite" ? onClickCite : undefined);
+  // Track whether the long-press timer fired so we can suppress the click event
+  const longFired = useRef(false);
+  const timer     = useRef(null);
+
+  function startPress() {
+    longFired.current = false;
+    timer.current = setTimeout(() => { longFired.current = true; toggleFlag(text); }, 500);
+  }
+  function endPress() { clearTimeout(timer.current); }
+
   const cls = isFlagged ? (type === "cite" ? "cite-flagged" : "pct-flagged") : type;
   const title = type === "cite"
     ? (isFlagged ? "Flagged — long-press to unflag" : "Click for abstract · Hold to flag")
     : (isFlagged ? "Flagged — long-press to unflag" : "Long-press to flag as weak");
+
   return (
-    <span className={cls} title={title} {...lp}>
+    <span
+      className={cls}
+      title={title}
+      onMouseDown={startPress}
+      onMouseUp={endPress}
+      onMouseLeave={endPress}
+      onTouchStart={(e) => { e.preventDefault(); startPress(); }}
+      onTouchEnd={endPress}
+      onClick={() => { if (!longFired.current && type === "cite" && onClickCite) onClickCite(); }}
+    >
       {highlight(text, query)}
     </span>
   );
