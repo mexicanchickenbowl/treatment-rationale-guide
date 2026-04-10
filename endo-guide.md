@@ -146,6 +146,10 @@ The presence of a periapical radiolucency decreases root canal success from 93% 
 | Aminoshariae | CBCT is 2× as likely to detect periapical radiolucencies compared to periapical radiographs | Doubled detection rate for periapical pathology |
 | Dutra | Accuracy for detecting PARLs: Conventional 73%, Digital 72%, CBCT 96% | CBCT is significantly more accurate than 2D radiography |
 
+- When is CBCT NOT indicated for endodontic diagnosis?
+
+CBCT is not justified when: (1) a diagnostic-quality periapical radiograph is sufficient to answer the clinical question; (2) the CBCT finding would not change the treatment plan; or (3) the purpose is routine follow-up of straightforward cases where 2D healing assessment is adequate. The radiation dose of CBCT ranges from 40–500 µSv depending on field of view, compared with 1–8 µSv for a single periapical radiograph — a 10 to 100× difference. Even small-field (limited) CBCT (~40 µSv) substantially exceeds periapical radiography. CBCT is justified when the expected diagnostic yield is high and the finding will materially change clinical management — for example, detecting missed canals in retreatment, assessing resorption extent, evaluating surgical access, or characterizing complex anatomy prior to a high-difficulty case. The AAE and AAO 2015 Joint Position Statement recommends case-by-case selection: ordering CBCT only when the clinical benefit outweighs the additional radiation dose {{cite: AAE and AAO 2015 joint position statement — CBCT indicated only when expected diagnostic benefit outweighs added radiation dose; not for routine diagnosis when PA radiography is sufficient}}.
+
 - What is the clinical significance of maxillary molar root proximity to the maxillary sinus?
 
 Pagin et al found that 14% of maxillary molar roots perforate the maxillary sinus — an important consideration in pre-operative assessment and when evaluating CBCT imaging {{cite: Pagin — 14% of maxillary molar roots perforate the maxillary sinus}}. Shanbhag found that maxillary sinus mucositis is 9x more likely adjacent to molars with apical periodontitis, underscoring the importance of treating apical disease in this region {{cite: Shanbhag — Maxillary sinus mucositis 9x more likely adjacent to molars with apical periodontitis}}.
@@ -158,17 +162,37 @@ Stressed pulp syndrome, described by Abou-Rass, refers to the concept that a too
 
 - What clinical and radiographic signs suggest a cracked tooth?
 
-Pain on bite release, J-shaped radiolucency, narrow isolated probing depth, hypersensitivity to cold.
+The classic symptomatic presentation is sharp, electric pain on bite loading that is relieved on release — a pattern distinct from the sustained aching of periapical pathology. Cold hypersensitivity that is brief and sharp is common when the pulp is involved. The key diagnostic tools and signs are:
+
+- **Tooth Slooth or bite stick:** Load individual cusps in isolation to reproduce pain and localize to a specific cusp. Pain on biting one cusp but not adjacent cusps is pathognomonic for a crack in that cusp's supporting structure.
+- **Transillumination:** Shine the curing light or fiberoptic at the tooth surface in a darkened field. A crack line blocks the passage of light, producing a shadow that stops abruptly at the fracture plane — distinguishing a crack from a craze line, which allows light through.
+- **Dye staining:** Apply methylene blue or Gentian violet dye to the cleaned tooth surface; cracks take up dye while intact enamel does not. Useful for delineating crack extent on the occlusal surface and into the dentin.
+- **Narrow isolated probing depth:** A pocket 4–6 mm deep on a single surface in an otherwise periodontally healthy patient is a cardinal sign — bacteria track along the crack into the PDL, creating a linear defect rather than the circumferential bone loss of periodontal disease.
+- **Radiographic signs:** J-shaped radiolucency adjacent to a single root (not circumferential), isolated PDL widening along the crack, or a radiopaque line in the dentin. CBCT can reveal the crack path, its apical extent, and any associated bone loss not visible on 2D radiographs.
+
+{{cite: Berman and Kuttler 2010 — cracked tooth produces sharp pain on bite loading of a single cusp relieved on release; narrow isolated probing depth is a hallmark clinical sign}}
 
 - How do you differentiate craze lines from true cracks?
 
-A craze line is superficial enamel defect while a true crack extends deeper into the enamel and dentin.
+Craze lines are superficial enamel microfractures confined above the enamel-dentin junction (EDJ). They are extremely common in adult teeth, cause no symptoms, require no treatment, and are of no clinical significance beyond aesthetics. True cracks extend through or beyond the EDJ into dentin and may propagate toward the pulp chamber or root.
+
+Key clinical differentiation:
+
+| Feature | Craze Line | True Crack |
+| --- | --- | --- |
+| Symptoms | None | Pain on bite loading, cold sensitivity |
+| Dye uptake | None | Takes up methylene blue or Gentian violet |
+| Transillumination | Light passes through | Light blocked at fracture plane (shadow) |
+| Probing | Normal | Narrow isolated deep probing if involving PDL |
+| Treatment | None | Depends on depth (see below) |
+
+Depth determines prognosis and treatment: crack limited to enamel → no treatment or crown for protection; crack extending to dentin but not the chamber → may respond to crown; crack reaching the pulp chamber → RCT + crown; crack propagating into the root → guarded to poor prognosis; VRF (vertical root fracture) → extraction (multirooted exception: root resection). {{cite: Kang 2016 — 5-year survival of cracked teeth: 95% without pulp chamber involvement, 81% with chamber involvement}}
 
 - What is the prognosis for different crack patterns (cracked tooth, split tooth, VRF)?
 
-Cracked teeth: 95% without pulpal chamber involvement at 5 years. 81% with chamber involvement at five years. (Kang et al., 2016)
+Cracked teeth: 95% without pulpal chamber involvement at 5 years. 81% with chamber involvement at five years {{cite: Kang 2016 — 5-year survival of cracked teeth: 95% without chamber involvement, 81% with chamber involvement}}.
 
-- Fracture extending to the pulpal floor decreases five-year survival by 11x (Sim).
+- {{cite: Sim — fracture extending to the pulpal floor decreases five-year survival by 11×}}
 
 Split tooth: May be saved with root resection, but generally hopeless
 
@@ -282,7 +306,7 @@ Severe curvatures, isthmuses, obstructed canals, perforations favor surgical app
 
 - What does the evidence show regarding outcomes of single vs. multiple visit RCT?
 
-The evidence is mixed across all three relevant outcomes. Calcium hydroxide's contribution to clinically meaningful bacterial reduction between visits is not clearly established. Studies comparing single- versus multiple-visit protocols have not demonstrated a consistent difference in post-operative pain. Su et al.'s meta-analysis found no difference in overall survival or periapical healing between single- and multiple-visit treatment.
+The evidence is mixed across all three relevant outcomes. Calcium hydroxide's contribution to clinically meaningful bacterial reduction between visits is not clearly established {{cite: Sathorn 2007 — systematic review found insufficient evidence that Ca(OH)2 between visits significantly reduces intracanal bacteria compared to no medicament in clinical studies}}. Studies comparing single- versus multiple-visit protocols have not demonstrated a consistent difference in post-operative pain. Su et al.'s meta-analysis found no difference in overall survival or periapical healing between single- and multiple-visit treatment.
 
 - What clinical scenarios favor multiple visit treatment?
 
@@ -301,12 +325,14 @@ Several studies show no statistically significant difference in outcomes between
 
 Calcium hydroxide is the most commonly used inter-appointment medicament. Its properties include:
 
-- High alkalinity (pH 11–12), which provides broad-spectrum antibacterial activity — though *E. faecalis* can tolerate this environment via its proton pump
+- High alkalinity (pH 11–12), which provides broad-spectrum antibacterial activity — though *E. faecalis* can tolerate this environment via its proton pump {{cite: Evans 2002 — E. faecalis survives high-pH Ca(OH)2 environments via a membrane-bound H⁺-ATPase that actively extrudes hydroxyl ions, maintaining near-neutral intracellular pH}}
 - Neutralization of bacterial LPS, dampening the host inflammatory response
 - Dissolution of residual pulp tissue and organic debris
 - Relatively low cytotoxicity to apical papilla cells, making it well-suited for regenerative endodontic protocols
 
 ## 2.4 Vital Pulp Therapy Candidacy
+
+**Clinical threshold note:** VPT is appropriate only when all candidacy criteria are met with high diagnostic confidence. In adult patients presenting with deep carious lesions — the most common real-world scenario — two factors shift the balance toward RCT: (1) exposure type is the strongest predictor of VPT success, and carious exposures perform substantially worse than mechanical/iatrogenic ones because bacteria precede the exposure and contaminate the pulp before the clinician arrives {{cite: Mente 2010 — MTA DPC showed 89.9% success vs 63.3% for calcium hydroxide; success rates are weighted toward mechanical exposures and lower for carious exposures}}; (2) clinical pulpal diagnosis correlates imperfectly with histology — approximately 15% of pulp diagnoses may be incorrect {{cite: Ricucci 2014 — 84–97% clinical-histologic correlation for pulp diagnosis; up to 15% of diagnoses may not match the true histologic pulpal status}}, meaning a tooth diagnosed as reversibly inflamed may already have irreversible radicular involvement. A failed VPT does not merely return the tooth to baseline — it produces a calcifying canal system that is harder to instrument and obturate. In ambiguous adult carious cases where irreversible pulpitis cannot be confidently excluded, RCT eliminates diagnostic uncertainty and avoids the compounding consequence of treatment escalation.
 
 - What are the indications for indirect pulp capping?
 
@@ -315,6 +341,22 @@ Indirect pulp capping (IPC) is indicated when a deep carious lesion approaches t
 - What clinical criteria determine direct pulp cap candidacy?
 
 Direct pulp capping (DPC) is most likely to succeed when: the pulp exposure is small (<1 mm), mechanical rather than carious (e.g., from instrumentation), bleeding is controlled and not profuse or dark (indicating normal vital pulp), the patient is relatively young (better healing capacity), and there are no signs of irreversible pulpitis. Carious exposures carry a higher risk of failure because bacteria already contaminate the pulp prior to exposure. {{cite: Mente 2010 — MTA direct pulp cap showed 89.9% success vs 63.3% for calcium hydroxide at 5 years}}. {{cite: Dammaschke 2010 — long-term success of direct pulp capping with calcium hydroxide drops to 37% at 10 years}}.
+
+- How long should you wait for hemostasis after pulp exposure, and what does the bleeding response tell you?
+
+Achieving hemostasis within **5 minutes** of gentle pressure with a sterile cotton pellet moistened with saline or 6% NaOCl is the clinical go/no-go threshold for proceeding with VPT. If bleeding does not stop within 5 minutes, the inflammation extends beyond the exposure site into the radicular pulp — the clinical diagnosis should be revised to irreversible pulpitis and the procedure abandoned in favor of pulpectomy {{cite: ESE de Souza 2021 — ESE vital pulp therapy position statement: hemostasis within 5 minutes is the clinical threshold for proceeding with VPT; failure to achieve hemostasis indicates irreversible radicular inflammation}}.
+
+The quality of bleeding is equally informative:
+
+| Bleeding Character | Interpretation | Action |
+| --- | --- | --- |
+| Bright red, stops within 5 min | Healthy superficial pulp, reversible zone | Proceed with VPT |
+| Dark, sluggish, or does not stop within 5 min | Irreversible inflammatory infiltration | Abandon VPT → pulpectomy/RCT |
+| Profuse, uncontrolled | Deep necrosis, suppuration, or abscess | Contraindicated |
+
+**Why NaOCl rather than saline?** A cotton pellet wetted with 6% NaOCl simultaneously lyses surface organic debris at the wound edge and achieves hemostasis, producing a cleaner preparation surface before bioceramic placement. Some protocols use 3% NaOCl to reduce cytotoxicity while retaining this dual effect. Ferric sulfate is not recommended as a hemostatic agent for VPT because it leaves a residue that impairs the biocompatibility of the capping interface.
+
+**For full pulpotomy** (entire coronal pulp removed), the 5-minute threshold applies to each successive amputation level. If hemostasis is not achieved at the coronal pulp level, remove additional pulp tissue (deepen the pulpotomy) and reassess before abandoning — up to the canal orifices. Persistent bleeding at the level of the canal orifices is the definitive indication to proceed to full pulpectomy {{cite: Bjørndal 2019 — stepwise pulpotomy approach: achieve hemostasis at each level before placing capping material; persistent bleeding at orifice level = pulpectomy indicated}}.
 
 - When is full pulpotomy indicated in permanent teeth?
 
@@ -464,7 +506,17 @@ Triazolam is considered the safest and most effective oral anxiolytic for dental
 
 - How should one access a tooth?
 
-Access design should follow the laws of Krasner and Rankow. This helps avoid missing canals or perforating the tooth.
+Access design should follow the seven Laws of Krasner and Rankow, which describe the predictable spatial relationships between canal orifices, the pulp chamber, and the external tooth surface. Applying these laws prevents over-access (floor perforation) and under-access (missed canals) {{cite: Krasner and Rankow 2004 — seven laws describe the predictable spatial relationship of canal orifices to the CEJ, external tooth surface, and pulp chamber floor}}:
+
+1. **Law of Centrality:** The floor of the pulp chamber is always located in the center of the tooth at the level of the CEJ.
+2. **Law of Concentricity:** The walls of the pulp chamber are always concentric with the external surface of the tooth at the level of the CEJ — the external surface of the tooth guides the expected position of the pulp chamber.
+3. **Law of the CEJ:** The CEJ is the most consistent, repeatable landmark for locating the position and size of the pulp chamber; it guides initial bur depth and direction.
+4. **Law of Symmetry 1 (Orifice Position):** Except for the maxillary molars, canal orifices are equidistant from a line drawn mesiodistally through the floor of the pulp chamber.
+5. **Law of Symmetry 2 (Orifice Location):** Except for the maxillary molars, canal orifices lie on a line drawn buccolingually through the floor of the pulp chamber.
+6. **Law of Color Change:** The floor of the pulp chamber is always darker than the walls — this color differential, visible under magnification, helps identify the true floor and distinguish it from walls when visibility is limited.
+7. **Law of Orifice Location:** Canal orifices are always located at the junction of the floor and the walls, appearing as dark spots or depressions at the base of each developmental groove.
+
+Under magnification, staining the pulp floor with methylene blue accentuates the color differential in Law 6 and reveals the grooves in Law 7. Troughing along developmental grooves with a DG-16 explorer or ultrasonic tip confirms orifice locations. A "champagne bubble" sign — effervescence when NaOCl floods a troughed groove — suggests organic tissue in a patent but calcified canal.
 
 - How does access design affect fracture resistance?
 
@@ -522,7 +574,7 @@ Once successfully negotiated, the prognosis for teeth with calcified canals is c
 
 - What is the accuracy of electronic apex locators vs. radiographic methods?
 
-EALs are more reliable than radiographs because 92.4% of major foramina exit short of the anatomical apex (Burch and Hulen), meaning a radiographic "apex" reading will typically overshoot the true foramen. Modern EALs are 96% accurate at locating the apical foramen (Shabahang).
+EALs are more reliable than radiographs because 92.4% of major foramina exit short of the anatomical apex {{cite: Burch and Hulen 1972 — 92.4% of major foramina exit short of the anatomic apex; radiographic apex overshoots the true foramen}}, meaning a radiographic "apex" reading will typically overshoot the true foramen. Modern EALs are 96% accurate at locating the apical foramen in clinical (in vivo) studies {{cite: Shabahang 1996 — in vivo clinical accuracy of fourth-generation EALs is 96% at or within 0.5 mm of the apical foramen}}. This clinical figure is more meaningful than in vitro results, which typically report higher accuracy because blood, tissue debris, and irrigants are absent. Clinically, 96% accuracy means approximately 1 in 20 readings may be inaccurate — reinforcing the value of corroborating the EAL reading with a check radiograph in ambiguous cases or when the reading conflicts with tactile feedback.
 
 - What is the ideal working length endpoint (apical constriction, radiographic apex)?
 
@@ -530,7 +582,7 @@ The ideal endpoint is the minor apical constriction since it is a biological con
 
 - How should working length be determined with EAL?
 
-The average distance between the major and minor apical foramina is 0.524 mm in younger teeth and 0.659 mm in older teeth {{cite: Kuttler 1955}}. The apical constriction itself is 0.2–0.3 mm long {{cite: Dummer 1984}}. Because EALs are more accurate at locating the major foramen than the minor foramen (Ounsi and Naaman), a prudent approach is to subtract 0.5–1.0 mm from the "0" or "apex" reading to approximate the minor constriction. Ricucci, Langeland, and Dummer independently confirm that the minor apical constriction lies approximately 0.5–1.0 mm coronal to the major foramen.
+The average distance between the major and minor apical foramina is 0.524 mm in younger teeth and 0.659 mm in older teeth {{cite: Kuttler 1955}}. The apical constriction itself is 0.2–0.3 mm long {{cite: Dummer 1984}}. Because EALs are more accurate at locating the major foramen than the minor foramen (Ounsi and Naaman), a prudent approach is to subtract 0.5–1.0 mm from the "0" or "apex" reading to approximate the minor constriction. {{cite: Ricucci and Langeland 1998 — obturation to the minor apical constriction shows best periapical healing and least inflammation; minor constriction lies ~0.5–1.0 mm coronal to the major foramen}}
 
 - How do canal conditions affect EAL accuracy?
 
@@ -638,15 +690,15 @@ Torsional fracture occurs when the file tip locks in the canal while the body co
 
 - What is the rationale for sodium hypochlorite as the primary irrigant?
 
-NaOCl flushes debris and kills bacteria. This is important because after instrumentation 35% of canal walls remain untouched (Peters). NaOCl should be continuously replenished since it can be inactivated by dentin in as few as 60 seconds (Arias-Moliz).
+NaOCl flushes debris and kills bacteria. This is important because after instrumentation 35% of canal walls remain untouched {{cite: Peters 2001 — 35% of canal walls remain untouched after rotary instrumentation, underscoring dependence on chemical disinfection}}. NaOCl should be continuously replenished since it can be inactivated by dentin in as few as 60 seconds (Arias-Moliz).
 
 - What concentration of NaOCl provides optimal tissue dissolution vs. safety?
 
-5.25% NaOCl demonstrates the greatest tissue-dissolution capacity (Hand). Clinically, concentrations between 2.5% and 5.25% are most commonly used, balancing dissolution power against the risk of periapical injury if extrusion occurs.
+5.25% NaOCl demonstrates the greatest tissue-dissolution capacity {{cite: Hand 1978 — 5.25% NaOCl has greatest tissue-dissolution capacity among tested concentrations}}. The basis for preferring higher concentration is that tissue dissolution is concentration-dependent: the active dissolving agent is hypochlorous acid (HOCl), whose concentration is proportional to the NaOCl concentration. At concentrations below 2.5%, dissolution of vital pulp remnants is markedly impaired, leaving more residual organic substrate in the canal. At 5.25%, HOCl is present in sufficient concentration to dissolve both necrotic and vital tissue within clinically relevant contact times {{cite: Zehnder 2006 — NaOCl physiology review: tissue dissolution is concentration-dependent; 5.25% provides superior HOCl activity over lower concentrations for dissolving both necrotic and vital pulp tissue}}. The practical tradeoff: 5.25% is more cytotoxic if extruded beyond the apex. Some clinicians use 2.5–3% combined with irrigant activation (PUI/sonic) and longer contact times as a safer alternative that can approach equivalent disinfection. Clinically, concentrations between 2.5% and 5.25% are most commonly used.
 
 - What are the indications for chlorhexidine as an irrigant?
 
-Chlorhexidine may be useful for patients with a documented NaOCl allergy and as a final rinse to extend substantive antimicrobial activity. Chlorhexidine should not be mixed with NaOCl directly because the combination produces parachloroaniline, a potential cytotoxic and carcinogenic byproduct (Basrani et al.) — though the clinical significance of this finding has been challenged by more recent work from Orhan.
+Chlorhexidine may be useful for patients with a documented NaOCl allergy and as a final rinse to extend substantive antimicrobial activity. Chlorhexidine should not be mixed with NaOCl directly because the combination produces parachloroaniline, a potential cytotoxic and carcinogenic byproduct {{cite: Basrani 2007 — NaOCl + CHX combination produces parachloroaniline precipitate; clinical significance debated}} — though the clinical significance of this finding has been challenged by more recent work from Orhan.
 
 - What is the role of EDTA in the irrigation protocol?
 
@@ -766,7 +818,7 @@ Single cone obturation is appropriate for canals with favorable (round) anatomy 
 
 - How does obturation technique affect treatment outcomes?
 
-Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method.
+Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method. Note: the claim that coronal seal outweighs obturation quality originates from Ray and Trope (1995); see §8.1 and §8.4 for the Gillen (2011) meta-analysis, which found that both factors independently and comparably affect periapical healing — neither should be sacrificed at the expense of the other.
 
 ## 7.2 Sealer Selection
 
@@ -846,7 +898,7 @@ Gutta-percha is 65% zinc oxide, 20% gutta-percha, 15% waxes, resins, and metals 
 
 - What is the evidence regarding timing of coronal restoration?
 
-Coronal leakage begins within days to weeks after obturation if a proper coronal seal is not placed. Studies have shown that 90 days of exposure to oral fluids can result in coronal leakage in the majority of obturated canals (Saunders and Saunders 1994). Same-visit core placement is associated with improved outcomes in multiple retrospective studies.
+Coronal leakage begins within days to weeks after obturation if a proper coronal seal is not placed. Studies have shown that 90 days of exposure to oral fluids can result in coronal leakage in the majority of obturated canals (Saunders and Saunders 1994). The Swanson and Madison (annotated in the procedural timeline) finding — that dye penetrated 79–85% of root length within just 3 days of coronal exposure — has a clear clinical implication: even a brief gap between obturation and definitive restoration is sufficient to risk substantial canal contamination. This underscores the importance of same-day orifice barrier placement and early permanent restoration. Same-visit core placement is associated with improved outcomes in multiple retrospective studies.
 
 - How does delayed restoration affect tooth survival?
 
@@ -1205,8 +1257,22 @@ GTR is indicated for:
 ## 10.7 Hemisection/Root Amputation Decisions
 
 - What are the indications for hemisection vs. root amputation?
+
+**Root amputation** removes one or more roots of a multi-rooted tooth while retaining the crown and remaining root(s). It is used most commonly for maxillary molars when a single root has isolated, severe pathology — typically a fractured root (VRF confined to one root), a furcation defect limited to one root with inadequate bone support, a non-negotiable or untreatable root canal system, or a perforation that cannot be repaired. Endodontic treatment of the retained roots is completed before or concurrent with root resection.
+
+**Hemisection** divides a mandibular molar through the furcation into two separate premolar-shaped units, one of which may be extracted and one retained (or both retained as individual crown abutments). Hemisection is indicated when one root of a mandibular molar is unresectable — for example, an isolated VRF, an unresectable furcation defect on one side, or severe bone loss surrounding only one root — while the other root retains adequate bone support and is treatable endodontically.
+
+Prerequisites for both: (1) complete endodontic treatment of all retained roots; (2) adequate bone support for the retained root(s); (3) favorable tooth and root anatomy — fused roots, a very short root trunk, or roots in close proximity are relative contraindications. Patient oral hygiene and commitment to periodontal maintenance must be assessed before committing to a complex restorative pathway.
+
 - What factors affect prognosis of these procedures?
+
+Favorable prognostic factors include: localized disease (not generalized periodontitis), adequate bone support around the retained root(s), absence of furcation involvement in retained roots, favorable root anatomy for separation, good patient oral hygiene, and reliable periodontal maintenance compliance. The periodontal status of the retained root is the single most important determinant of long-term prognosis {{cite: Blomlöf 1997 — periodontal status of the retained root is the dominant prognostic factor for hemisection and root amputation outcomes}}.
+
+Unfavorable factors include: generalized advanced periodontitis, Class II–III furcation in retained roots, root proximity making clean surgical separation difficult, thin or short roots with limited bone anchor, and poor patient compliance. Short root trunk anatomy increases the technical challenge and may compromise the restorative result.
+
 - How do survival rates compare to extraction and implant?
+
+Survival rates for root-resected and hemisected molars are approximately 68–90% at 5–10 years with appropriate case selection and periodontal maintenance {{cite: Carnevale 1998 — root-resected molars retained in over 90% of cases at more than 10 years in a periodontal practice with regular maintenance; favorable case selection is critical}}. Extraction followed by implant placement provides a predictable alternative, with implant survival rates exceeding 95% at 10 years in most populations. When deciding between the two approaches, consider: (1) strategic value of the retained tooth structure; (2) quality of the patient's periodontal maintenance; (3) cost — root resection is typically less costly than extraction plus implant and bone graft; (4) patient preference for retaining natural tooth structure. For patients with reliable periodontal maintenance who have strategically important teeth with localized pathology, root amputation or hemisection is a valid evidence-based alternative to extraction and implant.
 
 # 11. Recall and Outcomes
 
@@ -1236,7 +1302,7 @@ One year is the minimum meaningful follow-up interval. Lesions larger than 1 cm 
 
 - What role does CBCT play in healing assessment?
 
-CBCT enables 3-dimensional assessment of healing but tends to overestimate persistent disease compared with conventional radiographs. Torabinejad found apical hypodensities greater than 1 mm in 20% of endodontically treated teeth on CBCT, many of which would be considered healed by 2D criteria.
+CBCT enables 3-dimensional assessment of healing but tends to overestimate persistent disease compared with conventional radiographs {{cite: Torabinejad 2009 — 20% of endodontically treated teeth showed apical hypodensities greater than 1 mm on CBCT that would be classified as healed by 2D periapical radiograph criteria; CBCT over-detects persistent disease}}. The clinical implication is that CBCT should not be used routinely for healing assessment — conventional periapical radiographs are adequate and appropriate for the vast majority of follow-up evaluations. CBCT at recall is justified only when clinical or 2D radiographic findings are equivocal and the result would change management.
 
 - How do you define success vs. survival in endodontics?
 
@@ -1300,7 +1366,7 @@ Azithromycin is the recommended first-line drug for penicillin-allergic patients
 
 - What is the recommended antibiotic course duration?
 
-3 to 7 day course (European Society of Endodontology).
+The European Society of Endodontology recommends a 3–7 day course. The 2019 AAE Colleagues for Excellence guidance and emerging antibiotic stewardship evidence support using the shortest effective course — preferably 3–5 days when the patient is responding clinically {{cite: AAE 2019 — AAE antibiotic guidance: use the shortest effective course (3–5 days preferred when the patient is improving clinically); antibiotics are an adjunct to local treatment, never a substitute}}. Key stewardship principles: (1) if swelling, trismus, and systemic signs are resolving, completing only the minimum necessary course is appropriate — extending beyond 5 days without clinical indication adds resistance pressure without demonstrated benefit; (2) the most common prescribing error in endodontics is antibiotic use for conditions where local treatment alone is sufficient (localized fluctuant abscess, irreversible pulpitis without systemic signs); (3) dose matters — under-dosing increases resistance risk without reducing toxicity.
 
 - Do antibiotics decrease pain when added to NSAIDs and endodontic treatment?
 
@@ -1328,7 +1394,7 @@ Amoxicillin 2 g orally, 30–60 minutes before the procedure. For penicillin-all
 
 - How does diabetes affect endodontic treatment outcomes?
 
-Diabetes increases the rate of flare-ups and reduces success (Fouad and Burleson).
+Diabetes impairs endodontic outcomes through several interconnected mechanisms: (1) impaired neutrophil chemotaxis and phagocytosis reduce the host's ability to clear periapical infection; (2) advanced glycation end-products (AGEs) impair collagen cross-linking and tissue healing, delaying periapical bone repair; (3) microvascular disease reduces perfusion to the healing periapex; (4) peripheral neuropathy can blunt pain perception, allowing disease to progress undetected. {{cite: Fouad and Burleson 2003 — diabetic patients had approximately 3× the flare-up rate and significantly reduced periapical healing rates compared to non-diabetic controls; effect disproportionately greater with poor glycemic control (HbA1c > 8%)}}. Patients with well-controlled diabetes (normal HbA1c) have outcomes approaching those of non-diabetic patients, confirming that glycemic control — not diabetes per se — is the primary determinant of prognosis.
 
 - What modifications should be considered for diabetic patients?
 
@@ -1356,7 +1422,7 @@ The maximum recommended epinephrine dose for cardiac patients is 0.04 mg (approx
 
 - How does sickle cell disease affect pulp vitality?
 
-Sickle cell anemia is associated with an 8.3× higher risk of spontaneous pulp necrosis, likely due to microvascular infarction of the pulp's end-arterial blood supply.
+Sickle cell anemia is associated with an 8.3× higher risk of spontaneous pulp necrosis {{cite: Costa 2013 — sickle cell anemia is associated with an 8.3× higher risk of spontaneous pulp necrosis compared to matched controls; microvascular occlusion is the proposed mechanism}}. Two mechanisms contribute: (1) **microvascular occlusion** — deformed sickled erythrocytes obstruct the small-caliber end-arterioles that supply the pulp (the pulp has an end-arterial circulation with no collateral flow), resulting in ischemic pulp necrosis without bacterial involvement; (2) **osseous infarction** — the alveolar bone's marrow space is susceptible to sickling during crises, producing bone infarcts adjacent to the tooth that can radiographically mimic periapical pathology. Clinicians must therefore use pulp vitality testing to distinguish true endodontic disease from a bone infarct before attributing a radiolucency to an endodontic etiology in sickle cell patients.
 
 - What special considerations apply to endodontic treatment in sickle cell patients?
 
