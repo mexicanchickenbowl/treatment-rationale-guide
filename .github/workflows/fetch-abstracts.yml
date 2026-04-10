@@ -1,0 +1,48 @@
+name: Fetch abstracts from PubMed
+
+# Run manually from the Actions tab whenever you add new citations.
+# Also runs automatically when new {{cite:}} markers are committed to endo-guide.md.
+
+on:
+  workflow_dispatch:   # manual trigger: Actions tab → "Fetch abstracts" → Run workflow
+  push:
+    branches: [main]
+    paths:
+      - 'endo-guide.md'   # new citations may need new abstracts
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-abstracts-${{ github.ref }}
+  cancel-in-progress: false   # never cancel mid-fetch; PubMed results are incremental
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch missing abstracts from PubMed
+        run: python fetch_abstracts.py
+
+      - name: Rebuild HTML + JSON
+        run: python build.py
+
+      - name: Commit updated abstracts + rebuilt artifacts
+        run: |
+          if git diff --quiet abstracts.json index.html endo-guide.html guide-data.json; then
+            echo "No changes — all abstracts already cached."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add abstracts.json index.html endo-guide.html guide-data.json
+          git commit -m "Fetch abstracts + rebuild [skip ci]
+
+Fetched missing PubMed abstracts and rebuilt guide artifacts."
+          git push
