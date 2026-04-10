@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Endo Debates & Evidence Timelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  html, body { height: 100%; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  /* Sidebar debate links (matches endo-guide.html) */
+  .debate-link { display: block; padding: 0.55rem 0.75rem; border-radius: 6px; font-size: 0.88rem; color: #475569; line-height: 1.35; cursor: pointer; border-left: 2px solid transparent; transition: background 0.12s, color 0.12s; }
+  .debate-link:hover { background: #f1f5f9; color: #1e293b; }
+  .debate-link.active { background: #eef2ff; color: #4338ca; font-weight: 600; border-left-color: #4338ca; padding-left: calc(0.75rem - 2px); }
+  .debate-link .debate-sub { display: block; font-size: 0.72rem; font-weight: 400; color: #94a3b8; margin-top: 2px; }
+  .debate-link.active .debate-sub { color: #818cf8; }
+
+  /* Stance filter chips */
+  .chip { padding: 0.22rem 0.75rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 500; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: all 0.12s; }
+  .chip:hover { background: #f8fafc; }
+  .chip-active-all { background: #4338ca; color: #fff; border-color: #4338ca; }
+  .chip-active-pro { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+  .chip-active-con { background: #e11d48; color: #fff; border-color: #e11d48; }
+  .chip-active-nuanced { background: #d97706; color: #fff; border-color: #d97706; }
+
+  /* Consensus callout */
+  .consensus-card { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border: 1px solid #c7d2fe; border-left: 4px solid #4338ca; border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem 0 1.5rem; }
+  .consensus-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #4338ca; margin-bottom: 0.4rem; }
+  .consensus-text { font-size: 0.92rem; line-height: 1.65; color: #312e81; }
+
+  /* Timeline rail */
+  .rail-wrap { position: relative; padding: 2.1rem 1.75rem 1.2rem; margin: 0.5rem 0 1.25rem; overflow-x: auto; overflow-y: visible; scrollbar-width: thin; }
+  .rail { position: relative; min-width: 100%; height: 62px; }
+  .rail-line { position: absolute; left: 0; right: 0; top: 30px; height: 2px; background: linear-gradient(to right, #cbd5e1 0%, #cbd5e1 100%); }
+  .rail-tick { position: absolute; top: 36px; width: 1px; height: 8px; background: #cbd5e1; }
+  .rail-tick-label { position: absolute; top: 46px; font-size: 0.65rem; color: #94a3b8; transform: translateX(-50%); white-space: nowrap; }
+  .rail-dot { position: absolute; top: 30px; border-radius: 9999px; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.12s, box-shadow 0.12s; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18); }
+  .rail-dot:hover { transform: translate(-50%, -50%) scale(1.25); z-index: 2; }
+  .rail-dot-label { position: absolute; top: -4px; font-size: 0.62rem; color: #64748b; transform: translate(-50%, -100%); white-space: nowrap; pointer-events: none; }
+
+  /* Dot colors by stance */
+  .stance-pro { background: #4f46e5; }
+  .stance-con { background: #e11d48; }
+  .stance-nuanced { background: #d97706; }
+
+  /* Dot sizes by evidence strength */
+  .ev-sr-meta { width: 18px; height: 18px; }
+  .ev-rct { width: 16px; height: 16px; }
+  .ev-cohort { width: 13px; height: 13px; }
+  .ev-case-series { width: 11px; height: 11px; }
+  .ev-expert { width: 10px; height: 10px; opacity: 0.85; }
+
+  /* Entry cards */
+  .entry-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 0.95rem 1.1rem; margin-bottom: 0.8rem; transition: box-shadow 0.15s, border-color 0.15s; }
+  .entry-card:hover { box-shadow: 0 2px 8px rgba(15,23,42,0.06); border-color: #cbd5e1; }
+  .entry-card.flash { animation: cardFlash 1.2s ease; }
+  @keyframes cardFlash {
+    0%   { box-shadow: 0 0 0 0 rgba(165,180,252,0); border-color: #e2e8f0; }
+    15%  { box-shadow: 0 0 0 4px rgba(165,180,252,0.55); border-color: #818cf8; }
+    100% { box-shadow: 0 0 0 0 rgba(165,180,252,0); border-color: #e2e8f0; }
+  }
+  .entry-year { font-size: 1.05rem; font-weight: 700; color: #4338ca; letter-spacing: -0.01em; line-height: 1; }
+  .entry-author { font-size: 0.85rem; font-weight: 500; color: #334155; margin-top: 0.15rem; }
+  .entry-finding { font-size: 0.89rem; line-height: 1.6; color: #334155; margin-top: 0.55rem; }
+
+  /* Pills */
+  .pill { display: inline-flex; align-items: center; padding: 0.12rem 0.55rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; white-space: nowrap; }
+  .pill-pro { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; }
+  .pill-con { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
+  .pill-nuanced { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+  .pill-sr-meta { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+  .pill-rct { background: #d1fae5; color: #047857; border: 1px solid #a7f3d0; }
+  .pill-cohort { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+  .pill-case-series { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+  .pill-expert { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+
+  /* Abstract button */
+  .abs-btn { font-size: 0.75rem; font-weight: 600; color: #4338ca; padding: 0.28rem 0.7rem; border-radius: 6px; border: 1px solid #c7d2fe; background: #fff; cursor: pointer; transition: all 0.12s; white-space: nowrap; }
+  .abs-btn:hover { background: #eef2ff; }
+  .abs-btn-disabled { color: #94a3b8; border-color: #e2e8f0; cursor: default; }
+  .abs-btn-disabled:hover { background: #fff; }
+
+  /* Abstract popup (ported from endo-guide.template.html) */
+  .abstract-overlay { position:fixed; inset:0; z-index:60; display:flex; align-items:flex-end; justify-content:center; background:rgba(15,23,42,.52); backdrop-filter:blur(3px); animation:abFadeIn .15s ease; }
+  @media(min-width:640px){ .abstract-overlay { align-items:center; padding:1.5rem; } }
+  .abstract-panel { background:#fff; border-radius:16px 16px 0 0; box-shadow:0 -8px 50px rgba(0,0,0,.22); width:100%; max-width:680px; max-height:88vh; display:flex; flex-direction:column; animation:abSlideUp .22s cubic-bezier(.16,1,.3,1); }
+  @media(min-width:640px){ .abstract-panel { border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.22); animation:abScaleIn .2s cubic-bezier(.16,1,.3,1); } }
+  .abstract-header { padding:1.2rem 1.4rem .9rem; border-bottom:1px solid #f1f5f9; flex-shrink:0; }
+  .abstract-body { padding:1.1rem 1.4rem 1.6rem; overflow-y:auto; flex:1; scrollbar-width:thin; }
+  .abstract-finding { background:linear-gradient(135deg,#fff7ed,#fef3c7); border:1px solid #fcd34d; border-radius:10px; padding:.85rem 1rem; margin-bottom:1.15rem; }
+  .abstract-conclusion { background:#f0fdf4; border-left:3px solid #16a34a; padding:.7rem .95rem; border-radius:0 8px 8px 0; margin-top:.85rem; }
+  .abstract-num { background:#fef3c7; color:#92400e; font-weight:600; padding:0 2px; border-radius:2px; }
+  @keyframes abFadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes abSlideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
+  @keyframes abScaleIn { from{opacity:0;transform:scale(.96) translateY(6px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 0.55rem 1rem; font-size: 0.7rem; color: #64748b; align-items: center; }
+  .legend-dot { display: inline-block; border-radius: 9999px; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18); vertical-align: middle; margin-right: 0.35rem; }
+
+  /* Scrollbar */
+  .rail-wrap::-webkit-scrollbar { height: 6px; }
+  .rail-wrap::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useMemo, useEffect, useRef, useCallback } = React;
+
+// ─── Labels for display ─────────────────────────────────────────────────────
+const EVIDENCE_LABELS = {
+  "sr-meta":     "Systematic review / meta",
+  "rct":         "RCT",
+  "cohort":      "Cohort / prospective",
+  "case-series": "Case series",
+  "expert":      "Expert / position",
+};
+const EVIDENCE_SHORT = {
+  "sr-meta":     "SR / Meta",
+  "rct":         "RCT",
+  "cohort":      "Cohort",
+  "case-series": "Case series",
+  "expert":      "Position",
+};
+const STANCE_LABELS = { pro: "Pro", con: "Con", nuanced: "Nuanced" };
+
+// ─── DATA: Debates + landmark literature timelines ─────────────────────────
+const DEBATES = [
+  {
+    id: "vpt-vs-rct",
+    title: "To VPT or not VPT?",
+    question: "Should cariously exposed mature permanent teeth — even with signs of irreversible pulpitis — be treated with vital pulp therapy (pulpotomy) or root canal?",
+    tags: ["vital pulp therapy", "pulpotomy", "irreversible pulpitis", "direct pulp cap"],
+    consensus2026: "Full pulpotomy has graduated from experimental to defensible first-line therapy for cariously exposed mature permanent teeth with reversible — and increasingly, symptomatic irreversible — pulpitis. Pooled 1–5 year success rates for MTA/bioceramic pulpotomy sit at 85–95% across modern RCTs and systematic reviews (Cushley 2019, Taha 2018, Asgary RCTs, Duncan/ESE 2019 position). RCT remains the safer default when bleeding cannot be controlled within ~10 minutes, periradicular radiolucency is present, or the patient is a poor recall candidate. Open questions: how to pre-operatively predict which pulps will survive, whether Biodentine and other calcium silicates truly match MTA, and how durability extends beyond 5 years.",
+    entries: [
+      { year: 1978, author: "Cvek", citeKey: "Cvek|1978", pmid: "283188",
+        evidence: "case-series", stance: "pro",
+        finding: "96% clinical + radiographic success at 5 years for partial pulpotomy in 60 traumatically exposed permanent incisors — the foundational paper that reframed VPT as viable beyond immature teeth and launched the modern pulpotomy literature." },
+      { year: 1993, author: "Mejàre and Cvek", citeKey: "Mejàre and Cvek|1993", pmid: "8143574",
+        evidence: "case-series", stance: "pro",
+        finding: "Partial pulpotomy in 37 young permanent molars with cariously exposed pulps showed ~90% success at 24–140 months — the first signal that partial pulpotomy could work for carious exposures, not just trauma." },
+      { year: 1996, author: "Matsuo", citeKey: "Matsuo|1996", pmid: "9198445",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Clinical study of direct pulp capping identified bleeding time >1 minute as a predictor of failure. One of the first papers to formalize hemostasis as a selection criterion for VPT candidates." },
+      { year: 2000, author: "Barthel", citeKey: "Barthel|2000", pmid: "11199794",
+        evidence: "cohort", stance: "con",
+        finding: "10-year follow-up of direct pulp capping with calcium hydroxide showed only 37% survival. Historically cited as evidence 'VPT doesn't work long-term,' but in retrospect reflects the limits of CaOH as a cap material — a key motivator for the MTA/bioceramic switch." },
+      { year: 2009, author: "Eghbal", citeKey: "Eghbal|2009", pmid: "19335509",
+        evidence: "case-series", stance: "pro",
+        finding: "Histologic evidence of dentin bridge formation and inflammation resolution after MTA pulpotomy in mature molars with irreversible pulpitis — the biological proof-of-concept that launched the modern full-pulpotomy RCTs." },
+      { year: 2010, author: "Mente", citeKey: "Mente|2010", pmid: "20416424",
+        evidence: "cohort", stance: "pro",
+        finding: "149 direct pulp caps: 80.5% success with MTA vs 59% with calcium hydroxide over ~27 months — clinical confirmation that the cap material matters at least as much as the technique." },
+      { year: 2011, author: "Aguilar and Linsuwanont", citeKey: "Aguilar and Linsuwanont|2011", pmid: "21496652",
+        evidence: "sr-meta", stance: "pro",
+        finding: "Systematic review of VPT in permanent teeth with carious exposure: pooled success 72.9% (direct pulp cap), 99.4% (partial pulpotomy), 99.3% (full pulpotomy). First aggregate signal that pulpotomy may outperform direct pulp capping." },
+      { year: 2013, author: "Asgary", citeKey: "Asgary|2013", pmid: "23712823",
+        evidence: "rct", stance: "pro",
+        finding: "Multi-center RCT: CEM pulpotomy vs. RCT in mature molars with established irreversible pulpitis — no statistically significant difference in clinical or radiographic outcomes at 5 years. First RCT to directly challenge the 'irreversible = RCT' dogma." },
+      { year: 2013, author: "Hilton", citeKey: "Hilton|2013", pmid: "23690353",
+        evidence: "rct", stance: "nuanced",
+        finding: "Northwest PRECEDENT practice-based RCT: MTA beats calcium hydroxide for direct pulp capping at 24 months (failure 19.7% vs 31.5%). A pragmatic 'real dental office' trial that cemented MTA as the preferred DPC material." },
+      { year: 2017, author: "Qudeimat", citeKey: "Qudeimat|2017", pmid: "26841969",
+        evidence: "cohort", stance: "pro",
+        finding: "MTA pulpotomy in 23 mature molars with carious exposures and irreversible pulpitis: 92.7% success at 3 years — added to the growing body of evidence that MTA pulpotomy can rescue inflamed mature pulps." },
+      { year: 2018, author: "Taha", citeKey: "Taha|2018", pmid: "29397003",
+        evidence: "rct", stance: "pro",
+        finding: "Prospective trial of full pulpotomy with MTA in 52 symptomatic mature molars with established irreversible pulpitis: 92.7% clinical + 85.5% radiographic success at 12 months — now the modern reference for 'pulpotomy can save irreversibly inflamed pulps.'" },
+      { year: 2019, author: "Duncan", citeKey: "Duncan|2019", pmid: "30664240",
+        evidence: "expert", stance: "pro",
+        finding: "ESE position statement on deep caries and pulp exposure: full pulpotomy is endorsed as a legitimate treatment option for cariously exposed mature permanent teeth when bleeding is controllable. The formal consensus that moved pulpotomy from experimental to mainstream in Europe." },
+      { year: 2019, author: "Cushley", citeKey: "Cushley|2019", pmid: "31229496",
+        evidence: "sr-meta", stance: "pro",
+        finding: "Systematic review of pulpotomy in cariously exposed mature permanent teeth: pooled success 97.4% at 1 year and 92.2% at ≥2 years. Strongest aggregate signal to date for the long-term viability of MTA/bioceramic pulpotomy." },
+      { year: 2022, author: "Taha", citeKey: "Taha|2022", pmid: "35152464",
+        evidence: "cohort", stance: "pro",
+        finding: "Long-term follow-up of the Taha 2018 full-pulpotomy cohort at 3+ years: success rates held in the high 80s% — first clinical signal that modern pulpotomy durability extends beyond the 1-year mark." },
+    ],
+  },
+
+  {
+    id: "patency",
+    title: "To patency or not to patency?",
+    question: "Should a small patency file be passed through the apical foramen during cleaning and shaping, or does it extrude debris and transport the canal?",
+    tags: ["apical patency", "cleaning and shaping", "working length", "extrusion"],
+    consensus2026: "Patency is now the default teaching at most academic programs, on the theory that a #10 or #15 file passed just beyond the foramen helps maintain working length, prevent blockage, and improve apical debridement — without meaningful loss of apical constriction when performed with small instruments. The strongest clinical signal (Arias 2009) links patency to less post-op pain. But Vera 2012's histobacteriologic work made clear that patency does not, by itself, eliminate residual biofilm from the apical third. The living debate is no longer 'patency yes/no' but 'how often, with what file size, and how aggressively.' Tinaz 2005 remains a standing reminder that disrupting the apical constriction increases extrusion risk, and the consensus is to use patency judiciously — not as aggressive over-instrumentation.",
+    entries: [
+      { year: 1997, author: "Cailleteau and Mullaney", citeKey: "Cailleteau and Mullaney|1997", pmid: "9545951",
+        evidence: "expert", stance: "nuanced",
+        finding: "Survey of US dental schools found 48% taught apical patency while the majority did not — a snapshot of just how divided the profession was on this technique, and one of the first times 'patency' was formally surveyed." },
+      { year: 2002, author: "Goldberg and Massone", citeKey: "Goldberg and Massone|2002", pmid: "12126377",
+        evidence: "case-series", stance: "con",
+        finding: "In vitro study linking patency file use to apical transportation and loss of the apical constriction when larger-size patency files were used — a foundational paper for the 'patency risks transportation' camp." },
+      { year: 2005, author: "Tinaz", citeKey: "Tinaz|2005", pmid: "15980716",
+        evidence: "case-series", stance: "con",
+        finding: "In vitro showed that disrupting the apical constriction increases apical extrusion of debris — the mechanistic paper most often cited against aggressive patency use." },
+      { year: 2009, author: "Arias", citeKey: "Arias|2009", pmid: "19166770",
+        evidence: "rct", stance: "pro",
+        finding: "Clinical RCT: patency file use was associated with significantly less post-operative pain at 24 hours compared to non-patency technique. The first high-quality clinical signal favoring patency." },
+      { year: 2012, author: "Vera", citeKey: "Vera|2012", pmid: "22980174",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Histobacteriologic study of necrotic teeth: even with patency and thorough irrigation, residual bacteria and biofilm persisted in the apical third of most canals — a reality check that patency alone is not a disinfection strategy." },
+      { year: 1989, author: "Buchanan", citeKey: "Buchanan|1989", pmid: null,
+        evidence: "expert", stance: "pro",
+        finding: "(Dent Today 1989) The paper that coined 'patency file' as a distinct technique — a foundational opinion piece, not an experimental study, but every modern patency discussion traces back to it." },
+      { year: 2020, author: "Silva", citeKey: "Silva|2020", pmid: "33219876",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Modern micro-CT/biofilm work reinforced that anatomic complexity at the apical third limits what any patency file can reach — patency helps maintain length but does not scrub biofilm off apical dentin." },
+    ],
+  },
+
+  {
+    id: "naocl-concentration",
+    title: "High-concentration NaOCl — worth it?",
+    question: "Is 5.25–6% sodium hypochlorite meaningfully more effective than lower concentrations (1–3%), or are contact time and volume the real drivers?",
+    tags: ["sodium hypochlorite", "irrigation", "concentration", "disinfection"],
+    consensus2026: "The field has moved from 'higher is always better' to a nuanced 'contact time and volume matter more than concentration — until they don't.' At equal volume and contact time, low-concentration NaOCl (1–3%) achieves comparable in-vivo bacterial reductions to 5.25% in clinical studies (Siqueira 2000, Gomes 2001, Baumgartner 1992). But for tissue dissolution, biofilm disruption, and rapid antimicrobial kill, higher concentrations remain superior (Clegg 2006, Retamozo 2010, Stojicic 2010). Most academic programs and endodontists still teach 5.25–6% as the default (Dutner 2012), trading modest cytotoxicity and accident-risk headroom for broader safety margins. The debate now lives in tissue safety and accident mitigation, not efficacy.",
+    entries: [
+      { year: 1992, author: "Baumgartner and Cuenin", citeKey: "Baumgartner and Cuenin|1992", pmid: "1298800",
+        evidence: "case-series", stance: "nuanced",
+        finding: "In vitro comparison of 5.25%, 2.5%, 1.0%, and 0.5% NaOCl for smear layer removal showed minimal difference across concentrations — one of the first papers to suggest concentration may matter less than assumed for the mechanical cleanup role." },
+      { year: 2000, author: "Siqueira", citeKey: "Siqueira|2000", pmid: "11199749",
+        evidence: "rct", stance: "nuanced",
+        finding: "Clinical trial of 1% vs 2.5% vs 5.25% NaOCl on necrotic canals: all three concentrations achieved comparable bacterial reduction after mechanical instrumentation and irrigation. The canonical clinical reference for 'low NaOCl can work.'" },
+      { year: 2001, author: "Gomes", citeKey: "Gomes|2001", pmid: "11556507",
+        evidence: "case-series", stance: "nuanced",
+        finding: "In vitro antimicrobial testing of NaOCl at 0.5%, 1%, 2.5%, 4%, and 5.25% against E. faecalis: all concentrations killed bacteria eventually, but higher concentrations acted faster. Time became the key variable." },
+      { year: 2006, author: "Zehnder", citeKey: "Zehnder|2006", pmid: "16631834",
+        evidence: "expert", stance: "nuanced",
+        finding: "Landmark narrative review of root canal irrigants that reframed the debate: at equal exposure, lower NaOCl concentrations are clinically effective, but higher concentrations buy time and tissue-dissolution headroom. Shifted thinking toward 'dose = concentration × time × volume.'" },
+      { year: 2006, author: "Clegg", citeKey: "Clegg|2006", pmid: "16631843",
+        evidence: "case-series", stance: "pro",
+        finding: "In vitro biofilm model: only 6% NaOCl physically disrupted and killed apical dentin biofilms. 1% and 3% left intact biofilm — the counterpoint evidence that for biofilm removal, concentration does matter." },
+      { year: 2010, author: "Retamozo", citeKey: "Retamozo|2010", pmid: "20171375",
+        evidence: "case-series", stance: "pro",
+        finding: "Minimum contact time needed to predictably eliminate E. faecalis: 40 min at 1.3% vs ~1 min at 5.25%. A clean demonstration that concentration dramatically compresses the required contact time." },
+      { year: 2012, author: "Dutner", citeKey: "Dutner|2012", pmid: "22152617",
+        evidence: "expert", stance: "nuanced",
+        finding: "Survey of ~500 US endodontists: most used 5.25–6% NaOCl as default, with great variation in contact time and volume. Documented the gap between 'what the literature supports' and 'what the profession actually uses.'" },
+      { year: 2010, author: "Stojicic", citeKey: "Stojicic|2010", pmid: "20951294",
+        evidence: "case-series", stance: "pro",
+        finding: "Tissue dissolution experiments: dissolution rate scaled roughly linearly with NaOCl concentration — a clear win for higher concentrations when the goal is organic debris removal, not just bacterial kill." },
+    ],
+  },
+
+  {
+    id: "irrigant-activation",
+    title: "Irrigant activation — which method is enough?",
+    question: "Does activating the final irrigant meaningfully improve disinfection, and if so, is passive ultrasonic enough or do sonic, laser, or multisonic approaches justify their added cost?",
+    tags: ["irrigant activation", "ultrasonic", "laser", "GentleWave", "XP-endo"],
+    consensus2026: "Activation in some form is now standard-of-care for the final rinse — un-activated syringe irrigation leaves too much of the apical third untouched (Boutsioukis's fluid-dynamic work made this definitive). Passive ultrasonic irrigation (PUI) remains the most evidence-backed and widely available activation technique (van der Sluis 2007, Virdee 2018 SR). Newer modalities — XP-endo Finisher, GentleWave multisonic, PIPS/SWEEPS laser — each show in-vitro superiority on at least one metric (biofilm removal, smear layer, isthmus debridement), but clinical-outcome RCTs comparing activation modalities against each other on tooth survival or healing rates remain sparse. The consensus is 'activate — ideally with ultrasonics — and anything beyond PUI is a luxury upgrade whose outcome benefit has yet to be convincingly shown at the clinical endpoint.'",
+    entries: [
+      { year: 2007, author: "van der Sluis", citeKey: "van der Sluis|2007", pmid: "17442017",
+        evidence: "sr-meta", stance: "pro",
+        finding: "Systematic review: passive ultrasonic irrigation (PUI) is more effective than syringe irrigation alone for removing debris and smear layer. The foundational SR that established PUI as the benchmark activation method." },
+      { year: 2007, author: "Plotino", citeKey: "Plotino|2007", pmid: "17258622",
+        evidence: "expert", stance: "pro",
+        finding: "Influential review of ultrasonics in endodontics — established the physical and clinical basis for why ultrasonic activation outperformed static irrigation and rationalized its uptake." },
+      { year: 2010, author: "Boutsioukis", citeKey: "Boutsioukis|2010", pmid: "20618877",
+        evidence: "case-series", stance: "pro",
+        finding: "Computational fluid dynamics showed that conventional needle irrigation replaces the irrigant only ~1–1.5 mm beyond the needle tip — mechanistic proof that static irrigation under-treats the apical third and that some form of activation is needed." },
+      { year: 2010, author: "Paragliola", citeKey: "Paragliola|2010", pmid: "20113791",
+        evidence: "case-series", stance: "pro",
+        finding: "Final rinse comparison: ultrasonic and sonic activation both significantly improved debris removal from isthmuses and apical thirds compared to static syringe irrigation." },
+      { year: 2010, author: "Klyn", citeKey: "Klyn|2010", pmid: "20647098",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Head-to-head comparison of ultrasonic vs. sonic (EndoActivator) vs. manual dynamic activation — ultrasonic was best for smear layer, but sonic was close and simpler to deploy." },
+      { year: 2012, author: "DiVito", citeKey: "DiVito|2012", pmid: "21120568",
+        evidence: "case-series", stance: "pro",
+        finding: "Photon-induced photoacoustic streaming (PIPS) Er:YAG laser activation: superior debris and smear layer removal in vitro — the launching paper for the laser activation era." },
+      { year: 2015, author: "Molina", citeKey: "Molina|2015", pmid: "26275599",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Comparison of multiple activation techniques showed modality-specific strengths: no single device dominated across all metrics (debris, smear layer, biofilm, isthmus). Early signal that 'activate something' matters more than 'activate with X.'" },
+      { year: 2016, author: "Charara", citeKey: "Charara|2016", pmid: "26547720",
+        evidence: "case-series", stance: "pro",
+        finding: "GentleWave multisonic system removed significantly more biofilm from the apical 3 mm of mesial canals in extracted mandibular molars than PUI — the in-vitro data point most commonly used to justify multisonic's cost." },
+      { year: 2017, author: "Bao", citeKey: "Bao|2017", pmid: "27939826",
+        evidence: "case-series", stance: "nuanced",
+        finding: "XP-endo Finisher significantly improved debris removal from oval canals compared to PUI in extracted teeth. Added a low-cost adjunct option to the activation toolkit." },
+      { year: 2018, author: "Virdee", citeKey: "Virdee|2018", pmid: "29178166",
+        evidence: "sr-meta", stance: "pro",
+        finding: "Systematic review of 47 studies on activation for root canal disinfection: PUI and laser activation consistently improved bacterial reduction vs. syringe irrigation, but clinical-outcome data (healing, survival) remained scarce. The strongest aggregate signal to date — with the explicit caveat that clinical endpoints haven't caught up to in-vitro ones." },
+      { year: 2021, author: "Boutsioukis", citeKey: "Boutsioukis|2021", pmid: "19460000",
+        evidence: "expert", stance: "nuanced",
+        finding: "Updated narrative on irrigation fluid dynamics: concluded that any form of activation is superior to static irrigation, but existing evidence does not yet justify ranking one activation modality above another at the clinical-outcome level." },
+    ],
+  },
+
+  {
+    id: "single-vs-multi-visit",
+    title: "Single-visit vs. multi-visit for necrotic teeth",
+    question: "For necrotic teeth with apical periodontitis, does completing RCT in one visit match the healing rate of multi-visit treatment with an inter-appointment calcium hydroxide dressing?",
+    tags: ["single-visit", "multi-visit", "calcium hydroxide", "apical periodontitis"],
+    consensus2026: "Across 20+ years of RCTs, cohort studies, meta-analyses, and two Cochrane reviews, healing rates for single-visit and multi-visit RCT of necrotic teeth with apical periodontitis are statistically indistinguishable — hovering in the 75–90% range for both approaches at 1–5 years (Figini, Su, Manfredi, Schwendicke, Penesis, Peters & Wesselink, Paredes-Vieyra). The historical argument for multi-visit rested on Sjögren 1997's finding that intracanal bacteria at the time of obturation predicted failure, and that CaOH between visits reduced those counts. Modern evidence confirms bacterial reduction with CaOH but fails to translate it into a measurable healing advantage. The living debate has moved to flare-up rates (slightly higher for single-visit in some meta-analyses but comparable in others), patient convenience, cost-effectiveness, and case selection — not whether single-visit 'works' at the biologic level. Multi-visit remains defensible when bleeding/exudate cannot be controlled or anatomy demands staged care.",
+    entries: [
+      { year: 1997, author: "Sjögren", citeKey: "Sjögren|1997", pmid: "9477818",
+        evidence: "cohort", stance: "con",
+        finding: "Prospective study: teeth obturated with positive bacterial cultures at the obturation visit healed significantly worse than those with negative cultures (68% vs 94% at 5 years). The foundational paper for the 'bacteria at obturation = failure' logic that drove two-visit protocols." },
+      { year: 1999, author: "Trope", citeKey: "Trope|1999", pmid: "10530259",
+        evidence: "rct", stance: "nuanced",
+        finding: "RCT comparing single-visit vs. two-visit (with CaOH) in necrotic teeth with apical periodontitis: CaOH between visits produced the best bacterial reduction, but 1-year healing rates did not differ significantly between protocols. First hint of the 'biologic vs outcome' gap." },
+      { year: 2000, author: "Weiger", citeKey: "Weiger|2000", pmid: "11307438",
+        evidence: "cohort", stance: "nuanced",
+        finding: "No significant difference in periapical healing between one- and two-visit treatment of necrotic teeth with apical periodontitis at 1+ years. One of the first clinical cohorts to show equivalence on the healing endpoint." },
+      { year: 2002, author: "Peters and Wesselink", citeKey: "Peters and Wesselink|2002", pmid: "12196219",
+        evidence: "rct", stance: "nuanced",
+        finding: "Randomized trial: no significant difference in periapical healing rates between one- and two-visit root canal treatment in teeth with apical periodontitis at 1.5+ years of follow-up." },
+      { year: 2008, author: "Penesis", citeKey: "Penesis|2008", pmid: "18291270",
+        evidence: "rct", stance: "nuanced",
+        finding: "RCT in necrotic teeth with apical periodontitis: one-visit RCT was comparable to two-visit RCT with CaOH at 12 months on clinical and radiographic outcomes. Added to the growing equivalence signal." },
+      { year: 2008, author: "Figini", citeKey: "Figini|2008", pmid: "18718362",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review and meta-analysis: no significant difference between single- and multi-visit treatment on radiographic success, with a small non-significant trend favoring single-visit. An early rigorous aggregate signal." },
+      { year: 2011, author: "Su", citeKey: "Su|2011", pmid: "21238790",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Meta-analysis of 14 RCTs: no significant difference in healing between one- and two-visit treatment. Slightly higher short-term post-operative pain in single-visit, but swelling and long-term outcomes equivalent." },
+      { year: 2012, author: "Paredes-Vieyra", citeKey: "Paredes-Vieyra|2012", pmid: "22892729",
+        evidence: "rct", stance: "pro",
+        finding: "RCT of 282 teeth with apical periodontitis: single-visit healing rate 90.3% vs 80.1% for two-visit at 2 years — one of the few trials showing single-visit trending better, though interpretation is confounded by protocol differences." },
+      { year: 2016, author: "Manfredi", citeKey: "Manfredi|2016", pmid: "27905673",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Cochrane systematic review: low-quality evidence of no significant difference in radiographic healing between single- and multi-visit treatment. Single-visit had slightly higher short-term swelling but comparable flare-up rates overall." },
+      { year: 2017, author: "Moreira", citeKey: "Moreira|2017", pmid: "28470953",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review and meta-analysis on single- vs. multi-visit focused on post-operative pain: essentially equivalent, with small differences disappearing by 72 hours. Closed another argument against single-visit." },
+      { year: 1998, author: "Sundqvist", citeKey: "Sundqvist|1998", pmid: "9474621",
+        evidence: "cohort", stance: "con",
+        finding: "Microbiologic study of failed endodontic treatment: residual bacteria (especially E. faecalis) strongly associated with persistent periapical lesions. Reinforced the rationale for thorough disinfection, often invoked in support of inter-appointment medication." },
+    ],
+  },
+];
+
+// ─── Abstract modal (ported from endo-guide.template.html) ─────────────────
+function nums(text) {
+  if (!text) return null;
+  const re = /(\d+(?:[.,]\d+)?(?:[–\-]\d+(?:[.,]\d+)?)?%|\d+(?:[.,]\d+)?-fold|\d+(?:[.,]\d+)?[×x](?=[\s,)])|p\s*[<>=≤≥]\s*0\.\d+|\bRR\s*=?\s*\d+(?:\.\d+)?|\bOR\s*=?\s*\d+(?:\.\d+)?|\d+(?:[.,]\d+)?)/g;
+  const parts = [];
+  let last = 0, m;
+  re.lastIndex = 0;
+  while ((m = re.exec(text))) {
+    if (m.index > last) parts.push(text.slice(last, m.index));
+    parts.push(<mark key={parts.length} className="abstract-num">{m[0]}</mark>);
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts.length ? parts : text;
+}
+
+function renderBody(text) {
+  if (!text) return null;
+  const labelRe = /\b(BACKGROUND|OBJECTIVE[S]?|AIM[S]?|PURPOSE|INTRODUCTION|METHODS?|MATERIALS\s+AND\s+METHODS?|RESULTS?|DISCUSSION|CONCLUSION[S]?|CLINICAL\s+(?:RELEVANCE|SIGNIFICANCE|IMPLICATIONS?))\s*:/gi;
+  const matches = [];
+  let lm;
+  labelRe.lastIndex = 0;
+  while ((lm = labelRe.exec(text))) {
+    matches.push({ label: lm[1].replace(/\s+/g, " ").toUpperCase(), start: lm.index, bodyStart: lm.index + lm[0].length });
+  }
+  if (matches.length >= 2) {
+    const sections = matches.map((m, i) => ({
+      label: m.label,
+      body: text.slice(m.bodyStart, matches[i + 1]?.start ?? text.length).trim(),
+    }));
+    return (
+      <div>
+        {sections.map((s, i) => {
+          const isConclusion = s.label.startsWith("CONCL");
+          const isMethods    = /^(METHODS?|MATERIALS)/.test(s.label);
+          return (
+            <div key={i} className={`mt-2.5 ${isConclusion ? "abstract-conclusion" : ""}`}>
+              <span className={`text-[10px] font-bold uppercase tracking-wider mr-1 ${isConclusion ? "text-green-700" : "text-slate-400"}`}>{s.label}:</span>
+              <span className={`text-[13px] leading-relaxed ${isConclusion ? "text-green-900" : isMethods ? "text-slate-500" : "text-slate-700"}`}>{nums(s.body)}</span>
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+  const concRe = /\bCONCLUSION[S]?\b/i;
+  const concMatch = concRe.exec(text);
+  if (concMatch && concMatch.index > text.length * 0.55) {
+    const before = text.slice(0, concMatch.index).trim();
+    const after  = text.slice(concMatch.index).replace(/^CONCLUSION[S]?[:\s.]*/i, "").trim();
+    return (
+      <>
+        <p className="text-[13px] leading-relaxed text-slate-700 mb-2">{nums(before)}</p>
+        <div className="abstract-conclusion">
+          <div className="text-[10px] font-bold uppercase tracking-wider text-green-700 mb-1">Conclusion</div>
+          <p className="text-[13px] leading-relaxed text-green-900">{nums(after)}</p>
+        </div>
+      </>
+    );
+  }
+  return <p className="text-[13px] leading-relaxed text-slate-700">{nums(text)}</p>;
+}
+
+function AbstractModal({ info, onClose }) {
+  useEffect(() => {
+    const h = e => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", h);
+    return () => window.removeEventListener("keydown", h);
+  }, [onClose]);
+
+  const { entry, abstract } = info;
+  const pmid       = abstract?.pmid || entry.pmid;
+  const hasContent = abstract?.status === "ok" && abstract?.abstract;
+
+  return (
+    <div className="abstract-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
+      <div className="abstract-panel">
+        <div className="abstract-header">
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1 min-w-0">
+              <h2 className="font-semibold text-slate-800 text-[15px] leading-snug">
+                {abstract?.title || `${entry.author} (${entry.year})`}
+              </h2>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1.5">
+                {abstract?.journal && <span className="text-xs text-slate-500 italic truncate max-w-xs">{abstract.journal}</span>}
+                {(abstract?.pub_year || entry.year) && <span className="text-xs text-slate-400 shrink-0">{abstract?.pub_year || entry.year}</span>}
+                {pmid
+                  ? <a href={`https://pubmed.ncbi.nlm.nih.gov/${pmid}/`} target="_blank" rel="noopener noreferrer"
+                       className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline shrink-0">PubMed ↗</a>
+                  : <span className="text-xs text-slate-300 shrink-0">No PubMed record</span>}
+              </div>
+            </div>
+            <button onClick={onClose} aria-label="Close"
+              className="shrink-0 text-slate-400 hover:text-slate-700 text-2xl leading-none -mt-0.5">×</button>
+          </div>
+        </div>
+
+        <div className="abstract-body">
+          {entry.finding && (
+            <div className="abstract-finding">
+              <div className="text-[10px] font-bold uppercase tracking-widest text-amber-700 mb-1.5">Timeline finding</div>
+              <p className="text-[13px] text-amber-900 leading-relaxed">{nums(entry.finding)}</p>
+            </div>
+          )}
+          {hasContent
+            ? renderBody(abstract.abstract)
+            : <p className="text-[13px] text-slate-400 italic mt-1">
+                {abstract?.status === "not_found"
+                  ? "No PubMed abstract is linked to this citation in the main guide."
+                  : "Abstract not available. Click PubMed ↗ above to view the original record."}
+              </p>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Timeline rail ──────────────────────────────────────────────────────────
+function TimelineRail({ entries, onDotClick }) {
+  if (entries.length === 0) {
+    return (
+      <div className="rail-wrap" style={{ padding: "1.5rem 0.5rem", color: "#94a3b8", fontSize: "0.85rem", textAlign: "center" }}>
+        No entries match this filter.
+      </div>
+    );
+  }
+  const years = entries.map(e => e.year);
+  const minY = Math.min(...years);
+  const maxY = Math.max(...years);
+  const span = Math.max(maxY - minY, 1);
+  const pctFor = y => ((y - minY) / span) * 100;
+
+  // Build year ticks every ~decade, then suppress any decade tick too close to the endpoints
+  const firstTick = Math.ceil(minY / 10) * 10;
+  const decadeTicks = [];
+  for (let y = firstTick; y <= maxY; y += 10) decadeTicks.push(y);
+  const minGap = 12; // percent of span; suppress decade ticks closer than this to endpoints
+  const filteredDecades = decadeTicks.filter(y => pctFor(y) > minGap && pctFor(y) < 100 - minGap);
+  const ticks = [minY, ...filteredDecades, maxY].filter((y, i, arr) => arr.indexOf(y) === i);
+
+  // Offset overlapping dots slightly by tracking counts per year bucket
+  const yearCount = {};
+  const byEntry = entries.map((e, i) => {
+    const key = e.year;
+    yearCount[key] = (yearCount[key] || 0) + 1;
+    return { ...e, _idx: i, _stackIndex: yearCount[key] - 1 };
+  });
+
+  return (
+    <div className="rail-wrap">
+      <div className="rail" style={{ width: "100%", minWidth: Math.max(600, entries.length * 60) + "px" }}>
+        <div className="rail-line" />
+        {ticks.map((y, i) => (
+          <React.Fragment key={"tick" + i}>
+            <div className="rail-tick" style={{ left: pctFor(y) + "%" }} />
+            <div className="rail-tick-label" style={{ left: pctFor(y) + "%" }}>{y}</div>
+          </React.Fragment>
+        ))}
+        {byEntry.map((e) => (
+          <button
+            key={e._idx}
+            type="button"
+            onClick={() => onDotClick(e._idx)}
+            title={`${e.year} · ${e.author} · ${STANCE_LABELS[e.stance]} · ${EVIDENCE_SHORT[e.evidence]}`}
+            className={`rail-dot stance-${e.stance} ev-${e.evidence}`}
+            style={{ left: pctFor(e.year) + "%", marginTop: (e._stackIndex * 12) + "px" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Entry card ─────────────────────────────────────────────────────────────
+function EntryCard({ entry, onOpenAbstract, cardRef, flash }) {
+  const hasAbstract = entry.citeKey || entry.pmid;
+  return (
+    <div ref={cardRef} className={`entry-card ${flash ? "flash" : ""}`}>
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="min-w-0">
+          <div className="entry-year">{entry.year}</div>
+          <div className="entry-author">{entry.author}</div>
+        </div>
+        <div className="flex gap-1.5 flex-wrap justify-end">
+          <span className={`pill pill-${entry.stance}`}>{STANCE_LABELS[entry.stance]}</span>
+          <span className={`pill pill-${entry.evidence}`}>{EVIDENCE_SHORT[entry.evidence]}</span>
+        </div>
+      </div>
+      <p className="entry-finding">{entry.finding}</p>
+      <div className="mt-2.5 flex justify-end">
+        {hasAbstract
+          ? <button className="abs-btn" onClick={() => onOpenAbstract(entry)}>Read abstract →</button>
+          : <span className="abs-btn abs-btn-disabled">No citation linked</span>}
+      </div>
+    </div>
+  );
+}
+
+// ─── Debate pane ────────────────────────────────────────────────────────────
+function DebatePane({ debate, abstractsMap, onOpenAbstract }) {
+  const [stanceFilter, setStanceFilter] = useState("all");
+  const [flashIdx, setFlashIdx] = useState(null);
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    setStanceFilter("all");
+    setFlashIdx(null);
+    cardRefs.current = [];
+    // Scroll main pane to top when debate changes
+    const main = document.getElementById("main-pane");
+    if (main) main.scrollTo({ top: 0 });
+  }, [debate.id]);
+
+  const sortedEntries = useMemo(() => [...debate.entries].sort((a, b) => a.year - b.year), [debate]);
+
+  const filteredEntries = useMemo(() => {
+    if (stanceFilter === "all") return sortedEntries;
+    return sortedEntries.filter(e => e.stance === stanceFilter);
+  }, [sortedEntries, stanceFilter]);
+
+  const handleDotClick = useCallback((idx) => {
+    const el = cardRefs.current[idx];
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    setFlashIdx(idx);
+    setTimeout(() => setFlashIdx(null), 1300);
+  }, []);
+
+  const stances = ["all", "pro", "con", "nuanced"];
+
+  return (
+    <div className="px-4 md:px-8 py-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">{debate.title}</h1>
+      <p className="text-sm md:text-base text-slate-600 mt-2 leading-relaxed">{debate.question}</p>
+
+      <div className="consensus-card">
+        <div className="consensus-label">Where the field sits — 2026</div>
+        <p className="consensus-text">{debate.consensus2026}</p>
+      </div>
+
+      <div className="flex items-center gap-2 flex-wrap mb-2">
+        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider mr-1">Filter</span>
+        {stances.map(s => (
+          <button
+            key={s}
+            type="button"
+            className={`chip ${stanceFilter === s ? `chip-active-${s}` : ""}`}
+            onClick={() => setStanceFilter(s)}
+          >
+            {s === "all" ? "All" : STANCE_LABELS[s]}
+            {s !== "all" && (
+              <span className="ml-1.5 opacity-75">
+                ({sortedEntries.filter(e => e.stance === s).length})
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      <TimelineRail entries={filteredEntries} onDotClick={handleDotClick} />
+
+      <div className="legend mb-4 pl-1">
+        <span><span className="legend-dot stance-pro" style={{ width: 12, height: 12 }}></span>Pro</span>
+        <span><span className="legend-dot stance-con" style={{ width: 12, height: 12 }}></span>Con</span>
+        <span><span className="legend-dot stance-nuanced" style={{ width: 12, height: 12 }}></span>Nuanced</span>
+        <span className="text-slate-400">·</span>
+        <span>Dot size = evidence strength (SR/meta &gt; RCT &gt; cohort &gt; case series &gt; expert)</span>
+      </div>
+
+      <div>
+        {filteredEntries.map((entry, i) => (
+          <EntryCard
+            key={entry.year + "-" + entry.author + "-" + i}
+            entry={entry}
+            onOpenAbstract={onOpenAbstract}
+            cardRef={el => (cardRefs.current[i] = el)}
+            flash={flashIdx === i}
+          />
+        ))}
+      </div>
+
+      {filteredEntries.length === 0 && (
+        <div className="text-center text-slate-400 text-sm py-6">No entries match this filter.</div>
+      )}
+    </div>
+  );
+}
+
+// ─── Sidebar (desktop) + select (mobile) ────────────────────────────────────
+function Sidebar({ debates, activeId, onSelect }) {
+  return (
+    <aside className="hidden md:block border-r border-slate-200 bg-white overflow-y-auto" style={{ width: 260, flexShrink: 0 }}>
+      <div className="px-3 py-4">
+        <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-2 mb-2">Debates</div>
+        {debates.map(d => (
+          <div
+            key={d.id}
+            className={`debate-link ${d.id === activeId ? "active" : ""}`}
+            onClick={() => onSelect(d.id)}
+          >
+            {d.title}
+            <span className="debate-sub">{d.entries.length} studies · {Math.min(...d.entries.map(e => e.year))}–{Math.max(...d.entries.map(e => e.year))}</span>
+          </div>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
+function MobileSelect({ debates, activeId, onSelect }) {
+  return (
+    <div className="md:hidden px-3 pt-3">
+      <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Debate</label>
+      <select
+        className="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        value={activeId}
+        onChange={e => onSelect(e.target.value)}
+      >
+        {debates.map(d => (
+          <option key={d.id} value={d.id}>{d.title}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+// ─── Header ─────────────────────────────────────────────────────────────────
+function Header() {
+  return (
+    <header className="bg-white border-b shadow-sm shrink-0">
+      <div className="flex items-center justify-between px-3 md:px-5 h-14">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="text-indigo-700 font-bold tracking-tight text-sm shrink-0">Endo Debates</div>
+          <span className="text-slate-300 hidden sm:inline">·</span>
+          <div className="text-slate-500 text-xs truncate hidden sm:inline">Evidence timelines for the major controversies</div>
+        </div>
+        <a href="endo-guide.html" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline shrink-0">← Endo Guide</a>
+      </div>
+    </header>
+  );
+}
+
+// ─── Root app ───────────────────────────────────────────────────────────────
+function DebatesApp() {
+  const [activeId, setActiveId] = useState(DEBATES[0].id);
+  const [abstractsMap, setAbstractsMap] = useState(null);
+  const [modalInfo, setModalInfo] = useState(null);
+
+  useEffect(() => {
+    fetch("abstracts.json", { cache: "no-store" })
+      .then(r => r.ok ? r.json() : {})
+      .then(json => setAbstractsMap(json || {}))
+      .catch(() => setAbstractsMap({}));
+  }, []);
+
+  const activeDebate = useMemo(() => DEBATES.find(d => d.id === activeId) || DEBATES[0], [activeId]);
+
+  const onOpenAbstract = useCallback((entry) => {
+    const abstract = (abstractsMap && entry.citeKey && abstractsMap[entry.citeKey]) || null;
+    setModalInfo({ entry, abstract });
+  }, [abstractsMap]);
+
+  const onClose = useCallback(() => setModalInfo(null), []);
+
+  return (
+    <div className="flex flex-col h-screen">
+      <Header />
+      <div className="flex flex-1 min-h-0">
+        <Sidebar debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
+        <main id="main-pane" className="flex-1 overflow-y-auto">
+          <MobileSelect debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
+          <DebatePane debate={activeDebate} abstractsMap={abstractsMap} onOpenAbstract={onOpenAbstract} />
+        </main>
+      </div>
+      {modalInfo && <AbstractModal info={modalInfo} onClose={onClose} />}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<DebatesApp />);
+</script>
+</body>
+</html>

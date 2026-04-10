@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8080", "--directory", "/Users/nathan/Library/Mobile Documents/com~apple~CloudDocs/Academic-Professional/Endodontics/endo-guide"],
       "port": 8080
+    },
+    {
+      "name": "Endo Debates (project preview)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "/Users/nathan/Projects/treatment-rationale-guide"],
+      "port": 8765
     }
   ]
 }
