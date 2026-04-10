@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cochrane Endodontics — Evidence Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  html, body { height: 100%; }
+  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+
+  /* Category chips */
+  .chip { padding: 0.22rem 0.75rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 500; border: 1px solid #e2e8f0; background: #fff; color: #475569; cursor: pointer; transition: all 0.12s; }
+  .chip:hover { background: #f8fafc; }
+  .chip-active { background: #0e7490; color: #fff; border-color: #0e7490; }
+
+  /* Category colors */
+  .cat-treatment   { background: #eef2ff; color: #4338ca; border-color: #c7d2fe; }
+  .cat-disinfection{ background: #fff7ed; color: #c2410c; border-color: #fed7aa; }
+  .cat-materials   { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+  .cat-restoration { background: #faf5ff; color: #7c3aed; border-color: #e9d5ff; }
+  .cat-pulp        { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+  .cat-trauma      { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+  .cat-instrumentation { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+
+  /* Cochrane badge */
+  .cochrane-badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.18rem 0.6rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.03em; background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
+
+  /* Status badges */
+  .badge-current   { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+  .badge-updated   { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+  .badge-withdrawn { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+  /* Timeline rail */
+  .rail-wrap { position: relative; padding: 2.2rem 1.5rem 1.2rem; overflow-x: auto; overflow-y: visible; scrollbar-width: thin; }
+  .rail { position: relative; height: 72px; }
+  .rail-line { position: absolute; left: 0; right: 0; top: 32px; height: 3px; background: linear-gradient(to right, #0e7490 0%, #0e7490 100%); opacity: 0.3; }
+  .rail-tick { position: absolute; top: 38px; width: 1px; height: 9px; background: #94a3b8; }
+  .rail-tick-label { position: absolute; top: 50px; font-size: 0.65rem; color: #94a3b8; transform: translateX(-50%); white-space: nowrap; }
+  .rail-dot { position: absolute; top: 32px; border-radius: 9999px; cursor: pointer; transform: translate(-50%, -50%); transition: transform 0.12s, box-shadow 0.12s; border: 2.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); width: 16px; height: 16px; }
+  .rail-dot:hover { transform: translate(-50%, -50%) scale(1.3); z-index: 2; }
+  .rail-dot-withdrawn { opacity: 0.45; }
+
+  /* Category dot colors */
+  .dot-treatment    { background: #4338ca; }
+  .dot-disinfection { background: #c2410c; }
+  .dot-materials    { background: #15803d; }
+  .dot-restoration  { background: #7c3aed; }
+  .dot-pulp         { background: #b45309; }
+  .dot-trauma       { background: #0369a1; }
+  .dot-instrumentation { background: #64748b; }
+
+  /* Review cards */
+  .review-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; transition: box-shadow 0.15s, border-color 0.15s; }
+  .review-card:hover { box-shadow: 0 3px 12px rgba(15,23,42,0.07); border-color: #cbd5e1; }
+  .review-card.flash { animation: cardFlash 1.2s ease; }
+  @keyframes cardFlash {
+    0%   { box-shadow: 0 0 0 0 rgba(125,211,252,0); border-color: #e2e8f0; }
+    15%  { box-shadow: 0 0 0 4px rgba(125,211,252,0.6); border-color: #7dd3fc; }
+    100% { box-shadow: 0 0 0 0 rgba(125,211,252,0); border-color: #e2e8f0; }
+  }
+  .review-year { font-size: 1.1rem; font-weight: 700; color: #0e7490; letter-spacing: -0.01em; }
+  .review-title { font-size: 0.97rem; font-weight: 600; color: #1e293b; margin-top: 0.2rem; line-height: 1.45; }
+  .review-authors { font-size: 0.82rem; color: #64748b; margin-top: 0.2rem; }
+  .verdict-box { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; border-left: 4px solid #0369a1; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.85rem; }
+  .verdict-label { font-size: 0.67rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #0369a1; margin-bottom: 0.35rem; }
+  .verdict-text { font-size: 0.875rem; line-height: 1.6; color: #0c4a6e; }
+
+  /* Cochrane header banner */
+  .cochrane-banner { background: linear-gradient(135deg, #0c4a6e 0%, #0369a1 100%); color: #fff; padding: 1.5rem 1.75rem; }
+
+  /* Legend */
+  .legend { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; font-size: 0.7rem; color: #64748b; align-items: center; }
+  .legend-dot { display: inline-block; border-radius: 9999px; width: 10px; height: 10px; border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.18); vertical-align: middle; margin-right: 0.3rem; }
+
+  /* Scrollbar */
+  .rail-wrap::-webkit-scrollbar { height: 6px; }
+  .rail-wrap::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 3px; }
+
+  /* Article no badge */
+  .art-no { font-size: 0.7rem; font-family: monospace; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; border-radius: 4px; padding: 0.1rem 0.4rem; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+const { useState, useMemo, useEffect, useRef, useCallback } = React;
+
+const CATEGORIES = {
+  "treatment":      { label: "Treatment outcomes",   dotClass: "dot-treatment",    catClass: "cat-treatment" },
+  "disinfection":   { label: "Disinfection & irrigation", dotClass: "dot-disinfection", catClass: "cat-disinfection" },
+  "materials":      { label: "Materials & obturation", dotClass: "dot-materials",   catClass: "cat-materials" },
+  "restoration":    { label: "Restoration",           dotClass: "dot-restoration",  catClass: "cat-restoration" },
+  "pulp":           { label: "Pulp treatment",        dotClass: "dot-pulp",         catClass: "cat-pulp" },
+  "trauma":         { label: "Traumatic injuries",    dotClass: "dot-trauma",       catClass: "cat-trauma" },
+  "instrumentation":{ label: "Instrumentation",       dotClass: "dot-instrumentation", catClass: "cat-instrumentation" },
+};
+
+// status: "current" | "updated" (a newer version exists, this is historical) | "withdrawn"
+const REVIEWS = [
+  {
+    id: "single-multi-2007",
+    year: 2007,
+    title: "Single versus multiple visits for endodontic treatment of permanent teeth",
+    shortTitle: "Single vs multi-visit RCT (pub2)",
+    authors: "Figini L, Lodi G, Gorni F, Gagliani M",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD005296",
+    pubVersion: "pub2",
+    pmid: "18718362",
+    doi: "10.1002/14651858.CD005296.pub2",
+    category: "treatment",
+    status: "updated",
+    verdict: "First Cochrane synthesis on this question: no statistically significant difference in outcome between single- and multiple-visit root canal treatment of vital or non-vital teeth. Quality of evidence was low.",
+  },
+  {
+    id: "posts-2007",
+    year: 2007,
+    title: "Root canal posts for the restoration of root-filled teeth",
+    shortTitle: "Root canal posts",
+    authors: "Bolla M, Muller-Bolla M, Borg C, et al.",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD004623",
+    pubVersion: "pub2",
+    pmid: "17253516",
+    doi: "10.1002/14651858.CD004623.pub2",
+    category: "restoration",
+    status: "withdrawn",
+    verdict: "Only two small trials (317 participants) met inclusion criteria; insufficient evidence to determine whether metal or fibre post systems have different clinical failure rates. Review subsequently withdrawn (2016) as out of date.",
+  },
+  {
+    id: "instrumentation-2007",
+    year: 2007,
+    title: "Hand and ultrasonic instrumentation for orthograde root canal treatment of permanent teeth",
+    shortTitle: "Hand vs ultrasonic instrumentation",
+    authors: "Sequeira P, et al.",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD006384",
+    pubVersion: "pub2",
+    pmid: null,
+    doi: "10.1002/14651858.CD006384.pub2",
+    category: "instrumentation",
+    status: "withdrawn",
+    verdict: "Insufficient evidence to confirm that ultrasonic instrumentation is clinically superior to hand instrumentation for root canal shaping or treatment outcomes. Withdrawn (2019) due to low usage and resource constraints.",
+  },
+  {
+    id: "irrigants-2012",
+    year: 2012,
+    title: "Irrigants for non-surgical root canal treatment in mature permanent teeth",
+    shortTitle: "Irrigants for non-surgical RCT",
+    authors: "Fedorowicz Z, Nasser M, Sequeira-Byron P, de Souza RF, Carter B, Heft M",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD008948",
+    pubVersion: "pub2",
+    pmid: "22972129",
+    doi: "10.1002/14651858.CD008948.pub2",
+    category: "disinfection",
+    status: "current",
+    verdict: "Insufficient reliable evidence to confirm the superiority of any one irrigant or concentration. Higher-concentration NaOCl and a final CHX rinse may reduce bacterial counts more effectively, but overall evidence quality was low; post-operative pain did not differ meaningfully between irrigants.",
+  },
+  {
+    id: "root-fracture-2012",
+    year: 2012,
+    title: "Interventions for treating traumatised permanent front teeth: root fracture",
+    shortTitle: "TDI: root fracture",
+    authors: "Al-Hennawi D, Day P, Duggal M",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD005408",
+    pubVersion: "pub2",
+    pmid: null,
+    doi: "10.1002/14651858.CD005408.pub2",
+    category: "trauma",
+    status: "current",
+    verdict: "No RCTs were identified. Evidence regarding optimal management (splinting duration, endodontic intervention timing) of horizontal/oblique root fractures is entirely absent from the clinical trial literature; clinical guidelines rest on case series and expert opinion.",
+  },
+  {
+    id: "luxated-2013",
+    year: 2013,
+    title: "Interventions for treating traumatised permanent front teeth: luxated teeth",
+    shortTitle: "TDI: luxated teeth",
+    authors: "Belmonte FM, Flores MT, Andersson L, Cohenca N",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD006203",
+    pubVersion: "pub2",
+    pmid: "23633334",
+    doi: "10.1002/14651858.CD006203.pub2",
+    category: "trauma",
+    status: "current",
+    verdict: "No RCTs were identified for any intervention to treat intruded, extruded, or laterally luxated permanent front teeth. Current clinical guidelines rest entirely on case series and expert opinion.",
+  },
+  {
+    id: "crowns-2015",
+    year: 2015,
+    title: "Single crowns versus conventional fillings for the restoration of root-filled teeth",
+    shortTitle: "Crowns vs fillings for root-filled teeth",
+    authors: "Sequeira-Byron P, Fedorowicz Z, Carter B, Nasser M, Alrowaili EF",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD009109",
+    pubVersion: "pub3",
+    pmid: "26403154",
+    doi: "10.1002/14651858.CD009109.pub3",
+    category: "restoration",
+    status: "current",
+    verdict: "Only one study met inclusion criteria; evidence is insufficient to determine whether root-filled teeth are better restored with a crown or a direct filling. The comparative clinical performance of the two options remains clinically unknown.",
+  },
+  {
+    id: "ankylosis-2015",
+    year: 2015,
+    title: "Interventions for treating traumatised ankylosed permanent front teeth",
+    shortTitle: "TDI: ankylosed teeth",
+    authors: "de Souza RF, Travess H, Newton T, Marchesan MA",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD007820",
+    pubVersion: "pub3",
+    pmid: "26677103",
+    doi: "10.1002/14651858.CD007820.pub3",
+    category: "trauma",
+    status: "current",
+    verdict: "No RCTs were identified; the most effective approach for managing dental ankylosis following trauma cannot be determined. High-quality trials are urgently needed.",
+  },
+  {
+    id: "retreatment-2016",
+    year: 2016,
+    title: "Endodontic procedures for retreatment of periapical lesions",
+    shortTitle: "Retreatment: surgical vs. non-surgical",
+    authors: "Del Fabbro M, Corbella S, Sequeira-Byron P, Tsesis I, Rosen E, Lolato A, Taschieri S",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD005511",
+    pubVersion: "pub3",
+    pmid: "27759881",
+    doi: "10.1002/14651858.CD005511.pub3",
+    category: "treatment",
+    status: "current",
+    verdict: "No evidence that surgical retreatment is superior to non-surgical retreatment at 1, 4, or 10 years. Surgical patients report more short-term pain and swelling; ultrasonic root-end preparation and MTA root-end filling are associated with better 1-year healing rates.",
+  },
+  {
+    id: "primary-pulp-2018",
+    year: 2018,
+    title: "Pulp treatment for extensive decay in primary teeth",
+    shortTitle: "Pulp treatment: primary teeth",
+    authors: "Smail-Faugeron V, Glenny A-M, Courson F, Durieux P, Muller-Bolla M, Fron Chabouis H",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD003220",
+    pubVersion: "pub3",
+    pmid: "29852056",
+    doi: "10.1002/14651858.CD003220.pub3",
+    category: "pulp",
+    status: "current",
+    verdict: "Pulp treatment for extensive caries in primary teeth is generally successful across techniques; 87 included trials with 125 comparisons showed low failure proportions. Evidence quality was low-to-moderate; no single technique or medicament was clearly superior to others.",
+  },
+  {
+    id: "avulsed-2019",
+    year: 2019,
+    title: "Interventions for treating traumatised permanent front teeth: avulsed and replanted",
+    shortTitle: "TDI: avulsed & replanted",
+    authors: "Day PF, Duggal M, Nazzal H",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD006542",
+    pubVersion: "pub3",
+    pmid: "30720860",
+    doi: "10.1002/14651858.CD006542.pub3",
+    category: "trauma",
+    status: "current",
+    verdict: "Insufficient evidence (4 studies, 183 participants, 257 teeth) to support or refute the effectiveness of specific interventions for replanted avulsed permanent incisors. Evidence quality was very low; existing guidelines rely mainly on expert opinion and case series.",
+  },
+  {
+    id: "retrograde-2021",
+    year: 2021,
+    title: "Materials for retrograde filling in root canal therapy",
+    shortTitle: "Retrograde filling materials",
+    authors: "Li H, Guo Z, Li C, Ma X, Wang Y, Zhou X, Johnson TM, Huang D",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD005517",
+    pubVersion: "pub3",
+    pmid: "34647617",
+    doi: "10.1002/14651858.CD005517.pub3",
+    category: "materials",
+    status: "current",
+    verdict: "Based on 8 high-risk-of-bias studies (1,399 participants, 1,471 teeth): insufficient evidence to conclude that any one retrograde filling material (MTA, IRM, Super-EBA, etc.) is superior. More high-quality RCTs are urgently needed.",
+  },
+  {
+    id: "single-multi-2022",
+    year: 2022,
+    title: "Single versus multiple visits for endodontic treatment of permanent teeth",
+    shortTitle: "Single vs multi-visit RCT (pub4 — current)",
+    authors: "Mergoni G, Ganim M, Lodi G, Figini L, Gagliani M, Manfredi M",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD005296",
+    pubVersion: "pub4",
+    pmid: null,
+    doi: "10.1002/14651858.CD005296.pub4",
+    category: "treatment",
+    status: "current",
+    verdict: "No clinically significant difference in radiological success between single- and multiple-visit root canal treatment. Single-visit patients may experience slightly more pain in the first week and higher analgesic use; flare-up rates and long-term outcomes are similar for both vital and non-vital teeth.",
+  },
+  {
+    id: "antibiotics-2024",
+    year: 2024,
+    title: "Systemic antibiotics for symptomatic apical periodontitis and acute apical abscess in adults",
+    shortTitle: "Systemic antibiotics for apical periodontitis",
+    authors: "Cope AL, Francis N, Wood F, Thompson W, Chestnutt IG",
+    journal: "Cochrane Database Syst Rev",
+    artNo: "CD010136",
+    pubVersion: "pub4",
+    pmid: "38712714",
+    doi: "10.1002/14651858.CD010136.pub4",
+    category: "disinfection",
+    status: "current",
+    verdict: "Evidence is very uncertain about antibiotic benefit; preoperative clindamycin results in little to no difference in pain or swelling when combined with chemo-mechanical debridement. Antibiotics should not routinely substitute for — or supplement — endodontic treatment in otherwise healthy adults.",
+  },
+];
+
+const STATUS_LABELS = { current: "Current", updated: "Superseded", withdrawn: "Withdrawn" };
+const STATUS_CLASSES = { current: "badge-current", updated: "badge-updated", withdrawn: "badge-withdrawn" };
+
+function CategoryPill({ category }) {
+  const def = CATEGORIES[category];
+  return <span className={`cochrane-badge ${def.catClass}`}>{def.label}</span>;
+}
+
+function ReviewCard({ review, cardRef, flash }) {
+  const pubmedUrl = review.pmid ? `https://pubmed.ncbi.nlm.nih.gov/${review.pmid}/` : null;
+  const cochraneUrl = `https://doi.org/${review.doi}`;
+  const isWithdrawn = review.status === "withdrawn";
+
+  return (
+    <div ref={cardRef} className={`review-card ${flash ? "flash" : ""} ${isWithdrawn ? "opacity-70" : ""}`}>
+      <div className="flex items-start justify-between gap-3 flex-wrap">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="review-year">{review.year}</span>
+            <span className={`cochrane-badge text-[0.65rem] font-bold px-2 py-0.5 ${STATUS_CLASSES[review.status]}`}>
+              {STATUS_LABELS[review.status]}
+            </span>
+          </div>
+          <div className="review-title">{review.title}</div>
+          <div className="review-authors mt-0.5">{review.authors} · <em>{review.journal}</em></div>
+          <div className="flex items-center gap-2 mt-1.5 flex-wrap">
+            <CategoryPill category={review.category} />
+            <span className="art-no">{review.artNo}.{review.pubVersion}</span>
+            {pubmedUrl && (
+              <a href={pubmedUrl} target="_blank" rel="noopener noreferrer"
+                 className="text-[0.72rem] font-semibold text-sky-600 hover:text-sky-800 hover:underline">
+                PubMed ↗
+              </a>
+            )}
+            <a href={cochraneUrl} target="_blank" rel="noopener noreferrer"
+               className="text-[0.72rem] font-semibold text-sky-600 hover:text-sky-800 hover:underline">
+              Cochrane ↗
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="verdict-box">
+        <div className="verdict-label">Cochrane verdict</div>
+        <p className="verdict-text">{review.verdict}</p>
+      </div>
+    </div>
+  );
+}
+
+function TimelineRail({ reviews, onDotClick }) {
+  const years = reviews.map(r => r.year);
+  const minY = Math.min(...years, 2005);
+  const maxY = Math.max(...years, 2026);
+  const span = maxY - minY;
+  const pctFor = y => ((y - minY) / span) * 100;
+
+  const ticks = [];
+  for (let y = Math.ceil(minY / 5) * 5; y <= maxY; y += 5) ticks.push(y);
+
+  const yearCount = {};
+  const byReview = reviews.map((r, i) => {
+    const k = r.year;
+    yearCount[k] = (yearCount[k] || 0) + 1;
+    return { ...r, _idx: i, _stackIndex: yearCount[k] - 1 };
+  });
+
+  const catDef = CATEGORIES;
+
+  return (
+    <div className="rail-wrap">
+      <div className="rail" style={{ minWidth: Math.max(700, reviews.length * 55) + "px" }}>
+        <div className="rail-line" />
+        {ticks.map((y, i) => (
+          <React.Fragment key={"tick"+i}>
+            <div className="rail-tick" style={{ left: pctFor(y) + "%" }} />
+            <div className="rail-tick-label" style={{ left: pctFor(y) + "%" }}>{y}</div>
+          </React.Fragment>
+        ))}
+        {byReview.map((r) => (
+          <button
+            key={r.id}
+            type="button"
+            onClick={() => onDotClick(r._idx)}
+            title={`${r.year} · ${r.shortTitle}`}
+            className={`rail-dot ${catDef[r.category].dotClass} ${r.status === "withdrawn" ? "rail-dot-withdrawn" : ""}`}
+            style={{ left: pctFor(r.year) + "%", marginTop: (r._stackIndex * 14) + "px" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CochraneApp() {
+  const [catFilter, setCatFilter] = useState("all");
+  const [flashIdx, setFlashIdx] = useState(null);
+  const [showWithdrawn, setShowWithdrawn] = useState(false);
+  const cardRefs = useRef([]);
+
+  const sorted = useMemo(() => [...REVIEWS].sort((a, b) => a.year - b.year), []);
+
+  const filtered = useMemo(() => {
+    let list = sorted;
+    if (!showWithdrawn) list = list.filter(r => r.status !== "withdrawn");
+    if (catFilter !== "all") list = list.filter(r => r.category === catFilter);
+    return list;
+  }, [sorted, catFilter, showWithdrawn]);
+
+  const handleDotClick = useCallback((idx) => {
+    const el = cardRefs.current[idx];
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    setFlashIdx(idx);
+    setTimeout(() => setFlashIdx(null), 1300);
+  }, []);
+
+  const currentCount = sorted.filter(r => r.status === "current").length;
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Header */}
+      <header className="bg-white border-b shadow-sm shrink-0">
+        <div className="flex items-center justify-between px-3 md:px-5 h-14">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="cochrane-badge text-sm font-bold px-3 py-1">Cochrane</div>
+            <span className="font-bold text-slate-700 text-sm tracking-tight">Endodontics Evidence</span>
+            <span className="text-slate-300 hidden sm:inline">·</span>
+            <span className="text-slate-500 text-xs hidden sm:inline">{currentCount} current reviews · {sorted.length} total</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="endo-debates.html" className="text-xs font-semibold text-sky-600 hover:text-sky-800 hover:underline shrink-0">Endo Debates →</a>
+            <a href="endo-guide.html" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline shrink-0">← Endo Guide</a>
+          </div>
+        </div>
+      </header>
+
+      {/* Banner */}
+      <div className="cochrane-banner">
+        <div className="max-w-3xl">
+          <h1 className="text-xl font-bold mb-1">Cochrane Systematic Reviews in Endodontics</h1>
+          <p className="text-sky-200 text-sm leading-relaxed">
+            All published Cochrane reviews covering root canal treatment, pulp therapy, traumatic dental injuries,
+            irrigants, materials, and restoration of root-filled teeth — displayed as a chronological evidence timeline.
+            The striking recurring theme: <strong className="text-white">most areas of endodontics lack adequate RCT-level evidence</strong>, and clinical guidelines remain largely opinion-based.
+          </p>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-6">
+
+        {/* Filter controls */}
+        <div className="flex flex-wrap gap-2 mb-5 items-center">
+          <button
+            className={`chip ${catFilter === "all" ? "chip-active" : ""}`}
+            onClick={() => setCatFilter("all")}
+          >All categories</button>
+          {Object.entries(CATEGORIES).map(([k, v]) => (
+            <button
+              key={k}
+              className={`chip ${catFilter === k ? "chip-active" : ""}`}
+              onClick={() => setCatFilter(catFilter === k ? "all" : k)}
+            >{v.label}</button>
+          ))}
+          <label className="flex items-center gap-1.5 cursor-pointer ml-auto">
+            <input
+              type="checkbox"
+              checked={showWithdrawn}
+              onChange={e => setShowWithdrawn(e.target.checked)}
+              className="rounded"
+            />
+            <span className="text-xs text-slate-500">Show withdrawn reviews</span>
+          </label>
+        </div>
+
+        {/* Timeline rail */}
+        <div className="bg-white border border-slate-200 rounded-xl mb-5 overflow-hidden">
+          <div className="px-4 pt-3 pb-0">
+            <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">Timeline — click a dot to jump to review</div>
+          </div>
+          <TimelineRail reviews={filtered} onDotClick={handleDotClick} />
+          <div className="legend px-4 pb-3">
+            {Object.entries(CATEGORIES).map(([k, v]) => (
+              <span key={k}>
+                <span className={`legend-dot ${v.dotClass}`} style={{ display: "inline-block" }}></span>
+                {v.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Review cards */}
+        <div>
+          {filtered.length === 0 && (
+            <div className="text-center text-slate-400 text-sm py-10">No reviews match this filter.</div>
+          )}
+          {filtered.map((review, i) => (
+            <ReviewCard
+              key={review.id}
+              review={review}
+              cardRef={el => (cardRefs.current[i] = el)}
+              flash={flashIdx === i}
+            />
+          ))}
+        </div>
+
+        {/* Footer note */}
+        <div className="mt-8 p-4 bg-sky-50 border border-sky-200 rounded-xl text-xs text-sky-800 leading-relaxed">
+          <strong>Note on scope:</strong> This page covers Cochrane reviews in the <em>Cochrane Database of Systematic Reviews</em> (CDSR) that directly address clinical endodontic topics. Several reviews have been <strong>withdrawn</strong> by Cochrane Oral Health due to being out of date or low usage — these are shown when "Show withdrawn" is checked. Notable Cochrane <em>protocols</em> (not yet published as full reviews) exist for vital pulp therapy, apexification, and regenerative endodontics and are not included here. All Cochrane DOIs are in the format <code>10.1002/14651858.[ArtNo].[version]</code>.
+        </div>
+      </main>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<CochraneApp />);
+</script>
+</body>
+</html>
