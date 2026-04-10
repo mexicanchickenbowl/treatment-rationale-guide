@@ -322,16 +322,30 @@ def main():
 
     # Step 1: Reject clearly wrong-field entries
     print("=== STEP 1: Rejecting wrong-field matches ===")
+    # Helper: stamp confidence + needs_review on every entry (additive)
+    def _stamp(e):
+        if e.get("status") == "not_found":
+            e["confidence"] = "unknown"
+            e["needs_review"] = True
+            return e
+        s = float(e.get("score") or 0)
+        e["confidence"] = "high" if s >= 0.55 else ("medium" if s >= 0.35 else "low")
+        e["needs_review"] = e["confidence"] != "high"
+        return e
+
     for key, entry in abstracts.items():
         if entry.get("status") != "ok":
+            _stamp(entry)
             continue
         title_abs = (entry.get("title", "") + " " + entry.get("abstract", ""))
         if not is_dental(title_abs):
             print(f"  REJECT (wrong field): {key} → {entry['title'][:60]}")
-            abstracts[key] = {"pmid": None, "title": "", "abstract": "",
-                              "status": "not_found", "score": 0,
-                              "rejected_title": entry["title"]}
+            abstracts[key] = _stamp({"pmid": None, "title": "", "abstract": "",
+                                     "status": "not_found", "score": 0,
+                                     "rejected_title": entry["title"]})
             changed += 1
+        else:
+            _stamp(entry)
 
     # Step 2: Targeted re-searches for known hard cases
     print(f"\n=== STEP 2: Targeted searches for {len(MANUAL_QUERIES)} hard cases ===")
@@ -371,7 +385,7 @@ def main():
                 time.sleep(1)
 
         if best_result and best_score > current_score + 0.02:
-            abstracts[key] = {
+            abstracts[key] = _stamp({
                 "pmid":     best_result["pmid"],
                 "title":    best_result["title"],
                 "abstract": best_result["abstract"],
@@ -379,7 +393,7 @@ def main():
                 "pub_year": best_result["year"],
                 "status":   "ok",
                 "score":    round(best_score, 3),
-            }
+            })
             print(f"    → [{best_score:.2f}] {best_result['title'][:65]}")
             changed += 1
         elif best_result:
@@ -389,8 +403,8 @@ def main():
             if current.get("status") == "ok" and not is_dental(
                 current.get("title","") + " " + current.get("abstract","")
             ):
-                abstracts[key] = {"pmid": None, "title": "", "abstract": "",
-                                  "status": "not_found", "score": 0}
+                abstracts[key] = _stamp({"pmid": None, "title": "", "abstract": "",
+                                         "status": "not_found", "score": 0})
 
     with open(ABSTRACTS, "w") as f:
         json.dump(abstracts, f, indent=2, ensure_ascii=False)

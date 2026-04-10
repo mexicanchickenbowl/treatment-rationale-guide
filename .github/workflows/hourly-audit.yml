@@ -1,0 +1,76 @@
+name: Hourly audit
+
+# Runs every hour on a 6-shard rotation (shard = hour_UTC % 6) and:
+#   1. Shards 0, 3 → re-verify low-confidence abstracts via fix_abstracts.py
+#   2. Other shards → no-op in the workflow (the matching Claude Code /audit
+#      shards handle prose/stale/coverage/drift sweeps when a human is running
+#      the loop)
+# Stays under NCBI's 3 req/sec unauthenticated limit by capping per-run calls.
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # 17 past every hour, off-peak
+  workflow_dispatch:
+    inputs:
+      shard:
+        description: 'Override shard (0..5). Leave empty to use the hour-derived shard.'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hourly-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  fix-abstracts-shard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Compute shard
+        id: shard
+        run: |
+          if [ -n "${{ inputs.shard }}" ]; then
+            SHARD="${{ inputs.shard }}"
+          else
+            SHARD=$(( $(date -u +%H) % 6 ))
+          fi
+          echo "shard=$SHARD" >> "$GITHUB_OUTPUT"
+          echo "Running shard $SHARD"
+
+      - name: Run fix_abstracts.py for abstract-heavy shards (0 and 3)
+        id: fix
+        run: |
+          SHARD=${{ steps.shard.outputs.shard }}
+          if [ "$SHARD" = "0" ] || [ "$SHARD" = "3" ]; then
+            python3 fix_abstracts.py --shard="$SHARD" --max=5 --auto-flag
+          else
+            echo "Shard $SHARD is handled by the local /audit command; skipping."
+          fi
+
+      - name: Rebuild HTML + JSON (only if abstracts.json changed)
+        run: |
+          if ! git diff --quiet abstracts.json; then
+            python3 build.py
+          else
+            echo "No abstract changes; skipping rebuild."
+          fi
+
+      - name: Commit if changed
+        run: |
+          if git diff --quiet abstracts.json index.html endo-guide.html guide-data.json; then
+            echo "No changes — nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add abstracts.json index.html endo-guide.html guide-data.json
+          git commit -m "audit(abs): hourly shard ${{ steps.shard.outputs.shard }} [skip ci]"
+          git push

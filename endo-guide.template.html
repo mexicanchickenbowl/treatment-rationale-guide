@@ -7,94 +7,117 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/srs.js"></script>
+<script src="/assets/site-nav.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <style>
-  html, body { height: 100%; }
-  body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  /* Page-specific rules for endo-guide. Shared tokens/components live in
+     /assets/theme.css (inlined by build.py for the offline artifact). */
+
   /* Reference pane body */
-  .prose-body { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 15.5px; line-height: 1.8; color: #1e293b; }
-  .block-h3 { font-weight: 650; font-size: 0.97rem; margin-top: 1.75rem; margin-bottom: 0.5rem; color: #1e293b; border-left: 3px solid #a5b4fc; padding-left: 0.65rem; letter-spacing: -0.01em; }
-  .block-h4 { font-weight: 600; font-size: 0.9rem; margin-top: 1.1rem; margin-bottom: 0.3rem; color: #475569; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.78rem; }
+  .prose-body { font-family: var(--font-sans); font-size: var(--fs-base); line-height: var(--lh-loose); color: var(--color-text); }
+  .block-h3 { font-weight: 650; font-size: var(--fs-md); margin-top: var(--space-6); margin-bottom: var(--space-2); color: var(--color-text); border-left: 3px solid var(--color-primary-ring); padding-left: var(--space-3); letter-spacing: -0.01em; }
+  .block-h4 { font-weight: var(--fw-semibold); font-size: var(--fs-xs); margin-top: var(--space-4); margin-bottom: var(--space-1); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
   .prose-body p { margin: 1rem 0; }
   .prose-body ul { list-style: disc; padding-left: 1.6rem; margin: 0.9rem 0; }
   .prose-body ol { list-style: decimal; padding-left: 1.6rem; margin: 0.9rem 0; }
   .prose-body li { margin: 0.55rem 0; line-height: 1.65; }
-  .prose-body table { width: 100%; border-collapse: collapse; font-size: 0.845rem; margin: 1.5rem 0; }
-  .prose-body th, .prose-body td { border: 1px solid #e2e8f0; padding: 0.6rem 0.85rem; text-align: left; vertical-align: top; line-height: 1.55; }
-  .prose-body thead th { background: #eef2ff; color: #3730a3; position: sticky; top: 0; font-weight: 600; letter-spacing: 0.02em; font-size: 0.8rem; text-transform: uppercase; }
-  .prose-body tbody tr:nth-child(even) { background: #f8fafc; }
-  .prose-body tbody tr:hover { background: #f1f5f9; }
-  .prose-body mark { background: #fde68a; padding: 0 2px; border-radius: 2px; }
-  .prose-body mark.current { background: #fb923c; color: #fff; }
-  .cite { color: #b45309; font-weight: 500; cursor: pointer; }
-  .pct  { background: #fef08a; color: #713f12; font-weight: 600; padding: 0 3px; border-radius: 3px; cursor: pointer; }
-  .cite-flagged { color: #be123c; font-weight: 600; text-decoration: underline dotted; cursor: pointer; }
-  .pct-flagged  { background: #fee2e2; color: #be123c; font-weight: 600; padding: 0 3px; border-radius: 3px; text-decoration: underline dotted; cursor: pointer; }
-  .quiz-select { display: inline; font-size: inherit; font-family: inherit; background: #fef9c3; border: 1.5px dashed #ca8a04; border-radius: 4px; padding: 1px 4px; cursor: pointer; color: #78350f; font-weight: 500; vertical-align: baseline; max-width: 200px; }
-  .quiz-select.pct-q { background: #fef9c3; border-color: #ca8a04; color: #713f12; }
-  .quiz-correct { color: #16a34a; font-weight: 600; }
-  .quiz-wrong-chosen { color: #dc2626; text-decoration: line-through; }
-  .sidebar a.active { background: #eef2ff; color: #4338ca; font-weight: 600; border-left: 2px solid #4338ca; padding-left: calc(0.5rem - 2px); }
+  .prose-body table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); margin: 1.5rem 0; }
+  .prose-body th, .prose-body td { border: 1px solid var(--color-border); padding: 0.6rem 0.85rem; text-align: left; vertical-align: top; line-height: 1.55; }
+  .prose-body thead th { background: var(--color-primary-weak); color: var(--color-primary-strong); position: sticky; top: 0; font-weight: var(--fw-semibold); letter-spacing: 0.02em; font-size: var(--fs-xs); text-transform: uppercase; }
+  .prose-body tbody tr:nth-child(even) { background: var(--color-surface-2); }
+  .prose-body tbody tr:hover { background: var(--color-surface-3); }
+  .prose-body mark { background: color-mix(in srgb, var(--color-warning) 35%, transparent); color: var(--color-text); padding: 0 2px; border-radius: 2px; }
+  .prose-body mark.current { background: var(--color-warning); color: #fff; }
+  .cite { color: var(--color-warning-strong); font-weight: var(--fw-medium); cursor: pointer; }
+  .pct  { background: color-mix(in srgb, var(--color-warning) 30%, transparent); color: var(--color-warning-strong); font-weight: var(--fw-semibold); padding: 0 3px; border-radius: 3px; cursor: pointer; }
+  .cite-flagged { color: var(--color-danger-strong); font-weight: var(--fw-semibold); text-decoration: underline dotted; cursor: pointer; }
+  .pct-flagged  { background: var(--color-danger-weak); color: var(--color-danger-strong); font-weight: var(--fw-semibold); padding: 0 3px; border-radius: 3px; text-decoration: underline dotted; cursor: pointer; }
+  .quiz-select { display: inline; font-size: inherit; font-family: inherit; background: var(--color-warning-weak); border: 1.5px dashed var(--color-warning); border-radius: 4px; padding: 1px 4px; cursor: pointer; color: var(--color-warning-strong); font-weight: var(--fw-medium); vertical-align: baseline; max-width: 200px; }
+  .quiz-select.pct-q { background: var(--color-warning-weak); border-color: var(--color-warning); color: var(--color-warning-strong); }
+  .quiz-correct { color: var(--color-success); font-weight: var(--fw-semibold); }
+  .quiz-wrong-chosen { color: var(--color-danger); text-decoration: line-through; }
+  .sidebar a.active { background: var(--color-primary-weak); color: var(--color-primary); font-weight: var(--fw-semibold); border-left: 2px solid var(--color-primary); padding-left: calc(0.5rem - 2px); }
   .scroll-table { overflow-x: auto; }
-  kbd { font-family: ui-monospace, monospace; background: #f3f4f6; border: 1px solid #e5e7eb; border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: 0.75rem; }
-  .tab-btn { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; transition: background 0.12s, color 0.12s; }
-  .tab-active { background: #4338ca; color: #fff; }
-  .tab-inactive { color: #64748b; }
-  .tab-inactive:hover { background: #f1f5f9; color: #1e293b; }
-  .question-item { list-style: none; margin-left: -1.6rem; font-weight: 650; color: #3730a3; font-size: 1rem; margin-top: 1.4rem; margin-bottom: 0.15rem; line-height: 1.5; }
-  .answer-p { color: #166534; }
+  kbd { font-family: var(--font-mono); background: var(--color-surface-2); border: 1px solid var(--color-border); border-bottom-width: 2px; border-radius: 4px; padding: 1px 5px; font-size: var(--fs-xs); }
+  .tab-btn { padding: 0.35rem 0.85rem; min-height: 2rem; border-radius: var(--radius-full); font-size: var(--fs-sm); font-weight: var(--fw-medium); transition: background var(--transition-fast), color var(--transition-fast); }
+  .tab-active { background: var(--color-primary); color: var(--color-primary-text); }
+  .tab-inactive { color: var(--color-text-muted); }
+  .tab-inactive:hover { background: var(--color-surface-2); color: var(--color-text); }
+  .question-item { list-style: none; margin-left: -1.6rem; font-weight: 650; color: var(--color-primary-strong); font-size: var(--fs-base); margin-top: 1.4rem; margin-bottom: 0.15rem; line-height: 1.5; }
+  .answer-p { color: var(--color-success-strong); }
+
   /* ── annotation / edit mode ─────────────────────────────────────────────── */
-  .inline-note { background:#fffbeb; border-left:3px solid #f59e0b; padding:.5rem .85rem; margin:.5rem 0; border-radius:0 6px 6px 0; font-size:.9rem; color:#78350f; line-height:1.6; position:relative; white-space:pre-wrap; word-break:break-word; }
-  .inline-note-acts { position:absolute; top:.35rem; right:.4rem; display:flex; gap:.25rem; }
-  .inline-note-acts button { font-size:.7rem; padding:.1rem .4rem; background:#f59e0b20; border:1px solid #f59e0b40; border-radius:4px; cursor:pointer; color:#92400e; }
-  .inline-note-acts button:hover { background:#f59e0b40; }
-  .add-note-btn { display:block; font-size:.73rem; color:#cbd5e1; margin:.1rem 0 .3rem; padding:.1rem .45rem; border-radius:4px; border:1px dashed transparent; cursor:pointer; background:none; transition:all .12s; }
-  .add-note-btn:hover { color:#f59e0b; border-color:#f59e0b60; background:#fffbeb; }
-  .note-ed { background:#fffbeb; border:1px solid #f59e0b80; border-radius:6px; padding:.5rem; margin:.4rem 0; }
-  .note-ed textarea { width:100%; border:none; background:transparent; resize:vertical; font-family:inherit; font-size:.9rem; color:#78350f; outline:none; min-height:56px; line-height:1.6; }
-  .note-ed-acts { display:flex; align-items:center; gap:.5rem; margin-top:.25rem; }
-  .note-ed-acts .ns { font-size:.75rem; padding:.2rem .65rem; background:#f59e0b; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600; }
-  .note-ed-acts .ns:hover { background:#d97706; }
-  .note-ed-acts .nc { font-size:.75rem; padding:.2rem .55rem; background:#f1f5f9; color:#64748b; border:none; border-radius:4px; cursor:pointer; }
-  .note-ed-acts .nh { font-size:.7rem; color:#94a3b8; flex:1; }
-  .user-ann { cursor:default; }
-  .ann-active .user-ann { cursor:pointer; outline:1px solid rgba(0,0,0,.09); outline-offset:1px; }
+  .inline-note { background: var(--color-accent-weak); border-left: 3px solid var(--color-accent); padding: .5rem .85rem; margin: .5rem 0; border-radius: 0 6px 6px 0; font-size: var(--fs-sm); color: var(--color-accent-strong); line-height: 1.6; position: relative; white-space: pre-wrap; word-break: break-word; }
+  .inline-note-acts { position: absolute; top: .35rem; right: .4rem; display: flex; gap: .25rem; }
+  .inline-note-acts button { font-size: .7rem; padding: .15rem .45rem; min-height: 1.4rem; background: color-mix(in srgb, var(--color-accent) 15%, transparent); border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent); border-radius: 4px; cursor: pointer; color: var(--color-accent-strong); }
+  .inline-note-acts button:hover { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+  .add-note-btn { display: block; font-size: var(--fs-xs); color: var(--color-border-strong); margin: .1rem 0 .3rem; padding: .15rem .5rem; border-radius: 4px; border: 1px dashed transparent; cursor: pointer; background: none; transition: all var(--transition-fast); }
+  .add-note-btn:hover { color: var(--color-accent); border-color: color-mix(in srgb, var(--color-accent) 40%, transparent); background: var(--color-accent-weak); }
+  .note-ed { background: var(--color-accent-weak); border: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent); border-radius: 6px; padding: .5rem; margin: .4rem 0; }
+  .note-ed textarea { width: 100%; border: none; background: transparent; resize: vertical; font-family: inherit; font-size: var(--fs-sm); color: var(--color-accent-strong); outline: none; min-height: 56px; line-height: 1.6; }
+  .note-ed-acts { display: flex; align-items: center; gap: .5rem; margin-top: .25rem; }
+  .note-ed-acts .ns { font-size: var(--fs-xs); padding: .3rem .75rem; min-height: 1.9rem; background: var(--color-accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: var(--fw-semibold); }
+  .note-ed-acts .ns:hover { background: var(--color-warning); }
+  .note-ed-acts .nc { font-size: var(--fs-xs); padding: .3rem .7rem; min-height: 1.9rem; background: var(--color-surface-2); color: var(--color-text-muted); border: none; border-radius: 4px; cursor: pointer; }
+  .note-ed-acts .nh { font-size: .7rem; color: var(--color-text-subtle); flex: 1; }
+  .user-ann { cursor: default; }
+  .ann-active .user-ann { cursor: pointer; outline: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent); outline-offset: 1px; }
   /* live-edit: double-click any paragraph/heading in edit mode → inline editor writes back to endo-guide.md */
-  .ann-active .editable-block { border-radius:4px; padding:1px 3px; margin:0 -3px; transition:background .12s, box-shadow .12s; cursor:text; }
-  .ann-active .editable-block:hover { background:#fff7ed; box-shadow:inset 0 0 0 1px #fdba7460; }
-  .block-ed { background:#fff7ed; border:1px solid #f59e0b80; border-radius:6px; padding:.6rem; margin:.8rem 0; }
-  .block-ed textarea { width:100%; border:1px solid #fbbf2470; border-radius:4px; padding:.5rem .6rem; background:#fffdf7; resize:vertical; font-family:inherit; font-size:.95rem; color:#1e293b; outline:none; line-height:1.65; min-height:80px; }
-  .block-ed textarea:focus { border-color:#f59e0b; box-shadow:0 0 0 2px #fcd34d60; }
-  .block-ed-acts { display:flex; align-items:center; gap:.5rem; margin-top:.45rem; flex-wrap:wrap; }
-  .block-ed-acts .bs { font-size:.78rem; padding:.3rem .8rem; background:#f59e0b; color:#fff; border:none; border-radius:4px; cursor:pointer; font-weight:600; }
-  .block-ed-acts .bs:hover:not(:disabled) { background:#d97706; }
-  .block-ed-acts .bs:disabled { background:#fbbf24; opacity:.7; cursor:wait; }
-  .block-ed-acts .bc { font-size:.78rem; padding:.3rem .65rem; background:#f1f5f9; color:#475569; border:none; border-radius:4px; cursor:pointer; }
-  .block-ed-acts .bc:hover { background:#e2e8f0; }
-  .block-ed-acts .bh { font-size:.72rem; color:#94a3b8; flex:1; min-width:0; }
-  .block-ed-acts .be { font-size:.72rem; color:#dc2626; font-weight:500; background:#fef2f2; padding:.15rem .4rem; border-radius:3px; border:1px solid #fecaca; }
+  .ann-active .editable-block { border-radius: 4px; padding: 1px 3px; margin: 0 -3px; transition: background var(--transition-fast), box-shadow var(--transition-fast); cursor: text; }
+  .ann-active .editable-block:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 40%, transparent); }
+  .block-ed { background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface)); border: 1px solid color-mix(in srgb, var(--color-accent) 55%, transparent); border-radius: 6px; padding: .6rem; margin: .8rem 0; }
+  .block-ed textarea { width: 100%; border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent); border-radius: 4px; padding: .5rem .6rem; background: var(--color-surface); resize: vertical; font-family: inherit; font-size: var(--fs-sm); color: var(--color-text); outline: none; line-height: 1.65; min-height: 80px; }
+  .block-ed textarea:focus { border-color: var(--color-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 35%, transparent); }
+  .block-ed-acts { display: flex; align-items: center; gap: .5rem; margin-top: .45rem; flex-wrap: wrap; }
+  .block-ed-acts .bs { font-size: var(--fs-xs); padding: .35rem .85rem; min-height: 2rem; background: var(--color-accent); color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: var(--fw-semibold); }
+  .block-ed-acts .bs:hover:not(:disabled) { background: var(--color-warning); }
+  .block-ed-acts .bs:disabled { background: color-mix(in srgb, var(--color-accent) 60%, var(--color-border)); opacity: .7; cursor: wait; }
+  .block-ed-acts .bc { font-size: var(--fs-xs); padding: .35rem .7rem; min-height: 2rem; background: var(--color-surface-2); color: var(--color-text-muted); border: none; border-radius: 4px; cursor: pointer; }
+  .block-ed-acts .bc:hover { background: var(--color-border); }
+  .block-ed-acts .bh { font-size: .72rem; color: var(--color-text-subtle); flex: 1; min-width: 0; }
+  .block-ed-acts .be { font-size: .72rem; color: var(--color-danger); font-weight: var(--fw-medium); background: var(--color-danger-weak); padding: .2rem .45rem; border-radius: 3px; border: 1px solid color-mix(in srgb, var(--color-danger) 30%, transparent); }
+
   /* Fact-checked corrections */
-  .factcheck { background: #e2e8f0; border-radius: 3px; padding: 0 3px; border-bottom: 2px solid #94a3b8; }
-  /* ── abstract popup ──────────────────────────────────────────────────────── */
-  .abstract-overlay { position:fixed; inset:0; z-index:60; display:flex; align-items:flex-end; justify-content:center; background:rgba(15,23,42,.52); backdrop-filter:blur(3px); animation:abFadeIn .15s ease; }
-  @media(min-width:640px){ .abstract-overlay { align-items:center; padding:1.5rem; } }
-  .abstract-panel { background:#fff; border-radius:16px 16px 0 0; box-shadow:0 -8px 50px rgba(0,0,0,.22); width:100%; max-width:680px; max-height:88vh; display:flex; flex-direction:column; animation:abSlideUp .22s cubic-bezier(.16,1,.3,1); }
-  @media(min-width:640px){ .abstract-panel { border-radius:14px; box-shadow:0 24px 60px rgba(0,0,0,.22); animation:abScaleIn .2s cubic-bezier(.16,1,.3,1); } }
-  .abstract-header { padding:1.2rem 1.4rem .9rem; border-bottom:1px solid #f1f5f9; flex-shrink:0; }
-  .abstract-body { padding:1.1rem 1.4rem 1.6rem; overflow-y:auto; flex:1; scrollbar-width:thin; }
-  .abstract-finding { background:linear-gradient(135deg,#fff7ed,#fef3c7); border:1px solid #fcd34d; border-radius:10px; padding:.85rem 1rem; margin-bottom:1.15rem; }
-  .abstract-conclusion { background:#f0fdf4; border-left:3px solid #16a34a; padding:.7rem .95rem; border-radius:0 8px 8px 0; margin-top:.85rem; }
-  .abstract-num { background:#fef3c7; color:#92400e; font-weight:600; padding:0 2px; border-radius:2px; }
-  @keyframes abFadeIn { from{opacity:0} to{opacity:1} }
-  @keyframes abSlideUp { from{transform:translateY(100%)} to{transform:translateY(0)} }
-  @keyframes abScaleIn { from{opacity:0;transform:scale(.96) translateY(6px)} to{opacity:1;transform:scale(1) translateY(0)} }
+  .factcheck { background: var(--color-surface-2); border-radius: 3px; padding: 0 3px; border-bottom: 2px solid var(--color-text-subtle); }
+
+  /* SRS rating buttons (Phase 7) */
+  .srs-rating { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-top: var(--space-4); }
+  .srs-rating-btn { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; padding: 0.55rem 0.9rem; min-width: 4.5rem; min-height: 2.6rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); font-size: var(--fs-xs); font-weight: var(--fw-semibold); cursor: pointer; transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast); }
+  .srs-rating-btn:hover { transform: translateY(-1px); }
+  .srs-rating-btn small { font-size: 0.66rem; font-weight: var(--fw-normal); color: var(--color-text-subtle); }
+  .srs-rating-btn--again { color: var(--color-danger-strong); border-color: color-mix(in srgb, var(--color-danger) 30%, transparent); }
+  .srs-rating-btn--again:hover { background: var(--color-danger-weak); }
+  .srs-rating-btn--hard  { color: var(--color-warning-strong); border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
+  .srs-rating-btn--hard:hover { background: var(--color-warning-weak); }
+  .srs-rating-btn--good  { color: var(--color-primary); border-color: var(--color-primary-ring); }
+  .srs-rating-btn--good:hover { background: var(--color-primary-weak); }
+  .srs-rating-btn--easy  { color: var(--color-success-strong); border-color: color-mix(in srgb, var(--color-success) 30%, transparent); }
+  .srs-rating-btn--easy:hover { background: var(--color-success-weak); }
+  .srs-hud { display: flex; gap: var(--space-4); flex-wrap: wrap; font-size: var(--fs-xs); color: var(--color-text-muted); }
+  .srs-hud strong { color: var(--color-text); font-weight: var(--fw-semibold); }
+  .srs-shaky-btn { font-size: var(--fs-xs); padding: 0.3rem 0.7rem; min-height: 1.9rem; background: transparent; border: 1px dashed var(--color-border-strong); border-radius: var(--radius-sm); color: var(--color-text-muted); cursor: pointer; }
+  .srs-shaky-btn:hover { border-color: var(--color-danger); color: var(--color-danger); background: var(--color-danger-weak); }
+  .srs-shaky-btn.is-shaky { border-style: solid; border-color: var(--color-danger); color: var(--color-danger-strong); background: var(--color-danger-weak); }
+
+  /* Audit pane abstract-health widget (Phase 9) */
+  .abs-health { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); margin-bottom: var(--space-4); }
+  .abs-health__title { font-size: var(--fs-xs); font-weight: var(--fw-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-muted); }
+  .abs-health__row { display: flex; gap: var(--space-3); flex-wrap: wrap; font-size: var(--fs-sm); color: var(--color-text); }
+  .abs-health__pill { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.2rem 0.6rem; border-radius: var(--radius-full); font-size: var(--fs-xs); font-weight: var(--fw-semibold); }
+  .abs-health__pill--high    { background: var(--color-success-weak); color: var(--color-success-strong); }
+  .abs-health__pill--medium  { background: var(--color-warning-weak); color: var(--color-warning-strong); }
+  .abs-health__pill--low     { background: var(--color-danger-weak);  color: var(--color-danger-strong); }
+  .abs-health__pill--missing { background: var(--color-surface-2);    color: var(--color-text-muted); }
 </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
-<div id="root"></div>
+<body class="site-shell">
+<div data-site-header-slot></div>
+<div id="root" class="site-main"></div>
 <script type="text/babel" data-presets="react">
 const DATA = /*__DATA__*/null;
 
@@ -329,6 +352,12 @@ function FlaggableSpan({ type, text, query, onClickCite }) {
   );
 }
 
+// Parse "Author et al. (2009)" → {author, year} for SRS key generation.
+function parseCiteText(s) {
+  const m = /^(.*?)(?:\s*\((\d{4})\))?$/.exec(s || "");
+  return m ? { author: (m[1] || "").trim(), year: m[2] || "" } : { author: s || "", year: "" };
+}
+
 // Inline quiz dropdown
 function QuizSpan({ type, correct, pool }) {
   const { onAnswer } = React.useContext(QuizCtx);
@@ -338,6 +367,17 @@ function QuizSpan({ type, correct, pool }) {
     const others = pool.filter(p => p !== correct).sort(() => Math.random() - 0.5).slice(0, 3);
     return [correct, ...others].sort(() => Math.random() - 0.5);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Feed the shared SRS deck when a cite quiz is answered. PCT quizzes are
+  // excluded because they aren't keyed to a specific card.
+  const feedSrs = (ok) => {
+    if (!window.SRS || type !== "cite") return;
+    const { author, year } = parseCiteText(correct);
+    if (!author) return;
+    const key = window.SRS.cardKey(author, year, "", "fwd");
+    const deck = window.SRS.loadDeck();
+    window.SRS.rate(deck, key, ok ? "good" : "again");
+  };
 
   if (status === "correct") return <span className={`${type} quiz-correct`}>{correct}</span>;
   if (status === "wrong") return (
@@ -351,7 +391,9 @@ function QuizSpan({ type, correct, pool }) {
       onChange={e => {
         const v = e.target.value; if (!v) return;
         const ok = v === correct;
-        setChosen(v); setStatus(ok ? "correct" : "wrong"); onAnswer(ok);
+        setChosen(v); setStatus(ok ? "correct" : "wrong");
+        onAnswer(ok);
+        feedSrs(ok);
       }}>
       <option value="">···</option>
       {options.map(o => <option key={o} value={o}>{o}</option>)}
@@ -447,6 +489,31 @@ function AbstractModal({ info, onClose }) {
   const pmid       = abstract?.pmid;
   const hasContent = abstract?.status === "ok" && abstract?.abstract;
   const notFound   = abstract?.status === "not_found";
+  const confidence = abstract?.confidence || null;
+  const needsReview = !!abstract?.needs_review;
+
+  const [reportStatus, setReportStatus] = useState("idle"); // idle|sending|sent|error
+  const reportBadAbstract = async () => {
+    if (reportStatus === "sending" || reportStatus === "sent") return;
+    setReportStatus("sending");
+    try {
+      const res = await fetch("/api/report-bad-abstract", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          author: author || "",
+          year: year || "",
+          pmid: pmid || null,
+          title: abstract?.title || "",
+          finding: card?.finding || "",
+          section_id: card?.section_id || "",
+        }),
+      });
+      setReportStatus(res.ok ? "sent" : "error");
+    } catch (e) {
+      setReportStatus("error");
+    }
+  };
 
   return (
     <div className="abstract-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
@@ -471,6 +538,33 @@ function AbstractModal({ info, onClose }) {
           </div>
         </div>
         <div className="abstract-body">
+          {/* Confidence banner — only shown when the match score is medium/low */}
+          {confidence && confidence !== "high" && !notFound && (
+            <div className={`abstract-confidence abstract-confidence--${confidence}`}>
+              <span>
+                {confidence === "low"
+                  ? "⚠ Low-confidence match — this abstract may be the wrong paper."
+                  : "⚠ Medium confidence — verify before citing."}
+                {typeof abstract?.score === "number" && (
+                  <span style={{ marginLeft: 6, opacity: 0.75 }}>
+                    (score {abstract.score.toFixed(2)})
+                  </span>
+                )}
+              </span>
+              <button
+                type="button"
+                className="abstract-report-btn"
+                onClick={reportBadAbstract}
+                disabled={reportStatus === "sending" || reportStatus === "sent"}
+                style={{ marginLeft: "auto" }}
+              >
+                {reportStatus === "sent"    ? "Reported ✓" :
+                 reportStatus === "sending" ? "Reporting…" :
+                 reportStatus === "error"   ? "Retry report" :
+                                              "Report wrong abstract"}
+              </button>
+            </div>
+          )}
           {card?.finding && (
             <div className="abstract-finding">
               <div className="text-[10px] font-bold uppercase tracking-widest text-amber-700 mb-1.5 flex items-center gap-2">
@@ -1010,7 +1104,21 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
   const jumpTo = (id) => {
     const el = mainRef.current?.querySelector(`[data-anchor="${id}"]`);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    // On mobile, auto-close the drawer after navigating so the user sees the
+    // content they jumped to (the sidebar normally covers ~75 % of the screen).
+    if (typeof window !== "undefined" && window.matchMedia &&
+        window.matchMedia("(max-width: 767px)").matches) {
+      setSidebarOpen(false);
+    }
   };
+
+  // Shared site header (site-nav.js) dispatches this event when the user
+  // taps the hamburger button. Toggle our drawer in response.
+  useEffect(() => {
+    const toggle = () => setSidebarOpen(s => !s);
+    document.addEventListener("site-nav:toggle-sidebar", toggle);
+    return () => document.removeEventListener("site-nav:toggle-sidebar", toggle);
+  }, []);
 
   return (
     <QuizCtx.Provider value={{ quizMode, authorPool, pctPool, onAnswer }}>
@@ -1060,11 +1168,6 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
         </nav>
       </aside>
       <main ref={mainRef} className={`flex-1 overflow-y-auto bg-white${annotateMode ? " ann-active" : ""}`}>
-        <div className="md:hidden sticky top-0 z-10 bg-white/95 backdrop-blur border-b px-4 py-2.5 flex items-center">
-          <button onClick={() => setSidebarOpen(true)} className="flex items-center gap-2 text-sm text-indigo-700 font-semibold">
-            <span>☰</span> Sections
-          </button>
-        </div>
         <div key={quizMode ? "quiz" : "read"} className="max-w-2xl mx-auto px-4 py-6 md:px-10 md:py-12 prose-body">
           {sections.map((sec, si) => (
             <section key={sec.id} data-anchor={sec.id} id={sec.id} className={`mb-20 ${si > 0 ? "pt-12 border-t-2 border-slate-100" : ""}`}>
@@ -1487,6 +1590,13 @@ function MatchPane() {
     return () => clearTimeout(timer);
   }, [wrongFlashKeys]);
 
+  // Parse "Kakehashi (1965)" → {author:"Kakehashi", year:"1965"} so MatchPane
+  // drops can feed the same SRS deck as StudyPane.
+  const splitAuthorYear = (s) => {
+    const m = /^(.*?)\s*\((\d{4})\)\s*$/.exec(s || "");
+    return m ? { author: m[1].trim(), year: m[2] } : { author: s || "", year: "" };
+  };
+
   // Evaluate the drop immediately: lock if correct, flash red if wrong
   const dropFinding = (finding, author) => {
     setState(s => {
@@ -1499,7 +1609,15 @@ function MatchPane() {
       }
       next[author] = finding;
       const pair = s.pairs.find(p => p.author === author);
-      if (pair && finding === pair.finding) {
+      const ok = pair && finding === pair.finding;
+      // Feed the shared SRS deck: correct drop -> "good", wrong -> "again".
+      if (window.SRS && pair) {
+        const { author: a, year: y } = splitAuthorYear(pair.author);
+        const key = window.SRS.cardKey(a, y, pair.finding, "fwd");
+        const deck = window.SRS.loadDeck();
+        window.SRS.rate(deck, key, ok ? "good" : "again");
+      }
+      if (ok) {
         const nextLocked = [...s.locked, author];
         return { ...s, matches: next, locked: nextLocked, dragging: null, done: nextLocked.length === s.pairs.length };
       }
@@ -1650,57 +1768,57 @@ function MatchPane() {
 function StudyPane({ cards, onJump }) {
   const { flagged } = React.useContext(FlagCtx);
   const [flaggedOnly, setFlaggedOnly] = useState(false);
+  const [format, setFormat] = useState("mc"); // "mc" | "type" | "cloze" | "year"
   const validCards = useMemo(() => {
     const base = cards.filter(c => c.author && c.finding && c.finding.length > 20);
     if (!flaggedOnly || flagged.size === 0) return base;
     return base.filter(c => flagged.has(c.author));
   }, [cards, flaggedOnly, flagged]);
-  const [state, setState] = useState(() => {
-    const s = loadStudyState();
-    return {
-      boxes: s.boxes || {},        // cardKey -> 0|1|2 (New/Learning/Known)
-      history: s.history || [],    // {t, correct}
-      streak: s.streak || 0,
-      ...s,
-    };
-  });
   const [reverse, setReverse] = useState(false); // false: show finding, pick author
-  const [typeMode, setTypeMode] = useState(false); // type the author name
   const [typed, setTyped] = useState("");           // current text-input value
   const [current, setCurrent] = useState(null);
   const [choices, setChoices] = useState([]);
-  const [pick, setPick] = useState(null);           // "correct"|"wrong" in typeMode, card obj in choice mode
+  const [pick, setPick] = useState(null);           // "correct"|"wrong" in type/cloze/year, card obj in mc mode
+  const [rated, setRated] = useState(false);        // has the user rated this card yet?
+  const [deck, setDeck] = useState(() => window.SRS ? window.SRS.loadDeck() : { cards: {}, meta: { streak: 0 } });
+  const [hud, setHud] = useState(() => window.SRS ? window.SRS.stats(window.SRS.loadDeck()) : { due: 0, newCount: 0, mastered: 0, streak: 0 });
   const typeInputRef = useRef(null);
-  // Use a ref for boxes so pickNext doesn't change reference on every answer
-  const boxesRef = useRef(state.boxes);
-  useEffect(() => { boxesRef.current = state.boxes; }, [state.boxes]);
+  const deckRef = useRef(deck);
+  useEffect(() => { deckRef.current = deck; }, [deck]);
 
-  const cardKey = (c) => `${(c.author||"").toLowerCase()}|${c.year}|${c.finding.slice(0,60)}`;
+  // Build a candidate pool with per-card SRS keys so pickDue can match.
+  const candidatePool = useMemo(() => {
+    const dir = reverse ? "rev" : "fwd";
+    return validCards.map(c => ({
+      key: window.SRS ? window.SRS.cardKey(c.author, c.year, c.finding, dir) : "",
+      card: c,
+    }));
+  }, [validCards, reverse]);
 
   const pickNext = useCallback(() => {
-    if (!validCards.length) return;
-    // Leitner weights: New=3, Learning=4, Known=1
-    const boxes = boxesRef.current;
-    const weights = validCards.map(c => {
-      const b = boxes[cardKey(c)] ?? 0;
-      return b === 0 ? 3 : b === 1 ? 4 : 1;
-    });
-    const total = weights.reduce((a, b) => a + b, 0);
-    let r = Math.random() * total;
-    let idx = 0;
-    for (; idx < weights.length; idx++) { r -= weights[idx]; if (r <= 0) break; }
-    const card = validCards[Math.min(idx, validCards.length - 1)];
-    // build 4 choices
+    if (!validCards.length || !window.SRS) return;
+    const dir = reverse ? "rev" : "fwd";
+    const keys = window.SRS.pickDue(deckRef.current, candidatePool, { limit: 1 });
+    let card;
+    if (keys.length) {
+      const entry = candidatePool.find(p => p.key === keys[0]);
+      card = entry?.card || candidatePool[0].card;
+    } else {
+      card = candidatePool[Math.floor(Math.random() * candidatePool.length)].card;
+    }
+    // build 4 choices (only used in mc/cloze/reverse-finding modes)
     const pool = validCards.filter(c => c !== card);
     const sameSection = pool.filter(c => c.section_id === card.section_id);
     const distractors = [];
-    const used = new Set([(reverse ? card.finding : card.author).toLowerCase()]);
+    const distractorField = format === "cloze" ? "author"
+                           : reverse ? "finding" : "author";
+    const used = new Set([(card[distractorField] || "").toLowerCase()]);
     const draw = (arr) => {
       while (arr.length && distractors.length < 3) {
         const i = Math.floor(Math.random() * arr.length);
-        const pick = arr.splice(i, 1)[0];
-        const key = (reverse ? pick.finding : pick.author).toLowerCase();
-        if (!used.has(key)) { used.add(key); distractors.push(pick); }
+        const p = arr.splice(i, 1)[0];
+        const key = (p[distractorField] || "").toLowerCase();
+        if (!used.has(key)) { used.add(key); distractors.push(p); }
       }
     };
     draw([...sameSection]);
@@ -1709,40 +1827,86 @@ function StudyPane({ cards, onJump }) {
     setCurrent(card);
     setChoices(all);
     setPick(null);
+    setRated(false);
     setTyped("");
     setTimeout(() => typeInputRef.current?.focus(), 50);
-  }, [validCards, reverse]); // boxes read via ref — no longer a dep, so answers don't retrigger
+  }, [validCards, reverse, format, candidatePool]);
 
   useEffect(() => { pickNext(); }, [pickNext]);
 
+  // When another tab or the debates page changes the deck, refresh HUD stats.
+  useEffect(() => {
+    const refresh = () => {
+      if (!window.SRS) return;
+      const d = window.SRS.loadDeck();
+      setDeck(d);
+      setHud(window.SRS.stats(d));
+    };
+    document.addEventListener("srs:change", refresh);
+    return () => document.removeEventListener("srs:change", refresh);
+  }, []);
+
+  // ---- current card key (direction-aware) ------------------------------
+  const curKey = useCallback(() => {
+    if (!current || !window.SRS) return "";
+    const dir = reverse ? "rev" : "fwd";
+    return window.SRS.cardKey(current.author, current.year, current.finding, dir);
+  }, [current, reverse]);
+
+  // ---- answer handlers (MC / cloze / year / type) -----------------------
   const answer = (choice) => {
     if (pick) return;
     setPick(choice);
-    const correct = choice === current;
-    setState(s => {
-      const next = { ...s, boxes: { ...s.boxes }, history: [...s.history, { t: Date.now(), correct }] };
-      const k = cardKey(current);
-      const cur = next.boxes[k] ?? 0;
-      next.boxes[k] = correct ? Math.min(2, cur + 1) : 0;
-      next.streak = correct ? (s.streak || 0) + 1 : 0;
-      saveStudyState(next);
-      return next;
-    });
   };
 
   const submitTyped = () => {
     if (pick || !typed.trim() || !current) return;
     const correct = authorMatch(typed, current.author);
     setPick(correct ? "correct" : "wrong");
-    setState(s => {
-      const next = { ...s, boxes: { ...s.boxes }, history: [...s.history, { t: Date.now(), correct }] };
-      const k = cardKey(current);
-      const cur = next.boxes[k] ?? 0;
-      next.boxes[k] = correct ? Math.min(2, cur + 1) : 0;
-      next.streak = correct ? (s.streak || 0) + 1 : 0;
-      saveStudyState(next);
-      return next;
-    });
+  };
+
+  const answerYear = (decade) => {
+    if (pick || !current) return;
+    const y = parseInt(current.year, 10);
+    const correct = !isNaN(y) && decade === Math.floor(y / 10) * 10;
+    setPick(correct ? "correct" : "wrong");
+  };
+
+  // Was the user's current pick correct? (used to auto-suggest Again/Good.)
+  const wasCorrect = (() => {
+    if (!pick) return false;
+    if (pick === "correct") return true;
+    if (pick === "wrong")   return false;
+    return pick === current;
+  })();
+
+  // ---- SRS rating -------------------------------------------------------
+  const rate = useCallback((rating) => {
+    if (!current || !window.SRS) return;
+    const k = curKey();
+    window.SRS.rate(deckRef.current, k, rating);
+    const next = window.SRS.loadDeck();
+    setDeck(next);
+    setHud(window.SRS.stats(next));
+    setRated(true);
+  }, [current, curKey]);
+
+  // Auto-rate "good" / "again" when pick is set, so the user doesn't *have*
+  // to tap a rating button — but give them the chance to override it before
+  // Next. We apply an automatic rating ONCE per pick.
+  useEffect(() => {
+    if (pick && !rated) {
+      rate(wasCorrect ? "good" : "again");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pick]);
+
+  // ---- toggle shaky flag ------------------------------------------------
+  const isShaky = current && deck.cards[curKey()]?.shaky;
+  const toggleShaky = () => {
+    if (!current || !window.SRS) return;
+    window.SRS.markShaky(deckRef.current, curKey(), !isShaky);
+    setDeck(window.SRS.loadDeck());
   };
 
   // Keyboard shortcuts: 1-4 to pick answer, Enter/Space to advance
@@ -1754,8 +1918,8 @@ function StudyPane({ cards, onJump }) {
         pickNext();
         return;
       }
-      // Before answering, in choice mode: 1-4 to select
-      if (!pick && !typeMode) {
+      // Before answering, in choice-based formats: 1-4 to select
+      if (!pick && (format === "mc" || format === "cloze")) {
         const tag = document.activeElement?.tagName;
         if (tag === "INPUT" || tag === "TEXTAREA") return;
         if (e.key >= "1" && e.key <= "4") {
@@ -1769,40 +1933,61 @@ function StudyPane({ cards, onJump }) {
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [pick, typeMode, choices, pickNext, answer]);
+  }, [pick, format, choices, pickNext, answer]);
 
   if (!validCards.length) {
     return <div className="p-8 text-slate-600">No study cards extracted yet. Add <code>{`{{cite: Author Year — Finding}}`}</code> markers to <code>endo-guide.md</code> and rebuild.</div>;
   }
 
-  const today = new Date().toDateString();
-  const todayHistory = (state.history || []).filter(h => new Date(h.t).toDateString() === today);
-  const todayAcc = todayHistory.length ? Math.round(100 * todayHistory.filter(h => h.correct).length / todayHistory.length) : 0;
-  const totalKnown = Object.values(state.boxes || {}).filter(v => v === 2).length;
+  // Cloze: blank out the author surname inside the finding sentence.
+  const clozePrompt = () => {
+    if (!current) return "";
+    const surname = (current.author || "").split(/\s+/)[0];
+    if (!surname) return current.finding;
+    const re = new RegExp("\\b" + surname.replace(/[.*+?^${}()|[\\]\\\\]/g, "\\$&") + "\\b", "gi");
+    return (current.finding || "").replace(re, "_____");
+  };
 
-  const promptText = reverse ? current?.author : current?.finding;
-  const promptLabel = reverse ? "Which finding matches this author?" : "Which author reported this finding?";
+  const promptText = format === "cloze" ? clozePrompt()
+                   : format === "year"  ? current?.finding
+                   : reverse ? current?.author : current?.finding;
+  const promptLabel = format === "cloze" ? "Fill in the blank — who reported this?"
+                    : format === "year"  ? "Roughly which decade was this published?"
+                    : reverse ? "Which finding matches this author?"
+                    : "Which author reported this finding?";
 
   return (
     <div className="flex-1 overflow-y-auto">
       <div className="max-w-2xl mx-auto p-8">
         <div className="flex flex-wrap items-start justify-between gap-3 mb-6 text-sm text-slate-600">
-          <div>
-            <span className="font-semibold text-slate-900">{validCards.length}</span> cards ·
-            <span className="ml-2">Today: {todayHistory.length} · {todayAcc}% acc</span> ·
-            <span className="ml-2">Streak: {state.streak || 0}</span> ·
-            <span className="ml-2">Known: {totalKnown}</span>
+          <div className="srs-hud">
+            <span><strong>{validCards.length}</strong> cards</span>
+            <span>Due: <strong>{hud.due}</strong></span>
+            <span>New: <strong>{hud.newCount}</strong></span>
+            <span>Mastered: <strong>{hud.mastered}</strong></span>
+            <span>Streak: <strong>{hud.streak || 0}</strong></span>
+            {hud.shaky > 0 && <span>Shaky: <strong>{hud.shaky}</strong></span>}
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input type="checkbox" checked={reverse && !typeMode}
-                onChange={e => { setReverse(e.target.checked); if (e.target.checked) setTypeMode(false); }} />
-              Reverse mode
+            <label className="flex items-center gap-1.5 text-xs">
+              Format:
+              <select
+                className="border rounded px-2 py-1 text-xs bg-white"
+                value={format}
+                onChange={e => setFormat(e.target.value)}
+                disabled={!!pick}
+              >
+                <option value="mc">Multiple choice</option>
+                <option value="type">Type author</option>
+                <option value="cloze">Cloze (fill blank)</option>
+                <option value="year">Year / decade</option>
+              </select>
             </label>
-            <label className="flex items-center gap-2 cursor-pointer select-none font-medium text-indigo-700">
-              <input type="checkbox" checked={typeMode}
-                onChange={e => { setTypeMode(e.target.checked); if (e.target.checked) setReverse(false); }} />
-              Type-it mode
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" checked={reverse}
+                onChange={e => setReverse(e.target.checked)}
+                disabled={format !== "mc"} />
+              Reverse
             </label>
             {flagged.size > 0 && (
               <label className="flex items-center gap-2 cursor-pointer select-none font-medium text-rose-700">
@@ -1817,7 +2002,7 @@ function StudyPane({ cards, onJump }) {
         <div className="bg-white border border-slate-200 rounded-xl p-7 shadow-sm border-t-4 border-t-indigo-500">
           <div className="text-xs uppercase tracking-widest text-slate-400 mb-3 font-medium">{promptLabel}</div>
           <div className="text-xl text-slate-900 font-serif mb-6 leading-relaxed">{promptText}</div>
-          {typeMode ? (
+          {format === "type" ? (
             /* ---- TYPE-IT MODE ---- */
             <div>
               <div className="flex gap-2 mb-3">
@@ -1848,11 +2033,42 @@ function StudyPane({ cards, onJump }) {
                 </div>
               )}
             </div>
+          ) : format === "year" ? (
+            /* ---- YEAR-GUESS MODE ---- */
+            (() => {
+              const y = parseInt(current?.year || "", 10);
+              const targetDecade = Math.floor(y / 10) * 10;
+              const candidates = new Set([targetDecade]);
+              while (candidates.size < 4) {
+                const delta = (Math.floor(Math.random() * 7) - 3) * 10;
+                const d = targetDecade + delta;
+                if (d >= 1950 && d <= 2020) candidates.add(d);
+              }
+              const decades = Array.from(candidates).sort();
+              return (
+                <div className="grid grid-cols-2 gap-2">
+                  {decades.map(d => {
+                    let cls = "text-left px-4 py-3 rounded border bg-white hover:bg-slate-50 font-mono";
+                    if (pick) {
+                      if (d === targetDecade) cls = "text-left px-4 py-3 rounded border bg-emerald-50 border-emerald-400 text-emerald-900 font-mono font-semibold";
+                      else cls = "text-left px-4 py-3 rounded border bg-slate-50 text-slate-500 font-mono";
+                    }
+                    return (
+                      <button key={d} className={cls} onClick={() => answerYear(d)} disabled={!!pick}>
+                        {d}s
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })()
           ) : (
-            /* ---- CHOICE MODE ---- */
+            /* ---- MULTIPLE CHOICE (mc / cloze) ---- */
             <div className="grid gap-2">
               {choices.map((c, i) => {
-                const label = reverse ? c.finding : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
+                const label = format === "cloze" ? `${c.author}${c.year ? " (" + c.year + ")" : ""}`
+                             : reverse ? c.finding
+                             : `${c.author}${c.year ? " (" + c.year + ")" : ""}`;
                 let cls = "text-left px-4 py-3 rounded border bg-white hover:bg-slate-50";
                 if (pick) {
                   if (c === current) cls = "text-left px-4 py-3 rounded border bg-emerald-50 border-emerald-400 text-emerald-900";
@@ -1868,22 +2084,41 @@ function StudyPane({ cards, onJump }) {
             </div>
           )}
           {pick && (
-            <div className="mt-5 flex items-center justify-between">
-              <div className="text-sm text-slate-600">
-                {!typeMode && (
-                  <><span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""}
-                  {reverse && <span className="italic"> — {current.finding}</span>}</>
-                )}
-                {current.section_title && (
-                  <button className={`text-indigo-600 hover:underline ${typeMode ? "" : "ml-3"}`} onClick={() => onJump?.(current.section_id)}>
-                    Jump to §{current.section_title}
-                  </button>
-                )}
+            <>
+              {/* SRS rating row */}
+              <div className="srs-rating">
+                <button className="srs-rating-btn srs-rating-btn--again" onClick={() => { rate("again"); pickNext(); }}>
+                  Again <small>10 min</small>
+                </button>
+                <button className="srs-rating-btn srs-rating-btn--hard" onClick={() => { rate("hard"); pickNext(); }}>
+                  Hard
+                </button>
+                <button className="srs-rating-btn srs-rating-btn--good" onClick={() => { rate("good"); pickNext(); }}>
+                  Good <small>auto</small>
+                </button>
+                <button className="srs-rating-btn srs-rating-btn--easy" onClick={() => { rate("easy"); pickNext(); }}>
+                  Easy
+                </button>
               </div>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700" onClick={pickNext}>
-                Next →
-              </button>
-            </div>
+              <div className="mt-4 flex items-center justify-between flex-wrap gap-3">
+                <div className="text-sm text-slate-600">
+                  <span className="font-semibold">{current.author}</span>{current.year ? ` (${current.year})` : ""}
+                  {(format === "cloze" || reverse) && <span className="italic"> — {current.finding}</span>}
+                  {current.section_title && (
+                    <button className="text-indigo-600 hover:underline ml-3" onClick={() => onJump?.(current.section_id)}>
+                      Jump to §{current.section_title}
+                    </button>
+                  )}
+                </div>
+                <button
+                  className={`srs-shaky-btn${isShaky ? " is-shaky" : ""}`}
+                  onClick={toggleShaky}
+                  title="Mark this card as shaky — the hourly audit will re-verify its abstract."
+                >
+                  {isShaky ? "★ Flagged shaky" : "☆ Flag as shaky"}
+                </button>
+              </div>
+            </>
           )}
         </div>
 
@@ -1891,8 +2126,10 @@ function StudyPane({ cards, onJump }) {
           <AbstractPanel author={current.author} year={current.year} finding={current.finding} />
         )}
         <div className="mt-4 text-xs text-slate-500">
-          Leitner: new cards appear more often until answered correctly twice in a row.
-          Progress persists in your browser only.
+          Spaced repetition: cards are scheduled by a five-box Leitner with real
+          time gates (10 min → 1 h → 1 day → 3 days → 7 days → 21 days). New
+          and due cards come up first; rate cards Again / Hard / Good / Easy to
+          fine-tune the interval. Progress is stored only in your browser.
           <br/>Shortcuts: <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">1</kbd>–<kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">4</kbd> pick answer · <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Enter</kbd> / <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Space</kbd> next
         </div>
       </div>
@@ -1901,7 +2138,31 @@ function StudyPane({ cards, onJump }) {
 }
 
 // --- audit pane -------------------------------------------------------------
-function AuditPane({ suggestions }) {
+function AbstractHealthWidget({ health, totalCards }) {
+  if (!health) return null;
+  const total = health.total || 0;
+  const missing = Math.max(0, (totalCards || total) - total);
+  return (
+    <div className="abs-health">
+      <div className="abs-health__title">Abstract health</div>
+      <div className="abs-health__row">
+        <span><strong>{total}/{totalCards || total}</strong> cards have abstracts</span>
+        <span className="abs-health__pill abs-health__pill--high">{health.high || 0} high</span>
+        <span className="abs-health__pill abs-health__pill--medium">{health.medium || 0} medium</span>
+        <span className="abs-health__pill abs-health__pill--low">{health.low || 0} low</span>
+        <span className="abs-health__pill abs-health__pill--missing">{missing} missing</span>
+      </div>
+      {(health.low || 0) > 0 && (
+        <div className="text-xs text-slate-500">
+          Run <code>/audit</code> to re-verify low-confidence matches, or report individual
+          mismatches from the abstract modal.
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AuditPane({ suggestions, abstractHealth, totalCards }) {
   const [decisions, setDecisions] = useState({}); // id -> "approve"|"reject"|"edit"
   const [edits, setEdits] = useState({});          // id -> edited "after" text
 
@@ -1922,6 +2183,7 @@ function AuditPane({ suggestions }) {
     return (
       <div className="flex-1 overflow-y-auto p-8">
         <div className="max-w-2xl mx-auto text-slate-600">
+          <AbstractHealthWidget health={abstractHealth} totalCards={totalCards} />
           <h2 className="text-xl font-semibold text-slate-900 mb-2">No pending suggestions</h2>
           <p>The weekly audit writes proposals to <code>suggestions.json</code>. Run the scheduled task or rebuild after it runs.</p>
         </div>
@@ -1938,6 +2200,7 @@ function AuditPane({ suggestions }) {
   return (
     <div className="flex-1 overflow-y-auto">
       <div className="max-w-3xl mx-auto p-8">
+        <AbstractHealthWidget health={abstractHealth} totalCards={totalCards} />
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-xl font-semibold text-slate-900">Weekly audit proposals</h2>
@@ -2268,7 +2531,7 @@ function App() {
     <AnnotateCtx.Provider value={{ annotateMode, marks: annData.marks, notes: annData.notes, addMark, removeMark, addNote, updateNote, removeNote, saveBlock }}>
     <FlagCtx.Provider value={{ flagged, toggleFlag }}>
     <AbstractCtx.Provider value={{ openAbstract }}>
-    <div className="h-screen flex flex-col">
+    <div className="flex-1 min-h-0 flex flex-col">
       <header className="bg-white border-b shadow-sm shrink-0">
         <div className="flex items-center gap-2 md:gap-5 px-3 md:px-5 h-14">
           <div className="text-indigo-700 font-bold tracking-tight text-sm shrink-0">Endo Guide</div>
@@ -2318,7 +2581,11 @@ function App() {
       {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} authorPool={authorPool} pctPool={pctPool} />}
       {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
-      {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
+      {tab === "audit" && <AuditPane
+        suggestions={data.suggestions || []}
+        abstractHealth={data.abstract_health || null}
+        totalCards={(data.cards || []).length}
+      />}
       {tab === "match" && <MatchPane />}
     </div>
     {showPwModal && (
