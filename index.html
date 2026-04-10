@@ -1736,6 +1736,32 @@ function StudyPane({ cards, onJump }) {
     });
   };
 
+  // Keyboard shortcuts: 1-4 to pick answer, Enter/Space to advance
+  useEffect(() => {
+    const handler = (e) => {
+      // After answering: Enter or Space → next question
+      if (pick && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        pickNext();
+        return;
+      }
+      // Before answering, in choice mode: 1-4 to select
+      if (!pick && !typeMode) {
+        const tag = document.activeElement?.tagName;
+        if (tag === "INPUT" || tag === "TEXTAREA") return;
+        if (e.key >= "1" && e.key <= "4") {
+          const idx = parseInt(e.key) - 1;
+          if (idx < choices.length) {
+            e.preventDefault();
+            answer(choices[idx]);
+          }
+        }
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [pick, typeMode, choices, pickNext, answer]);
+
   if (!validCards.length) {
     return <div className="p-8 text-slate-600">No study cards extracted yet. Add <code>{`{{cite: Author Year — Finding}}`}</code> markers to <code>endo-guide.md</code> and rebuild.</div>;
   }
@@ -1826,7 +1852,7 @@ function StudyPane({ cards, onJump }) {
                 }
                 return (
                   <button key={i} className={cls} onClick={() => answer(c)} disabled={!!pick}>
-                    {label}
+                    <span className="inline-block w-6 text-slate-400 font-mono text-sm font-bold">{i + 1}.</span>{label}
                   </button>
                 );
               })}
@@ -1858,6 +1884,7 @@ function StudyPane({ cards, onJump }) {
         <div className="mt-4 text-xs text-slate-500">
           Leitner: new cards appear more often until answered correctly twice in a row.
           Progress persists in your browser only.
+          <br/>Shortcuts: <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">1</kbd>–<kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">4</kbd> pick answer · <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Enter</kbd> / <kbd className="px-1 py-0.5 bg-slate-100 border border-slate-300 rounded text-[10px] font-mono">Space</kbd> next
         </div>
       </div>
     </div>
