@@ -29,9 +29,48 @@ MD = HERE / "endo-guide.md"
 SUGGESTIONS = HERE / "suggestions.json"
 ABSTRACTS = HERE / "abstracts.json"
 TEMPLATE = HERE / "endo-guide.template.html"
+ASSETS = HERE / "assets"
 OUT_JSON = HERE / "guide-data.json"
 OUT_HTML = HERE / "index.html"
 OUT_HTML_ALIAS = HERE / "endo-guide.html"  # kept for local-open convenience
+
+# Shared static assets that must be inlined into the offline single-file
+# artifact. Order matters: srs.js must be loaded before site-nav.js (because
+# site-nav reads window.SRS.stats for the "due" badge).
+INLINED_ASSETS = [
+    ("theme.css", "css",
+     '<link rel="stylesheet" href="/assets/theme.css">'),
+    ("srs.js", "js",
+     '<script src="/assets/srs.js"></script>'),
+    ("site-nav.js", "js",
+     '<script src="/assets/site-nav.js"></script>'),
+]
+
+
+def inline_assets(html: str) -> str:
+    """Replace /assets/* link+script tags with inlined <style>/<script>.
+
+    Keeps the original <link>/<script> tags as comments so the diff is
+    readable.  This runs only for the guide template so the single-file
+    endo-guide.html remains usable offline (file://), matching the property
+    advertised in README.md.
+    """
+    for filename, kind, tag in INLINED_ASSETS:
+        src = ASSETS / filename
+        if not src.exists():
+            print(f"warn: asset missing, skipping inline: {src}", file=sys.stderr)
+            continue
+        body = src.read_text(encoding="utf-8")
+        if kind == "css":
+            replacement = f"<style>\n/* inlined from /assets/{filename} */\n{body}\n</style>"
+        else:
+            replacement = f"<script>\n/* inlined from /assets/{filename} */\n{body}\n</script>"
+        if tag not in html:
+            print(f"warn: could not find {tag!r} in template to inline",
+                  file=sys.stderr)
+            continue
+        html = html.replace(tag, replacement)
+    return html
 
 
 # -------------------- markdown parser (minimal, tailored) --------------------
@@ -316,12 +355,40 @@ def build() -> None:
         except Exception as e:
             print(f"warn: could not read abstracts.json: {e}", file=sys.stderr)
 
+    # Abstract health stats — drives the Audit-pane "Abstract health" widget.
+    # Cheap aggregation so the UI doesn't have to scan abstracts.json at render.
+    def _conf(v: dict) -> str:
+        # Prefer the explicit `confidence` field; fall back to score-derived
+        # buckets so older entries without it still categorize correctly.
+        if v.get("confidence") in ("high", "medium", "low", "unknown"):
+            return v["confidence"]
+        if v.get("status") == "not_found":
+            return "unknown"
+        s = float(v.get("score") or 0)
+        return "high" if s >= 0.55 else ("medium" if s >= 0.35 else "low")
+
+    conf_counts = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
+    needs_review = 0
+    for v in abstracts.values():
+        conf_counts[_conf(v)] += 1
+        if v.get("needs_review") or _conf(v) != "high":
+            needs_review += 1
+    abstract_health = {
+        "total": len(abstracts),
+        "high": conf_counts["high"],
+        "medium": conf_counts["medium"],
+        "low": conf_counts["low"],
+        "unknown": conf_counts["unknown"],
+        "needs_review": needs_review,
+    }
+
     data = {
         "built_at": datetime.now(timezone.utc).isoformat(),
         "sections": sections,
         "cards": cards,
         "suggestions": suggestions,
         "abstracts": abstracts,
+        "abstract_health": abstract_health,
     }
     OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -331,6 +398,11 @@ def build() -> None:
         return
 
     tpl = TEMPLATE.read_text(encoding="utf-8")
+    # Inline shared assets (theme.css, srs.js, site-nav.js) so the generated
+    # endo-guide.html is a single self-contained file (offline property from
+    # README.md).  Non-generated pages (endo-debates.html, cochrane-endo.html)
+    # load the same files via /assets/* on Cloudflare Pages.
+    tpl = inline_assets(tpl)
     payload = json.dumps(data, ensure_ascii=False)
     # inject: replace the literal sentinel `/*__DATA__*/null` with the payload
     if "/*__DATA__*/null" not in tpl:

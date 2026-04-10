@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-10T12:10:57.113369+00:00",
+  "built_at": "2026-04-10T23:09:14.596330+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -6703,7 +6703,9 @@
       "journal": "European journal of oral sciences",
       "pub_year": "2026",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Aggarwal|2011": {
       "pmid": "22000449",
@@ -6713,7 +6715,9 @@
       "pub_year": "2011",
       "status": "ok",
       "score": 0.75,
-      "query": "Aggarwal[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Aggarwal[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Aksoy|2019": {
       "pmid": "31702056",
@@ -6723,7 +6727,9 @@
       "pub_year": "2020",
       "status": "ok",
       "score": 0.75,
-      "query": "Aksoy[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Aksoy[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Alomari|": {
       "pmid": "21366625",
@@ -6732,7 +6738,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2011",
       "status": "ok",
-      "score": 1.0
+      "score": 1.0,
+      "confidence": "high",
+      "needs_review": false
     },
     "Aquilino and Caplan|2002": {
       "pmid": "11941351",
@@ -6741,7 +6749,9 @@
       "journal": "The Journal of prosthetic dentistry",
       "pub_year": "2002",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Bender|": {
       "pmid": "2921428",
@@ -6750,7 +6760,9 @@
       "journal": "Journal of the American Dental Association (1939)",
       "pub_year": "1989",
       "status": "ok",
-      "score": 0.6
+      "score": 0.6,
+      "confidence": "high",
+      "needs_review": false
     },
     "Bender and Rossman|": {
       "pmid": "8247504",
@@ -6759,7 +6771,9 @@
       "journal": "Oral surgery, oral medicine, and oral pathology",
       "pub_year": "1993",
       "status": "ok",
-      "score": 1.0
+      "score": 1.0,
+      "confidence": "high",
+      "needs_review": false
     },
     "Bender and Seltzer|1961": {
       "pmid": "13867083",
@@ -6768,7 +6782,9 @@
       "journal": "Oral surgery, oral medicine, and oral pathology",
       "pub_year": "1961",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Bhaskar and Rappaport|": {
       "pmid": null,
@@ -6776,7 +6792,9 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy."
+      "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy.",
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Bierma|": {
       "pmid": "22794215",
@@ -6786,7 +6804,9 @@
       "pub_year": "2012",
       "status": "ok",
       "score": 0.778,
-      "query": "Bierma[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Bierma[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Bimstein and Rotstein|2016": {
       "pmid": "27397639",
@@ -6796,7 +6816,9 @@
       "pub_year": "2016",
       "status": "ok",
       "score": 0.429,
-      "query": "Bimstein[Author] AND 2016[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Bimstein[Author] AND 2016[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Boutsioukis|2010": {
       "pmid": "20618877",
@@ -6806,7 +6828,9 @@
       "pub_year": "2010",
       "status": "ok",
       "score": 0.611,
-      "query": "Boutsioukis[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Boutsioukis[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Boutsioukis|2021": {
       "pmid": "19460000",
@@ -6815,7 +6839,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2009",
       "status": "ok",
-      "score": 0.308
+      "score": 0.308,
+      "confidence": "low",
+      "needs_review": true
     },
     "Carnevale|1998": {
       "pmid": "9543191",
@@ -6824,7 +6850,9 @@
       "journal": "Journal of clinical periodontology",
       "pub_year": "1998",
       "status": "ok",
-      "score": 0.429
+      "score": 0.429,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Cotter and Panzarino|": {
       "pmid": "16728256",
@@ -6833,7 +6861,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2006",
       "status": "ok",
-      "score": 0.429
+      "score": 0.429,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Dammaschke|2010": {
       "pmid": "20416425",
@@ -6843,7 +6873,9 @@
       "pub_year": "2010",
       "status": "ok",
       "score": 0.5,
-      "query": "Dammaschke[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Dammaschke[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Doyle|2006": {
       "pmid": "16934623",
@@ -6853,7 +6885,9 @@
       "pub_year": "2006",
       "status": "ok",
       "score": 0.5,
-      "query": "Doyle[Author] AND 2006[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Doyle[Author] AND 2006[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Dummer|1984": {
       "pmid": "6593303",
@@ -6862,14 +6896,18 @@
       "journal": "International endodontic journal",
       "pub_year": "1984",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Fan|2004": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Farsi|2005": {
       "pmid": "30514371",
@@ -6878,7 +6916,9 @@
       "journal": "BMC oral health",
       "pub_year": "2018",
       "status": "ok",
-      "score": 0.4
+      "score": 0.4,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Fernandes|2003": {
       "pmid": "14668756",
@@ -6887,7 +6927,9 @@
       "journal": "The Journal of prosthetic dentistry",
       "pub_year": "2003",
       "status": "ok",
-      "score": 0.053
+      "score": 0.053,
+      "confidence": "low",
+      "needs_review": true
     },
     "Fouad and Burleson|2003": {
       "pmid": "15980710",
@@ -6896,7 +6938,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2005",
       "status": "ok",
-      "score": 0.444
+      "score": 0.444,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Fowler|": {
       "pmid": "25442725",
@@ -6905,7 +6949,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2014",
       "status": "ok",
-      "score": 1.0
+      "score": 1.0,
+      "confidence": "high",
+      "needs_review": false
     },
     "Fuss and Trope|1996": {
       "pmid": "9206372",
@@ -6915,7 +6961,9 @@
       "pub_year": "1996",
       "status": "ok",
       "score": 0.6,
-      "query": "Fuss[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Fuss[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Gillen|2011": {
       "pmid": "21689541",
@@ -6925,21 +6973,27 @@
       "pub_year": "2011",
       "status": "ok",
       "score": 0.286,
-      "query": "Gillen[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Gillen[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     },
     "Gillhooly|2000": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Grossman|1976": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Gupta|": {
       "pmid": "21976845",
@@ -6948,7 +7002,9 @@
       "journal": "Journal of Indian Society of Periodontology",
       "pub_year": "2011",
       "status": "ok",
-      "score": 0.444
+      "score": 0.444,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Haapasalo|2010": {
       "pmid": "17916071",
@@ -6957,7 +7013,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2008",
       "status": "ok",
-      "score": 0.273
+      "score": 0.273,
+      "confidence": "low",
+      "needs_review": true
     },
     "Hahn and Liewehr|2007": {
       "pmid": "17509400",
@@ -6966,7 +7024,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2007",
       "status": "ok",
-      "score": 0.25
+      "score": 0.25,
+      "confidence": "low",
+      "needs_review": true
     },
     "Harrington|": {
       "pmid": null,
@@ -6974,7 +7034,9 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Peyronie's-like changes in the tunica albuginea were identified in reconstruction patients."
+      "rejected_title": "Peyronie's-like changes in the tunica albuginea were identified in reconstruction patients.",
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Hegde|2023": {
       "pmid": "36736586",
@@ -6983,7 +7045,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2023",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Hulsmann|2000": {
       "pmid": null,
@@ -6991,7 +7055,8 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Management of a ruptured cerebral aneurysm in infancy. Report of a case of a ten-month-old boy."
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Jorge-Araújo|2018": {
       "pmid": "29972451",
@@ -7001,7 +7066,9 @@
       "pub_year": "2018",
       "status": "ok",
       "score": 0.75,
-      "query": "Jorge-Araújo[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Jorge-Araújo[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Kanaa|2012": {
       "pmid": "26543456",
@@ -7010,7 +7077,9 @@
       "journal": "Saudi journal of anaesthesia",
       "pub_year": "2015",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Kenee|2006": {
       "pmid": "16728252",
@@ -7020,7 +7089,9 @@
       "pub_year": "2006",
       "status": "ok",
       "score": 0.545,
-      "query": "Kenee[Author] AND 2006[PDAT]"
+      "query": "Kenee[Author] AND 2006[PDAT]",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Konagala|2019": {
       "pmid": "30820083",
@@ -7030,7 +7101,9 @@
       "pub_year": "2019",
       "status": "ok",
       "score": 0.857,
-      "query": "Konagala[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Konagala[Author] AND 2019[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Kontakiotis|2015": {
       "pmid": "29304003",
@@ -7039,7 +7112,9 @@
       "journal": "International journal of molecular sciences",
       "pub_year": "2018",
       "status": "ok",
-      "score": 0.286
+      "score": 0.286,
+      "confidence": "low",
+      "needs_review": true
     },
     "Kratchman|": {
       "pmid": "9248694",
@@ -7048,14 +7123,18 @@
       "journal": "Dental clinics of North America",
       "pub_year": "1997",
       "status": "ok",
-      "score": 0.364
+      "score": 0.364,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Kumar|2021": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Kuttler|1955": {
       "pmid": "14366934",
@@ -7064,7 +7143,9 @@
       "journal": "Journal of the American Dental Association (1939)",
       "pub_year": "1955",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Langeland|": {
       "pmid": "9206437",
@@ -7074,7 +7155,9 @@
       "pub_year": "1996",
       "status": "ok",
       "score": 0.5,
-      "query": "Langeland[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Langeland[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Lawley|2004": {
       "pmid": null,
@@ -7082,7 +7165,8 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Assessment of the epidemic potential of a new strain of rotavirus associated with the novel G9 serotype which caused an outbreak in the United States for the first time in the 1995-1996 season."
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Lofthag-Hansen|2007": {
       "pmid": "17178504",
@@ -7092,7 +7176,9 @@
       "pub_year": "2007",
       "status": "ok",
       "score": 0.333,
-      "query": "Lofthag-Hansen[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Lofthag-Hansen[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     },
     "Madarati|2018": {
       "pmid": "31435361",
@@ -7102,7 +7188,9 @@
       "pub_year": "2018",
       "status": "ok",
       "score": 0.286,
-      "query": "Madarati[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Madarati[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     },
     "Mainkar and Kim|2018": {
       "pmid": "29571914",
@@ -7112,7 +7200,9 @@
       "pub_year": "2018",
       "status": "ok",
       "score": 0.615,
-      "query": "Mainkar[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Mainkar[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Maltz|2012": {
       "pmid": "23207420",
@@ -7122,7 +7212,9 @@
       "pub_year": "2013",
       "status": "ok",
       "score": 0.75,
-      "query": "Maltz[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Maltz[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Mehrvarzfar|2008": {
       "pmid": "18352900",
@@ -7132,7 +7224,9 @@
       "pub_year": "2008",
       "status": "ok",
       "score": 0.909,
-      "query": "Mehrvarzfar[Author] AND 2008[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Mehrvarzfar[Author] AND 2008[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Mente|2010": {
       "pmid": "20416424",
@@ -7142,7 +7236,9 @@
       "pub_year": "2010",
       "status": "ok",
       "score": 0.75,
-      "query": "Mente[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Mente[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Mente|2014": {
       "pmid": "25227216",
@@ -7152,7 +7248,9 @@
       "pub_year": "2014",
       "status": "ok",
       "score": 0.875,
-      "query": "Mente[Author] AND 2014[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Mente[Author] AND 2014[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Miller|": {
       "pmid": "15448461",
@@ -7161,7 +7259,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2004",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Murphy|": {
       "pmid": "2047106",
@@ -7170,7 +7270,9 @@
       "journal": "Oral surgery, oral medicine, and oral pathology",
       "pub_year": "1991",
       "status": "ok",
-      "score": 0.571
+      "score": 0.571,
+      "confidence": "high",
+      "needs_review": false
     },
     "Nattress and Martin|1994": {
       "pmid": "26630864",
@@ -7179,7 +7281,9 @@
       "journal": "Dental update",
       "pub_year": "2015",
       "status": "ok",
-      "score": 0.25
+      "score": 0.25,
+      "confidence": "low",
+      "needs_review": true
     },
     "Neves|2017": {
       "pmid": "28951030",
@@ -7188,7 +7292,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2017",
       "status": "ok",
-      "score": 0.312
+      "score": 0.312,
+      "confidence": "low",
+      "needs_review": true
     },
     "Ng|2008": {
       "pmid": "19133093",
@@ -7197,7 +7303,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2008",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Ng|2011": {
       "pmid": "21366627",
@@ -7206,7 +7314,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2011",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Owatz|": {
       "pmid": "17804314",
@@ -7216,7 +7326,9 @@
       "pub_year": "2007",
       "status": "ok",
       "score": 0.4,
-      "query": "Owatz[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Owatz[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Pagin|": {
       "pmid": "23683273",
@@ -7225,7 +7337,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2013",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Parirokh and Torabinejad|2010": {
       "pmid": "21702853",
@@ -7234,7 +7348,9 @@
       "journal": "International journal of paediatric dentistry",
       "pub_year": "2011",
       "status": "ok",
-      "score": 0.6
+      "score": 0.6,
+      "confidence": "high",
+      "needs_review": false
     },
     "Peng|2007": {
       "pmid": null,
@@ -7242,7 +7358,9 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Comparative Efficacy and Safety of Jintrolong and Other Long-Acting Growth Hormones for Growth Hormone Deficiency in East Asia: A Systematic Review and Network Meta-Analysis."
+      "rejected_title": "Comparative Efficacy and Safety of Jintrolong and Other Long-Acting Growth Hormones for Growth Hormone Deficiency in East Asia: A Systematic Review and Network Meta-Analysis.",
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Peters|2004": {
       "pmid": "15548276",
@@ -7251,7 +7369,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2004",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Pochapski|2009": {
       "pmid": "19748294",
@@ -7261,7 +7381,9 @@
       "pub_year": "2009",
       "status": "ok",
       "score": 0.875,
-      "query": "Pochapski[Author] AND 2009[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Pochapski[Author] AND 2009[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Pulikkotil|2018": {
       "pmid": "29480930",
@@ -7271,7 +7393,9 @@
       "pub_year": "2018",
       "status": "ok",
       "score": 0.7,
-      "query": "Pulikkotil[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Pulikkotil[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Read|": {
       "pmid": "25069908",
@@ -7280,7 +7404,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2014",
       "status": "ok",
-      "score": 0.875
+      "score": 0.875,
+      "confidence": "high",
+      "needs_review": false
     },
     "Ruddle|2004": {
       "pmid": "16196235",
@@ -7289,7 +7415,9 @@
       "journal": "Journal of the American Dental Association (1939)",
       "pub_year": "2005",
       "status": "ok",
-      "score": 0.222
+      "score": 0.222,
+      "confidence": "low",
+      "needs_review": true
     },
     "Salehrabi and Rotstein|": {
       "pmid": "20416420",
@@ -7299,7 +7427,9 @@
       "pub_year": "2010",
       "status": "ok",
       "score": 0.333,
-      "query": "Salehrabi[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Salehrabi[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     },
     "Saunders and Saunders|1994": {
       "pmid": "7814130",
@@ -7308,14 +7438,18 @@
       "journal": "International endodontic journal",
       "pub_year": "1994",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Sedley|2005": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Seltzer|1965": {
       "pmid": "9515403",
@@ -7324,14 +7458,18 @@
       "journal": "General dentistry",
       "pub_year": "1997",
       "status": "ok",
-      "score": 0.25
+      "score": 0.25,
+      "confidence": "low",
+      "needs_review": true
     },
     "Shanbhag|": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Silva|2020": {
       "pmid": "33219876",
@@ -7340,7 +7478,9 @@
       "journal": "Clinical oral investigations",
       "pub_year": "2021",
       "status": "ok",
-      "score": 0.412
+      "score": 0.412,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Spili|2005": {
       "pmid": "16306815",
@@ -7350,7 +7490,9 @@
       "pub_year": "2005",
       "status": "ok",
       "score": 0.667,
-      "query": "Spili[Author] AND 2005[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Spili[Author] AND 2005[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "high",
+      "needs_review": false
     },
     "Sundqvist|1998": {
       "pmid": "9474621",
@@ -7359,7 +7501,9 @@
       "journal": "Oral surgery, oral medicine, oral pathology, oral radiology, and endodontics",
       "pub_year": "1998",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Suresh|2020": {
       "pmid": "32976660",
@@ -7368,7 +7512,9 @@
       "journal": "International endodontic journal",
       "pub_year": "2021",
       "status": "ok",
-      "score": 0.933
+      "score": 0.933,
+      "confidence": "high",
+      "needs_review": false
     },
     "Sweatman and Baumgartner|2001": {
       "pmid": "11501588",
@@ -7378,17 +7524,18 @@
       "pub_year": "2001",
       "status": "ok",
       "score": 0.429,
-      "query": "Sweatman[Author] AND 2001[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Sweatman[Author] AND 2001[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Tewary|2011": {
-      "pmid": "21689544",
-      "title": "Endodontic radiography: who is reading the digital radiograph?",
-      "abstract": "INTRODUCTION: Digital radiographic imaging systems have undergone tremendous improvements since their introduction. Advantages of digital radiographs over conventional films include lower radiation doses compared with conventional films, instantaneous images, archiving and sharing images easily, and manipulation of several radiographic properties that might help in diagnosis. METHODS: A total of 6 observers including 2 endodontic residents, 3 endodontists, and 1 oral radiologist evaluated 150 molar digital periapical radiographs to determine which of the following conditions existed: normal periapical tissue, widened periodontal ligament, or presence of periapical radiolucency. The evaluators had full control over the radiograph's parameters of the Planmeca Dimaxis software program. All images were viewed on the same computer monitor with ideal vie-wing conditions. The same 6 observers evaluated the same 150 digital images 3 months later. The data were analyzed to determine how well the evaluators agreed with each other (interobserver agreement) for 2 rounds of observations and with themselves (intraobserver agreement). RESULTS: Fleiss kappa statistical analysis was used to measure the level of agreement among multiple raters. The overall Fleiss kappa value for interobserver agreement for the first round of interpretation was 0.34 (P < .001). The overall Fleiss kappa value for interobserver agreement for the second round of interpretation was 0.35 (P < .001). This resulted in fair (0.2-0.4) agreement among the 6 raters at both observation periods. A weighted kappa analysis was used to determine intraobserver agreement, which showed on average a moderate agreement. CONCLUSIONS: The results indicate that the interpretation of a dental radiograph is subjective, irrespective of whether conventional or digital radiographs are used. The factors that appeared to have the most impact were the years of experience of the examiner and familiarity of the operator with a given digital system.",
-      "journal": "Journal of endodontics",
-      "pub_year": "2011",
-      "status": "ok",
-      "score": 0.235,
-      "query": "Tewary[Author] AND 2011[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Torabinejad|2007": {
       "pmid": "17936128",
@@ -7398,7 +7545,9 @@
       "pub_year": "2007",
       "status": "ok",
       "score": 0.5,
-      "query": "Torabinejad[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Torabinejad[Author] AND 2007[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Torabinejad|2009": {
       "pmid": "19567310",
@@ -7407,7 +7556,9 @@
       "journal": "Journal of endodontics",
       "pub_year": "2009",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "Trowbridge|": {
       "pmid": null,
@@ -7415,7 +7566,9 @@
       "abstract": "",
       "status": "not_found",
       "score": 0,
-      "rejected_title": "Modification of the Gorlin equation for use with heart valve substitutes."
+      "rejected_title": "Modification of the Gorlin equation for use with heart valve substitutes.",
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Vera|2012": {
       "pmid": "22980174",
@@ -7425,7 +7578,9 @@
       "pub_year": "2012",
       "status": "ok",
       "score": 0.263,
-      "query": "Vera[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Vera[Author] AND 2012[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     },
     "Violich and Chandler|2010": {
       "pmid": "20002799",
@@ -7435,7 +7590,9 @@
       "pub_year": "2010",
       "status": "ok",
       "score": 0.438,
-      "query": "Violich[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Violich[Author] AND 2010[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Walton|1996": {
       "pmid": "8734709",
@@ -7445,7 +7602,9 @@
       "pub_year": "1996",
       "status": "ok",
       "score": 0.429,
-      "query": "Walton[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
+      "query": "Walton[Author] AND 1996[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "medium",
+      "needs_review": true
     },
     "Wang|": {
       "pmid": "29580724",
@@ -7454,154 +7613,206 @@
       "journal": "Journal of endodontics",
       "pub_year": "2018",
       "status": "ok",
-      "score": 0.5
+      "score": 0.5,
+      "confidence": "medium",
+      "needs_review": true
     },
     "AAE|2019": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "AAE and AAO 2015 joint position statement|": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Basrani|2007": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Berman and Kuttler|2010": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Bjørndal|2019": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Blomlöf|1997": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Burch and Hulen|1972": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Costa|2013": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "ESE de Souza|2021": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Evans|2002": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Hand|1978": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Kang|2016": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Krasner and Rankow|2004": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Peters|2001": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Ray and Trope|1995": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Ricucci|2014": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Ricucci and Langeland|1998": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Sathorn|2007": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Shabahang|1996": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Sim|": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     },
     "Zehnder|2006": {
       "pmid": null,
       "title": "",
       "abstract": "",
       "status": "not_found",
-      "score": 0
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
     }
+  },
+  "abstract_health": {
+    "total": 104,
+    "high": 23,
+    "medium": 33,
+    "low": 14,
+    "unknown": 34,
+    "needs_review": 81
   }
 }

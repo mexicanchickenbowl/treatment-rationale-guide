@@ -199,6 +199,12 @@ def main():
                     "score":    round(best_score, 3),
                     "query":    query,
                 }
+                # Stamp confidence / needs_review so the UI can surface
+                # low-confidence matches.
+                s = result["score"]
+                result["confidence"] = ("high"   if s >= 0.55 else
+                                        "medium" if s >= 0.35 else "low")
+                result["needs_review"] = result["confidence"] != "high"
                 break  # found a result — stop trying queries
 
             except Exception as e:
@@ -208,7 +214,8 @@ def main():
 
         if result is None:
             result = {"pmid": None, "title": "", "abstract": "",
-                      "status": "not_found", "score": 0}
+                      "status": "not_found", "score": 0,
+                      "confidence": "unknown", "needs_review": True}
             not_found_n += 1
             print(f"[{idx:02d}/{total}] {label:<40} ✗ not found")
         else:

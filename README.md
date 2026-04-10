@@ -38,6 +38,54 @@ python3 build.py
 
 A Claude Code scheduled task (`endo-guide-weekly-audit`) runs every Monday morning. It reads `endo-guide.md`, searches PubMed for gaps and newer evidence, and writes proposals to `suggestions.json` (capped at 15/run). It never edits the source directly.
 
+## Hourly audits
+
+Two complementary loops keep `abstracts.json` and `suggestions.json` fresh
+between the weekly runs:
+
+### `/audit` — Claude Code slash command
+
+Defined in `.claude/commands/audit.md`. Rotates through six audit shards based
+on the current UTC hour — abstract confidence sweep, stale-citation sweep,
+low-coverage gaps, dead-link check, SRS shaky queue, and prose drift. Cap: 10
+new suggestions per run, < 2 min wall time, no direct edits to
+`endo-guide.md`. Run manually or via the `loop` skill:
+
+```
+/audit              # run the current-hour shard once
+/loop 1h /audit     # run every hour while the Claude Code session is open
+```
+
+### `hourly-audit.yml` — GitHub Actions cron
+
+`.github/workflows/hourly-audit.yml` runs at `17 * * * *` (17 past every hour,
+off-peak on NCBI). It only fires for shards 0 and 3 (the abstract-heavy ones),
+shelling out to:
+
+```
+python3 fix_abstracts.py --shard=<hour % 6> --max=5 --auto-flag
+```
+
+with a 5-request cap per run (120 / day, well under NCBI's 3 req/s limit).
+`--auto-flag` idempotently restamps `confidence` and `needs_review` on every
+entry using the current score thresholds (high ≥ 0.55, medium ≥ 0.35, low < 0.35).
+
+Commits are created only when `abstracts.json` actually changes, and the
+`[skip ci]` tag avoids triggering a double-rebuild. Manual runs are available
+via the Actions tab's **Run workflow** button (accepts an optional `shard`
+override).
+
+### Reporting wrong abstracts from the reader
+
+The abstract modal in the guide now shows an amber banner on medium-confidence
+matches and a red banner on low-confidence ones, with a **Report wrong
+abstract** button. Clicks POST to
+`functions/api/report-bad-abstract.js` (protected by Cloudflare Access, same
+policy as `/api/save-block`), which appends a `{type: "abstract_mismatch"}`
+entry to `suggestions.json` and commits it via the GitHub API. The next
+`/audit` Shard 4 run picks these up for re-verification.
+
+
 ## Live editing from any device
 
 The deployed site supports in-browser editing of paragraphs and headings: sign in (one-time email code or Google), double-click a block, type, save. A Cloudflare Pages Function at `functions/api/save-block.js` verifies your identity and commits to `endo-guide.md` via the GitHub API. Cloudflare Pages rebuilds the static site on every push, so the edit is visible within ~1 min.
