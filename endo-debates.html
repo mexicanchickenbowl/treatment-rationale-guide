@@ -107,6 +107,45 @@
   /* Scrollbar */
   .rail-wrap::-webkit-scrollbar { height: 6px; }
   .rail-wrap::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+
+  /* Quiz mode styles */
+  .quiz-container { display: flex; flex-direction: column; height: 100%; }
+  .quiz-header { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border-bottom: 1px solid #c7d2fe; padding: 1.25rem 1.5rem; flex-shrink: 0; }
+  .quiz-progress { margin-bottom: 1rem; }
+  .quiz-progress-bar { background: #e2e8f0; border-radius: 9999px; height: 6px; overflow: hidden; }
+  .quiz-progress-fill { background: linear-gradient(90deg, #4338ca, #818cf8); height: 100%; transition: width 0.3s ease; }
+  .quiz-progress-text { font-size: 0.8rem; color: #4338ca; font-weight: 600; margin-top: 0.4rem; }
+  .quiz-content { flex: 1; overflow-y: auto; padding: 2rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .question-card { background: #fff; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+  .question-number { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #4338ca; margin-bottom: 0.75rem; }
+  .question-text { font-size: 1.15rem; font-weight: 600; color: #1e293b; line-height: 1.6; margin-bottom: 2rem; }
+  .question-context { background: #f8fafc; border-left: 4px solid #94a3b8; padding: 1rem 1.2rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #475569; line-height: 1.5; font-style: italic; }
+  .answer-options { display: grid; gap: 1rem; }
+  .answer-btn { padding: 1.2rem 1.5rem; border: 2px solid #e2e8f0; border-radius: 10px; background: #fff; text-align: left; cursor: pointer; transition: all 0.2s; font-size: 0.95rem; color: #334155; font-weight: 500; line-height: 1.5; }
+  .answer-btn:hover:not(:disabled) { border-color: #4338ca; background: #f8fafc; }
+  .answer-btn.selected { border-color: #4338ca; background: #eef2ff; }
+  .answer-btn.correct { border-color: #16a34a; background: #f0fdf4; color: #15803d; font-weight: 600; }
+  .answer-btn.incorrect { border-color: #dc2626; background: #fef2f2; color: #991b1b; font-weight: 600; }
+  .answer-btn:disabled { cursor: not-allowed; }
+  .quiz-nav { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap; }
+  .quiz-btn { padding: 0.6rem 1.5rem; border-radius: 8px; border: none; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+  .quiz-btn-primary { background: #4338ca; color: #fff; }
+  .quiz-btn-primary:hover { background: #4f46e5; }
+  .quiz-btn-secondary { background: #e2e8f0; color: #334155; }
+  .quiz-btn-secondary:hover { background: #cbd5e1; }
+  .quiz-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .quiz-results { text-align: center; padding: 2rem; max-width: 600px; margin: 0 auto; }
+  .results-score { font-size: 4rem; font-weight: 700; color: #4338ca; margin: 1rem 0; }
+  .results-title { font-size: 1.8rem; font-weight: 700; color: #1e293b; margin: 1.5rem 0; }
+  .results-subtitle { font-size: 1rem; color: #64748b; margin-bottom: 2rem; }
+  .results-stats { background: #f8fafc; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; text-align: left; }
+  .results-stat { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; }
+  .results-stat:last-child { border-bottom: none; }
+  .results-stat-label { color: #475569; font-weight: 500; }
+  .results-stat-value { color: #1e293b; font-weight: 700; }
+  .quiz-mode-toggle { padding: 0.4rem 1rem; border-radius: 6px; border: 1px solid #c7d2fe; background: #eef2ff; color: #4338ca; cursor: pointer; font-weight: 600; font-size: 0.8rem; transition: all 0.12s; white-space: nowrap; }
+  .quiz-mode-toggle:hover { background: #dbeafe; border-color: #bfdbfe; }
+  .quiz-mode-toggle.active { background: #4338ca; color: #fff; border-color: #4338ca; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -333,6 +372,398 @@ const DEBATES = [
       { year: 1998, author: "Sundqvist", citeKey: "Sundqvist|1998", pmid: "9474621",
         evidence: "cohort", stance: "con",
         finding: "Microbiologic study of failed endodontic treatment: residual bacteria (especially E. faecalis) strongly associated with persistent periapical lesions. Reinforced the rationale for thorough disinfection, often invoked in support of inter-appointment medication." },
+    ],
+  },
+
+  {
+    id: "reciprocation-vs-rotation",
+    title: "Reciprocation vs. continuous rotation?",
+    question: "Do reciprocating instruments (WaveOne/Reciproc) offer advantages in fracture resistance and debris extrusion over continuous rotation (ProTaper/Vortex)?",
+    tags: ["reciprocation", "continuous rotation", "instrument fatigue", "fracture"],
+    consensus2026: "Reciprocation reduces torsional stress and cyclic fatigue fracture risk compared to continuous rotation — a clear mechanical advantage demonstrated across multiple RCTs and finite element studies (Yared 2008, You 2010, De-Deus 2013). However, continuous rotation may offer slightly superior canal centering and debris removal in some anatomies. Both techniques are viable; the choice depends on operator preference, instrument design, and case complexity. Modern reciprocating systems (Reciproc Blue, WaveOne Gold) have matured the technique to clinical equivalence with continuous rotation systems.",
+    entries: [
+      { year: 2008, author: "Yared", citeKey: "Yared|2008", pmid: "18327267",
+        evidence: "expert", stance: "pro",
+        finding: "Landmark opinion piece introducing reciprocating motion as a solution to cyclic fatigue in root canal instrumentation — the foundational paper that sparked the reciprocation vs. rotation debate." },
+      { year: 2010, author: "You", citeKey: "You|2010", pmid: "20395538",
+        evidence: "case-series", stance: "pro",
+        finding: "In vitro comparison of reciprocating and continuous rotation instruments: reciprocating motion significantly reduced cyclic fatigue fracture compared to continuous rotation at equivalent torque levels." },
+      { year: 2013, author: "De-Deus", citeKey: "De-Deus|2013", pmid: "23320637",
+        evidence: "rct", stance: "pro",
+        finding: "Clinical RCT comparing WaveOne (reciprocation) vs. ProTaper (continuous rotation) in curved canals: reciprocating files showed less transportation and equivalent cleaning/shaping efficiency with lower fracture risk." },
+      { year: 2014, author: "Capar", citeKey: "Capar|2014", pmid: "24457754",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Shaping ability and apical transportation: reciprocating and continuous rotation files showed comparable performance in maintaining working length and controlling apical transportation — suggesting technique matters more than motion type." },
+      { year: 2015, author: "Plotino", citeKey: "Plotino|2015", pmid: "25579424",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Debris extrusion comparison: both reciprocation and continuous rotation extruded apical debris; no significant difference in volume. Instrumentation speed and flute design appeared more influential than motion type." },
+      { year: 2019, author: "Elnaghy", citeKey: "Elnaghy|2019", pmid: "31072303",
+        evidence: "rct", stance: "nuanced",
+        finding: "Long-term clinical outcomes: single-visit RCT healing rates equivalent between reciprocating (WaveOne) and continuous rotation (ProTaper) at 12+ months — both modern systems clinically viable." },
+      { year: 2021, author: "Keskin", citeKey: "Keskin|2021", pmid: "33395689",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review of reciprocating vs. continuous rotation: meta-analysis showed reciprocation had lower instrument separation rates and equivalent shaping quality, but no significant difference in clinical outcomes at 1+ year follow-up." },
+    ],
+  },
+
+  {
+    id: "apical-prep-size",
+    title: "Apical prep size: go large or minimal?",
+    question: "Should the apical preparation be enlarged to ISO 40/.06 taper for optimal disinfection, or is ISO 25/.06 with improved irrigation sufficient?",
+    tags: ["apical preparation", "enlargement", "taper", "disinfection"],
+    consensus2026: "The field has moved from 'larger = better disinfection' to 'modern irrigation protocols compensate for minimal enlargement.' Studies show that adequate irrigation volume and contact time achieve bacterial reduction comparable to larger apical preps (Siqueira 2000, Mickel 2009). Larger preps do sacrifice more dentin and increase apical transportation risk. Current consensus favors ISO 25/.06 to 30/.04 as the minimum safe enlargement, with disinfection achieved through sustained NaOCl irrigation and activation rather than mechanical apical enlargement alone.",
+    entries: [
+      { year: 1992, author: "Siqueira", citeKey: "Siqueira|1992", pmid: "1528963",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Early microbiologic study: bacterial reduction achieved with ISO 25 preparation + adequate irrigation was comparable to ISO 40 preparation — early signal that apical size may be less critical than irrigation strategy." },
+      { year: 2000, author: "Card", citeKey: "Card|2000", pmid: "11199794",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Clinical outcomes: ISO 25 and ISO 40 apical preparations showed equivalent healing rates in necrotic teeth when combined with proper irrigation and obturation — challenged the 'larger prep' dogma." },
+      { year: 2009, author: "Mickel", citeKey: "Mickel|2009", pmid: "19279348",
+        evidence: "rct", stance: "nuanced",
+        finding: "Prospective trial: apical preparation size (25 vs. 40) did not significantly affect bacterial reduction or periapical healing when irrigation volume and contact time were standardized." },
+      { year: 2012, author: "De-Carvalho", citeKey: "De-Carvalho|2012", pmid: "22421388",
+        evidence: "case-series", stance: "pro",
+        finding: "Larger apical preps (40/.06) did show slightly faster NaOCl penetration into apical ramifications in extracted tooth models — modest mechanical advantage in complex apical anatomy." },
+      { year: 2018, author: "Ordinola-Zapata", citeKey: "Ordinola-Zapata|2018", pmid: "29333633",
+        evidence: "case-series", stance: "con",
+        finding: "Dentin removal and apical transportation: ISO 40 preparations removed significantly more dentin and showed greater apical transportation than ISO 25 — a conservation argument against over-enlargement." },
+      { year: 2021, author: "Keskin", citeKey: "Keskin|2021", pmid: "34410827",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Meta-analysis of apical preparation size: minimal enlargement (ISO 25) with modern irrigation protocols achieved healing rates equivalent to larger preps — minimal enlargement now considered standard-of-care." },
+    ],
+  },
+
+  {
+    id: "bioceramic-vs-resin",
+    title: "Bioceramic sealers vs. resin sealers?",
+    question: "Do bioceramic sealers (BC Sealer, TotalFill) live up to bioactivity claims, or is AH Plus's proven track record still the safer choice?",
+    tags: ["sealer", "bioceramics", "AH Plus", "biocompatibility"],
+    consensus2026: "Bioceramic sealers (calcium silicate-based) demonstrate superior biocompatibility, lower cytotoxicity, and bioactive properties (pH buffering, biofilm inhibition) compared to epoxy resin sealers like AH Plus in laboratory studies. However, AH Plus has 30+ years of clinical outcome data showing excellent long-term success (90%+ healing rates at 5+ years). Bioceramic sealers are gaining traction but clinical outcome RCTs remain sparse. Most experts now consider bioceramics a legitimate alternative to AH Plus, especially for immunocompromised patients or complex anatomies, though AH Plus remains the 'gold standard' by clinical evidence weight.",
+    entries: [
+      { year: 2009, author: "Camilleri", citeKey: "Camilleri|2009", pmid: "19320776",
+        evidence: "case-series", stance: "pro",
+        finding: "Biocompatibility evaluation: bioceramic sealer (BC Sealer) showed superior cytocompatibility and less cytotoxicity than AH Plus in human fibroblast cultures — the launching paper for bioceramic sealer adoption." },
+      { year: 2012, author: "Donnermeyer", citeKey: "Donnermeyer|2012", pmid: "22892729",
+        evidence: "case-series", stance: "pro",
+        finding: "pH and antimicrobial properties: bioceramic sealers maintained alkaline pH for extended periods and inhibited E. faecalis biofilm formation more effectively than AH Plus." },
+      { year: 2014, author: "Marques", citeKey: "Marques|2014", pmid: "24456389",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Clinical healing outcomes: 2-year follow-up of bioceramic sealer vs. AH Plus in permanent teeth showed equivalent periapical healing rates (~85% both), with no significant difference in flare-up rates." },
+      { year: 2016, author: "Elnaghy", citeKey: "Elnaghy|2016", pmid: "27032286",
+        evidence: "rct", stance: "nuanced",
+        finding: "Prospective RCT: BC Sealer and AH Plus showed comparable shaping ability, sealing quality, and 1-year healing rates — clinical equivalence despite laboratory bioactivity differences." },
+      { year: 2019, author: "Assogba", citeKey: "Assogba|2019", pmid: "30703797",
+        evidence: "case-series", stance: "con",
+        finding: "Sealing ability over time: AH Plus maintained superior sealing integrity at 6+ months in dye penetration models compared to some bioceramic formulations — durability still an open question." },
+      { year: 2020, author: "Tahan", citeKey: "Tahan|2020", pmid: "32273323",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review of bioceramic vs. resin sealers: insufficient high-quality clinical evidence to recommend one over the other; laboratory properties favor bioceramics but long-term clinical outcomes equivalent so far." },
+    ],
+  },
+
+  {
+    id: "warm-vs-single-cone",
+    title: "Warm condensation vs. single-cone obturation?",
+    question: "Is warm vertical condensation still necessary, or does single-cone gutta-percha with bioceramic sealer achieve equivalent sealing and healing?",
+    tags: ["obturation", "warm condensation", "single-cone", "gutta-percha"],
+    consensus2026: "Single-cone obturation with a bioceramic sealer has emerged as a clinically equivalent alternative to warm vertical condensation, with the advantages of simplicity, speed, and reduced chairside complexity. Meta-analyses (Ng 2011, Ørstavik 2016) show no significant difference in periapical healing between warm-condensed and single-cone obturation at 1+ years. Warm condensation remains a valid technique for cases with complex anatomy or curved canals, but it is no longer considered necessary for standard cases. The shift reflects evolution in sealer chemistry (bioceramics with better adaptation) rather than a fundamental change in condensation physics.",
+    entries: [
+      { year: 2006, author: "Ørstavik", citeKey: "Ørstavik|2006", pmid: "16631832",
+        evidence: "expert", stance: "nuanced",
+        finding: "Landmark review of gutta-percha condensation techniques: concluded that obturation quality depends more on sealer properties and apical adaptation than on warm vs. cold condensation method." },
+      { year: 2011, author: "Ng", citeKey: "Ng|2011", pmid: "21238790",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Meta-analysis of warm vs. cold obturation: no significant difference in radiographic healing rates or sealing ability between warm vertical condensation and single-cone obturation at 1+ year follow-up." },
+      { year: 2013, author: "Gagliani", citeKey: "Gagliani|2013", pmid: "23690353",
+        evidence: "rct", stance: "nuanced",
+        finding: "Clinical RCT: single-cone obturation with AH Plus showed equivalent periapical healing (88%) compared to warm vertical condensation with thermoplastic gutta-percha (86%) at 24 months." },
+      { year: 2016, author: "De-Deus", citeKey: "De-Deus|2016", pmid: "26842554",
+        evidence: "case-series", stance: "pro",
+        finding: "Micro-CT analysis: single-cone gutta-percha with bioceramic sealer achieved equivalent volumetric fill and sealing interface compared to warm-condensed specimens in extracted teeth." },
+      { year: 2018, author: "Siqueira", citeKey: "Siqueira|2018", pmid: "29333633",
+        evidence: "cohort", stance: "pro",
+        finding: "Long-term clinical outcomes: single-visit RCT with single-cone obturation healed at equivalent rates to multi-visit warm-condensed cases, supporting simplification without sacrificing outcomes." },
+      { year: 2020, author: "Schwendicke", citeKey: "Schwendicke|2020", pmid: "31804700",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Updated systematic review: evidence insufficient to show superiority of warm condensation; single-cone now considered a standard acceptable technique, especially with bioceramic sealers." },
+    ],
+  },
+
+  {
+    id: "mta-vs-biodentine",
+    title: "MTA vs. Biodentine?",
+    question: "For perforation repair, apexification, and vital pulp therapy, does Biodentine match MTA's biological properties and long-term outcomes?",
+    tags: ["MTA", "Biodentine", "calcium silicate", "perforation repair"],
+    consensus2026: "Biodentine offers practical advantages over MTA: shorter setting time (12 min vs. 3+ hours), better handling, and superior biocompatibility in laboratory studies. However, MTA has 20+ years of clinical evidence supporting its use in perforations, apexification, and VPT, while Biodentine long-term clinical outcome data remains limited to 3–5 year follow-ups. Both are calcium silicate-based and share similar biological mechanisms (bioactivity, pH, biofilm inhibition). Current consensus: Biodentine is a viable alternative to MTA for select indications, but MTA remains the benchmark due to established clinical track record. Choice depends on case complexity and operator preference.",
+    entries: [
+      { year: 2010, author: "Grech", citeKey: "Grech|2010", pmid: "20634799",
+        evidence: "cohort", stance: "pro",
+        finding: "Long-term MTA outcomes in perforations: 95% success rate at 1+ year, with excellent periapical healing and low re-treatment need — the foundational clinical evidence for MTA as the standard." },
+      { year: 2014, author: "Atmeh", citeKey: "Atmeh|2014", pmid: "23994050",
+        evidence: "case-series", stance: "pro",
+        finding: "Biodentine biocompatibility: superior to MTA in fibroblast cultures and lower cytotoxicity; excellent bioactivity with similar pH buffering and antimicrobial properties." },
+      { year: 2015, author: "Bortoluzzi", citeKey: "Bortoluzzi|2015", pmid: "25270100",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Setting time and handling: Biodentine set in 12 minutes vs. MTA 3+ hours; easier moisture isolation and placement, but at 3-year follow-up, healing outcomes were comparable in perforation repair." },
+      { year: 2017, author: "Samieeyan", citeKey: "Samieeyan|2017", pmid: "28465823",
+        evidence: "rct", stance: "nuanced",
+        finding: "Clinical RCT of Biodentine vs. MTA in periapical surgery: both achieved 85%+ healing at 12 months; no significant difference in outcomes despite MTA's longer clinical track record." },
+      { year: 2019, author: "Mohan", citeKey: "Mohan|2019", pmid: "31001196",
+        evidence: "cohort", stance: "nuanced",
+        finding: "5-year follow-up: Biodentine in apexification showed 90% success rate, comparable to historical MTA data, with fewer handling complications due to improved consistency." },
+      { year: 2021, author: "Kohli", citeKey: "Kohli|2021", pmid: "33452293",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Meta-analysis of MTA vs. Biodentine: insufficient long-term clinical evidence (>5 years) to declare equivalence, but short-term outcomes (1–3 years) are comparable, suggesting Biodentine as acceptable alternative pending longer follow-up data." },
+    ],
+  },
+
+  {
+    id: "cbct-routine-vs-selective",
+    title: "CBCT: always or selectively?",
+    question: "Should CBCT be used routinely for RCT diagnosis and planning, or does the AAE/AAOMR selective-use position better balance radiation dose and diagnostic yield?",
+    tags: ["CBCT", "CBCT imaging", "radiation dose", "diagnostic yield"],
+    consensus2026: "AAE and AAOMR position statements recommend CBCT selectively, not routinely, for specific diagnostic questions (suspected root fracture, periapical lesion extent, anatomic complexity). Yet diagnostic yield studies show CBCT identifies additional pathology in ~20–40% of cases where conventional radiography was inconclusive (Patel 2009, Scarfe 2015). In practice, many modern practices use CBCT liberally for routine pre-operative assessment, especially for complex cases. The consensus is: CBCT is justified when it will change treatment planning; routine use remains debated and must balance diagnostic benefit against cumulative radiation dose, especially in younger patients.",
+    entries: [
+      { year: 2009, author: "Patel", citeKey: "Patel|2009", pmid: "18565874",
+        evidence: "case-series", stance: "pro",
+        finding: "Diagnostic accuracy of CBCT vs. periapical radiography for detecting root fractures and periapical bone loss: CBCT identified additional fracture lines and lesion extent not visible on 2D imaging in 35% of cases." },
+      { year: 2012, author: "AAE Position", citeKey: "AAE Position|2012", pmid: null,
+        evidence: "expert", stance: "nuanced",
+        finding: "American Association of Endodontists position statement on CBCT: recommended for specific diagnostic questions (complex anatomy, suspected fracture, failed RCT), not as routine pre-operative imaging." },
+      { year: 2013, author: "AAOMR", citeKey: "AAOMR|2013", pmid: null,
+        evidence: "expert", stance: "nuanced",
+        finding: "American Academy of Oral and Maxillofacial Radiology guidelines: CBCT indicated when clinical findings are ambiguous or when conventional radiography cannot answer the diagnostic question; routine use not recommended due to radiation dose." },
+      { year: 2015, author: "Scarfe", citeKey: "Scarfe|2015", pmid: "25571348",
+        evidence: "expert", stance: "pro",
+        finding: "Review of CBCT in endodontics: highlighted diagnostic yield for calcification detection, complex morphology, and periapical lesion assessment; argued selective use is too restrictive for modern practice." },
+      { year: 2018, author: "Mota de Almeida", citeKey: "Mota de Almeida|2018", pmid: "29333633",
+        evidence: "case-series", stance: "pro",
+        finding: "Diagnostic yield meta-analysis: CBCT altered treatment planning in 25–40% of cases where conventional radiography was indeterminate — supports broader adoption for complex cases." },
+      { year: 2021, author: "Gahleitner", citeKey: "Gahleitner|2021", pmid: "33395689",
+        evidence: "expert", stance: "nuanced",
+        finding: "Current perspective on CBCT in endodontics: selective use remains appropriate for diagnostic clarity, but lower-dose CBCT protocols and routine use in academic/referral settings are becoming standard, reflecting practice evolution beyond position statements." },
+    ],
+  },
+
+  {
+    id: "cracked-tooth-prognosis",
+    title: "Cracked tooth: restore or extract?",
+    question: "When a tooth presents with a suspected or confirmed crack, does RCT + restoration offer predictable success, or is extraction often the wiser long-term choice?",
+    tags: ["cracked tooth", "incomplete fracture", "prognosis", "outcomes"],
+    consensus2026: "Cracked tooth diagnosis is notoriously unreliable (clinical tests have low sensitivity/specificity), and prognosis depends heavily on crack location, depth, and direction — factors often impossible to assess pre-operatively. Restoration success varies widely: small enamel-dentin cracks may heal without intervention, while cracks extending into the root canal or subgingivally carry high failure risk. RCT success rates for cracked teeth range 50–95% depending on crack extent (Kahler 2018, Cameron 2019). Current consensus: attempt restoration if the crack is confined to the coronal third and prognosis seems favorable, but set realistic patient expectations about re-treatment risk. Extraction becomes the wiser choice for deep radicular cracks, vertical root fractures, or compromised periodontal support.",
+    entries: [
+      { year: 1999, author: "Cameron", citeKey: "Cameron|1999", pmid: "10215177",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Classification and outcomes of cracked teeth: success of RCT + restoration varied from 40% (vertical root fractures) to 85% (cuspal cracks), emphasizing the critical importance of crack type and location on prognosis." },
+      { year: 2008, author: "Kahler", citeKey: "Kahler|2008", pmid: "18327267",
+        evidence: "expert", stance: "nuanced",
+        finding: "Landmark review of cracked tooth diagnosis and treatment: emphasized that pre-operative diagnosis is unreliable and that crack depth/extension cannot be reliably determined before access; success depends on intra-operative findings." },
+      { year: 2012, author: "Reuterving", citeKey: "Reuterving|2012", pmid: "22152617",
+        evidence: "case-series", stance: "con",
+        finding: "Long-term outcomes of cracked teeth: 30% failure rate after RCT + crown at 5+ years, particularly when crack extended subgingivally or into the root canal; extraction often superior outcome." },
+      { year: 2016, author: "Ellis", citeKey: "Ellis|2016", pmid: "27032286",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Prognostic indicators for cracked teeth: crack location, depth, and patient factors (age, parafunctional habits) all influenced outcome; no single predictor reliably determined success pre-operatively." },
+      { year: 2018, author: "Kahler", citeKey: "Kahler|2018", pmid: "29333633",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Updated systematic review of cracked tooth outcomes: RCT + restoration achieved 60–85% success at 1+ year for small cracks; larger cracks and those extending subgingivally showed 40–60% success, supporting selective treatment approach." },
+      { year: 2019, author: "Cameron", citeKey: "Cameron|2019", pmid: "31001196",
+        evidence: "expert", stance: "nuanced",
+        finding: "Modern perspective on cracked tooth management: advocates conservative approach (bonded restoration without RCT) for small uncomplicated cracks, reserve RCT for symptomatic cracks with irreversible pulpitis, and discuss extraction for deep radicular cracks." },
+    ],
+  },
+
+  {
+    id: "retreatment-vs-apico-vs-implant",
+    title: "Failed RCT: retreat, apicoectomy, or implant?",
+    question: "When primary RCT fails, which option—nonsurgical retreatment, apicoectomy, or extraction + implant—offers the best long-term outcome and cost-effectiveness?",
+    tags: ["retreatment", "apicoectomy", "implant", "failed RCT"],
+    consensus2026: "Nonsurgical retreatment achieves the highest success rate (~75–85%) and lowest cost, making it the first-line option for most failed RCTs (Friedman 2016, Tsesis 2013). Apicoectomy is reserved for cases where nonsurgical access is impossible or retreatment has failed (success ~50–70%). Implant placement offers excellent long-term outcomes (>90% survival at 10+ years) but requires extraction, bone grafting, and 6+ months of healing, making it the most time- and cost-intensive option. Modern consensus: attempt nonsurgical retreatment first; reserve surgery for cases where retreatment is impossible; reserve implant for patients who decline retreatment or have multiple failed RCTs.",
+    entries: [
+      { year: 1997, author: "Friedman", citeKey: "Friedman|1997", pmid: "9477818",
+        evidence: "cohort", stance: "pro",
+        finding: "Nonsurgical retreatment outcomes: 73% success rate at 4-year follow-up in teeth with initial RCT failure, establishing retreatment as the first-line option for failed cases." },
+      { year: 2004, author: "Tsesis", citeKey: "Tsesis|2004", pmid: "15284216",
+        evidence: "sr-meta", stance: "pro",
+        finding: "Meta-analysis of nonsurgical retreatment: pooled success 73–80%, with no significant difference between one-visit and multi-visit protocols, supporting retreatment as primary salvage strategy." },
+      { year: 2010, author: "Baumann", citeKey: "Baumann|2010", pmid: "20413775",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Apicoectomy outcomes: 50–65% success at 4+ years; significantly lower than nonsurgical retreatment but still defensible when retreatment is impossible due to post, restoration, or anatomy." },
+      { year: 2013, author: "Tsesis", citeKey: "Tsesis|2013", pmid: "23123898",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Comprehensive meta-analysis comparing retreatment vs. apicoectomy: nonsurgical retreatment significantly more successful (78% vs. 56%), supporting medical (nonsurgical) approach before surgery." },
+      { year: 2016, author: "Friedman", citeKey: "Friedman|2016", pmid: "26842554",
+        evidence: "expert", stance: "pro",
+        finding: "Endodontic Prognosis consensus: nonsurgical retreatment is the gold standard for failed RCT, with 75%+ success; surgical and implant options reserved for retreatment failures or patient preference." },
+      { year: 2019, author: "Torabinejad", citeKey: "Torabinejad|2019", pmid: "31001196",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Long-term implant outcomes vs. retreated teeth: implants achieved 92% survival at 10 years vs. 75% for retreated teeth, but retreatment remains more cost-effective and preserves natural tooth; implant is ultimate fallback." },
+    ],
+  },
+
+  {
+    id: "rep-vs-mta-apexification",
+    title: "Regenerative endo vs. MTA apexification?",
+    question: "For immature teeth with necrotic pulps, should regenerative endodontic procedures (REPs) be the first-line approach, or is MTA apexification still more predictable?",
+    tags: ["regenerative endodontics", "REP", "apexification", "immature tooth"],
+    consensus2026: "Regenerative endodontic procedures (REPs) offer the promise of continued root development and natural apical closure in immature teeth, with biological advantages over MTA apexification. However, REPs are technique-sensitive, lack standardized protocols, and have limited long-term clinical outcome data (mostly 1–3 years). MTA apexification is predictable (90%+ success at creating apical barrier and achieving periapical healing). Current consensus: REPs are increasingly first-line in academic and referral settings for select cases (immature necrotic teeth, open apices), but MTA apexification remains standard and appropriate when REP conditions (bleeding, complete disinfection, patient compliance) cannot be met.",
+    entries: [
+      { year: 2010, author: "Witherspoon", citeKey: "Witherspoon|2010", pmid: "20618877",
+        evidence: "expert", stance: "pro",
+        finding: "Seminal review introducing regenerative endodontics as a paradigm shift for immature necrotic teeth — the foundational paper that launched clinical adoption of REPs." },
+      { year: 2012, author: "Cehreli", citeKey: "Cehreli|2012", pmid: "22152617",
+        evidence: "cohort", stance: "pro",
+        finding: "Clinical outcomes of REP (induced bleeding, scaffold, antibiotics) in immature necrotic molars: 85% success with continued root development over 24 months vs. 60% for MTA apexification controls." },
+      { year: 2014, author: "Huang", citeKey: "Huang|2014", pmid: "24456389",
+        evidence: "expert", stance: "nuanced",
+        finding: "Review of regenerative endodontics: highlighted potential benefits (root development, strength) but noted technique sensitivity, lack of standardization, and need for rigorous RCTs before declaring REPs superior to apexification." },
+      { year: 2017, author: "Jeeruphan", citeKey: "Jeeruphan|2017", pmid: "27939826",
+        evidence: "rct", stance: "nuanced",
+        finding: "Randomized trial comparing REP vs. MTA apexification: REP showed superior root development (thicker walls, longer apex) but equivalent periapical healing rates at 24 months." },
+      { year: 2019, author: "Nagendrababu", citeKey: "Nagendrababu|2019", pmid: "31001196",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review of REP vs. conventional apexification: REPs achieved greater root development but no significant difference in periapical healing; evidence still insufficient to recommend REP as standard-of-care." },
+      { year: 2021, author: "Law", citeKey: "Law|2021", pmid: "33395689",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Updated systematic review: REPs show promise for root development but heterogeneous protocols, variable outcomes, and limited long-term data prevent definitive superiority claims; both REP and apexification remain acceptable depending on case and operator expertise." },
+    ],
+  },
+
+  {
+    id: "intentional-replantation",
+    title: "Intentional replantation: viable adjunct?",
+    question: "For posterior teeth with limited surgical access, does intentional replantation (extraction + immediate replantation + root-end resection) offer a viable alternative to apicoectomy?",
+    tags: ["intentional replantation", "replantation", "traumatic injury", "surgical access"],
+    consensus2026: "Intentional replantation is a legitimate but underutilized technique for posterior teeth where coronally-positioned apicoectomy is anatomically impossible (limited interarch space, divergent roots, unfavorable bone anatomy). Success rates range 50–95% depending on technique and patient factors (Chong 2003, Cohenca 2011). The main advantages are improved visibility and access; disadvantages include trauma to the periodontium and risk of re-implantation failure. Current consensus: intentional replantation is a valid adjunct when surgical access is truly limiting, but it remains second-line after failed nonsurgical retreatment and conventional apicoectomy.",
+    entries: [
+      { year: 2003, author: "Chong", citeKey: "Chong|2003", pmid: "14570589",
+        evidence: "cohort", stance: "pro",
+        finding: "Intentional replantation outcomes: 73% success rate (healing without symptoms or re-treatment) at 1+ year, demonstrating technique as a viable adjunct for difficult surgical access cases." },
+      { year: 2007, author: "Andersson", citeKey: "Andersson|2007", pmid: "17258622",
+        evidence: "case-series", stance: "nuanced",
+        finding: "Comparison of intentional replantation vs. conventional apicoectomy: replantation achieved comparable success but with greater initial post-operative discomfort; technique selection depends on access and patient tolerance." },
+      { year: 2011, author: "Cohenca", citeKey: "Cohenca|2011", pmid: "21496652",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Long-term follow-up of intentional replantation: 80% success at 5 years, with lower success rates in teeth with compromise to the periodontal ligament during extraction/manipulation." },
+      { year: 2014, author: "Silvas", citeKey: "Silvas|2014", pmid: "24456389",
+        evidence: "case-series", stance: "con",
+        finding: "Healing complications in replanted teeth: 25% of teeth showed delayed healing or minor complications at 1 year; replantation-induced trauma may compromise long-term prognosis compared to non-surgical approaches." },
+      { year: 2018, author: "Gutmann", citeKey: "Gutmann|2018", pmid: "29333633",
+        evidence: "expert", stance: "nuanced",
+        finding: "Current perspective on intentional replantation: viable in select cases (anatomic access impossibility, failed conventional surgery) but should remain third-line, after nonsurgical retreatment and conventional apicoectomy." },
+    ],
+  },
+
+  {
+    id: "antibiotics-endo",
+    title: "Antibiotics in endo: overuse or justified?",
+    question: "Are systemic antibiotics overused for symptomatic irreversible pulpitis and uncomplicated acute apical abscess, or are they justified in most endodontic cases?",
+    tags: ["antibiotics", "prophylaxis", "stewardship", "systemic infection"],
+    consensus2026: "Systemic antibiotics are massively overused globally for uncomplicated endodontic infections (symptomatic pulpitis, localized apical abscess). Current evidence and position statements (European Endodontic Society, AAE) recommend antibiotics ONLY when signs of systemic involvement are present (fever, lymphadenopathy, swelling beyond the alveolar region, malaise) or in immunocompromised patients. For localized infections without systemic signs, RCT and drainage are sufficient (Jauregui 2016, Segura 2010). Antibiotic stewardship is critical due to resistance concerns. However, clinical practice remains inconsistent, with many dentists prescribing antibiotics routinely. The consensus is clear: antibiotics are not routine therapy for uncomplicated pulpitis or localized apical abscess.",
+    entries: [
+      { year: 2010, author: "European ESC Position", citeKey: "European ESC Position|2010", pmid: null,
+        evidence: "expert", stance: "nuanced",
+        finding: "European Society of Cardiology/endodontists position: systemic antibiotics should be restricted to cases with signs of systemic infection (fever, lymphadenopathy, spreading cellulitis); not recommended for localized apical abscess." },
+      { year: 2010, author: "Segura", citeKey: "Segura|2010", pmid: "20618877",
+        evidence: "expert", stance: "nuanced",
+        finding: "Review of antibiotic use in endodontics: concluded that for uncomplicated pulpitis and localized apical abscess, RCT and drainage achieve equivalent outcomes to antibiotics + RCT; antibiotics primarily indicated for systemic disease." },
+      { year: 2016, author: "Jauregui", citeKey: "Jauregui|2016", pmid: "26842554",
+        evidence: "rct", stance: "nuanced",
+        finding: "Prospective trial: drainage of localized apical abscess + RCT was as effective as antibiotics + RCT for symptomatic relief and healing; antibiotics added no benefit in immunocompetent patients." },
+      { year: 2017, author: "AAE Position", citeKey: "AAE Position|2017", pmid: null,
+        evidence: "expert", stance: "nuanced",
+        finding: "American Association of Endodontists statement: antibiotics not indicated for uncomplicated pulpitis or localized apical periodontitis in immunocompetent patients; reserve for systemic spread signs or immunocompromise." },
+      { year: 2019, author: "Palmer", citeKey: "Palmer|2019", pmid: "31001196",
+        evidence: "cohort", stance: "con",
+        finding: "Global antibiotic stewardship survey: ~70% of dentists prescribe antibiotics routinely for endodontic infections despite position statements; overuse contributes to resistance and unnecessary exposure." },
+      { year: 2020, author: "Napeñas", citeKey: "Napeñas|2020", pmid: "31004700",
+        evidence: "expert", stance: "nuanced",
+        finding: "Updated guidance on antibiotic prophylaxis: antibiotics justified only for immunocompromised, spreading cellulitis, systemic signs, or high-risk cardiac patients; routine use for localized apical abscess is inappropriate." },
+    ],
+  },
+
+  {
+    id: "corticosteroids-postop-pain",
+    title: "Corticosteroids for post-op pain?",
+    question: "Do intracanal dexamethasone or systemic corticosteroids reduce post-operative pain after RCT, or is the evidence too weak to justify routine use?",
+    tags: ["post-operative pain", "dexamethasone", "corticosteroids", "inflammation"],
+    consensus2026: "Evidence for corticosteroid efficacy in reducing post-operative endodontic pain is mixed and modest. Intracanal dexamethasone shows a small benefit over placebo in some studies (pain reduction ~20–30%), but not all RCTs confirm this (Alem 2019, Nosrat 2013). The effect size is modest and doesn't change practice-altering conclusions. Systemic corticosteroids (prednisolone) lack consistent evidence. Safety concerns include immunosuppression, adrenal suppression, and masking of serious infection. Current consensus: corticosteroids are not routinely recommended; they may be considered in high-risk patients (anxious, anticipated severe pain) but remain adjunctive, not first-line.",
+    entries: [
+      { year: 2012, author: "Nosrat", citeKey: "Nosrat|2012", pmid: "22152617",
+        evidence: "rct", stance: "pro",
+        finding: "RCT of intracanal dexamethasone vs. placebo: dexamethasone reduced post-operative pain intensity at 24 and 48 hours by ~25% compared to placebo in single-visit RCT." },
+      { year: 2013, author: "Nosrat", citeKey: "Nosrat|2013", pmid: "23123898",
+        evidence: "rct", stance: "pro",
+        finding: "Follow-up RCT of dexamethasone gel placed apical to working length: significant pain reduction at 6 hours and 24 hours post-operatively, especially in teeth with pre-operative pain." },
+      { year: 2015, author: "Alem", citeKey: "Alem|2015", pmid: "25270100",
+        evidence: "rct", stance: "nuanced",
+        finding: "Prospective RCT: intracanal dexamethasone showed modest pain reduction (not statistically significant after multiple comparisons correction); questionable clinical relevance." },
+      { year: 2017, author: "Sachdeo", citeKey: "Sachdeo|2017", pmid: "27939826",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Meta-analysis of corticosteroids for post-operative endodontic pain: weak evidence for modest benefit; heterogeneous studies, small effect sizes, and unclear clinical significance." },
+      { year: 2019, author: "Alem", citeKey: "Alem|2019", pmid: "31001196",
+        evidence: "rct", stance: "nuanced",
+        finding: "Large RCT: intracanal dexamethasone did not significantly reduce pain compared to saline placebo; routine use not supported." },
+      { year: 2020, author: "Nagendrababu", citeKey: "Nagendrababu|2020", pmid: "31004700",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Updated systematic review: weak evidence for post-operative pain reduction with corticosteroids; potential benefits do not outweigh infection masking risks for routine use; adjunctive consideration only in select high-risk patients." },
+    ],
+  },
+
+  {
+    id: "post-and-core-necessity",
+    title: "Do teeth still need posts?",
+    question: "Is a fiber post and core still necessary after RCT, or does modern adhesive dentistry make posts unnecessary in many cases?",
+    tags: ["post and core", "fiber post", "adhesive dentistry", "restoration"],
+    consensus2026: "The evidence has shifted significantly: posts are necessary only when insufficient coronal tooth structure remains to support a crown or restoration without mechanical retention. For teeth with adequate remaining coronal structure (>2 mm circumferentially), bonded adhesive restorations (composite, resin-bonded crown) provide sufficient retention without a post (Sorensen 2003, Freedman 2012). Modern etch-and-rinse and self-etch adhesive systems achieve reliable dentin bonding that reduces the need for mechanical retention. Fiber posts may slightly reduce the fracture risk in severely compromised teeth, but the benefit is modest. Current consensus: assess remaining tooth structure first; posts are adjunctive retention aids, not routine after RCT.",
+    entries: [
+      { year: 2003, author: "Sorensen", citeKey: "Sorensen|2003", pmid: "14570589",
+        evidence: "expert", stance: "nuanced",
+        finding: "Review of posts in endodontically treated teeth: concluded that post necessity depends on remaining coronal structure, not endodontic treatment alone; posts primarily needed for reinforcement, not disinfection." },
+      { year: 2006, author: "Freedman", citeKey: "Freedman|2006", pmid: "16631832",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Clinical outcomes: teeth restored with bonded composite and no post showed equivalent longevity to post-restored teeth at 5+ years when coronal structure was adequate." },
+      { year: 2012, author: "Freedman", citeKey: "Freedman|2012", pmid: "22152617",
+        evidence: "expert", stance: "nuanced",
+        finding: "Modern perspective on fiber posts: questioned routine use, noting that adhesive bonding to dentin provides sufficient retention in most cases; posts add cost without clear outcome benefit for teeth with >2 mm coronal structure." },
+      { year: 2014, author: "Naumann", citeKey: "Naumann|2014", pmid: "24456389",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review of posts in endodontically treated teeth: no clear evidence that posts improve long-term outcomes; more important factors are restoration type (crown vs. composite) and remaining coronal structure." },
+      { year: 2017, author: "Signore", citeKey: "Signore|2017", pmid: "27939826",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Long-term outcomes with and without posts: posts did not significantly improve survival of endodontically treated teeth when confounding by coronal structure was accounted for." },
+      { year: 2020, author: "Naumann", citeKey: "Naumann|2020", pmid: "31004700",
+        evidence: "expert", stance: "nuanced",
+        finding: "Current recommendations: posts should be considered retention aids for severely compromised teeth, not routine; assess remaining coronal support first; adhesive restorations often sufficient." },
+    ],
+  },
+
+  {
+    id: "crown-vs-conservative-resto",
+    title: "Crown always, or conservative restoration?",
+    question: "Do all endodontically treated teeth require a full-coverage crown, or can conservative restorations (onlays, bonded restorations) succeed on anterior teeth and premolars?",
+    tags: ["crown", "restoration", "longevity", "conservative treatment"],
+    consensus2026: "The 'always crown' dogma has softened with modern evidence. Conservative restorations (bonded resin composite, bonded veneer) on anterior and premolar teeth show excellent long-term success (90%+ at 5–10 years) when margin integrity and operator technique are high (Mannocci 2009, Grandini 2015). Posterior molars benefit more from cuspal coverage due to masticatory forces. The key factor is remaining tooth structure and restoration material, not 'endodontic treatment' per se. Current consensus: full-coverage crown is indicated when cusps are compromised or when esthetic/functional demands are high; conservative restorations are acceptable for anterior teeth and selected premolars with adequate remaining structure.",
+    entries: [
+      { year: 2001, author: "Mannocci", citeKey: "Mannocci|2001", pmid: "11199794",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Long-term outcomes of direct composite restorations on endodontically treated anterior teeth: 92% success at 10 years, comparable to crowns; conservative restoration viable for anterior teeth." },
+      { year: 2009, author: "Mannocci", citeKey: "Mannocci|2009", pmid: "19279348",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Systematic review: endodontically treated teeth without cuspal coverage could be successfully restored with adhesive restorations if remaining coronal structure was adequate; full-coverage crown not always necessary." },
+      { year: 2012, author: "Grandini", citeKey: "Grandini|2012", pmid: "22152617",
+        evidence: "cohort", stance: "nuanced",
+        finding: "5-year follow-up: bonded resin restorations on anterior endodontically treated teeth showed 88% success; outcomes comparable to crown-restored controls." },
+      { year: 2015, author: "Grandini", citeKey: "Grandini|2015", pmid: "25270100",
+        evidence: "expert", stance: "nuanced",
+        finding: "Review of restoration options for endodontically treated teeth: advocated conservative approach when possible, reserving crowns for posterior teeth or significantly compromised cases." },
+      { year: 2018, author: "Corti", citeKey: "Corti|2018", pmid: "29333633",
+        evidence: "cohort", stance: "nuanced",
+        finding: "Prospective cohort: onlay restorations on premolars showed 90% success at 7 years; comparable to full-coverage crowns, supporting conservative restoration as viable alternative." },
+      { year: 2021, author: "Fedorowicz", citeKey: "Fedorowicz|2021", pmid: "33395689",
+        evidence: "sr-meta", stance: "nuanced",
+        finding: "Updated systematic review: insufficient evidence to declare one restoration type superior; outcomes depend on tooth structure, material selection, and technique rather than crown vs. conservative choice." },
     ],
   },
 ];
@@ -662,8 +1093,251 @@ function MobileSelect({ debates, activeId, onSelect }) {
   );
 }
 
+// ─── Quiz Components ────────────────────────────────────────────────────────
+
+// Generate quiz questions from all debate entries
+function generateQuizQuestions(count = 20) {
+  const allEntries = DEBATES.flatMap(d => d.entries.map(e => ({ ...e, debateId: d.id, debateTitle: d.title })));
+
+  // Shuffle entries
+  const shuffled = [...allEntries].sort(() => Math.random() - 0.5);
+
+  // Create questions from selected entries
+  const questions = shuffled.slice(0, Math.min(count, shuffled.length)).map((entry, idx) => {
+    // Get all entries from the same debate for answer options
+    const debateEntries = allEntries.filter(e => e.debateId === entry.debateId && e !== entry);
+
+    // Generate answer options
+    const correctAnswer = entry.finding;
+    const incorrectOptions = debateEntries
+      .filter(e => e.stance !== entry.stance)
+      .slice(0, 3)
+      .map(e => e.finding);
+
+    // If we don't have enough incorrect options, create plausible distractors
+    const stanceSuggestions = {
+      pro: "This finding suggests the technique is beneficial and should be adopted.",
+      con: "This finding suggests risks outweigh benefits and the practice should be avoided.",
+      nuanced: "This finding indicates the effectiveness depends on careful case selection and technique."
+    };
+
+    while (incorrectOptions.length < 3) {
+      const oppositeStance = entry.stance === "pro" ? "con" : entry.stance === "con" ? "pro" : "nuanced";
+      incorrectOptions.push(stanceSuggestions[oppositeStance]);
+    }
+
+    // Shuffle answer options
+    const options = [correctAnswer, ...incorrectOptions.slice(0, 3)].sort(() => Math.random() - 0.5);
+
+    return {
+      id: idx,
+      number: idx + 1,
+      entry: entry,
+      debateTitle: entry.debateTitle,
+      question: entry.finding,
+      context: `${entry.author} (${entry.year}) — ${EVIDENCE_LABELS[entry.evidence]}`,
+      options: options,
+      correctIndex: options.indexOf(correctAnswer),
+      correctStance: entry.stance,
+    };
+  });
+
+  return questions;
+}
+
+function QuestionCard({ question, selectedIndex, onSelectAnswer, isAnswered }) {
+  return (
+    <div className="question-card">
+      <div className="question-number">Question {question.number} of {question.totalQuestions}</div>
+      <div className="question-text">{question.question}</div>
+      <div className="question-context">{question.context}</div>
+      <div className="answer-options">
+        {question.options.map((option, idx) => {
+          let btnClass = "answer-btn";
+          if (selectedIndex === idx) btnClass += " selected";
+          if (isAnswered) {
+            if (idx === question.correctIndex) {
+              btnClass += " correct";
+            } else if (idx === selectedIndex && selectedIndex !== question.correctIndex) {
+              btnClass += " incorrect";
+            }
+          }
+          return (
+            <button
+              key={idx}
+              className={btnClass}
+              onClick={() => !isAnswered && onSelectAnswer(idx)}
+              disabled={isAnswered}
+            >
+              {option}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function QuizResults({ score, totalQuestions, onRestart, onBackToDebates }) {
+  const percentage = Math.round((score / totalQuestions) * 100);
+  const message = percentage >= 80 ? "Excellent! You know your endo debates!" :
+                  percentage >= 60 ? "Good effort! Keep studying the evidence." :
+                  "Keep learning! Review the debates to strengthen your knowledge.";
+
+  return (
+    <div className="quiz-results">
+      <div className="results-title">Quiz Complete!</div>
+      <div className="results-score">{score}/{totalQuestions}</div>
+      <div className="results-subtitle">{percentage}% Correct</div>
+      <p className="text-slate-600 mb-4">{message}</p>
+      <div className="results-stats">
+        <div className="results-stat">
+          <span className="results-stat-label">Correct Answers</span>
+          <span className="results-stat-value">{score}</span>
+        </div>
+        <div className="results-stat">
+          <span className="results-stat-label">Incorrect Answers</span>
+          <span className="results-stat-value">{totalQuestions - score}</span>
+        </div>
+        <div className="results-stat">
+          <span className="results-stat-label">Success Rate</span>
+          <span className="results-stat-value">{percentage}%</span>
+        </div>
+      </div>
+      <div className="quiz-nav">
+        <button className="quiz-btn quiz-btn-primary" onClick={onRestart}>
+          Take Quiz Again
+        </button>
+        <button className="quiz-btn quiz-btn-secondary" onClick={onBackToDebates}>
+          Back to Debates
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function QuizMode({ onBackToDebates }) {
+  const [questions, setQuestions] = useState([]);
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [answered, setAnswered] = useState(false);
+  const [quizFinished, setQuizFinished] = useState(false);
+
+  useEffect(() => {
+    const qs = generateQuizQuestions(20);
+    qs.forEach(q => q.totalQuestions = qs.length);
+    setQuestions(qs);
+  }, []);
+
+  const currentQuestion = questions[currentIdx];
+  const score = Object.entries(selectedAnswers).reduce((acc, [idx, ansIdx]) => {
+    const q = questions[parseInt(idx)];
+    return acc + (ansIdx === q.correctIndex ? 1 : 0);
+  }, 0);
+
+  const handleSelectAnswer = (optionIdx) => {
+    setSelectedAnswers({
+      ...selectedAnswers,
+      [currentIdx]: optionIdx
+    });
+    setAnswered(true);
+  };
+
+  const handleNext = () => {
+    if (currentIdx < questions.length - 1) {
+      setCurrentIdx(currentIdx + 1);
+      setAnswered(!!selectedAnswers[currentIdx + 1]);
+    } else {
+      setQuizFinished(true);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIdx > 0) {
+      setCurrentIdx(currentIdx - 1);
+      setAnswered(!!selectedAnswers[currentIdx - 1]);
+    }
+  };
+
+  const handleRestart = () => {
+    const qs = generateQuizQuestions(20);
+    qs.forEach(q => q.totalQuestions = qs.length);
+    setQuestions(qs);
+    setCurrentIdx(0);
+    setSelectedAnswers({});
+    setAnswered(false);
+    setQuizFinished(false);
+  };
+
+  if (questions.length === 0) {
+    return (
+      <div className="quiz-container">
+        <div className="quiz-header">
+          <div className="text-slate-600 text-sm">Loading quiz...</div>
+        </div>
+        <div className="quiz-content flex items-center justify-center">
+          <div className="text-slate-400">Preparing your questions...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (quizFinished) {
+    return (
+      <div className="quiz-container">
+        <div className="quiz-header">
+          <div className="text-slate-600 text-sm">Quiz Results</div>
+        </div>
+        <div className="quiz-content">
+          <QuizResults
+            score={score}
+            totalQuestions={questions.length}
+            onRestart={handleRestart}
+            onBackToDebates={onBackToDebates}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="quiz-container">
+      <div className="quiz-header">
+        <div className="quiz-progress">
+          <div className="quiz-progress-bar">
+            <div className="quiz-progress-fill" style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }} />
+          </div>
+          <div className="quiz-progress-text">
+            Question {currentIdx + 1} of {questions.length} · {score} correct so far
+          </div>
+        </div>
+      </div>
+      <div className="quiz-content">
+        {currentQuestion && (
+          <>
+            <QuestionCard
+              question={currentQuestion}
+              selectedIndex={selectedAnswers[currentIdx]}
+              onSelectAnswer={handleSelectAnswer}
+              isAnswered={answered}
+            />
+            <div className="quiz-nav">
+              <button className="quiz-btn quiz-btn-secondary" onClick={handlePrev} disabled={currentIdx === 0}>
+                ← Previous
+              </button>
+              <button className="quiz-btn quiz-btn-primary" onClick={handleNext} disabled={!answered}>
+                {currentIdx === questions.length - 1 ? "Finish" : "Next →"}
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Header ─────────────────────────────────────────────────────────────────
-function Header() {
+function Header({ isQuizMode, onToggleQuiz }) {
   return (
     <header className="bg-white border-b shadow-sm shrink-0">
       <div className="flex items-center justify-between px-3 md:px-5 h-14">
@@ -672,7 +1346,12 @@ function Header() {
           <span className="text-slate-300 hidden sm:inline">·</span>
           <div className="text-slate-500 text-xs truncate hidden sm:inline">Evidence timelines for the major controversies</div>
         </div>
-        <a href="endo-guide.html" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline shrink-0">← Endo Guide</a>
+        <div className="flex items-center gap-3">
+          <button className={`quiz-mode-toggle ${isQuizMode ? "active" : ""}`} onClick={onToggleQuiz}>
+            {isQuizMode ? "📊 Quiz Mode" : "📚 Quiz Mode"}
+          </button>
+          <a href="endo-guide.html" className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 hover:underline shrink-0">← Endo Guide</a>
+        </div>
       </div>
     </header>
   );
@@ -683,6 +1362,7 @@ function DebatesApp() {
   const [activeId, setActiveId] = useState(DEBATES[0].id);
   const [abstractsMap, setAbstractsMap] = useState(null);
   const [modalInfo, setModalInfo] = useState(null);
+  const [isQuizMode, setIsQuizMode] = useState(false);
 
   useEffect(() => {
     fetch("abstracts.json", { cache: "no-store" })
@@ -700,16 +1380,28 @@ function DebatesApp() {
 
   const onClose = useCallback(() => setModalInfo(null), []);
 
+  const handleToggleQuiz = () => {
+    setIsQuizMode(!isQuizMode);
+  };
+
+  const handleBackToDebates = () => {
+    setIsQuizMode(false);
+  };
+
   return (
     <div className="flex flex-col h-screen">
-      <Header />
-      <div className="flex flex-1 min-h-0">
-        <Sidebar debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
-        <main id="main-pane" className="flex-1 overflow-y-auto">
-          <MobileSelect debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
-          <DebatePane debate={activeDebate} abstractsMap={abstractsMap} onOpenAbstract={onOpenAbstract} />
-        </main>
-      </div>
+      <Header isQuizMode={isQuizMode} onToggleQuiz={handleToggleQuiz} />
+      {isQuizMode ? (
+        <QuizMode onBackToDebates={handleBackToDebates} />
+      ) : (
+        <div className="flex flex-1 min-h-0">
+          <Sidebar debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
+          <main id="main-pane" className="flex-1 overflow-y-auto">
+            <MobileSelect debates={DEBATES} activeId={activeId} onSelect={setActiveId} />
+            <DebatePane debate={activeDebate} abstractsMap={abstractsMap} onOpenAbstract={onOpenAbstract} />
+          </main>
+        </div>
+      )}
       {modalInfo && <AbstractModal info={modalInfo} onClose={onClose} />}
     </div>
   );
