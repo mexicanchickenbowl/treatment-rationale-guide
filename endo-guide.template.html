@@ -1304,11 +1304,12 @@ function MatchPane() {
     }
     const findings = [...unique].sort(() => Math.random() - 0.5).map(p => p.finding);
     const authors = [...unique].sort(() => Math.random() - 0.5).map(p => p.author);
-    return { pairs: unique, findingsOrder: findings, authorsOrder: authors, matches: {}, dragging: null, submitted: false };
+    return { pairs: unique, findingsOrder: findings, authorsOrder: authors, matches: {}, locked: [], dragging: null, attempts: 0, lastWrong: 0, done: false };
   };
 
   const [state, setState] = useState(initialize);
-  const { pairs, findingsOrder, authorsOrder, matches, dragging, submitted } = state;
+  const { pairs, findingsOrder, authorsOrder, matches, locked, dragging, attempts, lastWrong, done } = state;
+  const lockedSet = new Set(locked);
 
   const reset = () => setState(initialize());
 
@@ -1325,12 +1326,16 @@ function MatchPane() {
 
   const handleDrop = (author) => (e) => {
     e.preventDefault();
+    if (lockedSet.has(author)) return;
     const finding = e.dataTransfer.getData("text/plain") || dragging;
     if (!finding) return;
     setState(s => {
       const next = { ...s.matches };
-      // Remove the finding from any prior author slot
-      for (const a of Object.keys(next)) if (next[a] === finding) delete next[a];
+      // Don't displace a finding from a locked slot
+      for (const a of Object.keys(next)) {
+        if (s.locked.includes(a)) continue;
+        if (next[a] === finding) delete next[a];
+      }
       next[author] = finding;
       return { ...s, matches: next, dragging: null };
     });
@@ -1338,6 +1343,7 @@ function MatchPane() {
   const handleDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; };
 
   const clearSlot = (author) => {
+    if (lockedSet.has(author)) return;
     setState(s => {
       const next = { ...s.matches };
       delete next[author];
@@ -1345,13 +1351,35 @@ function MatchPane() {
     });
   };
 
-  const correctAuthorOf = (finding) => {
-    const p = pairs.find(x => x.finding === finding);
-    return p ? p.author : null;
+  const checkAnswers = () => {
+    setState(s => {
+      const nextMatches = { ...s.matches };
+      const nextLocked = [...s.locked];
+      let wrong = 0;
+      for (const p of s.pairs) {
+        if (s.locked.includes(p.author)) continue;
+        if (nextMatches[p.author] === p.finding) {
+          nextLocked.push(p.author);
+        } else if (nextMatches[p.author] != null) {
+          delete nextMatches[p.author];
+          wrong++;
+        }
+      }
+      return {
+        ...s,
+        matches: nextMatches,
+        locked: nextLocked,
+        attempts: s.attempts + 1,
+        lastWrong: wrong,
+        done: nextLocked.length === s.pairs.length,
+      };
+    });
   };
 
-  const score = pairs.reduce((n, p) => n + (matches[p.author] === p.finding ? 1 : 0), 0);
-  const allPlaced = Object.keys(matches).length === pairs.length;
+  // Count unlocked slots that currently have a finding dropped in them
+  const unlockedPlacedCount = pairs.reduce((n, p) => n + (!lockedSet.has(p.author) && matches[p.author] ? 1 : 0), 0);
+  const unlockedTotal = pairs.length - lockedSet.size;
+  const allPlaced = unlockedTotal > 0 && unlockedPlacedCount === unlockedTotal;
 
   return (
     <div className="flex-1 overflow-auto bg-slate-50">
@@ -1362,19 +1390,17 @@ function MatchPane() {
             <p className="text-xs text-slate-500 mt-0.5">Drag each finding to the author who reported it. 10 random high-yield board pairs per set.</p>
           </div>
           <div className="flex items-center gap-3">
-            {submitted && (
-              <div className={`text-sm font-semibold px-3 py-1.5 rounded-lg ${score === pairs.length ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-800"}`}>
-                Score: {score} / {pairs.length}
-              </div>
-            )}
-            {!submitted ? (
+            <div className={`text-sm font-semibold px-3 py-1.5 rounded-lg ${done ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-800"}`}>
+              {done ? "Perfect!" : `Locked: ${lockedSet.size} / ${pairs.length}`}
+            </div>
+            {!done && (
               <button
-                onClick={() => setState(s => ({ ...s, submitted: true }))}
+                onClick={checkAnswers}
                 disabled={!allPlaced}
                 className={`text-sm px-3 py-1.5 rounded-lg font-semibold ${allPlaced ? "bg-indigo-600 text-white hover:bg-indigo-700" : "bg-slate-200 text-slate-400 cursor-not-allowed"}`}>
                 Check Answers
               </button>
-            ) : null}
+            )}
             <button onClick={reset} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-semibold text-slate-700">New Set</button>
           </div>
         </div>
@@ -1389,15 +1415,18 @@ function MatchPane() {
             <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Findings (drag these)</div>
             <div className="space-y-2">
               {findingsOrder.map((finding, i) => {
-                const placed = placedFindings.has(finding);
+                // A finding is "used" only if it sits in a locked slot; otherwise it's back in the pool
+                const inLockedSlot = pairs.some(p => lockedSet.has(p.author) && matches[p.author] === finding);
+                const inUnlockedSlot = placedFindings.has(finding) && !inLockedSlot;
+                const used = inLockedSlot;
                 return (
                   <div
                     key={i}
-                    draggable={!placed}
+                    draggable={!used}
                     onDragStart={handleDragStart(finding)}
                     onDragEnd={handleDragEnd}
                     title={finding}
-                    className={`text-sm p-2.5 rounded-lg border select-none ${placed ? "bg-slate-100 text-slate-400 border-slate-200 line-through" : "bg-white border-slate-300 text-slate-800 hover:border-indigo-400 cursor-grab active:cursor-grabbing shadow-sm"}`}
+                    className={`text-sm p-2.5 rounded-lg border select-none ${used ? "bg-emerald-50 text-emerald-700 border-emerald-200 line-through opacity-60" : inUnlockedSlot ? "bg-slate-100 text-slate-400 border-slate-200" : "bg-white border-slate-300 text-slate-800 hover:border-indigo-400 cursor-grab active:cursor-grabbing shadow-sm"}`}
                   >
                     {truncate(finding, 180)}
                   </div>
@@ -1412,29 +1441,28 @@ function MatchPane() {
             <div className="space-y-2">
               {authorsOrder.map((author, i) => {
                 const placed = matches[author];
+                const isLocked = lockedSet.has(author);
                 let slotCls = "border-dashed border-slate-300 bg-white";
-                if (submitted && placed) {
-                  const correct = correctAuthorOf(placed) === author;
-                  slotCls = correct ? "border-solid border-emerald-400 bg-emerald-50" : "border-solid border-rose-400 bg-rose-50";
-                } else if (submitted && !placed) {
-                  slotCls = "border-solid border-amber-400 bg-amber-50";
+                if (isLocked) {
+                  slotCls = "border-solid border-emerald-400 bg-emerald-50";
                 } else if (placed) {
                   slotCls = "border-solid border-indigo-300 bg-indigo-50";
                 }
                 return (
                   <div
                     key={i}
-                    onDragOver={handleDragOver}
-                    onDrop={handleDrop(author)}
+                    onDragOver={isLocked ? undefined : handleDragOver}
+                    onDrop={isLocked ? undefined : handleDrop(author)}
                     className={`flex items-start gap-2 p-2.5 rounded-lg border-2 min-h-[56px] ${slotCls}`}
                   >
-                    <div className="text-sm font-semibold text-slate-800 w-40 shrink-0">{author}</div>
+                    <div className={`text-sm font-semibold w-40 shrink-0 ${isLocked ? "text-emerald-800" : "text-slate-800"}`}>{author}</div>
                     <div className="flex-1 text-xs text-slate-700" title={placed || ""}>
                       {placed ? truncate(placed, 180) : <span className="text-slate-400 italic">drop finding here</span>}
                     </div>
-                    {placed && !submitted && (
+                    {placed && !isLocked && (
                       <button onClick={() => clearSlot(author)} className="text-slate-400 hover:text-rose-600 text-xs shrink-0" title="Clear">✕</button>
                     )}
+                    {isLocked && <span className="text-emerald-600 text-xs shrink-0" title="Correct">✓</span>}
                   </div>
                 );
               })}
@@ -1442,14 +1470,14 @@ function MatchPane() {
           </div>
         </div>
 
-        {submitted && score < pairs.length && (
-          <div className="mt-5 bg-white border border-slate-200 rounded-lg p-3">
-            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Answer Key</div>
-            <ul className="text-xs text-slate-700 space-y-1">
-              {pairs.map((p, i) => (
-                <li key={i}><span className="font-semibold text-slate-800">{p.author}:</span> {p.finding}</li>
-              ))}
-            </ul>
+        {attempts > 0 && !done && lastWrong > 0 && (
+          <div className="mt-4 bg-rose-50 border border-rose-200 text-rose-800 text-sm rounded-lg p-3">
+            {lastWrong} incorrect — those findings have been returned to the pool. Try again.
+          </div>
+        )}
+        {done && (
+          <div className="mt-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm rounded-lg p-3">
+            All 10 matched correctly in {attempts} {attempts === 1 ? "attempt" : "attempts"}. Click <span className="font-semibold">New Set</span> for another round.
           </div>
         )}
       </div>
