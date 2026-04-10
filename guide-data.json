@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-10T01:09:14.207718+00:00",
+  "built_at": "2026-04-10T01:56:21.032153+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -7455,6 +7455,153 @@
       "pub_year": "2018",
       "status": "ok",
       "score": 0.5
+    },
+    "AAE|2019": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "AAE and AAO 2015 joint position statement|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Basrani|2007": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Berman and Kuttler|2010": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Bjørndal|2019": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Blomlöf|1997": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Burch and Hulen|1972": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Costa|2013": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "ESE de Souza|2021": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Evans|2002": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Hand|1978": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Kang|2016": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Krasner and Rankow|2004": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Peters|2001": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Ray and Trope|1995": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Ricucci|2014": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Ricucci and Langeland|1998": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Sathorn|2007": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Shabahang|1996": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Sim|": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
+    },
+    "Zehnder|2006": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0
     }
   }
 }
