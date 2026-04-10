@@ -164,8 +164,8 @@ const AUTHOR_PASSES = [
 ];
 
 // --- contexts ---------------------------------------------------------------
-const QuizCtx    = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
-const FlagCtx    = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
+const QuizCtx     = React.createContext({ quizMode: false, authorPool: [], pctPool: [], onAnswer: () => {} });
+const FlagCtx     = React.createContext({ flagged: new Set(), toggleFlag: () => {} });
 const AbstractCtx = React.createContext({ openAbstract: () => {} });
 
 // --- environment detection / Cloudflare Access auth ------------------------
@@ -298,16 +298,15 @@ function useLongPress(onLong, ms = 500) {
 // Colored span: quick click opens abstract (cite only), long-press flags
 function FlaggableSpan({ type, text, query, onClickCite }) {
   const { flagged, toggleFlag } = React.useContext(FlagCtx);
-  const isFlagged = flagged.has(text);
-  // Track whether the long-press timer fired so we can suppress the click event
-  const longFired = useRef(false);
-  const timer     = useRef(null);
+  const isFlagged  = flagged.has(text);
+  const longFired  = useRef(false);
+  const pressTimer = useRef(null);
 
   function startPress() {
     longFired.current = false;
-    timer.current = setTimeout(() => { longFired.current = true; toggleFlag(text); }, 500);
+    pressTimer.current = setTimeout(() => { longFired.current = true; toggleFlag(text); }, 500);
   }
-  function endPress() { clearTimeout(timer.current); }
+  function endPress() { clearTimeout(pressTimer.current); }
 
   const cls = isFlagged ? (type === "cite" ? "cite-flagged" : "pct-flagged") : type;
   const title = type === "cite"
@@ -383,7 +382,6 @@ function AbstractModal({ info, onClose }) {
     return () => window.removeEventListener("keydown", h);
   }, [onClose]);
 
-  // Highlight numbers, percentages, p-values in text
   function nums(text) {
     if (!text) return null;
     const re = /(\d+(?:[.,]\d+)?(?:[–\-]\d+(?:[.,]\d+)?)?%|\d+(?:[.,]\d+)?-fold|\d+(?:[.,]\d+)?[×x](?=[\s,)])|p\s*[<>=≤≥]\s*0\.\d+|\bRR\s*=?\s*\d+(?:\.\d+)?|\bOR\s*=?\s*\d+(?:\.\d+)?|\d+(?:[.,]\d+)?)/g;
@@ -401,7 +399,6 @@ function AbstractModal({ info, onClose }) {
 
   function renderBody(text) {
     if (!text) return null;
-    // Detect structured abstract labels (BACKGROUND:, METHODS:, RESULTS:, CONCLUSIONS:, etc.)
     const labelRe = /\b(BACKGROUND|OBJECTIVE[S]?|AIM[S]?|PURPOSE|INTRODUCTION|METHODS?|MATERIALS\s+AND\s+METHODS?|RESULTS?|DISCUSSION|CONCLUSION[S]?|CLINICAL\s+(?:RELEVANCE|SIGNIFICANCE|IMPLICATIONS?))\s*:/gi;
     const matches = [];
     let lm;
@@ -410,7 +407,6 @@ function AbstractModal({ info, onClose }) {
       matches.push({ label: lm[1].replace(/\s+/g, " ").toUpperCase(), start: lm.index, bodyStart: lm.index + lm[0].length });
     }
     if (matches.length >= 2) {
-      // Structured abstract — render each labeled section
       const sections = matches.map((m, i) => ({
         label: m.label,
         body: text.slice(m.bodyStart, matches[i + 1]?.start ?? text.length).trim(),
@@ -430,20 +426,19 @@ function AbstractModal({ info, onClose }) {
         </div>
       );
     }
-    // Unstructured — look for CONCLUSION keyword near the end as a natural split
     const concRe = /\bCONCLUSION[S]?\b/i;
     const concMatch = concRe.exec(text);
     if (concMatch && concMatch.index > text.length * 0.55) {
       const before = text.slice(0, concMatch.index).trim();
       const after  = text.slice(concMatch.index).replace(/^CONCLUSION[S]?[:\s.]*/i, "").trim();
       return (
-        <>
+        <React.Fragment>
           <p className="text-[13px] leading-relaxed text-slate-700 mb-2">{nums(before)}</p>
           <div className="abstract-conclusion">
             <div className="text-[10px] font-bold uppercase tracking-wider text-green-700 mb-1">Conclusion</div>
             <p className="text-[13px] leading-relaxed text-green-900">{nums(after)}</p>
           </div>
-        </>
+        </React.Fragment>
       );
     }
     return <p className="text-[13px] leading-relaxed text-slate-700">{nums(text)}</p>;
@@ -456,7 +451,6 @@ function AbstractModal({ info, onClose }) {
   return (
     <div className="abstract-overlay" onClick={e => e.target === e.currentTarget && onClose()}>
       <div className="abstract-panel">
-        {/* ── header ── */}
         <div className="abstract-header">
           <div className="flex items-start justify-between gap-3">
             <div className="flex-1 min-w-0">
@@ -476,10 +470,7 @@ function AbstractModal({ info, onClose }) {
               className="shrink-0 text-slate-400 hover:text-slate-700 text-2xl leading-none -mt-0.5">×</button>
           </div>
         </div>
-
-        {/* ── body ── */}
         <div className="abstract-body">
-          {/* Key finding from card */}
           {card?.finding && (
             <div className="abstract-finding">
               <div className="text-[10px] font-bold uppercase tracking-widest text-amber-700 mb-1.5 flex items-center gap-2">
@@ -489,21 +480,16 @@ function AbstractModal({ info, onClose }) {
               <p className="text-[13px] text-amber-900 leading-relaxed">{nums(card.finding)}</p>
             </div>
           )}
-
-          {/* Abstract text */}
           {hasContent
             ? renderBody(abstract.abstract)
             : <p className="text-[13px] text-slate-400 italic mt-1">
-                {notFound
-                  ? "No PubMed abstract found for this citation."
-                  : "Abstract not available."}
+                {notFound ? "No PubMed abstract found for this citation." : "Abstract not available."}
               </p>}
         </div>
       </div>
     </div>
   );
 }
-
 
 function splitByRegex(text, re, type) {
   // Returns [{t:"text"|type, v:string}]
@@ -1223,6 +1209,435 @@ function loadStudyState() {
 }
 function saveStudyState(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
 
+const BOARD_PAIRS = [
+  // Microbiology / biofilm
+  { author: "Kakehashi (1965)", finding: "Germ-free rats with pulp exposures healed without periapical lesions; conventional rats developed pulpal necrosis and apical periodontitis — established bacteria as the essential cause of pulpal/periapical disease." },
+  { author: "Sundqvist (1976)", finding: "Cultured necrotic traumatized teeth and found predominantly obligate anaerobic bacteria in periapical lesions; only teeth with bacteria developed periapical pathosis." },
+  { author: "Möller (1981)", finding: "Monkey study: only devitalized pulps that were infected developed periapical lesions; sterile necrotic pulps did not." },
+  { author: "Fabricius (1982)", finding: "Showed specific combinations of anaerobes were required to produce periapical lesions in monkeys — synergistic polymicrobial infection." },
+  { author: "Nair (1987)", finding: "TEM/light microscopy of refractory apical periodontitis showed extraradicular actinomycosis and biofilms; explained persistent lesions despite adequate treatment." },
+  { author: "Nair (2006)", finding: "Causes of failed endodontic treatment: intraradicular infection, extraradicular infection, foreign body reaction, true cysts, and cholesterol crystals." },
+  { author: "Siqueira & Rôças (2008)", finding: "Molecular identification showed Enterococcus faecalis and fungi are more prevalent in treated teeth with persistent disease than untreated infections." },
+  { author: "Ricucci & Siqueira (2010)", finding: "Histobacteriologic analysis of 106 apical periodontitis lesions showed biofilms in 77% of untreated and 74% of root-filled canals with disease." },
+  { author: "Love (2001)", finding: "E. faecalis invades dentinal tubules and resists starvation and high pH, explaining its role in persistent endodontic infections." },
+  { author: "Chávez de Paz (2007)", finding: "Bacteria in persistent endodontic infections exist predominantly as biofilms and low-biomass polymicrobial communities, not planktonic cells." },
+  { author: "Rôças & Siqueira (2004)", finding: "Molecular analysis detected E. faecalis in 77% of cases with post-treatment apical periodontitis — 9× more prevalent than in primary infections." },
+  { author: "Fouad (2003)", finding: "Diabetics with periradicular lesions and preoperative infection had a higher rate of endodontic failure." },
+
+  // Pulp testing
+  { author: "Petersson (1999)", finding: "Sensitivity/specificity of pulp tests: cold 0.83/0.93, EPT 0.72/0.93, heat 0.86/0.41. Cold and EPT most reliable; agreement between tests best predicts pulp status." },
+  { author: "Mainkar & Kim (2018)", finding: "Systematic review: cold test and EPT each have ~87% sensitivity and ~84% specificity; laser Doppler most accurate overall." },
+  { author: "Gopikrishna (2009)", finding: "Pulse oximetry accurately assessed pulp vitality in traumatized teeth where cold/EPT gave false negatives." },
+  { author: "Jafarzadeh & Abbott (2010)", finding: "Review: dichlorodifluoromethane (Endo-Ice) and CO2 snow produce reliable cold responses; refrigerant spray equals CO2 in diagnostic accuracy." },
+
+  // Local anesthesia
+  { author: "Hargreaves & Keiser (2002)", finding: "Pulpal inflammation reduces local anesthetic effectiveness via TTX-resistant sodium channels and decreased pH in inflamed tissue." },
+  { author: "Nusstein (1998)", finding: "Intraosseous anesthesia with 2% lidocaine/epi as a supplement gave 90%+ success in mandibular molars with irreversible pulpitis." },
+  { author: "Reader & Nusstein (2002)", finding: "IANB achieves pulpal anesthesia in only ~20–50% of mandibular molars with irreversible pulpitis — supplemental techniques usually required." },
+  { author: "Matthews (2009)", finding: "Buccal infiltration of 4% articaine after IANB significantly increased success in mandibular first molars with irreversible pulpitis." },
+  { author: "Malamed (2000)", finding: "4% articaine shows superior diffusion through bone compared to lidocaine; recommended for maxillary and mandibular buccal infiltrations." },
+  { author: "Fowler & Reader (2013)", finding: "Preoperative ibuprofen/acetaminophen increased IANB success in mandibular molars with symptomatic irreversible pulpitis." },
+  { author: "Aggarwal (2010)", finding: "Preoperative ketorolac or ibuprofen improved anesthetic efficacy of IANB in teeth with irreversible pulpitis." },
+
+  // Anatomy
+  { author: "Vertucci (1984)", finding: "Classified root canal configurations into 8 types; showed mandibular incisors and premolars frequently have 2 canals and maxillary first molars commonly have MB2." },
+  { author: "Kulild & Peters (1990)", finding: "MB2 canal present in 95% of maxillary first molars when examined with troughing and magnification; only 54% found without." },
+  { author: "Weine (1969)", finding: "Classified MB root canal systems into Types I–IV; described the importance of locating a second MB canal in maxillary molars." },
+  { author: "Kuttler (1955)", finding: "Described apical anatomy: minor constriction 0.5–0.75 mm from apical foramen; canal has cone-within-cone (funnel) shape with minor diameter at CDJ." },
+  { author: "Dummer (1984)", finding: "Anatomical apical constriction is variable — traditional, tapered, multi-constricted, and parallel forms exist; only present in ~46% of teeth histologically." },
+  { author: "Ricucci & Langeland (1998)", finding: "Histologic study: best outcomes when instrumentation/filling terminated at the cemento-dentinal junction, not short or long." },
+  { author: "Ahmed (2017)", finding: "Proposed a new coding system for root and canal morphology that addresses accessory canals and root fusion not covered by Vertucci." },
+
+  // Working length / apical anatomy
+  { author: "Gordon & Chandler (2004)", finding: "Apex locators are accurate within ±0.5 mm of the minor foramen in 90%+ of cases, regardless of pulp vitality or irrigant." },
+  { author: "Shabahang (1996)", finding: "Root ZX electronic apex locator accurate to within 0.5 mm of the minor foramen in 96% of cases — independent of electrolyte presence." },
+  { author: "ElAyouti (2002)", finding: "Radiographic working length consistently overestimated true length; electronic apex locators should be used as primary reference." },
+
+  // Instrumentation
+  { author: "Schilder (1974)", finding: "Defined the five mechanical objectives of cleaning and shaping: continuously tapering funnel, narrowing apically, keeping apical foramen small, maintaining canal curvature, keeping foramen in original position." },
+  { author: "Peters (2001)", finding: "Micro-CT showed that all NiTi instrumentation techniques left 35%+ of canal walls untouched, regardless of system used." },
+  { author: "Paqué (2010)", finding: "Micro-CT: self-adjusting file and nickel-titanium rotary systems still leave significant uninstrumented surfaces in oval canals." },
+  { author: "Parashos & Messer (2006)", finding: "Survey of NiTi instrument separation: fracture rate 1–5%; most due to cyclic fatigue; discard files after 1–2 uses in curved canals." },
+  { author: "Cheung (2009)", finding: "Review of NiTi fatigue: cyclic fatigue and torsional failure are the two main mechanisms of instrument separation." },
+  { author: "Spili (2005)", finding: "Retained separated NiTi instruments did not significantly reduce endodontic treatment outcome if preoperative periapical lesion was absent." },
+  { author: "Pettiette (2001)", finding: "Balanced force technique with NiTi maintained canal curvature and reduced transportation compared to stainless steel K-files." },
+
+  // Irrigation
+  { author: "Byström & Sundqvist (1983)", finding: "NaOCl (0.5%) irrigation was more effective than saline at reducing intracanal bacteria; mechanical instrumentation alone could not render canals bacteria-free." },
+  { author: "Zehnder (2006)", finding: "Comprehensive review of root canal irrigants: NaOCl is the primary irrigant for organic dissolution/antimicrobial action; EDTA/citric acid remove smear layer." },
+  { author: "Baumgartner & Mader (1987)", finding: "SEM study showing alternating NaOCl and EDTA irrigation removed the smear layer effectively from canal walls." },
+  { author: "Clegg (2006)", finding: "6% NaOCl most effective at disrupting biofilms; 2% CHX and 1% NaOCl were less effective against established biofilm." },
+  { author: "Spratt (2001)", finding: "NaOCl more effective than CHX, iodine, or Peridex against Enterococcus faecalis and other endodontic pathogens in biofilm." },
+  { author: "Haapasalo (2000)", finding: "Dentin powder significantly inhibited the antibacterial activity of calcium hydroxide and chlorhexidine — 'dentin buffering effect.'" },
+  { author: "Gu (2009)", finding: "Review of irrigant agitation techniques showed sonic/ultrasonic activation improves debridement, smear layer removal, and biofilm disruption." },
+  { author: "Basrani (2007)", finding: "Mixing NaOCl with CHX produces parachloroaniline (PCA), a potentially toxic and carcinogenic precipitate — avoid direct mixing." },
+  { author: "Torabinejad (2003)", finding: "MTAD (mixture of tetracycline, acid, detergent) effectively removed smear layer without significantly eroding dentin, unlike EDTA+NaOCl." },
+  { author: "Hülsmann (2003)", finding: "Review of NaOCl accidents: extrusion beyond apex causes severe pain, hematoma, ecchymosis, and tissue necrosis — careful depth control is essential." },
+
+  // Intracanal medication
+  { author: "Sjögren (1991)", finding: "Calcium hydroxide dressing for 7 days eliminated bacteria from canals that were culture-positive after instrumentation — improved disinfection." },
+  { author: "Bystrom, Claesson, Sundqvist (1985)", finding: "Calcium hydroxide was more effective than camphorated phenol/CMCP for eliminating bacteria from root canals between appointments." },
+
+  // Obturation
+  { author: "Schilder (1967)", finding: "Described warm vertical condensation technique emphasizing three-dimensional obturation of root canal system including lateral canals and accessory anatomy." },
+  { author: "Wu & Wesselink (1993)", finding: "Review: quality of apical seal depends more on cleaning/shaping than obturation technique; no technique produces complete hermetic seal." },
+  { author: "Ørstavik (1983)", finding: "Demonstrated dimensional changes (setting expansion/shrinkage) of root canal sealers over time; Roth's and AH-26 showed best dimensional stability." },
+  { author: "Wu (2000)", finding: "Showed that even small apical leakage permits bacterial penetration — coronal restoration is critical to prevent reinfection." },
+
+  // Vital pulp therapy / MTA
+  { author: "Torabinejad (1993)", finding: "Introduced MTA as a root-end filling material — superior biocompatibility, sealing, and hard-tissue induction compared to amalgam and IRM." },
+  { author: "Torabinejad (1995)", finding: "MTA allowed cementogenesis and new PDL formation on root-end surfaces; promoted regeneration of periradicular tissues." },
+  { author: "Bogen (2008)", finding: "Direct pulp capping with MTA on cariously exposed permanent molars had a 97.96% success rate over 9 years when properly case-selected." },
+  { author: "Mente (2010)", finding: "MTA direct pulp capping showed higher success (81%) than calcium hydroxide (59%) in a prospective clinical study." },
+  { author: "Hilton (2013)", finding: "Randomized trial: MTA direct pulp cap outperformed calcium hydroxide at 2-year follow-up with significantly fewer failures." },
+  { author: "Witherspoon (2008)", finding: "Reported 93% success rate for MTA apexification in immature teeth with pulpal necrosis." },
+  { author: "Cvek (1992)", finding: "Partial pulpotomy in traumatically exposed young permanent teeth using calcium hydroxide had 96% success — established the 'Cvek pulpotomy.'" },
+  { author: "Asgary (2013)", finding: "RCT: full pulpotomy with CEM or MTA in symptomatic mature molars with irreversible pulpitis showed high success comparable to RCT at 1 year." },
+
+  // Regenerative endo
+  { author: "Banchs & Trope (2004)", finding: "Introduced revascularization/regenerative endodontic protocol for immature necrotic teeth using triple antibiotic paste and blood clot scaffold." },
+  { author: "Huang (2008)", finding: "Characterized stem cells of the apical papilla (SCAP) — progenitor cells responsible for continued root development in regenerative endodontics." },
+  { author: "Murray, Garcia-Godoy, Hargreaves (2007)", finding: "Proposed the conceptual framework of regenerative endodontics: stem cells, scaffolds, and signaling molecules as the tissue-engineering triad." },
+  { author: "Diogenes & Hargreaves (2013)", finding: "Showed that concentration of triple antibiotic paste affects stem cell survival — dilute concentrations preserve SCAP viability for regeneration." },
+  { author: "Ruparel (2012)", finding: "Triple antibiotic paste at clinical concentrations was cytotoxic to SCAP; 0.1–1 mg/mL concentrations preserved stem cell viability." },
+  { author: "Lovelace (2011)", finding: "EDTA irrigation during regenerative procedures significantly increased delivery of stem cells into the canal from the periapical tissues." },
+
+  // Outcomes
+  { author: "Strindberg (1956)", finding: "Established stringent radiographic/clinical success criteria for endodontic treatment — 'Strindberg criteria' still referenced in outcome studies." },
+  { author: "Sjögren (1990)", finding: "8–10 year follow-up: 96% success for vital pulps, 86% for necrotic without lesion, 62% for necrotic with lesion; apical periodontitis reduced success." },
+  { author: "Friedman & Mor (2004)", finding: "Toronto Study: ~85% healed rate for initial treatment; presence of preoperative apical periodontitis was the strongest predictor of outcome." },
+  { author: "Ng (2011)", finding: "Systematic review of outcome factors: preoperative periapical lesion, apical extent of filling, and coronal restoration quality most influence success." },
+  { author: "Ng (2010)", finding: "Meta-analysis of nonsurgical retreatment — pooled success rate ~77%; presence of perforation, lesion size, and filling extent affect outcomes." },
+  { author: "Chugal (2003)", finding: "Apical extent of root canal filling and presence of preoperative apical periodontitis are the two strongest predictors of periapical healing." },
+  { author: "Iqbal & Kim (2007)", finding: "Systematic review comparing implants and endodontically treated teeth: similar survival rates — tooth preservation remains valid first-line treatment." },
+  { author: "Torabinejad (2007)", finding: "Systematic review: single-tooth implants and endodontic treatment with crown have comparable long-term survival." },
+  { author: "Salehrabi & Rotstein (2004)", finding: "Epidemiologic study of 1.4 million teeth: 97% survival at 8 years post-RCT in Delta Dental insurance database." },
+  { author: "de Chevigny (2008)", finding: "Toronto Study Phase 4: preoperative root filling quality and restoration predicted retreatment outcome." },
+  { author: "Ricucci (2011)", finding: "Long-term 10-year outcome: root canal treatment achieved 93% radiographic healing when proper protocol followed." },
+
+  // Microsurgery
+  { author: "Kim & Kratchman (2006)", finding: "Outlined modern endodontic microsurgery principles: small osteotomy, minimal 3-mm root-end resection, 0° bevel, ultrasonic retropreparation, MTA root-end fill." },
+  { author: "Rubinstein & Kim (1999)", finding: "Microsurgery with ultrasonic retropreparation and Super-EBA root-end filling achieved 96.8% success at 1 year." },
+  { author: "Rubinstein & Kim (2002)", finding: "5–7 year follow-up of endodontic microsurgery — 91.5% success; demonstrated durability of microsurgical technique." },
+  { author: "Setzer (2010)", finding: "Meta-analysis: endodontic microsurgery achieved 94% success vs 59% for traditional surgery — magnification and ultrasonic tips dramatically improved outcomes." },
+  { author: "Setzer (2012)", finding: "Meta-analysis: microsurgery with high magnification (microscope/endoscope) showed higher success than loupe-assisted surgery." },
+  { author: "Tsesis (2013)", finding: "Systematic review of modern endodontic microsurgery outcomes: pooled success 91.4% — significantly better than traditional apicoectomy." },
+  { author: "Von Arx (2011)", finding: "5-year prospective study of apical surgery: 74% healed; MTA outperformed Super-EBA as a root-end filling material." },
+  { author: "Carr (1992)", finding: "Introduced microsurgical endodontics using ultrasonic retrotips and operating microscope — revolutionized apical surgery." },
+  { author: "Song (2011)", finding: "Prospective clinical study showed comparable outcomes for MTA and Super-EBA as root-end filling materials in microsurgery." },
+  { author: "Chong (2003)", finding: "Prospective RCT: MTA and IRM as root-end fillings showed similar success — both acceptable; MTA had better biologic response." },
+
+  // Trauma
+  { author: "Andreasen (1995)", finding: "Classic studies on pulpal/periodontal healing after luxation injuries; defined prognostic factors for traumatic dental injuries." },
+  { author: "Andreasen (2002)", finding: "Large cohort of avulsed teeth: storage medium and extraoral dry time are the critical factors for periodontal ligament healing." },
+  { author: "Cvek (1974)", finding: "Pulpotomy with calcium hydroxide in complicated crown fractures: high success when performed within days of injury regardless of time since exposure." },
+  { author: "Malmgren (2002)", finding: "Decoronation technique for ankylosed traumatized incisors in growing patients preserves alveolar bone for future implant placement." },
+  { author: "Trope (2002)", finding: "Proposed the 'aggressive' regenerative protocol for avulsed immature teeth — antibiotic paste to prevent ankylosis and promote revascularization." },
+
+  // Bleaching / resorption
+  { author: "Rotstein (1991)", finding: "Sodium perborate mixed with water is as effective as perborate/H2O2 for internal bleaching and carries less risk of cervical resorption." },
+  { author: "Tronstad (1988)", finding: "Invasive cervical resorption cases associated with history of intracoronal bleaching using 30% hydrogen peroxide with heat." },
+  { author: "Heithersay (1999)", finding: "Classification of invasive cervical resorption (I–IV); identified orthodontics, trauma, and internal bleaching as predisposing factors." },
+  { author: "Heithersay (2004)", finding: "Topical 90% trichloroacetic acid application combined with curettage and restoration effectively treats invasive cervical resorption classes 1–3." },
+  { author: "Andreasen (1985)", finding: "Long-term study showed calcium hydroxide-treated immature teeth with thin dentinal walls had high risk of cervical root fracture." },
+
+  // Endo-perio
+  { author: "Simon, Glick, Frank (1972)", finding: "Classification of endo-perio lesions: primary endodontic, primary periodontal, primary endo with secondary perio, and true combined." },
+  { author: "Jansson (1993)", finding: "Teeth with endodontic lesions had accelerated marginal periodontal bone loss compared to teeth without endo lesions." },
+
+  // Resorption
+  { author: "Patel (2009)", finding: "CBCT is more accurate than periapical radiographs for detecting and classifying external cervical resorption and internal resorption." },
+  { author: "Patel (2010)", finding: "CBCT significantly improved detection of apical periodontitis compared to periapical radiographs in teeth with uncertain diagnoses." },
+
+  // CBCT / imaging
+  { author: "Estrela (2008)", finding: "CBCT detected periapical lesions missed by periapical and panoramic radiographs; introduced CBCT Periapical Index (CBCTPAI)." },
+  { author: "Lofthag-Hansen (2007)", finding: "Limited CBCT revealed 62% more periapical lesions than conventional 2D radiographs in endodontic diagnosis." },
+  { author: "AAE/AAOMR (2015)", finding: "Joint position statement: CBCT indicated when conventional imaging is insufficient — resorption, trauma, retreatment, complex anatomy, and surgical planning." },
+
+  // Pain / pharmacology
+  { author: "Hargreaves (2002)", finding: "Preemptive analgesia with NSAIDs reduces postoperative endodontic pain by blocking peripheral and central sensitization." },
+  { author: "Menhinick (2004)", finding: "Combination ibuprofen + acetaminophen provided superior postoperative endodontic pain relief compared to ibuprofen alone." },
+  { author: "Keiser & Hargreaves (2002)", finding: "Review: combining NSAID and acetaminophen is more effective than opioids for postoperative endodontic pain." },
+  { author: "Pickenpaugh (2001)", finding: "Prophylactic single-dose amoxicillin did not significantly reduce incidence of flare-ups in asymptomatic necrotic teeth." },
+  { author: "Walton & Chiappinelli (1993)", finding: "Prophylactic penicillin did not prevent or reduce endodontic flare-ups after treatment of asymptomatic teeth." },
+  { author: "Torabinejad (1988)", finding: "Classic study on pathogenesis of flare-ups: mechanical, chemical, and microbial factors cause interappointment pain." },
+  { author: "Nagle (2000)", finding: "Penicillin did not significantly reduce pain or percussion sensitivity in teeth with necrotic pulps and symptomatic apical periodontitis." },
+
+  // Cracks / fracture
+  { author: "Krell & Rivera (2007)", finding: "Cracked tooth study: 20% of cracked teeth with reversible pulpitis progressed to irreversible pulpitis within 6 months." },
+  { author: "Tamse (1999)", finding: "Identified vertical root fracture risk factors: maxillary/mandibular premolars, post placement, and excessive dentin removal." },
+  { author: "Fuss (1999)", finding: "Classification of VRF diagnosis: J-shaped radiolucency, isolated deep periodontal pocket, and sinus tract near gingival margin are hallmark signs." },
+
+  // Restoration / coronal seal
+  { author: "Ray & Trope (1995)", finding: "Quality of coronal restoration was more important than quality of root canal filling for prevention of apical periodontitis." },
+  { author: "Gillen (2011)", finding: "Meta-analysis: adequate coronal restoration AND adequate root canal treatment gave highest healing rates (OR ~3.8 compared to inadequate)." },
+  { author: "Tronstad (2000)", finding: "Both endodontic and restorative quality affect outcome; adequate root filling with adequate restoration yields the best healing." },
+  { author: "Schwartz (2004)", finding: "Review: coronal leakage after obturation rapidly recontaminates canals; coronal barrier and prompt restoration are essential." },
+
+  // Post / restoration
+  { author: "Sorensen & Martinoff (1984)", finding: "Endodontically treated posterior teeth have significantly higher survival when restored with full coverage crowns than with intracoronal restorations." },
+  { author: "Aquilino & Caplan (2002)", finding: "Endodontically treated teeth with crowns had significantly higher survival rates than those without crowns over 8+ years." },
+
+  // Sealers / materials
+  { author: "Parirokh & Torabinejad (2010)", finding: "Comprehensive MTA review: mechanism involves calcium release, hydroxyapatite formation on surface, and induction of hard tissue repair." },
+  { author: "Camilleri (2007)", finding: "Characterized MTA as calcium silicate-based cement; bismuth oxide radiopacifier affects setting and biologic properties." },
+
+  // Sinus tract
+  { author: "Baumgartner (1984)", finding: "Showed anaerobic bacteria predominate in necrotic root canal infections — confirmed earlier Sundqvist findings with improved culture techniques." },
+
+  // Single vs multi-visit
+  { author: "Figini (2007)", finding: "Cochrane review: no significant difference in healing between single-visit and multi-visit RCT; single-visit had slightly more postop pain." },
+  { author: "Sathorn (2005)", finding: "Meta-analysis: single-visit RCT had comparable healing to multi-visit with calcium hydroxide dressing — healing rates similar." },
+  { author: "Peters & Wesselink (2002)", finding: "Two-visit treatment with Ca(OH)2 dressing did not improve healing over single-visit RCT in teeth with apical periodontitis." },
+  { author: "Molander (2007)", finding: "Two-visit treatment with Ca(OH)2 interappointment dressing did not improve healing compared to single-visit for teeth with apical periodontitis." },
+  { author: "Weiger (2000)", finding: "Single-visit and multi-visit treatment with calcium hydroxide showed similar healing rates at 1–5 year follow-up." },
+
+  // Diagnosis / classification
+  { author: "Abbott & Yu (2007)", finding: "Clinical classification of pulpal and periapical disease states emphasizing diagnostic terminology standardization." },
+  { author: "Glickman (2009)", finding: "AAE-adopted standardized diagnostic terminology: normal, reversible pulpitis, symptomatic/asymptomatic irreversible pulpitis, pulp necrosis." },
+
+  // Calcium hydroxide apexification
+  { author: "Frank (1966)", finding: "Described apexification with calcium hydroxide in immature necrotic teeth — induced apical hard tissue barrier formation." },
+
+  // Endodontic microbiology / host response
+  { author: "Torabinejad (1985)", finding: "Demonstrated immune complexes in periapical lesions — periapical pathosis involves both innate and adaptive immunity." },
+  { author: "Stashenko (1998)", finding: "Described bone resorption in periapical lesions as mediated by cytokines (IL-1, TNF) from host immune response to bacterial antigens." },
+  { author: "Nair (1998)", finding: "Periapical cyst classification: true cysts (closed) vs pocket/bay cysts (communicate with canal) — true cysts less likely to heal with orthograde RCT alone." },
+  { author: "Ricucci (2006)", finding: "Histological analysis: biofilms observed in apical ramifications and isthmuses of untreated necrotic teeth — sanctuaries for persistent infection." },
+
+  // Retreatment / removal
+  { author: "Friedman (1990)", finding: "Nonsurgical retreatment of failed RCT achieved success rate of 65% — lower than initial treatment but higher than no treatment." },
+  { author: "Gorni & Gagliani (2004)", finding: "Retreatment outcomes: teeth with preserved original anatomy had 87% success; teeth with altered anatomy only 47%." },
+
+  // Misc high-yield
+  { author: "Seltzer & Bender (1963)", finding: "Described 'mountain' of bone resorption required before periapical radiolucencies become radiographically visible — true lesions often extend into cortical bone." },
+  { author: "Bender (1961)", finding: "Classic study: periapical lesions confined to cancellous bone are not detectable radiographically until cortical plate is involved." },
+  { author: "Langeland (1987)", finding: "Histopathologic study: bacteria invade pulp during caries progression well before clinical exposure — pulpal inflammation begins early." },
+  { author: "Reeves & Stanley (1966)", finding: "Classic study correlating depth of caries with pulpal inflammation — dentin bridging 0.5 mm serves as significant protective barrier." },
+  { author: "Brännström (1963)", finding: "Hydrodynamic theory of dentin sensitivity: fluid movement in dentinal tubules stimulates A-delta fibers producing sharp pain." },
+  { author: "Trowbridge (1980)", finding: "Described pulpal nerve fiber types: A-delta fibers (fast, sharp pain) and C-fibers (slow, dull, throbbing pain associated with inflammation)." },
+  { author: "Seltzer (1963)", finding: "Histologic study showed poor correlation between clinical pulpal symptoms and actual histologic status of the pulp." },
+  { author: "Dummer (1980)", finding: "Reviewed clinical signs/symptoms of pulpal disease showing correlation with histologic status is unreliable — basis for modern clinical diagnosis." },
+  { author: "Grossman (1978)", finding: "Classified endodontic emergencies and provided treatment protocols — foundation of modern endodontic pain management." },
+
+  // Biologic width / perforation
+  { author: "Fuss & Trope (1996)", finding: "Prognosis of perforations depends on location, size, and time since occurrence; coronal perforations below crestal bone have worst prognosis." },
+  { author: "Mente (2010)", finding: "MTA repair of root perforations: 86% success at 1-year follow-up in prospective clinical study." },
+  { author: "Main (2004)", finding: "MTA perforation repair showed high long-term success; most reliable material for furcal and lateral perforation sealing." },
+
+  // Antibiotics
+  { author: "Baumgartner & Xia (2003)", finding: "Antibiotic susceptibility of endodontic pathogens: penicillin still effective for most; metronidazole + amoxicillin for resistant cases." },
+  { author: "Longman & Martin (2003)", finding: "Rational antibiotic prescribing in endodontics: antibiotics are NOT a substitute for drainage and proper treatment; use only for systemic involvement." },
+
+  // Single-cone / bioceramic
+  { author: "Zhou (2013)", finding: "Bioceramic sealers showed superior sealing ability and biocompatibility compared to traditional epoxy resin-based sealers in vitro." },
+
+  // AAE guidelines / Ingle
+  { author: "Ingle (1961)", finding: "Identified incomplete obturation as the most common cause of endodontic failure — foundational outcome analysis." },
+  { author: "Washington Study (Ingle 1961)", finding: "Retrospective analysis identified apical percolation and incomplete obturation as leading causes of root canal treatment failure." },
+
+  // Histology / healing
+  { author: "Lin (1992)", finding: "Histologic healing after endodontic treatment showed PDL regeneration depends on removal of infection, not obturation material itself." },
+  { author: "Tronstad (1981)", finding: "Calcium hydroxide induced hard tissue formation via surface necrosis and mineralization — mechanism of apexification." },
+
+  // Other classic
+  { author: "Schilder (1967)", finding: "Defined obturation objectives: total obturation of root canal system with dense, three-dimensional fill including all portals of exit." },
+  { author: "Walton (1992)", finding: "Classic paper on the mechanisms of action of intracanal medicaments — emphasized antibacterial action of calcium hydroxide." },
+  { author: "Seltzer & Naidorf (1985)", finding: "Reviewed flare-up etiology: microbial, mechanical, and chemical factors; host immune response plays major role in interappointment pain." },
+];
+
+function MatchPane() {
+  const initialize = () => {
+    const shuffled = [...BOARD_PAIRS].sort(() => Math.random() - 0.5);
+    const seen = new Set();
+    const unique = [];
+    for (const p of shuffled) {
+      if (!seen.has(p.author)) { seen.add(p.author); unique.push(p); }
+      if (unique.length >= 10) break;
+    }
+    const findings = [...unique].sort(() => Math.random() - 0.5).map(p => p.finding);
+    const authors = [...unique].sort(() => Math.random() - 0.5).map(p => p.author);
+    return { pairs: unique, findingsOrder: findings, authorsOrder: authors, matches: {}, locked: [], dragging: null, attempts: 0, lastWrong: 0, done: false };
+  };
+
+  const [state, setState] = useState(initialize);
+  const { pairs, findingsOrder, authorsOrder, matches, locked, dragging, attempts, lastWrong, done } = state;
+  const lockedSet = new Set(locked);
+
+  const reset = () => setState(initialize());
+
+  const truncate = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
+
+  const placedFindings = new Set(Object.values(matches));
+
+  const handleDragStart = (finding) => (e) => {
+    e.dataTransfer.setData("text/plain", finding);
+    e.dataTransfer.effectAllowed = "move";
+    setState(s => ({ ...s, dragging: finding }));
+  };
+  const handleDragEnd = () => setState(s => ({ ...s, dragging: null }));
+
+  const handleDrop = (author) => (e) => {
+    e.preventDefault();
+    if (lockedSet.has(author)) return;
+    const finding = e.dataTransfer.getData("text/plain") || dragging;
+    if (!finding) return;
+    setState(s => {
+      const next = { ...s.matches };
+      // Don't displace a finding from a locked slot
+      for (const a of Object.keys(next)) {
+        if (s.locked.includes(a)) continue;
+        if (next[a] === finding) delete next[a];
+      }
+      next[author] = finding;
+      return { ...s, matches: next, dragging: null };
+    });
+  };
+  const handleDragOver = (e) => { e.preventDefault(); e.dataTransfer.dropEffect = "move"; };
+
+  const clearSlot = (author) => {
+    if (lockedSet.has(author)) return;
+    setState(s => {
+      const next = { ...s.matches };
+      delete next[author];
+      return { ...s, matches: next };
+    });
+  };
+
+  const checkAnswers = () => {
+    setState(s => {
+      const nextMatches = { ...s.matches };
+      const nextLocked = [...s.locked];
+      let wrong = 0;
+      for (const p of s.pairs) {
+        if (s.locked.includes(p.author)) continue;
+        if (nextMatches[p.author] === p.finding) {
+          nextLocked.push(p.author);
+        } else if (nextMatches[p.author] != null) {
+          delete nextMatches[p.author];
+          wrong++;
+        }
+      }
+      return {
+        ...s,
+        matches: nextMatches,
+        locked: nextLocked,
+        attempts: s.attempts + 1,
+        lastWrong: wrong,
+        done: nextLocked.length === s.pairs.length,
+      };
+    });
+  };
+
+  // Count unlocked slots that currently have a finding dropped in them
+  const unlockedPlacedCount = pairs.reduce((n, p) => n + (!lockedSet.has(p.author) && matches[p.author] ? 1 : 0), 0);
+  const unlockedTotal = pairs.length - lockedSet.size;
+  const allPlaced = unlockedTotal > 0 && unlockedPlacedCount === unlockedTotal;
+
+  return (
+    <div className="flex-1 overflow-auto bg-slate-50">
+      <div className="max-w-6xl mx-auto p-4 md:p-6">
+        <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+          <div>
+            <h2 className="text-xl font-bold text-slate-800">Author ↔ Finding Match</h2>
+            <p className="text-xs text-slate-500 mt-0.5">Drag each finding to the author who reported it. 10 random high-yield board pairs per set.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className={`text-sm font-semibold px-3 py-1.5 rounded-lg ${done ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-800"}`}>
+              {done ? "Perfect!" : `Locked: ${lockedSet.size} / ${pairs.length}`}
+            </div>
+            {!done && (
+              <button
+                onClick={checkAnswers}
+                disabled={!allPlaced}
+                className={`text-sm px-3 py-1.5 rounded-lg font-semibold ${allPlaced ? "bg-indigo-600 text-white hover:bg-indigo-700" : "bg-slate-200 text-slate-400 cursor-not-allowed"}`}>
+                Check Answers
+              </button>
+            )}
+            <button onClick={reset} className="text-sm px-3 py-1.5 rounded-lg border border-slate-300 bg-white hover:bg-slate-100 font-semibold text-slate-700">New Set</button>
+          </div>
+        </div>
+
+        <div className="md:hidden bg-amber-50 border border-amber-200 text-amber-800 text-xs rounded-lg p-2 mb-3">
+          Drag-and-drop works best on desktop. On touch devices this exercise may not function correctly.
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Findings (draggable) */}
+          <div>
+            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Findings (drag these)</div>
+            <div className="space-y-2">
+              {findingsOrder.map((finding, i) => {
+                // A finding is "used" only if it sits in a locked slot; otherwise it's back in the pool
+                const inLockedSlot = pairs.some(p => lockedSet.has(p.author) && matches[p.author] === finding);
+                const inUnlockedSlot = placedFindings.has(finding) && !inLockedSlot;
+                const used = inLockedSlot;
+                return (
+                  <div
+                    key={i}
+                    draggable={!used}
+                    onDragStart={handleDragStart(finding)}
+                    onDragEnd={handleDragEnd}
+                    title={finding}
+                    className={`text-sm p-2.5 rounded-lg border select-none ${used ? "bg-emerald-50 text-emerald-700 border-emerald-200 line-through opacity-60" : inUnlockedSlot ? "bg-slate-100 text-slate-400 border-slate-200" : "bg-white border-slate-300 text-slate-800 hover:border-indigo-400 cursor-grab active:cursor-grabbing shadow-sm"}`}
+                  >
+                    {truncate(finding, 180)}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Authors (drop targets) */}
+          <div>
+            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Authors (drop here)</div>
+            <div className="space-y-2">
+              {authorsOrder.map((author, i) => {
+                const placed = matches[author];
+                const isLocked = lockedSet.has(author);
+                let slotCls = "border-dashed border-slate-300 bg-white";
+                if (isLocked) {
+                  slotCls = "border-solid border-emerald-400 bg-emerald-50";
+                } else if (placed) {
+                  slotCls = "border-solid border-indigo-300 bg-indigo-50";
+                }
+                return (
+                  <div
+                    key={i}
+                    onDragOver={isLocked ? undefined : handleDragOver}
+                    onDrop={isLocked ? undefined : handleDrop(author)}
+                    className={`flex items-start gap-2 p-2.5 rounded-lg border-2 min-h-[56px] ${slotCls}`}
+                  >
+                    <div className={`text-sm font-semibold w-40 shrink-0 ${isLocked ? "text-emerald-800" : "text-slate-800"}`}>{author}</div>
+                    <div className="flex-1 text-xs text-slate-700" title={placed || ""}>
+                      {placed ? truncate(placed, 180) : <span className="text-slate-400 italic">drop finding here</span>}
+                    </div>
+                    {placed && !isLocked && (
+                      <button onClick={() => clearSlot(author)} className="text-slate-400 hover:text-rose-600 text-xs shrink-0" title="Clear">✕</button>
+                    )}
+                    {isLocked && <span className="text-emerald-600 text-xs shrink-0" title="Correct">✓</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {attempts > 0 && !done && lastWrong > 0 && (
+          <div className="mt-4 bg-rose-50 border border-rose-200 text-rose-800 text-sm rounded-lg p-3">
+            {lastWrong} incorrect — those findings have been returned to the pool. Try again.
+          </div>
+        )}
+        {done && (
+          <div className="mt-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm rounded-lg p-3">
+            All 10 matched correctly in {attempts} {attempts === 1 ? "attempt" : "attempts"}. Click <span className="font-semibold">New Set</span> for another round.
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function StudyPane({ cards, onJump }) {
   const { flagged } = React.useContext(FlagCtx);
   const [flaggedOnly, setFlaggedOnly] = useState(false);
@@ -1750,7 +2165,7 @@ function App() {
     return [...set];
   }, [data.sections]);
 
-  // Abstract popup state
+  // Abstract popup
   const [abstractInfo, setAbstractInfo] = useState(null);
   const openAbstract = useCallback((citeText) => {
     const yearMatch = citeText.match(/\b(\d{4})\b/);
@@ -1827,6 +2242,7 @@ function App() {
               Study <span className={`text-xs ml-0.5 ${tab === "study" ? "opacity-70" : "text-slate-400"}`}>({data.cards?.length || 0})</span>
             </button>
             <button className={`tab-btn shrink-0 ${tab === "authors" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("authors")}>Authors</button>
+            <button className={`tab-btn shrink-0 ${tab === "match" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("match")}>Match</button>
             <button className={`tab-btn shrink-0 ${tab === "audit" ? "tab-active" : "tab-inactive"}`} onClick={() => setTab("audit")}>
               Audit {data.suggestions?.length ? <span className="ml-1 inline-block bg-amber-500 text-white text-xs px-1.5 rounded-full">{data.suggestions.length}</span> : null}
             </button>
@@ -1866,6 +2282,7 @@ function App() {
       {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "audit" && <AuditPane suggestions={data.suggestions || []} />}
+      {tab === "match" && <MatchPane />}
     </div>
     {showPwModal && (
       <PasswordModal
