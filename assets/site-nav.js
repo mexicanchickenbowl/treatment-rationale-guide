@@ -11,7 +11,7 @@
     {
       href: "/endo-guide.html",
       label: "Guide",
-      match: ["/", "/index.html", "/endo-guide.html"],
+      match: ["/endo-guide.html"],
       icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v18H6.5A2.5 2.5 0 0 0 4 22.5z"/><path d="M4 4.5v16.5"/></svg>',
     },
     {
@@ -69,7 +69,7 @@
   // ---------- Header DOM ---------------------------------------------------
   function currentPath() {
     var p = location.pathname;
-    if (p === "" || p === "/") return "/endo-guide.html";
+    if (p === "") return "/";
     return p;
   }
 
@@ -101,7 +101,7 @@
     // Brand
     var brand = document.createElement("a");
     brand.className = "site-header__brand";
-    brand.href = "/endo-guide.html";
+    brand.href = "/";
     brand.innerHTML =
       '<span class="site-header__brand-dot" aria-hidden="true"></span>' +
       '<span class="site-header__brand-text">Endo Rationale</span>';

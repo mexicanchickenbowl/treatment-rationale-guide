@@ -20,6 +20,7 @@ Pipeline:
 from __future__ import annotations
 import json
 import re
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,8 +32,7 @@ ABSTRACTS = HERE / "abstracts.json"
 TEMPLATE = HERE / "endo-guide.template.html"
 ASSETS = HERE / "assets"
 OUT_JSON = HERE / "guide-data.json"
-OUT_HTML = HERE / "index.html"
-OUT_HTML_ALIAS = HERE / "endo-guide.html"  # kept for local-open convenience
+OUT_HTML = HERE / "endo-guide.html"
 
 # Shared static assets that must be inlined into the offline single-file
 # artifact. Order matters: srs.js must be loaded before site-nav.js (because
@@ -409,14 +409,16 @@ def build() -> None:
         sys.exit("template missing `/*__DATA__*/null` sentinel")
     html = tpl.replace("/*__DATA__*/null", payload)
     OUT_HTML.write_text(html, encoding="utf-8")
-    OUT_HTML_ALIAS.write_text(html, encoding="utf-8")
+    # hub.html is the site root — copy it to index.html so Cloudflare Pages serves it at /
+    shutil.copy(HERE / "hub.html", HERE / "index.html")
     # keep local preview dir in sync (outside iCloud Drive so the preview server can read it)
     preview_dir = Path.home() / "endo-preview"
     if preview_dir.exists():
-        (preview_dir / "index.html").write_text(html, encoding="utf-8")
+        (preview_dir / "endo-guide.html").write_text(html, encoding="utf-8")
+        shutil.copy(HERE / "hub.html", preview_dir / "index.html")
     print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}  abstracts: {len(abstracts)}")
     print(f"wrote {OUT_JSON.name} ({OUT_JSON.stat().st_size:,} b)")
-    print(f"wrote {OUT_HTML.name} + {OUT_HTML_ALIAS.name} ({OUT_HTML.stat().st_size:,} b)")
+    print(f"wrote {OUT_HTML.name} ({OUT_HTML.stat().st_size:,} b) — index.html → hub.html")
 
 
 if __name__ == "__main__":
