@@ -4,6 +4,10 @@ __pycache__/
 decisions.json
 .edit-password
 
+# OKR Dashboard build artifacts (source in apps/okr-dashboard/, output committed to okr-dashboard/)
+apps/okr-dashboard/node_modules/
+apps/okr-dashboard/dist/
+
 # wrangler files
 .wrangler
 .dev.vars*
