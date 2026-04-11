@@ -346,9 +346,6 @@ body {
   .site-header__nav-link { padding: 0.45rem; min-width: 2.25rem; justify-content: center; }
 }
 
-/* Prevent initial flash by keeping body hidden until theme is applied */
-html:not([data-theme]) body { visibility: hidden; }
-
 /* ---------- Pills ---------- */
 
 .pill {
