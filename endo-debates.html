@@ -1056,8 +1056,8 @@ function generateQuizQuestions(count = 20) {
       number: idx + 1,
       entry: entry,
       debateTitle: entry.debateTitle,
-      question: entry.finding,
-      context: `${entry.author} (${entry.year}) — ${EVIDENCE_LABELS[entry.evidence]}`,
+      question: `${entry.author} (${entry.year}) — ${EVIDENCE_LABELS[entry.evidence]}`,
+      context: entry.debateTitle,
       options: options,
       correctIndex: options.indexOf(correctAnswer),
       correctStance: entry.stance,
@@ -1071,8 +1071,9 @@ function QuestionCard({ question, selectedIndex, onSelectAnswer, isAnswered }) {
   return (
     <div className="question-card">
       <div className="question-number">Question {question.number} of {question.totalQuestions}</div>
-      <div className="question-text">{question.question}</div>
-      <div className="question-context">{question.context}</div>
+      <div className="question-text">What did this paper find?</div>
+      <div style={{fontWeight: 'var(--fw-semibold)', fontSize: 'var(--fs-md)', color: 'var(--color-text)', marginBottom: '0.5rem'}}>{question.question}</div>
+      <div className="question-context">Topic: {question.context}</div>
       <div className="answer-options">
         {question.options.map((option, idx) => {
           let btnClass = "answer-btn";
