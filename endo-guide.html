@@ -2958,9 +2958,11 @@ function MatchPane() {
   const lockedSet = new Set(locked);
 
   // Ref to track drag state without triggering re-renders on every move
-  const dragRef = useRef({ active: false });
+  const dragRef = useRef({ active: false, startX: 0, startY: 0, moved: false });
+  // Tap-to-select state: tap a finding to select it, then tap an author to place it
+  const [selected, setSelected] = useState(null);
 
-  const reset = () => setState(initialize());
+  const reset = () => { setState(initialize()); setSelected(null); };
 
   const truncate = (s, n) => s.length > n ? s.slice(0, n - 1) + "…" : s;
 
@@ -3015,7 +3017,9 @@ function MatchPane() {
     });
   };
 
-  // Pointer-Events drag — works with mouse, trackpad single-touch, and touchscreen
+  // Pointer-Events drag — works with mouse, trackpad, and touchscreen.
+  // On touch, a short tap (< 6 px movement) toggles selection instead of dragging,
+  // enabling a tap-finding → tap-author flow that works even when authors are off-screen.
   const onPointerDown = (finding, isUsed) => (e) => {
     if (isUsed) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
@@ -3037,13 +3041,17 @@ function MatchPane() {
       transition: 'none',
     });
     document.body.appendChild(ghost);
-    dragRef.current = { active: true, finding, ghostEl: ghost };
+    dragRef.current = { active: true, finding, ghostEl: ghost, startX: e.clientX, startY: e.clientY, moved: false };
     setState(s => ({ ...s, dragging: finding }));
   };
 
   const onPointerMove = (finding) => (e) => {
     const dr = dragRef.current;
     if (!dr.active || dr.finding !== finding) return;
+    if (!dr.moved) {
+      const dx = e.clientX - dr.startX, dy = e.clientY - dr.startY;
+      if (Math.abs(dx) > 6 || Math.abs(dy) > 6) dr.moved = true;
+    }
     dr.ghostEl.style.left = (e.clientX - dr.ghostEl.offsetWidth / 2) + 'px';
     dr.ghostEl.style.top = (e.clientY - dr.ghostEl.offsetHeight / 2) + 'px';
   };
@@ -3053,7 +3061,13 @@ function MatchPane() {
     if (!dr.active || dr.finding !== finding) return;
     dr.ghostEl.remove();
     dragRef.current = { active: false };
-    // ghostEl has pointerEvents:none so elementFromPoint sees through it to the drop zone
+    if (!dr.moved) {
+      // Short tap: toggle selection for tap-to-place mechanic (great for mobile)
+      setState(s => ({ ...s, dragging: null }));
+      setSelected(sel => sel === finding ? null : finding);
+      return;
+    }
+    // Drag: ghostEl has pointerEvents:none so elementFromPoint sees through it to the drop zone
     const target = document.elementFromPoint(e.clientX, e.clientY);
     const dropZone = target && target.closest('[data-author]');
     if (dropZone && !dropZone.dataset.locked) {
@@ -3069,7 +3083,7 @@ function MatchPane() {
         <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
           <div>
             <h2 className="text-xl font-bold text-slate-800">Author ↔ Finding Match</h2>
-            <p className="text-xs text-slate-500 mt-0.5">Drag each finding to the author who reported it. Instant feedback — green locks correct matches, red flashes wrong ones.</p>
+            <p className="text-xs text-slate-500 mt-0.5">Drag a finding to the matching author — or tap a finding to select it, then tap an author to place it.</p>
           </div>
           <div className="flex items-center gap-3">
             <div className={`text-sm font-semibold px-3 py-1.5 rounded-lg ${done ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-800"}`}>
@@ -3103,6 +3117,8 @@ function MatchPane() {
                         ? "bg-slate-100 text-slate-400 border-slate-200 cursor-default"
                         : isDragging
                         ? "bg-indigo-50 border-indigo-300 text-slate-600 opacity-60"
+                        : selected === finding
+                        ? "bg-indigo-100 border-indigo-500 text-indigo-900 ring-2 ring-indigo-300 cursor-pointer shadow-sm"
                         : "bg-white border-slate-300 text-slate-800 hover:border-indigo-400 cursor-grab shadow-sm"
                     }`}
                   >
@@ -3130,7 +3146,13 @@ function MatchPane() {
                     key={i}
                     data-author={author}
                     data-locked={isLocked ? "1" : undefined}
-                    className={`flex items-start gap-2 p-2.5 rounded-lg border-2 min-h-[56px] transition-colors duration-150 ${slotCls}`}
+                    onClick={() => {
+                      if (isLocked || !selected) return;
+                      const finding = selected;
+                      setSelected(null);
+                      dropFinding(finding, author);
+                    }}
+                    className={`flex items-start gap-2 p-2.5 rounded-lg border-2 min-h-[56px] transition-colors duration-150 ${slotCls}${selected && !isLocked ? " cursor-pointer" : ""}`}
                   >
                     <div className={`text-sm font-semibold w-40 shrink-0 ${isLocked ? "text-emerald-800" : isWrong ? "text-rose-700" : "text-slate-800"}`}>{author}</div>
                     <div className="flex-1 text-xs text-slate-700" title={placed || ""}>
