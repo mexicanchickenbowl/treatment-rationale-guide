@@ -1362,6 +1362,182 @@ function loadStudyState() {
 }
 function saveStudyState(s) { localStorage.setItem(LS_KEY, JSON.stringify(s)); }
 
+// --- streak tracker ----------------------------------------------------------
+const STREAK_LS_KEY = "endo-guide.streak.v1"; // local fallback only
+
+function toDateKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function toWeekKey(d) {
+  const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = dt.getUTCDay() || 7;
+  dt.setUTCDate(dt.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+  const week = Math.ceil((((dt - yearStart) / 86400000) + 1) / 7);
+  return `${dt.getUTCFullYear()}-W${String(week).padStart(2,"0")}`;
+}
+function daysAgo(n) { const d = new Date(); d.setDate(d.getDate() - n); return d; }
+
+function pruneCompletions(completions) {
+  const cutoffDate = toDateKey(daysAgo(90));
+  const cutoffWeek = toWeekKey(daysAgo(26 * 7));
+  const pruned = {};
+  for (const [k, v] of Object.entries(completions || {})) {
+    if ((k.includes("W") && k >= cutoffWeek) || (!k.includes("W") && k >= cutoffDate)) {
+      pruned[k] = v;
+    }
+  }
+  return pruned;
+}
+
+async function fetchStreakData() {
+  if (!CLOUD_MODE) {
+    try { return JSON.parse(localStorage.getItem(STREAK_LS_KEY) || '{"completions":{}}'); }
+    catch { return { completions: {} }; }
+  }
+  try {
+    const r = await fetch("/api/streak", { credentials: "same-origin" });
+    if (!r.ok) return { completions: {} };
+    const { data } = await r.json();
+    return data || { completions: {} };
+  } catch { return { completions: {} }; }
+}
+
+async function saveStreakData(data) {
+  if (!CLOUD_MODE) {
+    try { localStorage.setItem(STREAK_LS_KEY, JSON.stringify(data)); } catch {}
+    return;
+  }
+  try {
+    await fetch("/api/streak", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  } catch {}
+}
+
+const TASK_DEFS = [
+  { id: "anki",    label: "Anki",    mode: "daily",  target: 1, icon: "🃏" },
+  { id: "sketchy", label: "Sketchy", mode: "weekly", target: 3, icon: "🎨" },
+  { id: "cases",   label: "Cases",   mode: "weekly", target: 3, icon: "📋" },
+  { id: "podcast", label: "Podcast", mode: "weekly", target: 4, icon: "🎧" },
+];
+
+function calcStreaks(completions) {
+  const today = new Date();
+  const todayKey = toDateKey(today);
+  const thisWeekKey = toWeekKey(today);
+  const results = {};
+  for (const task of TASK_DEFS) {
+    if (task.mode === "daily") {
+      const todayDone = (completions[todayKey] || []).includes(task.id);
+      let streak = 0, i = todayDone ? 0 : 1;
+      while (true) {
+        const done = (completions[toDateKey(daysAgo(i))] || []).includes(task.id);
+        if (!done) break;
+        streak++; i++;
+      }
+      results[task.id] = { streak, todayDone, weekCount: null, weekTarget: null, weekDone: null };
+    } else {
+      const weekCount = (completions[thisWeekKey] || []).filter(t => t === task.id).length;
+      const weekDone = weekCount >= task.target;
+      let streak = 0, w = weekDone ? 0 : 1;
+      while (true) {
+        const count = (completions[toWeekKey(daysAgo(w * 7))] || []).filter(t => t === task.id).length;
+        if (count < task.target) break;
+        streak++; w++;
+      }
+      results[task.id] = { streak, todayDone: null, weekCount, weekTarget: task.target, weekDone };
+    }
+  }
+  return results;
+}
+
+function StreakWidget() {
+  const [open, setOpen] = React.useState(true);
+  const [streakData, setStreakData] = React.useState({ completions: {} });
+  const [saving, setSaving] = React.useState(false);
+  const streaks = React.useMemo(() => calcStreaks(streakData.completions), [streakData]);
+
+  React.useEffect(() => {
+    fetchStreakData().then(d => setStreakData({ ...d, completions: pruneCompletions(d.completions) }));
+  }, []);
+
+  const toggleTask = async (task) => {
+    const comps = { ...streakData.completions };
+    if (task.mode === "daily") {
+      const key = toDateKey(new Date());
+      const arr = [...(comps[key] || [])];
+      const idx = arr.indexOf(task.id);
+      if (idx >= 0) arr.splice(idx, 1); else arr.push(task.id);
+      comps[key] = arr;
+    } else {
+      const key = toWeekKey(new Date());
+      const arr = [...(comps[key] || [])];
+      const count = arr.filter(t => t === task.id).length;
+      if (count >= task.target) {
+        comps[key] = arr.filter(t => t !== task.id);
+      } else {
+        arr.push(task.id);
+        comps[key] = arr;
+      }
+    }
+    const next = { completions: comps };
+    setStreakData(next);
+    setSaving(true);
+    await saveStreakData(next);
+    setSaving(false);
+  };
+
+  if (!open) return (
+    <div className="bg-white border-b shrink-0 px-3 py-1 flex items-center justify-end">
+      <button onClick={() => setOpen(true)} className="text-xs text-slate-400 hover:text-slate-600">
+        Streak tracker ▼
+      </button>
+    </div>
+  );
+
+  return (
+    <div className="bg-white border-b shrink-0 px-3 py-1.5 flex items-center gap-2 overflow-x-auto">
+      {TASK_DEFS.map(task => {
+        const s = streaks[task.id];
+        const done = task.mode === "daily" ? s.todayDone : s.weekDone;
+        const progressLabel = task.mode === "daily"
+          ? (s.todayDone ? "✓" : "—")
+          : `${s.weekCount}/${s.weekTarget}`;
+        const streakLabel = s.streak > 0
+          ? `${s.streak}${task.mode === "daily" ? "d" : "wk"}`
+          : null;
+        return (
+          <button key={task.id} onClick={() => toggleTask(task)}
+            title={task.mode === "weekly"
+              ? `Click to log a completion (${task.target}×/week). At target, click to reset.`
+              : "Click to mark done for today"}
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-medium whitespace-nowrap transition
+              ${done
+                ? "bg-emerald-50 border-emerald-300 text-emerald-800"
+                : "bg-slate-50 border-slate-200 text-slate-600 hover:bg-indigo-50 hover:border-indigo-300"}`}
+          >
+            <span>{task.icon}</span>
+            <span className="hidden sm:inline">{task.label}</span>
+            <span className={done ? "text-emerald-600 font-semibold" : "text-slate-400"}>{progressLabel}</span>
+            {streakLabel && (
+              <span className="bg-indigo-100 text-indigo-700 rounded-full px-1.5 font-semibold text-[10px]">
+                {streakLabel}
+              </span>
+            )}
+          </button>
+        );
+      })}
+      {saving && <span className="text-[10px] text-slate-400 ml-1">saving…</span>}
+      <button onClick={() => setOpen(false)} className="ml-auto shrink-0 text-xs text-slate-400 hover:text-slate-600 pl-2">▲</button>
+    </div>
+  );
+}
+// --- end streak tracker ------------------------------------------------------
+
 const BOARD_PAIRS = [
   // Microbiology / biofilm
   { author: "Kakehashi (1965)", finding: "Germ-free rats with pulp exposures healed without periapical lesions; conventional rats developed pulpal necrosis and apical periodontitis — established bacteria as the essential cause of pulpal/periapical disease." },
@@ -2678,6 +2854,7 @@ function App() {
           )}
         </div>
       </header>
+      <StreakWidget />
       {tab === "reference" && <ReferencePane sections={data.sections} query={debounced} authorPool={authorPool} pctPool={pctPool} />}
       {tab === "study" && <StudyPane cards={data.cards || []} onJump={jumpToSection} />}
       {tab === "authors" && <AuthorPane cards={data.cards || []} onJump={jumpToSection} />}
