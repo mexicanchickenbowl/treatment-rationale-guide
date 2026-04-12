@@ -1503,6 +1503,40 @@ body {
   .abs-health__pill--medium  { background: var(--color-warning-weak); color: var(--color-warning-strong); }
   .abs-health__pill--low     { background: var(--color-danger-weak);  color: var(--color-danger-strong); }
   .abs-health__pill--missing { background: var(--color-surface-2);    color: var(--color-text-muted); }
+
+  /* ── Dark-mode overrides for hardcoded Tailwind utility classes ─────────────
+     The React panes use Tailwind utilities (bg-white, text-slate-900, etc.) that
+     don't respond to [data-theme="dark"] on their own.  These rules remap them to
+     the shared CSS-variable palette so dark mode works without touching every JSX
+     element.  Specificity [attr]+class beats a bare class, so no !important needed. */
+  :root[data-theme="dark"] .bg-white       { background-color: var(--color-surface); }
+  :root[data-theme="dark"] .bg-slate-50    { background-color: var(--color-surface-2); }
+  :root[data-theme="dark"] .bg-slate-100   { background-color: var(--color-surface-3); }
+  :root[data-theme="dark"] .bg-slate-200   { background-color: var(--color-surface-3); }
+  :root[data-theme="dark"] .hover\:bg-white:hover      { background-color: var(--color-surface-3); }
+  :root[data-theme="dark"] .hover\:bg-slate-50:hover   { background-color: var(--color-surface-3); }
+  :root[data-theme="dark"] .hover\:bg-slate-100:hover  { background-color: var(--color-surface-3); }
+
+  :root[data-theme="dark"] .text-slate-900 { color: var(--color-text); }
+  :root[data-theme="dark"] .text-slate-800 { color: var(--color-text); }
+  :root[data-theme="dark"] .text-slate-700 { color: var(--color-text-muted); }
+  :root[data-theme="dark"] .text-slate-600 { color: var(--color-text-muted); }
+  :root[data-theme="dark"] .text-slate-500 { color: var(--color-text-subtle); }
+  :root[data-theme="dark"] .text-slate-400 { color: var(--color-text-subtle); }
+
+  :root[data-theme="dark"] .border-slate-100 { border-color: var(--color-border); }
+  :root[data-theme="dark"] .border-slate-200 { border-color: var(--color-border); }
+  :root[data-theme="dark"] .border-slate-300 { border-color: var(--color-border-strong); }
+
+  :root[data-theme="dark"] .border-b       { border-bottom-color: var(--color-border); }
+  :root[data-theme="dark"] .border-l       { border-left-color: var(--color-border); }
+  :root[data-theme="dark"] .border-r       { border-right-color: var(--color-border); }
+
+  :root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea {
+    background-color: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: var(--color-border-strong);
+  }
 </style>
 </head>
 <body class="site-shell">
