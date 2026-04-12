@@ -1605,6 +1605,8 @@ function MatchPane() {
   const dragRef = useRef({ active: false, startX: 0, startY: 0, moved: false });
   // Tap-to-select state: tap a finding to select it, then tap an author to place it
   const [selected, setSelected] = useState(null);
+  // True on phones/tablets — disables drag entirely to avoid scroll conflicts
+  const isTouch = useMemo(() => typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches, []);
 
   const reset = () => { setState(initialize()); setSelected(null); };
 
@@ -1661,9 +1663,15 @@ function MatchPane() {
     });
   };
 
-  // Pointer-Events drag — works with mouse, trackpad, and touchscreen.
-  // On touch, a short tap (< 6 px movement) toggles selection instead of dragging,
-  // enabling a tap-finding → tap-author flow that works even when authors are off-screen.
+  // ── Desktop-only drag (Pointer Events) ──────────────────────────────────────
+  // On touch devices drag is completely disabled: use the tap-to-select flow below.
+  // pointercancel cleans up any orphaned ghost (e.g. if the OS steals the touch).
+  const cleanupDrag = () => {
+    const dr = dragRef.current;
+    if (dr.active) { dr.ghostEl?.remove(); dragRef.current = { active: false }; }
+    setState(s => ({ ...s, dragging: null }));
+  };
+
   const onPointerDown = (finding, isUsed) => (e) => {
     if (isUsed) return;
     if (e.pointerType === 'mouse' && e.button !== 0) return;
@@ -1706,12 +1714,10 @@ function MatchPane() {
     dr.ghostEl.remove();
     dragRef.current = { active: false };
     if (!dr.moved) {
-      // Short tap: toggle selection for tap-to-place mechanic (great for mobile)
       setState(s => ({ ...s, dragging: null }));
       setSelected(sel => sel === finding ? null : finding);
       return;
     }
-    // Drag: ghostEl has pointerEvents:none so elementFromPoint sees through it to the drop zone
     const target = document.elementFromPoint(e.clientX, e.clientY);
     const dropZone = target && target.closest('[data-author]');
     if (dropZone && !dropZone.dataset.locked) {
@@ -1727,7 +1733,11 @@ function MatchPane() {
         <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
           <div>
             <h2 className="text-xl font-bold text-slate-800">Author ↔ Finding Match</h2>
-            <p className="text-xs text-slate-500 mt-0.5">Drag a finding to the matching author — or tap a finding to select it, then tap an author to place it.</p>
+            <p className="text-xs text-slate-500 mt-0.5">
+              {isTouch
+                ? "Tap a finding to select it (turns blue), then tap the matching author to place it."
+                : "Drag a finding to the matching author — or click a finding then click an author."}
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <div className={`text-sm font-semibold px-3 py-1.5 rounded-lg ${done ? "bg-emerald-100 text-emerald-800" : "bg-slate-200 text-slate-800"}`}>
@@ -1738,31 +1748,45 @@ function MatchPane() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-4">
-          {/* Findings (draggable) */}
+          {/* Findings — tap-only on touch, draggable on desktop */}
           <div>
-            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Findings (drag these)</div>
-            <div className="space-y-2">
+            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">
+              {isTouch ? "Findings (tap to select)" : "Findings (drag or click)"}
+            </div>
+            {/* px-8 on mobile leaves wide scroll-safe margins on both sides */}
+            <div className={`space-y-2 ${isTouch ? "px-1" : ""}`}>
               {findingsOrder.map((finding, i) => {
                 const inLockedSlot = pairs.some(p => lockedSet.has(p.author) && matches[p.author] === finding);
                 const inUnlockedSlot = placedFindings.has(finding) && !inLockedSlot;
                 const isUsed = inLockedSlot;
                 const isDragging = dragging === finding;
+                const isSelected = selected === finding;
+                // Touch: onClick only, no drag, no touch-none so scrolling works
+                // Desktop: pointer drag handlers
+                const touchProps = isTouch ? {
+                  onClick: () => { if (!isUsed && !inUnlockedSlot) setSelected(sel => sel === finding ? null : finding); },
+                } : {
+                  onPointerDown: onPointerDown(finding, isUsed),
+                  onPointerMove: onPointerMove(finding),
+                  onPointerUp: onPointerUp(finding),
+                  onPointerCancel: cleanupDrag,
+                };
                 return (
                   <div
                     key={i}
-                    onPointerDown={onPointerDown(finding, isUsed)}
-                    onPointerMove={onPointerMove(finding)}
-                    onPointerUp={onPointerUp(finding)}
+                    {...touchProps}
                     title={finding}
-                    className={`text-sm p-2.5 rounded-lg border select-none touch-none ${
+                    className={`text-sm p-3 rounded-lg border select-none ${isTouch ? "" : "touch-none"} ${
                       isUsed
                         ? "bg-emerald-50 text-emerald-700 border-emerald-200 line-through opacity-60 cursor-default"
                         : inUnlockedSlot
                         ? "bg-slate-100 text-slate-400 border-slate-200 cursor-default"
                         : isDragging
                         ? "bg-indigo-50 border-indigo-300 text-slate-600 opacity-60"
-                        : selected === finding
+                        : isSelected
                         ? "bg-indigo-100 border-indigo-500 text-indigo-900 ring-2 ring-indigo-300 cursor-pointer shadow-sm"
+                        : isTouch
+                        ? "bg-white border-slate-300 text-slate-800 active:bg-indigo-50 cursor-pointer shadow-sm"
                         : "bg-white border-slate-300 text-slate-800 hover:border-indigo-400 cursor-grab shadow-sm"
                     }`}
                   >
@@ -1773,17 +1797,21 @@ function MatchPane() {
             </div>
           </div>
 
-          {/* Authors (drop targets) */}
+          {/* Authors — tap-to-place on touch, drop targets on desktop */}
           <div>
-            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">Authors (drop here)</div>
+            <div className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-2">
+              {isTouch ? "Authors (tap to place selected)" : "Authors (drop here)"}
+            </div>
             <div className="space-y-2">
               {authorsOrder.map((author, i) => {
                 const placed = matches[author];
                 const isLocked = lockedSet.has(author);
                 const isWrong = !!wrongFlash[author];
+                const canReceive = selected && !isLocked;
                 let slotCls = "border-dashed border-slate-300 bg-white";
                 if (isLocked)      slotCls = "border-solid border-emerald-400 bg-emerald-50";
                 else if (isWrong)  slotCls = "border-solid border-rose-400 bg-rose-50";
+                else if (canReceive) slotCls = "border-dashed border-indigo-400 bg-indigo-50";
                 else if (placed)   slotCls = "border-solid border-indigo-300 bg-indigo-50";
                 return (
                   <div
@@ -1796,11 +1824,11 @@ function MatchPane() {
                       setSelected(null);
                       dropFinding(finding, author);
                     }}
-                    className={`flex items-start gap-2 p-2.5 rounded-lg border-2 min-h-[56px] transition-colors duration-150 ${slotCls}${selected && !isLocked ? " cursor-pointer" : ""}`}
+                    className={`flex items-start gap-2 p-3 rounded-lg border-2 min-h-[60px] transition-colors duration-150 ${slotCls}${canReceive ? " cursor-pointer active:bg-indigo-100" : ""}`}
                   >
                     <div className={`text-sm font-semibold w-40 shrink-0 ${isLocked ? "text-emerald-800" : isWrong ? "text-rose-700" : "text-slate-800"}`}>{author}</div>
                     <div className="flex-1 text-xs text-slate-700" title={placed || ""}>
-                      {placed ? truncate(placed, 180) : <span className="text-slate-400 italic">drop finding here</span>}
+                      {placed ? truncate(placed, 180) : <span className={`italic ${canReceive ? "text-indigo-400" : "text-slate-400"}`}>{canReceive ? "tap to place here" : "tap a finding first"}</span>}
                     </div>
                     {isWrong  && <span className="text-rose-500 text-sm shrink-0 font-bold">✗</span>}
                     {isLocked && <span className="text-emerald-600 text-sm shrink-0 font-bold">✓</span>}
