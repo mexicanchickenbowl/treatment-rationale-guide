@@ -1532,6 +1532,22 @@ body {
   :root[data-theme="dark"] .border-l       { border-left-color: var(--color-border); }
   :root[data-theme="dark"] .border-r       { border-right-color: var(--color-border); }
 
+  /* Coloured state backgrounds — map light tints to dark equivalents so text
+     stays legible (e.g. text-slate-800 = light in dark mode, must sit on dark bg) */
+  :root[data-theme="dark"] .bg-indigo-50   { background-color: var(--color-primary-weak); }
+  :root[data-theme="dark"] .bg-indigo-100  { background-color: #2d2a6e; }
+  :root[data-theme="dark"] .bg-emerald-50  { background-color: var(--color-success-weak); }
+  :root[data-theme="dark"] .bg-emerald-100 { background-color: #14281d; }
+  :root[data-theme="dark"] .bg-rose-50     { background-color: var(--color-danger-weak); }
+
+  /* Coloured text on those dark backgrounds — keep them readable */
+  :root[data-theme="dark"] .text-emerald-800 { color: var(--color-success-strong); }
+  :root[data-theme="dark"] .text-emerald-900 { color: var(--color-success-strong); }
+  :root[data-theme="dark"] .text-rose-700    { color: var(--color-danger-strong); }
+  :root[data-theme="dark"] .text-rose-900    { color: var(--color-danger-strong); }
+  :root[data-theme="dark"] .text-indigo-900  { color: var(--color-primary-strong); }
+  :root[data-theme="dark"] .text-indigo-400  { color: var(--color-primary); }
+
   :root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea {
     background-color: var(--color-surface-2);
     color: var(--color-text);
