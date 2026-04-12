@@ -21,6 +21,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/theme.css">
   <script src="/assets/site-nav.js"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <style>
     .hub-wrap {
       min-height: calc(100vh - var(--site-header-height));
@@ -151,6 +153,102 @@
       flex-shrink: 0;
     }
 
+    .streak-widget-wrapper {
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .streak-widget {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: var(--space-3) var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      overflow-x: auto;
+    }
+
+    .streak-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.375rem 0.625rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--color-text);
+    }
+
+    .streak-button:hover {
+      background: var(--color-bg);
+    }
+
+    .streak-button.completed {
+      background: #f0fdf4;
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .streak-button.completed:hover {
+      background: #dcfce7;
+    }
+
+    .streak-progress {
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+
+    .streak-badge {
+      background: #e0e7ff;
+      color: #4f46e5;
+      border-radius: 9999px;
+      padding: 0.125rem 0.375rem;
+      font-weight: 600;
+      font-size: 0.625rem;
+    }
+
+    .streak-saving {
+      font-size: 0.625rem;
+      color: var(--color-text-muted);
+      margin-left: 0.25rem;
+    }
+
+    .streak-toggle {
+      margin-left: auto;
+      flex-shrink: 0;
+      padding: 0.25rem 0.5rem;
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .streak-toggle:hover {
+      color: var(--color-text);
+    }
+
+    .streak-toggle-button {
+      padding: 0.25rem 0.5rem;
+      background: none;
+      border: none;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .streak-toggle-button:hover {
+      color: var(--color-text);
+    }
+
     @media (max-width: 600px) {
       .hub-hero h1 { font-size: var(--fs-2xl); }
       .hub-hero p  { font-size: var(--fs-base); }
@@ -160,6 +258,7 @@
 </head>
 <body>
   <!-- site-nav.js injects the sticky header here at DOMContentLoaded -->
+  <div id="streak-widget-root"></div>
   <main class="hub-wrap">
 
     <div class="hub-hero">
@@ -350,5 +449,195 @@
 
     </div>
   </main>
+
+  <script>
+    // --- streak tracker ----------------------------------------------------------
+    const STREAK_LS_KEY = "hub.streak.v1";
+    const CLOUD_MODE = true; // use KV in production
+
+    function toDateKey(d) {
+      return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    }
+    function toWeekKey(d) {
+      const dt = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const day = dt.getUTCDay() || 7;
+      dt.setUTCDate(dt.getUTCDate() + 4 - day);
+      const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
+      const week = Math.ceil((((dt - yearStart) / 86400000) + 1) / 7);
+      return `${dt.getUTCFullYear()}-W${String(week).padStart(2,"0")}`;
+    }
+    function daysAgo(n) { const d = new Date(); d.setDate(d.getDate() - n); return d; }
+
+    function pruneCompletions(completions) {
+      const cutoffDate = toDateKey(daysAgo(90));
+      const cutoffWeek = toWeekKey(daysAgo(26 * 7));
+      const pruned = {};
+      for (const [k, v] of Object.entries(completions || {})) {
+        if ((k.includes("W") && k >= cutoffWeek) || (!k.includes("W") && k >= cutoffDate)) {
+          pruned[k] = v;
+        }
+      }
+      return pruned;
+    }
+
+    async function fetchStreakData() {
+      if (!CLOUD_MODE) {
+        try { return JSON.parse(localStorage.getItem(STREAK_LS_KEY) || '{"completions":{}}'); }
+        catch { return { completions: {} }; }
+      }
+      try {
+        const r = await fetch("/api/streak", { credentials: "same-origin" });
+        if (!r.ok) return { completions: {} };
+        const { data } = await r.json();
+        return data || { completions: {} };
+      } catch { return { completions: {} }; }
+    }
+
+    async function saveStreakData(data) {
+      if (!CLOUD_MODE) {
+        try { localStorage.setItem(STREAK_LS_KEY, JSON.stringify(data)); } catch {}
+        return;
+      }
+      try {
+        await fetch("/api/streak", {
+          method: "POST",
+          credentials: "same-origin",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+      } catch {}
+    }
+
+    const TASK_DEFS = [
+      { id: "anki",    label: "Anki",    mode: "daily",  target: 1, icon: "🃏" },
+      { id: "sketchy", label: "Sketchy", mode: "weekly", target: 3, icon: "🎨" },
+      { id: "cases",   label: "Cases",   mode: "weekly", target: 3, icon: "📋" },
+      { id: "podcast", label: "Podcast", mode: "weekly", target: 4, icon: "🎧" },
+    ];
+
+    function calcStreaks(completions) {
+      const today = new Date();
+      const todayKey = toDateKey(today);
+      const thisWeekKey = toWeekKey(today);
+      const results = {};
+      for (const task of TASK_DEFS) {
+        if (task.mode === "daily") {
+          const todayDone = (completions[todayKey] || []).includes(task.id);
+          let streak = 0, i = todayDone ? 0 : 1;
+          while (true) {
+            const done = (completions[toDateKey(daysAgo(i))] || []).includes(task.id);
+            if (!done) break;
+            streak++; i++;
+          }
+          results[task.id] = { streak, todayDone, weekCount: null, weekTarget: null, weekDone: null };
+        } else {
+          const weekCount = (completions[thisWeekKey] || []).filter(t => t === task.id).length;
+          const weekDone = weekCount >= task.target;
+          let streak = 0, w = weekDone ? 0 : 1;
+          while (true) {
+            const count = (completions[toWeekKey(daysAgo(w * 7))] || []).filter(t => t === task.id).length;
+            if (count < task.target) break;
+            streak++; w++;
+          }
+          results[task.id] = { streak, todayDone: null, weekCount, weekTarget: task.target, weekDone };
+        }
+      }
+      return results;
+    }
+
+    function StreakWidget() {
+      const [open, setOpen] = React.useState(true);
+      const [streakData, setStreakData] = React.useState({ completions: {} });
+      const [saving, setSaving] = React.useState(false);
+      const streaks = React.useMemo(() => calcStreaks(streakData.completions), [streakData]);
+
+      React.useEffect(() => {
+        fetchStreakData().then(d => setStreakData({ ...d, completions: pruneCompletions(d.completions) }));
+      }, []);
+
+      const toggleTask = async (task) => {
+        const comps = { ...streakData.completions };
+        if (task.mode === "daily") {
+          const key = toDateKey(new Date());
+          const arr = [...(comps[key] || [])];
+          const idx = arr.indexOf(task.id);
+          if (idx >= 0) arr.splice(idx, 1); else arr.push(task.id);
+          comps[key] = arr;
+        } else {
+          const key = toWeekKey(new Date());
+          const arr = [...(comps[key] || [])];
+          const count = arr.filter(t => t === task.id).length;
+          if (count >= task.target) {
+            comps[key] = arr.filter(t => t !== task.id);
+          } else {
+            arr.push(task.id);
+            comps[key] = arr;
+          }
+        }
+        const next = { completions: comps };
+        setStreakData(next);
+        setSaving(true);
+        await saveStreakData(next);
+        setSaving(false);
+      };
+
+      if (!open) return React.createElement(
+        'div',
+        { className: 'streak-widget-wrapper' },
+        React.createElement(
+          'div',
+          { className: 'streak-widget', style: { justifyContent: 'flex-end' } },
+          React.createElement('button', {
+            onClick: () => setOpen(true),
+            className: 'streak-toggle-button'
+          }, 'Streak tracker ▼')
+        )
+      );
+
+      return React.createElement(
+        'div',
+        { className: 'streak-widget-wrapper' },
+        React.createElement(
+          'div',
+          { className: 'streak-widget' },
+          TASK_DEFS.map(task => {
+            const s = streaks[task.id];
+            const done = task.mode === "daily" ? s.todayDone : s.weekDone;
+            const progressLabel = task.mode === "daily"
+              ? (s.todayDone ? "✓" : "—")
+              : `${s.weekCount}/${s.weekTarget}`;
+            const streakLabel = s.streak > 0
+              ? `${s.streak}${task.mode === "daily" ? "d" : "wk"}`
+              : null;
+            return React.createElement('button', {
+              key: task.id,
+              onClick: () => toggleTask(task),
+              title: task.mode === "weekly"
+                ? `Click to log a completion (${task.target}×/week). At target, click to reset.`
+                : "Click to mark done for today",
+              className: `streak-button ${done ? 'completed' : ''}`,
+            },
+            React.createElement('span', null, task.icon),
+            React.createElement('span', { style: { display: 'none' }, className: 'sm:inline' }, task.label),
+            React.createElement('span', { className: 'streak-progress' }, progressLabel),
+            streakLabel && React.createElement('span', { className: 'streak-badge' }, streakLabel)
+            );
+          }),
+          saving && React.createElement('span', { className: 'streak-saving' }, 'saving…'),
+          React.createElement('button', {
+            onClick: () => setOpen(false),
+            className: 'streak-toggle'
+          }, '▲')
+        )
+      );
+    }
+
+    // Mount the widget
+    window.addEventListener('DOMContentLoaded', () => {
+      const root = ReactDOM.createRoot(document.getElementById('streak-widget-root'));
+      root.render(React.createElement(StreakWidget));
+    });
+    // --- end streak tracker ------------------------------------------------------
+  </script>
 </body>
 </html>
