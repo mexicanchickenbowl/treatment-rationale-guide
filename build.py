@@ -16,6 +16,7 @@ Pipeline:
       │
       ▼
   inject as `const DATA = {...}` into endo-guide.template.html → endo-guide.html
+  hub.html is also copied to index.html for Cloudflare Pages deployment
 """
 from __future__ import annotations
 import json
