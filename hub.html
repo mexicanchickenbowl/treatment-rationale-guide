@@ -633,10 +633,30 @@
     }
 
     // Mount the widget
-    window.addEventListener('DOMContentLoaded', () => {
-      const root = ReactDOM.createRoot(document.getElementById('streak-widget-root'));
-      root.render(React.createElement(StreakWidget));
-    });
+    function initStreakWidget() {
+      try {
+        if (!window.React || !window.ReactDOM) {
+          console.warn('React not yet loaded, retrying...');
+          setTimeout(initStreakWidget, 100);
+          return;
+        }
+        const container = document.getElementById('streak-widget-root');
+        if (!container) {
+          console.error('streak-widget-root element not found');
+          return;
+        }
+        const root = ReactDOM.createRoot(container);
+        root.render(React.createElement(StreakWidget));
+        console.log('Streak widget mounted');
+      } catch (e) {
+        console.error('Failed to mount streak widget:', e);
+      }
+    }
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', initStreakWidget);
+    } else {
+      initStreakWidget();
+    }
     // --- end streak tracker ------------------------------------------------------
   </script>
 </body>
