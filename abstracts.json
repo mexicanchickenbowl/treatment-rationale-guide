@@ -1211,5 +1211,17 @@
     "query": "Bauss[Author] AND 2002[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
     "confidence": "high",
     "needs_review": false
+  },
+  "Mushtaq|2026": {
+    "pmid": "41872366",
+    "title": "Effect of root canal filling techniques and materials on endodontic treatment outcomes: a systematic review and meta-analysis.",
+    "abstract": "Root canal filling is a critical determinant of endodontic treatment success, yet limited evidence exists regarding the superiority of specific techniques or materials over others. This systematic review and meta-analysis compared the clinical and radiographic outcomes of different root canal obturation techniques and materials in primary treatments and retreatments. We systematically searched PubMed, Cochrane Library, and ScienceDirect up to the last week of November 2025 following PRISMA guidelines. Studies were included if they reported primary or retreatment outcomes with at least 6 months of follow-up, < 25% loss to follow-up, and explicit documentation of obturation techniques and clinical/radiographic success. Risk of bias was assessed with ROBINS-I (cohort studies) and RoB 2.0 (randomized studies), and the overall evidence certainty was rated using GRADE. Success rates were compared across techniques using mixed-effects meta-regression, estimating differences in outcomes (beta coefficients) with 95% confidence intervals and accounting for between-study heterogeneity. Eighty-four studies (11,965 samples) met all inclusion criteria. In primary treatments, overall success rates were 87.1% at 6 months and 87.2% at 12 months, without significant differences among techniques. At 24 months, success increased to 92.0%; cold lateral condensation (CLC) (difference: 5.0%, p = 0.021) and carrier-based (CB) techniques (difference: 7.5%, p = 0.011) showed higher success than single-cone (SC). Beyond 3 years, success decreased to 84.9%, with no statistically significant differences among warm vertical compaction (WVC), warm lateral compaction (WLC), CLC, SC, and CB techniques. In retreatments, success rates were 92.9% at 6 months, 77.0% at 12 months, and 83.5% at 24 months. At 12 months, SC showed a marginally higher success than CLC (p = 0.045), while at 24 months, CB significantly outperformed WVC (p = 0.004). Beyond 3 years, success decreased to 73.7%, with no significant differences between CLC and CB techniques. Overall, primary treatments presented higher success than retreatments. At 24 months, CLC and CB techniques showed modest advantages, which were not maintained at longer follow-ups. Success appears multifactorial, with operator expertise and case selection having greater impact than obturation technique. The overall certainty of evidence remained low to very low, particularly for long-term outcomes. Bioceramic sealers used with SC techniques have not demonstrated clear clinical benefits or improved retreatment outcomes. High heterogeneity and risk of bias suggest a need for well-powered, multicenter, long-term randomized trials with standardized outcome reporting to establish clinical standards (PROSPERO registration: CRD42024524608).",
+    "journal": "Scientific reports",
+    "pub_year": "2026",
+    "status": "ok",
+    "score": 0.812,
+    "query": "Mushtaq[Author] AND 2026[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "confidence": "high",
+    "needs_review": false
   }
 }
