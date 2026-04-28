@@ -1199,5 +1199,17 @@
     "score": 0.176,
     "confidence": "low",
     "needs_review": true
+  },
+  "Bauss|2002": {
+    "pmid": "12656866",
+    "title": "Autotransplantation of immature third molars: influence of different splinting methods and fixation periods.",
+    "abstract": "Different data were published documenting the influence of fixation methods and periods on the outcome of autotransplantations of teeth. Besides studies reporting increased ankylosis and disturbances of pulpal revascularization following rigid or extended fixation, there are studies revealing no connection in this matter. The clinical and radiological results of 76 transplanted germs of third molars were to be assessed after a rigid fixation for 4 weeks or after a suture splinting for 7 days and compared with each other. The choice of fixation method depended on the initial stability of the transplant. After a mean observation period of 3.4 years (range 1.0-6.1 years), 92.9% of the teeth stabilized with a suture, but only 73.5% fixed with an acid-etch composite and wire splint could be classified as successful (P = 0.029). The significant increases in ankylosis (P = 0.036) and pulp necrosis (P = 0.041) were the factors for the less favorable results of the rigidly fixed teeth. Our data support the results of other experimental and clinical studies with regard to the negative influences of an extended and rigid fixation on the success of tooth transplantation. However, apart from a correlation with the method and period of fixation, we also suspect the influence of an incongruity between the transplant and recipient site.",
+    "journal": "Dental traumatology : official publication of International Association for Dental Traumatology",
+    "pub_year": "2002",
+    "status": "ok",
+    "score": 0.618,
+    "query": "Bauss[Author] AND 2002[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "confidence": "high",
+    "needs_review": false
   }
 }
