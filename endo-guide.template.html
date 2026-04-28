@@ -248,11 +248,7 @@ const AbstractCtx = React.createContext({ openAbstract: () => {} });
 // it just checks /cdn-cgi/access/get-identity to see who (if anyone) is
 // signed in, and triggers /cdn-cgi/access/login when it needs to sign the
 // user in. On localhost the old serve.py password flow is used.
-const CLOUD_MODE = (() => {
-  if (typeof window === "undefined") return false;
-  const host = window.location.hostname;
-  return host !== "localhost" && host !== "127.0.0.1" && host !== "";
-})();
+const CLOUD_MODE = false; // Cloudflare Access removed — static deployment
 
 async function checkCloudIdentity() {
   if (!CLOUD_MODE) return "";
