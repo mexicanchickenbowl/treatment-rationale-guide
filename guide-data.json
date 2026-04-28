@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-28T01:09:02.262407+00:00",
+  "built_at": "2026-04-28T01:09:40.778153+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -8684,14 +8684,44 @@
       "query": "Patel[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
       "confidence": "low",
       "needs_review": true
+    },
+    "AAOMS|2022": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
+    },
+    "ADA-AAOS|2015": {
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "confidence": "unknown",
+      "needs_review": true
+    },
+    "Costa|2014": {
+      "pmid": "25842455",
+      "title": "Cytotoxicity of resin-based luting cements to pulp cells.",
+      "abstract": "PURPOSE: To evaluate the cytotoxicity of components released from different types of luting cements to two cell lines obtained from pulp tissue. METHODS: Three types of luting cements were evaluated, distributed into the following groups: G1--negative control (no treatment); G2--resin-modified glass-ionomer cement (Rely X Luting 2); G3--self-adhesive resin cement (Rely X U200); and G4--conventional resin cement (Rely X ARC). Standardized cylindrical specimens (14 mm diameter and 1 mm thick) prepared with the dental materials were immersed in culture medium (DMEM) for 24 hours to obtain the extracts (DMEM + components released from the cements). Then, the extracts were applied to cultured odontoblast-like MDPC-23 cells or human dental pulp cells (HDPCs). Finally, cell viability (MTT assay), cell death (Annexin/PI) (Kruskal-Wallis/Mann-Whitney; α = 5%) and cell morphology (SEM) were assessed. Cements' components in contact with cells (SEM/EDS) and pH of the extracts were also evaluated. RESULTS: The resin-modified glass-ionomer cement (G2) caused the most intense toxic effect to the two cell lines; the cell viability reduction was around 95.8% and 89.4% for MDPC-23 cells and HDPCs, respectively, which was statistically significantly different compared with that of the negative control group (G1). Also, a high quantity of particles leached from this ionomeric cement was found on the cells, which showed intense morphological alterations. In the G2 group, 100% necrosis was observed for both cell lines, and an acidic pH was detected on the extract. Conversely, Rely X U200 (G3) and Rely X ARC (G4), which presented low solubility and no alteration in pH, caused only slight cytotoxicity to the cultured cells.",
+      "journal": "American journal of dentistry",
+      "pub_year": "2014",
+      "status": "ok",
+      "score": 0.059,
+      "query": "Costa[Author] AND 2014[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+      "confidence": "low",
+      "needs_review": true
     }
   },
   "abstract_health": {
-    "total": 108,
+    "total": 111,
     "high": 23,
     "medium": 34,
-    "low": 24,
-    "unknown": 27,
-    "needs_review": 85
+    "low": 25,
+    "unknown": 29,
+    "needs_review": 88
   }
 }
