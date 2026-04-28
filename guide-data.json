@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-28T01:09:02.262407+00:00",
+  "built_at": "2026-04-28T21:35:57.738998+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -5460,6 +5460,18 @@
                 "**Alveolar fracture:** 4 weeks, rigid"
               ],
               "raw": "- **Concussion / subluxation:** no splint required\n- **Extrusive luxation:** 2 weeks, flexible\n- **Lateral luxation:** 4 weeks, flexible\n- **Avulsion (closed apex, <60 min dry time):** 2 weeks, flexible\n- **Avulsion (extended dry time):** 4 weeks, flexible\n- **Root fracture — apical or middle third:** 4 weeks, flexible\n- **Root fracture — cervical third:** up to 4 months, rigid\n- **Alveolar fracture:** 4 weeks, rigid"
+            },
+            {
+              "type": "ul",
+              "items": [
+                "Does the same flexible-over-rigid principle apply to autotransplanted teeth?"
+              ],
+              "raw": "- Does the same flexible-over-rigid principle apply to autotransplanted teeth?"
+            },
+            {
+              "type": "p",
+              "text": "Yes. Bauss (2002) assessed 76 autotransplanted immature third molar germs (72 patients) in Denmark, comparing **rigid fixation for 4 weeks** to **suture (2-0 silk) splinting for 7 days**, with fixation method chosen by initial stability and a mean follow-up of 3.4 years. Suture splinting outperformed rigid fixation (success **92.9% vs. 73.5%**), with the rigidly fixed teeth showing more ankylosis and pulp necrosis. All inflammatory root resorption was diagnosed within the first 6 months and all ankylosis within the first year, supporting a 6–12 month recall interval after autotransplantation {{cite: Bauss 2002 — autotransplanted third molars splinted with 2-0 silk sutures for 7 days had higher success (92.9%) and less ankylosis/pulp necrosis than rigid fixation for 4 weeks (73.5%); inflammatory resorption diagnosed within 6 months, ankylosis within 1 year}}. The clinical implication mirrors the IADT replantation principle — physiologic micro-movement during PDL healing reduces ankylosis risk; rigid immobilization promotes it.",
+              "raw": "Yes. Bauss (2002) assessed 76 autotransplanted immature third molar germs (72 patients) in Denmark, comparing **rigid fixation for 4 weeks** to **suture (2-0 silk) splinting for 7 days**, with fixation method chosen by initial stability and a mean follow-up of 3.4 years. Suture splinting outperformed rigid fixation (success **92.9% vs. 73.5%**), with the rigidly fixed teeth showing more ankylosis and pulp necrosis. All inflammatory root resorption was diagnosed within the first 6 months and all ankylosis within the first year, supporting a 6–12 month recall interval after autotransplantation {{cite: Bauss 2002 — autotransplanted third molars splinted with 2-0 silk sutures for 7 days had higher success (92.9%) and less ankylosis/pulp necrosis than rigid fixation for 4 weeks (73.5%); inflammatory resorption diagnosed within 6 months, ankylosis within 1 year}}. The clinical implication mirrors the IADT replantation principle — physiologic micro-movement during PDL healing reduces ankylosis risk; rigid immobilization promotes it."
             }
           ]
         },
@@ -6244,6 +6256,11 @@
               "type": "p",
               "text": "Andreasen JO, Pedersen BV. Prognosis of luxated permanent teeth--development of pulp necrosis. Endod Dent Traumatol 1985;1(6):207-20.",
               "raw": "Andreasen JO, Pedersen BV. Prognosis of luxated permanent teeth--development of pulp necrosis. Endod Dent Traumatol 1985;1(6):207-20."
+            },
+            {
+              "type": "p",
+              "text": "Bauss O, Schilke R, Fenske C, Engelke W, Kiliaridis S. Autotransplantation of immature third molars: influence of different splinting methods and fixation periods. Dent Traumatol 2002;18(6):322-8.",
+              "raw": "Bauss O, Schilke R, Fenske C, Engelke W, Kiliaridis S. Autotransplantation of immature third molars: influence of different splinting methods and fixation periods. Dent Traumatol 2002;18(6):322-8."
             }
           ]
         },
@@ -7510,6 +7527,22 @@
       "section_id": "s14-pulp-biology-and-dental-anatomy-143-periapical-pathology",
       "section_title": "Periapical Pathology",
       "source": "marker"
+    },
+    {
+      "author": "Bauss",
+      "year": "2002",
+      "finding": "autotransplanted third molars splinted with 2-0 silk sutures for 7 days had higher success (92.9%) and less ankylosis/pulp necrosis than rigid fixation for 4 weeks (73.5%); inflammatory resorption diagnosed within 6 months, ankylosis within 1 year",
+      "section_id": "s15-dental-trauma-153-splinting-guidelines",
+      "section_title": "Splinting Guidelines",
+      "source": "marker"
+    },
+    {
+      "author": "Bauss",
+      "year": "2002",
+      "finding": "Bauss (2002) assessed 76 autotransplanted immature third molar germs (72 patients) in Denmark, comparing **rigid fixation for 4 weeks** to **suture (2-0 silk) splinting for 7 days**, with fixation method chosen by initial stability and a mean follow-up of 3…",
+      "section_id": "s15-dental-trauma-153-splinting-guidelines",
+      "section_title": "Splinting Guidelines",
+      "source": "prose"
     }
   ],
   "suggestions": [],

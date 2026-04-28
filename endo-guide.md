@@ -1722,6 +1722,10 @@ IADT guidelines recommend a flexible, physiologic splint using a wire no thicker
 - **Root fracture — cervical third:** up to 4 months, rigid
 - **Alveolar fracture:** 4 weeks, rigid
 
+- Does the same flexible-over-rigid principle apply to autotransplanted teeth?
+
+Yes. Bauss (2002) assessed 76 autotransplanted immature third molar germs (72 patients) in Denmark, comparing **rigid fixation for 4 weeks** to **suture (2-0 silk) splinting for 7 days**, with fixation method chosen by initial stability and a mean follow-up of 3.4 years. Suture splinting outperformed rigid fixation (success **92.9% vs. 73.5%**), with the rigidly fixed teeth showing more ankylosis and pulp necrosis. All inflammatory root resorption was diagnosed within the first 6 months and all ankylosis within the first year, supporting a 6–12 month recall interval after autotransplantation {{cite: Bauss 2002 — autotransplanted third molars splinted with 2-0 silk sutures for 7 days had higher success (92.9%) and less ankylosis/pulp necrosis than rigid fixation for 4 weeks (73.5%); inflammatory resorption diagnosed within 6 months, ankylosis within 1 year}}. The clinical implication mirrors the IADT replantation principle — physiologic micro-movement during PDL healing reduces ankylosis risk; rigid immobilization promotes it.
+
 ## 15.4 Replacement Resorption and Decoronation
 
 - When is decoronation indicated?
@@ -1987,6 +1991,8 @@ IADT. International Association of Dental Traumatology guidelines for the manage
 Malmgren B. Decoronation: how, why, and when? J Calif Dent Assoc 2000;28(11):846-54.
 
 Andreasen JO, Pedersen BV. Prognosis of luxated permanent teeth--development of pulp necrosis. Endod Dent Traumatol 1985;1(6):207-20.
+
+Bauss O, Schilke R, Fenske C, Engelke W, Kiliaridis S. Autotransplantation of immature third molars: influence of different splinting methods and fixation periods. Dent Traumatol 2002;18(6):322-8.
 
 ## Differential Diagnosis
 
