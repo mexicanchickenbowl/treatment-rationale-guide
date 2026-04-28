@@ -167,6 +167,58 @@
 </style>
 </head>
 <body class="site-shell">
+<script>
+(function() {
+  var KEY = 'erg_auth';
+  var PASS = '2027';
+  if (localStorage.getItem(KEY) === '1') return;
+  // Build overlay
+  var overlay = document.createElement('div');
+  overlay.id = 'pw-gate';
+  overlay.style.cssText = [
+    'position:fixed','inset:0','z-index:9999',
+    'background:#0f172a',
+    'display:flex','align-items:center','justify-content:center',
+    'font-family:Inter,system-ui,sans-serif'
+  ].join(';');
+  overlay.innerHTML = [
+    '<div style="background:#1e293b;border:1px solid #334155;border-radius:12px;',
+    'padding:2.5rem 2rem;width:100%;max-width:320px;text-align:center">',
+    '<div style="font-size:1.5rem;font-weight:700;color:#f1f5f9;margin-bottom:0.25rem">',
+    'Endo Guide</div>',
+    '<div style="font-size:0.875rem;color:#94a3b8;margin-bottom:1.5rem">',
+    'Enter password to continue</div>',
+    '<input id="pw-input" type="password" placeholder="Password"',
+    ' style="width:100%;padding:0.6rem 0.75rem;border-radius:6px;border:1px solid #475569;',
+    'background:#0f172a;color:#f1f5f9;font-size:1rem;outline:none;',
+    'box-sizing:border-box;margin-bottom:0.75rem" />',
+    '<div id="pw-err" style="color:#f87171;font-size:0.8rem;min-height:1.2em;',
+    'margin-bottom:0.5rem"></div>',
+    '<button id="pw-btn" style="width:100%;padding:0.6rem;border-radius:6px;',
+    'background:#4338ca;color:#fff;font-size:1rem;font-weight:600;',
+    'border:none;cursor:pointer">Unlock</button>',
+    '</div>'
+  ].join('');
+  document.body.appendChild(overlay);
+  function attempt() {
+    var val = document.getElementById('pw-input').value;
+    if (val === PASS) {
+      localStorage.setItem(KEY, '1');
+      document.getElementById('pw-gate').remove();
+    } else {
+      document.getElementById('pw-err').textContent = 'Incorrect password';
+      document.getElementById('pw-input').value = '';
+      document.getElementById('pw-input').focus();
+    }
+  }
+  document.getElementById('pw-btn').addEventListener('click', attempt);
+  document.getElementById('pw-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') attempt();
+  });
+  setTimeout(function() { document.getElementById('pw-input').focus(); }, 50);
+})();
+</script>
+
 <div data-site-header-slot></div>
 <div id="root" class="site-main"></div>
 <script type="text/babel" data-presets="react">
