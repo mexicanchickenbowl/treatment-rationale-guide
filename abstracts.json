@@ -1124,5 +1124,50 @@
     "score": 0,
     "confidence": "unknown",
     "needs_review": true
+  },
+  "Heithersay|1999": {
+    "pmid": "11411085",
+    "title": "Invasive cervical resorption following trauma.",
+    "abstract": "Invasive cervical resorption is an insidious and often aggressively destructive form of external root resorption which may occur as a late complication following dental trauma particularly where it involves damage to cementum and supporting tissues. While this resorption may be evident clinically as a pink coronal discolouration, later with cavitation of the enamel, often there are no obvious external signs and the condition is only detected radiographically. It is characterised by the invasion of the cervical region of the root by fibrovascular tissue which progressively resorbs dentine, enamel and cementum. The dental pulp remains protected by an intact layer of dentine and predentine until late in the process. Ectopic calcifications can be observed in advanced lesions both within the invading fibrous tissue and deposited directly onto the resorbed dentine surface. The aetiology of invasive cervical resorption is unknown but trauma has been documented as a potential predisposing factor. A recent study by the author of 222 patients with a total of 257 teeth which displayed varying degrees of invasive cervical resorption showed that trauma alone was a potential predisposing sole factor in 14% of patients and 15.1% of teeth. Trauma in combination with bleaching, orthodontics or delayed eruption was found in an additional 11.2% of patients or 10.6% of teeth and of these a combination of trauma and bleaching occurred in a relatively high proportion of 7.7% of patients or 7.4% of teeth. This study also revealed that of other potential predisposing factors orthodontics was the most common sole factor constituting 21.2% of patients and 24.1% of teeth examined. Successful treatment of invasive cervical resorption is dependent on the extent of the resorptive process. Teeth with invasive cervical resorption have been divided into four classes. Whilst several treatment modalities are possible, a clinical evaluation of the treatment of this condition by the topical application of a 90% aqueous solution of trichloracetic acid, curettage, endodontic therapy where necessary and restoration with a glass ionomer cement has been evaluated on 94 patients with a total of 101 teeth with a minimum follow-up period of three years. Results indicate a satisfactory treatment outcome can be anticipated in Class 1, 2 and 3 cases. In Class 4 resorption no treatment or alternative therapy is recommended. Diagnosis of lesions at an early stage of development is highly desirable and therefore the patients who have a potential for the development of this condition by virtue of a history such as trauma should be monitored radiographically at intervals throughout life.",
+    "journal": "Australian endodontic journal : the journal of the Australian Society of Endodontology Inc",
+    "pub_year": "1999",
+    "status": "ok",
+    "score": 0.42,
+    "query": "Heithersay[Author] AND 1999[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "confidence": "medium",
+    "needs_review": true
+  },
+  "IEJ|2009": {
+    "pmid": null,
+    "title": "",
+    "abstract": "",
+    "status": "not_found",
+    "score": 0,
+    "confidence": "unknown",
+    "needs_review": true
+  },
+  "JOE|2016": {
+    "pmid": "27464459",
+    "title": "Combination of soya pulp and Bacillus coagulans lilac-01 improves intestinal bile acid metabolism without impairing the effects of prebiotics in rats fed a cholic acid-supplemented diet.",
+    "abstract": "Intestinal bacteria are involved in bile acid (BA) deconjugation and/or dehydroxylation and are responsible for the production of secondary BA. However, an increase in the production of secondary BA modulates the intestinal microbiota due to the bactericidal effects and promotes cancer risk in the liver and colon. The ingestion of Bacillus coagulans improves constipation via the activation of bowel movement to promote defaecation in humans, which may alter BA metabolism in the intestinal contents. BA secretion is promoted with high-fat diet consumption, and the ratio of cholic acid (CA):chenodeoxycholic acid in primary BA increases with ageing. The dietary supplementation of CA mimics the BA environment in diet-induced obesity and ageing. We investigated whether B. coagulans lilac-01 and soya pulp influence both BA metabolism and the maintenance of host health in CA-supplemented diet-fed rats. In CA-fed rats, soya pulp significantly increased the production of secondary BA such as deoxycholic acid and ω-muricholic acids, and soya pulp ingestion alleviated problems related to plasma adiponectin and gut permeability in rats fed the CA diet. The combination of B. coagulans and soya pulp successfully suppressed the increased production of secondary BA in CA-fed rats compared with soya pulp itself, without impairing the beneficial effects of soya pulp ingestion. In conclusion, it is possible that a combination of prebiotics and probiotics can be used to avoid an unnecessary increase in the production of secondary BA in the large intestine without impairing the beneficial functions of prebiotics.",
+    "journal": "The British journal of nutrition",
+    "pub_year": "2016",
+    "status": "ok",
+    "score": 0.0,
+    "query": "JOE[Author] AND 2016[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "confidence": "low",
+    "needs_review": true
+  },
+  "Patel et al.|2018": {
+    "pmid": "30875704",
+    "title": "Leveraging Electronic Dental Record Data to Classify Patients Based on Their Smoking Intensity.",
+    "abstract": "BACKGROUND: Smoking is an established risk factor for oral diseases and, therefore, dental clinicians routinely assess and record their patients' detailed smoking status. Researchers have successfully extracted smoking history from electronic health records (EHRs) using text mining methods. However, they could not retrieve patients' smoking intensity due to its limited availability in the EHR. The presence of detailed smoking information in the electronic dental record (EDR) often under a separate section allows retrieving this information with less preprocessing. OBJECTIVE: To determine patients' detailed smoking status based on smoking intensity from the EDR. METHODS: First, the authors created a reference standard of 3,296 unique patients' smoking histories from the EDR that classified patients based on their smoking intensity. Next, they trained three machine learning classifiers (support vector machine, random forest, and naïve Bayes) using the training set (2,176) and evaluated performances on test set (1,120) using precision (P), recall (R), and F-measure (F). Finally, they applied the best classifier to classify smoking status from an additional 3,114 patients' smoking histories. RESULTS: Support vector machine performed best to classify patients into smokers, nonsmokers, and unknowns (P, R, F: 98%); intermittent smoker (P: 95%, R: 98%, F: 96%); past smoker (P, R, F: 89%); light smoker (P, R, F: 87%); smokers with unknown intensity (P: 76%, R: 86%, F: 81%), and intermediate smoker (P: 90%, R: 88%, F: 89%). It performed moderately to differentiate heavy smokers (P: 90%, R: 44%, F: 60%). EDR could be a valuable source for obtaining patients' detailed smoking information. CONCLUSION: EDR data could serve as a valuable source for obtaining patients' detailed smoking information based on their smoking intensity that may not be readily available in the EHR.",
+    "journal": "Methods of information in medicine",
+    "pub_year": "2018",
+    "status": "ok",
+    "score": 0.103,
+    "query": "Patel[Author] AND 2018[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "confidence": "low",
+    "needs_review": true
   }
 }
