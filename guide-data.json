@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-28T21:36:37.424041+00:00",
+  "built_at": "2026-04-28T23:31:10.028349+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -2667,6 +2667,18 @@
               "type": "p",
               "text": "Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method. Note: the claim that coronal seal outweighs obturation quality originates from Ray and Trope (1995); see §8.1 and §8.4 for the Gillen (2011) meta-analysis, which found that both factors independently and comparably affect periapical healing — neither should be sacrificed at the expense of the other.",
               "raw": "Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method. Note: the claim that coronal seal outweighs obturation quality originates from Ray and Trope (1995); see §8.1 and §8.4 for the Gillen (2011) meta-analysis, which found that both factors independently and comparably affect periapical healing — neither should be sacrificed at the expense of the other."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "What does the most recent meta-analysis show about obturation success over time?"
+              ],
+              "raw": "- What does the most recent meta-analysis show about obturation success over time?"
+            },
+            {
+              "type": "p",
+              "text": "A 2026 meta-analysis of 84 studies by Mushtaq et al. confirmed that obturation success is highest at intermediate follow-up and converges across techniques over time. Pooled success was approximately **87% at 6–12 months**, peaked at **92% at 24 months**, and declined to **~85% beyond 3 years** for all techniques studied — cold lateral condensation (CLC), carrier-based (CB), and single-cone (SC). **No technique demonstrated sustained superiority beyond 3 years.** Notably, **single-cone with bioceramic sealer did not show clear clinical outcome advantages over other materials at extended follow-up**, despite its laboratory and adaptation advantages {{cite: Mushtaq 2026 — meta-analysis of 84 studies; obturation success ~87% at 6–12 mo, 92% at 24 mo, ~85% beyond 3 yr; no technique (CLC, CB, SC) showed sustained superiority; bioceramic + single-cone did not outperform other materials at extended follow-up; PMID 41872366}}. The clinical implication reinforces Ng's earlier conclusion: obturation technique and sealer chemistry are second-order variables compared to disinfection and coronal seal, and the marketing case for premium single-cone bioceramic systems is not supported by long-term clinical outcomes.",
+              "raw": "A 2026 meta-analysis of 84 studies by Mushtaq et al. confirmed that obturation success is highest at intermediate follow-up and converges across techniques over time. Pooled success was approximately **87% at 6–12 months**, peaked at **92% at 24 months**, and declined to **~85% beyond 3 years** for all techniques studied — cold lateral condensation (CLC), carrier-based (CB), and single-cone (SC). **No technique demonstrated sustained superiority beyond 3 years.** Notably, **single-cone with bioceramic sealer did not show clear clinical outcome advantages over other materials at extended follow-up**, despite its laboratory and adaptation advantages {{cite: Mushtaq 2026 — meta-analysis of 84 studies; obturation success ~87% at 6–12 mo, 92% at 24 mo, ~85% beyond 3 yr; no technique (CLC, CB, SC) showed sustained superiority; bioceramic + single-cone did not outperform other materials at extended follow-up; PMID 41872366}}. The clinical implication reinforces Ng's earlier conclusion: obturation technique and sealer chemistry are second-order variables compared to disinfection and coronal seal, and the marketing case for premium single-cone bioceramic systems is not supported by long-term clinical outcomes."
             }
           ]
         },
@@ -2721,8 +2733,8 @@
             },
             {
               "type": "p",
-              "text": "No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}.",
-              "raw": "No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}."
+              "text": "No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}. The 2026 Mushtaq meta-analysis (84 studies) extends this finding: bioceramic sealers paired with single-cone obturation did not demonstrate clear clinical outcome advantages over other materials at extended (≥3 year) follow-up — see §7.1.",
+              "raw": "No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}. The 2026 Mushtaq meta-analysis (84 studies) extends this finding: bioceramic sealers paired with single-cone obturation did not demonstrate clear clinical outcome advantages over other materials at extended (≥3 year) follow-up — see §7.1."
             }
           ]
         },
@@ -6093,6 +6105,11 @@
               "type": "p",
               "text": "Cvek M. Prognosis of luxated non-vital maxillary incisors treated with calcium hydroxide. Endod Dent Traumatol 1992;8(2):45-55.",
               "raw": "Cvek M. Prognosis of luxated non-vital maxillary incisors treated with calcium hydroxide. Endod Dent Traumatol 1992;8(2):45-55."
+            },
+            {
+              "type": "p",
+              "text": "Mushtaq et al. Comparative clinical outcomes of root canal obturation techniques: a systematic review and meta-analysis of 84 studies. 2026. PMID: 41872366.",
+              "raw": "Mushtaq et al. Comparative clinical outcomes of root canal obturation techniques: a systematic review and meta-analysis of 84 studies. 2026. PMID: 41872366."
             }
           ]
         },
@@ -7055,6 +7072,14 @@
       "section_id": "s7-obturation-71-obturation-technique-selection",
       "section_title": "Obturation Technique Selection",
       "source": "prose"
+    },
+    {
+      "author": "Mushtaq",
+      "year": "2026",
+      "finding": "meta-analysis of 84 studies; obturation success ~87% at 6–12 mo, 92% at 24 mo, ~85% beyond 3 yr; no technique (CLC, CB, SC) showed sustained superiority; bioceramic + single-cone did not outperform other materials at extended follow-up; PMID 41872366",
+      "section_id": "s7-obturation-71-obturation-technique-selection",
+      "section_title": "Obturation Technique Selection",
+      "source": "marker"
     },
     {
       "author": "Grossman",

@@ -820,6 +820,10 @@ Single cone obturation is appropriate for canals with favorable (round) anatomy 
 
 Systematic reviews show no significant difference in periapical healing outcomes between obturation techniques (Ng 2008, 2011). The quality of cleaning, shaping, and coronal seal matters more than the specific obturation method. Note: the claim that coronal seal outweighs obturation quality originates from Ray and Trope (1995); see §8.1 and §8.4 for the Gillen (2011) meta-analysis, which found that both factors independently and comparably affect periapical healing — neither should be sacrificed at the expense of the other.
 
+- What does the most recent meta-analysis show about obturation success over time?
+
+A 2026 meta-analysis of 84 studies by Mushtaq et al. confirmed that obturation success is highest at intermediate follow-up and converges across techniques over time. Pooled success was approximately **87% at 6–12 months**, peaked at **92% at 24 months**, and declined to **~85% beyond 3 years** for all techniques studied — cold lateral condensation (CLC), carrier-based (CB), and single-cone (SC). **No technique demonstrated sustained superiority beyond 3 years.** Notably, **single-cone with bioceramic sealer did not show clear clinical outcome advantages over other materials at extended follow-up**, despite its laboratory and adaptation advantages {{cite: Mushtaq 2026 — meta-analysis of 84 studies; obturation success ~87% at 6–12 mo, 92% at 24 mo, ~85% beyond 3 yr; no technique (CLC, CB, SC) showed sustained superiority; bioceramic + single-cone did not outperform other materials at extended follow-up; PMID 41872366}}. The clinical implication reinforces Ng's earlier conclusion: obturation technique and sealer chemistry are second-order variables compared to disinfection and coronal seal, and the marketing case for premium single-cone bioceramic systems is not supported by long-term clinical outcomes.
+
 ## 7.2 Sealer Selection
 
 - What are the properties of an ideal root canal sealer?
@@ -836,7 +840,7 @@ Bioceramic and resin sealers penetrate dentinal tubules more consistently than Z
 
 - Does sealer type affect treatment outcomes?
 
-No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}.
+No clear difference in clinical outcomes has been demonstrated between sealer types in systematic reviews. The quality of the final coronal seal and adherence to shaping and cleaning protocols appear to have greater influence on outcomes than sealer chemistry {{cite: Peng 2007}}. The 2026 Mushtaq meta-analysis (84 studies) extends this finding: bioceramic sealers paired with single-cone obturation did not demonstrate clear clinical outcome advantages over other materials at extended (≥3 year) follow-up — see §7.1.
 
 ## 7.3 Apical Barrier Material Selection
 
@@ -1933,6 +1937,8 @@ Calt S, Serper A. Time-dependent effects of EDTA on dentin structures. J Endod 2
 Witherspoon DE, Small JC, Regan JD, Nunn M. Retrospective analysis of open apex teeth obturated with MTA. J Endod 2008;34(10):1171-6.
 
 Cvek M. Prognosis of luxated non-vital maxillary incisors treated with calcium hydroxide. Endod Dent Traumatol 1992;8(2):45-55.
+
+Mushtaq et al. Comparative clinical outcomes of root canal obturation techniques: a systematic review and meta-analysis of 84 studies. 2026. PMID: 41872366.
 
 ## Restoration and Outcomes
 
