@@ -1515,6 +1515,120 @@ Endodontic treatment is generally preferred over extraction in previously irradi
 
 The risk of osteoradionecrosis from routine non-surgical endodontic treatment is low, and RCT is considered safer than extraction in irradiated patients. Apical surgery in the radiation field should generally be avoided.
 
+## 13.5 Antiresorptive Medications and MRONJ
+
+- Which medications are implicated in medication-related osteonecrosis of the jaw (MRONJ)?
+
+MRONJ is associated with antiresorptive and antiangiogenic therapies. The principal drug classes are: (1) **oral bisphosphonates** (alendronate/Fosamax, risedronate/Actonel, ibandronate/Boniva) used for osteoporosis; (2) **IV bisphosphonates** (zoledronate/Reclast/Zometa, pamidronate/Aredia) used for malignancy-related skeletal events and Paget's disease; (3) **denosumab** (Prolia for osteoporosis, Xgeva for oncology), a RANKL inhibitor; (4) **romosozumab** (Evenity), a sclerostin inhibitor; and (5) **antiangiogenics** (bevacizumab, sunitinib) which compound risk when combined with antiresorptives. The 2022 AAOMS position paper renamed BRONJ to MRONJ to reflect this expanded drug list {{cite: AAOMS 2022 — Medication-Related Osteonecrosis of the Jaw position paper}}.
+
+- How does MRONJ change the endodontic treatment plan?
+
+Non-surgical root canal treatment is the **preferred alternative to extraction** in patients on antiresorptive therapy because tooth removal is the single greatest local risk factor for MRONJ. Endodontic technique modifications: avoid over-instrumentation past the apex, minimize periapical irrigant extrusion, avoid intraligamentary injections (which can cause focal alveolar trauma), and do not perform aggressive crown lengthening or periapical surgery in high-risk patients. When extraction is unavoidable, RCT and decoronation (leaving the root in place) is a reasonable compromise.
+
+- How is MRONJ risk stratified?
+
+Risk is stratified by drug, route, duration, and indication. **Low risk:** oral bisphosphonate for osteoporosis, total exposure < 4 years, no concurrent corticosteroids or antiangiogenics. **Moderate risk:** oral bisphosphonate > 4 years, or any duration with concurrent corticosteroids/antiangiogenics. **High risk:** any IV bisphosphonate or denosumab for malignancy, or prior MRONJ. The cumulative incidence of MRONJ is approximately 0.1% in osteoporosis patients on oral bisphosphonates, 1% on subcutaneous denosumab for osteoporosis, and 1–15% in oncology patients on IV antiresorptives.
+
+- Should antiresorptive therapy be interrupted ("drug holiday") before endodontic treatment?
+
+Drug holidays are not indicated for non-surgical RCT. Bisphosphonates have a half-life in bone of years to decades, so short interruptions confer no meaningful risk reduction. Denosumab has a shorter biologic half-life (≈ 6 months), and oncology protocols sometimes time invasive procedures relative to dosing intervals — but this is a physician/oncologist decision, not a dental one. The safer plan is to avoid extraction whenever feasible by treating the tooth endodontically.
+
+## 13.6 Pregnancy
+
+- When during pregnancy should elective endodontic treatment be performed?
+
+The **second trimester** is the preferred window for elective endodontic care. The first trimester carries the highest risk to organogenesis, and the third trimester is uncomfortable for the patient (supine hypotensive syndrome from caval compression — manage by left-lateral tilt). Necessary endodontic treatment for symptomatic infection should not be deferred regardless of trimester — untreated odontogenic infection poses greater risk to mother and fetus than the treatment itself.
+
+- Are dental radiographs safe during pregnancy?
+
+Yes. A shielded periapical radiograph delivers approximately 1 µSv to the maternal abdomen, far below the 50 mSv threshold associated with fetal harm and well below daily background radiation. Use a lead apron with thyroid collar and digital sensors. CBCT should be reserved for cases where it materially changes management.
+
+- Which medications are safe in pregnancy?
+
+**Local anesthetics:** lidocaine (FDA category B) is preferred. Articaine, mepivacaine, and bupivacaine are category C. Use the lowest effective dose with epinephrine (helps prolong duration and reduces total drug load). **Analgesics:** acetaminophen is first-line throughout pregnancy. **Ibuprofen and other NSAIDs** should be avoided in the third trimester (premature closure of the ductus arteriosus and oligohydramnios) and used cautiously in the first two trimesters. **Avoid aspirin** near term. **Antibiotics:** penicillins, amoxicillin, and cephalosporins are safe (category B). Clindamycin is acceptable. **Avoid tetracyclines** (tooth staining and skeletal effects on the fetus), **avoid metronidazole in the first trimester**, and **avoid nitrous oxide in the first trimester**.
+
+## 13.7 Immunocompromised Patients
+
+- How does immunosuppression affect endodontic outcomes?
+
+Stable, well-controlled immunosuppression (HIV with adequate CD4 count, stable transplant recipients) yields endodontic outcomes comparable to immunocompetent patients. Active immunosuppression (induction chemotherapy, acute rejection, profound neutropenia) confers higher risk of bacteremia, delayed healing, and disseminated infection, and elective treatment should be deferred when possible.
+
+- What are the key parameters before treating chemotherapy patients?
+
+Defer elective endodontic treatment until **absolute neutrophil count (ANC) > 1,000–2,000 /µL** and **platelets > 50,000 /µL**. For symptomatic infection at lower counts, coordinate with the oncologist; a focal infection is generally a greater threat than treatment delivered with appropriate hematologic support. Ideally, all foci of dental infection are eliminated **before** chemotherapy begins.
+
+- Is RCT preferred over extraction in immunocompromised patients?
+
+Yes. Endodontic treatment avoids the bacteremia and delayed healing of an extraction socket and is preferred whenever the tooth is restorable. This parallels the approach used in irradiated and antiresorptive patients.
+
+- When is antibiotic prophylaxis indicated for immunocompromised patients?
+
+Decisions are individualized in consultation with the patient's physician. Routine prophylaxis is not recommended for stable HIV or controlled transplant recipients undergoing non-surgical endodontics. Prophylaxis is reasonable for severe neutropenia, recent (< 6 month) transplant, active graft-versus-host disease, or functional asplenia.
+
+## 13.8 Hypertension
+
+- What blood pressure thresholds guide endodontic treatment?
+
+Use the JNC/ASA framework: **< 160/100** — proceed with routine treatment. **160–180 / 100–110** — proceed cautiously with stress reduction, monitor intra-operative BP, limit epinephrine. **> 180/110** — defer elective care; treat only urgent infection with medical co-management. Always confirm with a repeat measurement — single-reading "white coat" elevation is common.
+
+- How should epinephrine be modified in hypertensive and cardiac patients?
+
+The **cardiac dose limit** is approximately **0.04 mg of epinephrine** — roughly two cartridges of 1:100,000 lidocaine with epinephrine, or one cartridge of 1:50,000. Use aspirating technique to avoid intravascular injection, and avoid epinephrine-impregnated gingival retraction cord (which delivers an unmetered systemic dose). Epinephrine should not be eliminated entirely in stable hypertensives — inadequate anesthesia produces a far greater endogenous catecholamine surge than a properly delivered 1–2 cartridges.
+
+## 13.9 Bleeding Disorders and Anticoagulation
+
+- How are inherited bleeding disorders managed for endodontic treatment?
+
+**Hemophilia A and B** and **von Willebrand disease** require physician coordination and factor replacement or DDAVP for any procedure with bleeding risk. Even an inferior alveolar nerve block carries risk of deep tissue hematoma with airway compromise, so when factor levels are uncertain, prefer **buccal infiltration or intraligamentary injection** (where regional articaine is effective) over an IAN block. Non-surgical RCT itself produces minimal bleeding and is generally safe with appropriate coverage.
+
+- Should antiplatelet therapy be discontinued for endodontic procedures?
+
+No. Aspirin, clopidogrel (Plavix), and dual antiplatelet therapy should **not** be discontinued for routine endodontic treatment, including most apical surgery. The thrombotic risk of interruption (stent thrombosis, stroke, MI) outweighs the bleeding risk of continued therapy, and local hemostatic measures are typically sufficient.
+
+- How are direct oral anticoagulants (DOACs) managed?
+
+Apixaban (Eliquis), rivaroxaban (Xarelto), dabigatran (Pradaxa), and edoxaban do **not** require interruption for non-surgical endodontic treatment. For apical surgery, scheduling the procedure at the trough (just before the next dose) minimizes bleeding without requiring discontinuation. Local hemostasis with epinephrine-soaked pellets, oxidized cellulose, and primary closure is typically sufficient.
+
+## 13.10 Prosthetic Joint Replacements
+
+- Is antibiotic prophylaxis routinely required for patients with prosthetic joints?
+
+No. The 2015 ADA-AAOS clinical practice guideline concluded that **routine antibiotic prophylaxis is not recommended** for dental procedures in patients with prosthetic joint implants, because there is no evidence that dental procedures cause prosthetic joint infections {{cite: ADA-AAOS 2015 — Sollecito et al., JADA — antibiotic prophylaxis is not routinely recommended for dental procedures in patients with prosthetic joint implants}}. This represented a significant departure from prior practice.
+
+- When might prophylaxis still be considered?
+
+Decisions are made jointly with the patient's orthopedic surgeon. Reasonable indications for case-by-case consideration include: immunocompromise (rheumatoid arthritis on biologics, hemophilia, prior prosthetic joint infection), uncontrolled diabetes, malignancy, or recent (typically < 2 years) joint placement. When prescribed, the regimen mirrors the AHA endocarditis prophylaxis (amoxicillin 2 g PO 30–60 min before; clindamycin replaced by azithromycin or cephalexin in penicillin-allergic patients per 2021 AHA update).
+
+## 13.11 End-Stage Renal Disease and Dialysis
+
+- When should hemodialysis patients be scheduled for endodontic treatment?
+
+Schedule treatment on **non-dialysis days, ideally the day after dialysis**. During dialysis the patient is systemically heparinized; immediately after, residual heparin and uremic platelet dysfunction increase bleeding risk. The day between dialysis sessions offers the best balance of hemostasis and metabolic clearance.
+
+- What anatomical and pharmacologic precautions are needed?
+
+The **arteriovenous fistula or graft arm** must not be used for blood pressure cuffs, IV access, or any compression — it is the patient's lifeline. Adjust drug dosing for renal clearance: **avoid NSAIDs** entirely (nephrotoxic and antiplatelet), reduce amoxicillin frequency (e.g., q12h instead of q8h in advanced CKD), avoid tetracyclines, and reduce or avoid acyclovir and meperidine. Acetaminophen at standard doses is the analgesic of choice.
+
+- Is antibiotic prophylaxis indicated for the AV fistula or graft?
+
+Routine prophylaxis is not recommended for AV fistulas or grafts undergoing dental treatment. AV access infections from dental bacteremia have not been demonstrated. Prophylaxis may be considered for synthetic grafts in the first 6 months after placement in consultation with the nephrologist or vascular surgeon.
+
+## 13.12 Allergies Affecting Endodontic Care
+
+- How is latex allergy managed during endodontic treatment?
+
+Use a non-latex rubber dam (nitrile or synthetic isoprene), non-latex gloves, and avoid latex-stoppered local anesthetic cartridges (most modern cartridges are latex-free, but verify). Schedule latex-allergic patients as the first appointment of the day to minimize aerosolized latex exposure.
+
+- What anesthetic should be used in patients with sulfite allergy?
+
+Vasoconstrictor-containing local anesthetics (epinephrine, levonordefrin) require **sodium metabisulfite** as an antioxidant preservative. In patients with documented sulfite allergy (often co-occurring with steroid-dependent asthma), use a plain (vasoconstrictor-free) anesthetic such as **3% mepivacaine** or **4% prilocaine**. True allergy to the amide anesthetic itself is exceedingly rare; most reported "lidocaine allergies" are reactions to the preservative or to the epinephrine.
+
+## 13.13 Reciprocal Effects: Apical Periodontitis on Systemic Disease
+
+- Does apical periodontitis affect systemic health?
+
+Emerging evidence supports a bidirectional relationship between chronic apical periodontitis and systemic disease, mediated by low-grade systemic inflammation (elevated CRP, IL-6, TNF-α) and endotoxemia. Chronic apical periodontitis is associated with worsened glycemic control in diabetics, a 2.8× higher risk of coronary heart disease (Costa 2014), and adverse pregnancy outcomes in some cohorts. Endodontic treatment of apical periodontitis has been shown to produce modest reductions in HbA1c and systemic inflammatory markers, supporting timely treatment as part of systemic disease management.
+
 # 14. Pulp Biology and Dental Anatomy
 
 ## 14.1 Pulp Histology and Biology
@@ -1853,6 +1967,18 @@ Costa TH, et al. Association between chronic apical periodontitis and coronary a
 Costa CPS, et al. Association between sickle cell anemia and pulp necrosis. J Endod 2013;39(2):177-81.
 
 Fouad AF, Burleson J. The effect of diabetes mellitus on endodontic treatment outcome. J Am Dent Assoc 2003;134(1):43-51.
+
+Ruggiero SL, Dodson TB, Aghaloo T, Carlson ER, Ward BB, Kademani D. American Association of Oral and Maxillofacial Surgeons' Position Paper on Medication-Related Osteonecrosis of the Jaws — 2022 Update. J Oral Maxillofac Surg 2022;80(5):920-43.
+
+Sollecito TP, Abt E, Lockhart PB, et al. The use of prophylactic antibiotics prior to dental procedures in patients with prosthetic joints: Evidence-based clinical practice guideline for dental practitioners — a report of the American Dental Association Council on Scientific Affairs. J Am Dent Assoc 2015;146(1):11-16.e8.
+
+Wilson WR, Gewitz M, Lockhart PB, et al. Prevention of Viridans Group Streptococcal Infective Endocarditis: A Scientific Statement From the American Heart Association. Circulation 2021;143(20):e963-e978.
+
+Segura-Egea JJ, Gould K, Şen BH, et al. European Society of Endodontology position statement: the use of antibiotics in endodontics. Int Endod J 2018;51(1):20-25.
+
+Little JW, Falace DA, Miller CS, Rhodus NL. Dental Management of the Medically Compromised Patient. 9th ed. Elsevier; 2018.
+
+Patton LL, Glick M (eds). The ADA Practical Guide to Patients with Medical Conditions. 2nd ed. Wiley; 2015.
 
 ## Dental Trauma
 
