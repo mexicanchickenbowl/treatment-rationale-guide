@@ -90,13 +90,14 @@
     "needs_review": true
   },
   "Bhaskar and Rappaport|": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy.",
-    "confidence": "unknown",
+    "pmid": "41888890",
+    "title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy.",
+    "abstract": "BACKGROUND: Community-acquired pneumonia (CAP) is defined as an infection of the pulmonary parenchyma acquired in the community and outside the hospital setting. CAP is generally diagnosed based on clinical parameters and chest radiography, with biomarkers increasingly used to support diagnostic decisions. Our review aims to synthesise evidence on the diagnosis of bacterial CAP using clinical assessments and biomarkers and to guide evidence-based national antibiotic guidelines for bacterial CAP in India. Our primary objective is to determine the diagnostic accuracy of clinical criteria (symptoms, examination findings, or clinical scoring systems) and chest X-rays with and without serum biomarkers for detecting bacterial CAP in children and adults with presumptive signs and symptoms of pneumonia. We also aim to investigate potential sources of heterogeneity in the diagnostic accuracy of the aforementioned index tests in relation to covariates such as the healthcare settings, HIV status, malnutrition, and comorbidities. METHODS: We will perform a systematic search of electronic databases without language and geographical restriction and bibliography mining. We will only include prospective and retrospective cross-sectional and cohort studies and Randomized Control trials. We will exclude case reports, conference abstracts, reviews, and studies with a case-control design. We will also include studies that provide or allow the derivation of diagnostic accuracy data. Participants from all healthcare settings with a presumptive diagnosis of CAP will be included. The QUADAS-2 tool will be used to ascertain the methodological quality of the selected studies. We will perform analyses of data for children and adults separately. Bivariate model will be used for meta-analysis to estimate summary sensitivity and specificity wherever possible. Certainty of evidence will be assessed using the GRADE approach (Grading of Recommendations Assessment, Development, and Evaluation) for diagnostic test accuracy studies. DISCUSSION: Our review will evaluate the diagnostic accuracy of clinical criteria, with and without biomarkers, for diagnosing bacterial CAP in children and adults. This will inform antibiotic guidelines in India and similar resource-limited settings. SYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42024619430 and CRD42024620335.",
+    "journal": "Systematic reviews",
+    "pub_year": "2026",
+    "status": "ok",
+    "score": 0.153,
+    "confidence": "low",
     "needs_review": true
   },
   "Bierma|": {
@@ -1189,14 +1190,13 @@
     "needs_review": true
   },
   "Costa|2014": {
-    "pmid": "25842455",
-    "title": "Cytotoxicity of resin-based luting cements to pulp cells.",
-    "abstract": "PURPOSE: To evaluate the cytotoxicity of components released from different types of luting cements to two cell lines obtained from pulp tissue. METHODS: Three types of luting cements were evaluated, distributed into the following groups: G1--negative control (no treatment); G2--resin-modified glass-ionomer cement (Rely X Luting 2); G3--self-adhesive resin cement (Rely X U200); and G4--conventional resin cement (Rely X ARC). Standardized cylindrical specimens (14 mm diameter and 1 mm thick) prepared with the dental materials were immersed in culture medium (DMEM) for 24 hours to obtain the extracts (DMEM + components released from the cements). Then, the extracts were applied to cultured odontoblast-like MDPC-23 cells or human dental pulp cells (HDPCs). Finally, cell viability (MTT assay), cell death (Annexin/PI) (Kruskal-Wallis/Mann-Whitney; α = 5%) and cell morphology (SEM) were assessed. Cements' components in contact with cells (SEM/EDS) and pH of the extracts were also evaluated. RESULTS: The resin-modified glass-ionomer cement (G2) caused the most intense toxic effect to the two cell lines; the cell viability reduction was around 95.8% and 89.4% for MDPC-23 cells and HDPCs, respectively, which was statistically significantly different compared with that of the negative control group (G1). Also, a high quantity of particles leached from this ionomeric cement was found on the cells, which showed intense morphological alterations. In the G2 group, 100% necrosis was observed for both cell lines, and an acidic pH was detected on the extract. Conversely, Rely X U200 (G3) and Rely X ARC (G4), which presented low solubility and no alteration in pH, caused only slight cytotoxicity to the cultured cells.",
-    "journal": "American journal of dentistry",
+    "pmid": "25245391",
+    "title": "Prognostic value of microalbuminuria during antihypertensive treatment in essential hypertension.",
+    "abstract": "Whether changes over time of urinary albumin excretion have prognostic value is a matter of discussion. The objective was to assess the prognostic value of changes in urinary albumin excretion over time in cardiovascular risk during antihypertensive treatment. Follow-up study of 2835 hypertensives in the absence of previous cardiovascular disease (mean age 55 years, 47% men, BP 138/80 mm Hg, 19.1% diabetics, and calibrated systemic coronary risk estimation 5 or >10.6%). Usual-care of antihypertensive treatment was implemented to maintain blood pressure<140/90 mm Hg. Urinary albumin excretion was assessed yearly, and the values were expressed as the creatinine ratio. Incidence of cardiovascular events, fatal and nonfatal, was recorded during the follow-up. During a median follow-up of 4.7 years (17 028 patients-year), 294 fatal and first nonfatal cardiovascular events were recorded (1.73 CVD per 100 patients/year). Independently of blood pressure, estimated glomerular filtration rate, level of cardiovascular risk, and antihypertensive treatment, microalbuminuria at baseline and at any time during the follow-up resulted in higher risk for events, hazard ratio (HR) 1.35 (95% confidence interval [CI], 1.08-1.79) and HR 1.49 (95% CI, 1.14-1.94), respectively. Likewise, development of microalbuminuria (HR 1.60; 95% CI, 1.04-2.46) or persistence from the beginning (1.53; 95% CI, 1.13-2.06) had a significantly higher rate of events than if remained normoalbuminuric (HR 1) or regress to normoalbuminuria (HR 1.37; 95% CI, 0.92-2.06) with an 18%, 18%, 8%, and 11% events, respectively, P<0.001. The study supports the value of urinary albumin excretion assessment as a prognostic factor for cardiovascular risk, but also opens the way to consider it as an intermediate objective in hypertension.",
+    "journal": "Hypertension (Dallas, Tex. : 1979)",
     "pub_year": "2014",
     "status": "ok",
-    "score": 0.059,
-    "query": "Costa[Author] AND 2014[PDAT] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])",
+    "score": 0.176,
     "confidence": "low",
     "needs_review": true
   }
