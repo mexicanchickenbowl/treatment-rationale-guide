@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-04-29T00:24:12.523316+00:00",
+  "built_at": "2026-04-29T06:39:57.343499+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -8369,8 +8369,9 @@
     "Silva|2020": {
       "pmid": null,
       "status": "not_found",
-      "needs_review": false,
-      "note": "Previous PMID 33219876 was a wrong-paper match (cyclic fatigue of Reciproc files). Correct source for this finding has not been re-identified yet."
+      "needs_review": true,
+      "note": "Previous PMID 33219876 was a wrong-paper match (cyclic fatigue of Reciproc files). Correct source for this finding has not been re-identified yet.",
+      "confidence": "unknown"
     },
     "Spili|2005": {
       "pmid": "16306815",
