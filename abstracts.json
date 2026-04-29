@@ -781,15 +781,10 @@
     "needs_review": true
   },
   "Silva|2020": {
-    "pmid": "33219876",
-    "title": "Does the type of endodontic access influence in the cyclic fatigue resistance of reciprocating instruments?",
-    "abstract": "INTRODUCTION: The aim of the present study was to compare the cyclic fatigue resistance of Reciproc R25 (R25) and Reciproc Blue R25 (R25B) instruments, after simulated clinical use in traditional (TradAC) and ultraconservative (UltraAC) endodontic access cavities. METHODS: Forty mandibular molars were randomly assigned into the following groups, according to the type of access and instrument to be used: TradAC and R25, TradAC and R25B, UltraAC and R25, and UltraAC and R25B. Teeth were accessed accordingly, and the root canals were prepared using \"RECIPROC ALL\" kinematics. The cyclic fatigue resistance of the forty used instruments was obtained measuring the time to fracture in an artificial stainless-steel canal. Ten brand new R25 and R25B were used as control groups. The fracture surfaces and the side cutting edges of the instruments were examined with a scanning electron microscope. Data were statistically analyzed using one-way ANOVA and post hoc Tukey tests with a significance level of P < 0.05. RESULTS: R25B instruments showed significantly higher cyclic fatigue resistance than R25, regardless of the access cavity type (P < 0.05). No differences were observed in the cyclic fatigue resistance between instruments without simulated clinical use and used in TradAC (P > 0.05). R25 and R25B used in UltraAC showed significantly lower cyclic fatigue resistance compared with the instruments used in TradAC and without simulated clinical use (P < 0.05). CONCLUSIONS: R25B files showed improved cyclic fatigue resistance than R25. The use of R25B and R25 files in mandibular molars with UltraACs decreased their cyclic fatigue resistance, compared with TradAC. CLINICAL RELEVANCE: The use of Reciproc and Reciproc Blue files in mandibular molars with ultra-conservative endodontic access cavities reduced their cyclic fatigue resistance. Clinicians should be aware about the reduced cyclic fatigue resistance of these files when used in mandibular molars with UltraAC, due to the synergistic effect of access angulation and severe curvature induced in the endodontic files.",
-    "journal": "Clinical oral investigations",
-    "pub_year": "2021",
-    "status": "ok",
-    "score": 0.412,
-    "confidence": "medium",
-    "needs_review": true
+    "pmid": null,
+    "status": "not_found",
+    "needs_review": false,
+    "note": "Previous PMID 33219876 was a wrong-paper match (cyclic fatigue of Reciproc files). Correct source for this finding has not been re-identified yet."
   },
   "Spili|2005": {
     "pmid": "16306815",
