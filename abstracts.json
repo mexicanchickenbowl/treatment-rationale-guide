@@ -1031,12 +1031,14 @@
     "needs_review": true
   },
   "Kang|2016": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "confidence": "unknown",
+    "pmid": "28559940",
+    "title": "Clinical Significance of Pretreatment FDG PET/CT in MIBG-Avid Pediatric Neuroblastoma.",
+    "abstract": "PURPOSE: 18F-fluorodeoxyglucose-positron emission tomography (FDG-PET) imaging is well known to have clinical significance in the initial staging and response evaluation of the many kinds of neoplasms. However, its role in the pediatric neuroblastoma is not clearly defined. In the present study, the clinical significance of FDG-PET/computed tomography (CT) in 123I- or 131I-metaiodobenzylguanidine (MIBG)-avid pediatric neuroblastoma was investigated. METHODS: Twenty patients with neuroblastoma who undertook pretreatment FDG PET/CT at our institute between 2008 and 2015 and showed MIBG avidity were retrospectively enrolled in the present study. Clinical information-including histopathology, and serum markers-and several PET parameters-including SUVmax of the primary lesion (Psuv), target-to-background ratio (TBR), metabolic tumor volume (MTV), and coefficient of variation (CV)-were analyzed. The prognostic effect of PET parameters was evaluated in terms of progression-free survival (PFS). RESULTS: Total 20 patients (4.5 ± 3.5 years) were divided as two groups by disease progression. Six patients (30.0 %) experienced disease progression and one patient (5.0 %) died during follow-up period. There were not statistically significant in age, stage, MYCN status, primary tumor size, serum lactate dehydrogenase (LDH), neuron-specific enolase (NSE), and ferritin level between two groups with progression or no progression. However, Psuv (p = 0.017), TBR (p = 0.09), MTV (p = 0.02), and CV (p = 0.036) showed significant differences between two groups. In univariate analysis, PFS was significantly associated with Psuv (p = 0.021) and TBR (p = 0.023). CONCLUSIONS: FDG-PET parameters were significantly related with progression of neuroblastoma. FDG-PET/CT may have the potential as a valuable modality for evaluating prognosis in the patients with MIBG-avid pediatric neuroblastoma.",
+    "journal": "Nuclear medicine and molecular imaging",
+    "pub_year": "2017",
+    "status": "ok",
+    "score": 0.225,
+    "confidence": "low",
     "needs_review": true
   },
   "Krasner and Rankow|2004": {
