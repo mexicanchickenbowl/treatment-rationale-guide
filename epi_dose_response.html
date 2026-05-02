@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Epinephrine Dose–Response | Endo Tools</title>
+<script>
+(function(){var s;try{s=localStorage.getItem("endo-guide.theme");}catch(e){}
+if(s!=="light"&&s!=="dark"){s=window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";}
+document.documentElement.setAttribute("data-theme",s);})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/theme.css">
+<script src="/assets/site-nav.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.10.3/Recharts.min.js"></script>
+<style>
+.page-wrap{max-width:780px;margin:0 auto;padding:var(--space-8) var(--space-4) var(--space-16)}
+.page-eyebrow{font-size:var(--fs-xs);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:.08em;color:var(--color-primary);margin-bottom:var(--space-2)}
+.page-title{font-size:var(--fs-3xl);font-weight:var(--fw-bold);color:var(--color-text);letter-spacing:-.02em;margin-bottom:var(--space-3);line-height:var(--lh-tight)}
+.page-sub{font-size:var(--fs-sm);color:var(--color-text-muted);line-height:var(--lh-relaxed);max-width:620px;margin-bottom:var(--space-8)}
+.page-sub em{font-style:italic}
+
+/* Chart shell — always dark so the lines pop */
+.chart-shell{background:#0f172a;border-radius:var(--radius-lg);padding:var(--space-5);border:1px solid #1e293b;margin-bottom:var(--space-6)}
+.chart-meta-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:var(--space-3)}
+.chart-axis-label{font-size:11px;color:#94a3b8;font-family:var(--font-mono)}
+.chart-mode-label{font-size:11px;font-weight:600;color:#cbd5e1}
+.chart-mode-label.danger{color:#fca5a5}
+.zone-row{display:flex;gap:8px;margin-bottom:10px}
+.zone-chip{flex:1;padding:5px 10px;border-radius:6px;font-size:10px;text-align:center;font-weight:500}
+.zone-chip.beta{background:rgba(30,58,138,.35);border:1px solid rgba(37,99,235,.3);color:#93c5fd}
+.zone-chip.alpha{background:rgba(127,29,29,.35);border:1px solid rgba(185,28,28,.3);color:#fca5a5}
+.zone-chip.full-alpha{flex:none;width:100%}
+.chart-x-note{font-size:11px;color:#64748b;text-align:center;margin-top:var(--space-2);font-family:var(--font-mono)}
+
+/* Toggle button */
+.toggle-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:7px 14px;border-radius:var(--radius-md);border:1px solid var(--color-border-strong);background:transparent;color:var(--color-text-muted);cursor:pointer;font-family:inherit;transition:all .15s;margin-bottom:var(--space-4)}
+.toggle-btn:hover{border-color:var(--color-danger);color:var(--color-danger)}
+.toggle-btn.active{background:rgba(225,29,72,.1);border-color:var(--color-danger);color:var(--color-danger)}
+
+/* Callout cards */
+.callouts{display:grid;gap:var(--space-3)}
+.callout{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-4) var(--space-5);border-left-width:3px}
+.callout.info{border-left-color:var(--color-info)}
+.callout.danger{border-left-color:var(--color-danger)}
+.callout.warning{border-left-color:var(--color-warning)}
+.callout.success{border-left-color:var(--color-success)}
+.callout-title{font-size:14px;font-weight:600;margin-bottom:var(--space-1)}
+.callout.info .callout-title{color:var(--color-info)}
+.callout.danger .callout-title{color:var(--color-danger)}
+.callout.warning .callout-title{color:var(--color-warning)}
+.callout.success .callout-title{color:var(--color-success)}
+.callout-body{font-size:13px;color:var(--color-text-muted);line-height:1.65}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/babel">
+const { useState } = React;
+const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip,
+        Legend, ReferenceLine, ResponsiveContainer } = Recharts;
+
+const normalData = [
+  { dose: "0.01", SBP: 3,  DBP: -3,  MAP: -1, HR: 5  },
+  { dose: "0.03", SBP: 8,  DBP: -10, MAP: -1, HR: 15 },
+  { dose: "0.1",  SBP: 15, DBP: -15, MAP: 2,  HR: 25 },
+  { dose: "0.3",  SBP: 22, DBP: -8,  MAP: 8,  HR: 32 },
+  { dose: "1",    SBP: 35, DBP: 5,   MAP: 18, HR: 30 },
+  { dose: "3",    SBP: 48, DBP: 20,  MAP: 30, HR: 22 },
+  { dose: "10",   SBP: 58, DBP: 32,  MAP: 40, HR: 12 },
+];
+
+const propranololData = [
+  { dose: "0.01", SBP: 2,  DBP: 1,  MAP: 1,  HR: 0   },
+  { dose: "0.03", SBP: 5,  DBP: 3,  MAP: 4,  HR: -2  },
+  { dose: "0.1",  SBP: 10, DBP: 8,  MAP: 9,  HR: -5  },
+  { dose: "0.3",  SBP: 20, DBP: 18, MAP: 19, HR: -12 },
+  { dose: "1",    SBP: 36, DBP: 32, MAP: 33, HR: -20 },
+  { dose: "3",    SBP: 52, DBP: 46, MAP: 48, HR: -28 },
+  { dose: "10",   SBP: 65, DBP: 58, MAP: 60, HR: -34 },
+];
+
+function App() {
+  const [propMode, setPropMode] = useState(false);
+  const data = propMode ? propranololData : normalData;
+
+  return (
+    <>
+      <div className="page-wrap">
+        <div className="page-eyebrow">Pharmacology · Interactive Chart</div>
+        <h1 className="page-title">Epinephrine Dose–Response</h1>
+        <p className="page-sub">
+          Interactive cardiovascular dose–response chart with optional non-selective β-blocker
+          overlay. Adapted from Katzung, <em>Basic &amp; Clinical Pharmacology</em> (15th ed.);
+          classical infusion data, Allwood, Cobbold &amp; Ginsburg, <em>Br Med Bull</em> 1963.
+          Propranolol curves illustrative, based on β-blockade pharmacology (Goodman &amp; Gilman, 14th ed.).
+        </p>
+
+        <button
+          className={`toggle-btn${propMode ? " active" : ""}`}
+          onClick={() => setPropMode(!propMode)}
+        >
+          {propMode
+            ? <><span>●</span> Propranolol ON — click to remove</>
+            : <><span>○</span> Add propranolol (β1+β2 block)</>}
+        </button>
+
+        {/* Chart */}
+        <div className="chart-shell">
+          <div className="chart-meta-row">
+            <span className="chart-axis-label">% Δ from baseline</span>
+            <span className={`chart-mode-label${propMode ? " danger" : ""}`}>
+              {propMode ? "On propranolol: only α1 active" : "Healthy baseline"}
+            </span>
+          </div>
+
+          {!propMode ? (
+            <div className="zone-row">
+              <div className="zone-chip beta">← β2/β1 zone (low dose)</div>
+              <div className="zone-chip alpha">α1 dominant (high dose) →</div>
+            </div>
+          ) : (
+            <div className="zone-row">
+              <div className="zone-chip alpha full-alpha">Pure α1 across all doses — no β buffer</div>
+            </div>
+          )}
+
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={data} margin={{top:5,right:10,left:-10,bottom:0}}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b"/>
+              <XAxis dataKey="dose" stroke="#94a3b8" tick={{fontSize:11,fill:"#94a3b8"}}/>
+              <YAxis stroke="#94a3b8" tick={{fontSize:11,fill:"#94a3b8"}} domain={[-40,75]} tickFormatter={v=>`${v}`}/>
+              <Tooltip
+                contentStyle={{backgroundColor:"#0f172a",border:"1px solid #334155",borderRadius:"6px",fontSize:"12px",color:"#e2e8f0"}}
+                labelFormatter={v=>`${v} μg/min`}
+                formatter={v=>`${v}%`}
+              />
+              <Legend wrapperStyle={{fontSize:"12px",paddingTop:"8px",color:"#94a3b8"}} iconType="line"/>
+              <ReferenceLine y={0} stroke="#475569" strokeDasharray="2 2"/>
+              <Line type="monotone" dataKey="SBP" stroke="#dc2626" strokeWidth={2.5} dot={{r:3}}/>
+              <Line type="monotone" dataKey="DBP" stroke="#2563eb" strokeWidth={2.5} dot={{r:3}}/>
+              <Line type="monotone" dataKey="MAP" stroke="#a855f7" strokeWidth={2.5} dot={{r:3}}/>
+              <Line type="monotone" dataKey="HR"  stroke="#16a34a" strokeWidth={2.5} dot={{r:3}}/>
+            </LineChart>
+          </ResponsiveContainer>
+          <div className="chart-x-note">Epi infusion (μg/min, log scale)</div>
+        </div>
+
+        {/* Callouts */}
+        <div className="callouts">
+          {!propMode ? (<>
+            <div className="callout info">
+              <div className="callout-title">Low dose — β2 wins at the vasculature</div>
+              <div className="callout-body">DBP ↓ (skeletal muscle vasodilation via β2), SBP modestly ↑ (β1 cardiac inotropy), HR ↑, MAP roughly flat. Pulse pressure widens. This is the safe zone for dental use — one carpule of 1:100k delivers 18 μg submucosal with slow absorption.</div>
+            </div>
+            <div className="callout danger">
+              <div className="callout-title">High dose — α1 overrides β2</div>
+              <div className="callout-body">DBP crosses zero around ~0.5 μg/min and rises. SBP + DBP both ↑; MAP ↑↑; HR plateaus then dips (baroreflex against afterload). Myocardial O₂ demand climbs sharply. This is the inadvertent IV bolus scenario — same 18 μg, but delivered in seconds.</div>
+            </div>
+            <div className="callout warning">
+              <div className="callout-title">Dental relevance</div>
+              <div className="callout-body">Slow submucosal absorption keeps you in the left zone. An inadvertent IV bolus of the same 18 μg transiently spikes you into the right zone — the pharmacologic argument for aspirating before every injection. Cardiac dose limit: 0.04 mg = 2 carpules of 1:100k.</div>
+            </div>
+          </>) : (<>
+            <div className="callout danger">
+              <div className="callout-title">The safe zone is gone</div>
+              <div className="callout-body">With β2 blocked, the DBP dip disappears — DBP rises from the very first dose. There is no low-dose buffer. Every carpule pushes up the α1 curve from the start.</div>
+            </div>
+            <div className="callout success">
+              <div className="callout-title">HR goes the wrong way</div>
+              <div className="callout-body">β1 blockade removes epi's chronotropic effect. As BP rises, the carotid baroreflex commands the SA node to slow — and there's no β1 to push back. HR <em>drops</em>. Result: hypertensive crisis + reflex bradycardia.</div>
+            </div>
+            <div className="callout warning">
+              <div className="callout-title">Clinical limits — non-selective β-blockers</div>
+              <div className="callout-body">Propranolol, nadolol, timolol, sotalol, labetalol. Cap total epi at 0.04 mg (2 carpules 1:100k or 1 carpule 1:50k). Aspirate every injection. No epi retraction cord. Selective β1 agents (metoprolol, atenolol, bisoprolol) leave β2 intact — this interaction does not apply.</div>
+            </div>
+          </>)}
+        </div>
+      </div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(<App/>);
+</script>
+</body>
+</html>
