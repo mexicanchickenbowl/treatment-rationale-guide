@@ -5174,8 +5174,52 @@
           ]
         },
         {
-          "id": "s13-systemic-conditions-and-endodontics-1313-reciprocal-effects-apical-periodontitis-on-systemic-dis",
+          "id": "s13-systemic-conditions-and-endodontics-1313-corticosteroid-therapy-and-stress-dose-coverage",
           "number": "13.13",
+          "title": "Corticosteroid Therapy and Stress-Dose Coverage",
+          "level": 2,
+          "blocks": [
+            {
+              "type": "ul",
+              "items": [
+                "Does a patient on chronic corticosteroids need stress-dose supplementation for routine outpatient endodontics?"
+              ],
+              "raw": "- Does a patient on chronic corticosteroids need stress-dose supplementation for routine outpatient endodontics?"
+            },
+            {
+              "type": "p",
+              "text": "**No.** Modern evidence (Gibson & Ferguson; Glowniak & Loriaux) demonstrates that routine outpatient dental procedures — including non-surgical RCT performed under local anesthesia — do **not** require stress-dose corticosteroid supplementation. The patient should simply take their **usual morning dose** as scheduled. The historical \"Rule of Twos\" (supplementation if ≥ 20 mg prednisone/day for ≥ 2 weeks within the past 2 years) was developed for major surgical stress under general anesthesia and is not applicable to routine outpatient endo.",
+              "raw": "**No.** Modern evidence (Gibson & Ferguson; Glowniak & Loriaux) demonstrates that routine outpatient dental procedures — including non-surgical RCT performed under local anesthesia — do **not** require stress-dose corticosteroid supplementation. The patient should simply take their **usual morning dose** as scheduled. The historical \"Rule of Twos\" (supplementation if ≥ 20 mg prednisone/day for ≥ 2 weeks within the past 2 years) was developed for major surgical stress under general anesthesia and is not applicable to routine outpatient endo."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "What is the threshold of concern for HPA suppression?"
+              ],
+              "raw": "- What is the threshold of concern for HPA suppression?"
+            },
+            {
+              "type": "p",
+              "text": "Clinically significant HPA axis suppression is unlikely at prednisone doses < 5 mg/day or with short-duration use (< 3 weeks). Doses > 20 mg/day for > 3 weeks are most likely to suppress the axis. Patients taking physiologic replacement doses (approximately 5–7.5 mg prednisone equivalent/day) are by definition not at risk of addisonian crisis from the stress of local-anesthetic-based outpatient procedures.",
+              "raw": "Clinically significant HPA axis suppression is unlikely at prednisone doses < 5 mg/day or with short-duration use (< 3 weeks). Doses > 20 mg/day for > 3 weeks are most likely to suppress the axis. Patients taking physiologic replacement doses (approximately 5–7.5 mg prednisone equivalent/day) are by definition not at risk of addisonian crisis from the stress of local-anesthetic-based outpatient procedures."
+            },
+            {
+              "type": "ul",
+              "items": [
+                "When would stress-dose coverage actually be indicated?"
+              ],
+              "raw": "- When would stress-dose coverage actually be indicated?"
+            },
+            {
+              "type": "p",
+              "text": "Reserve supplementation for **major surgical stress** (general anesthesia, significant blood loss, major oral-maxillofacial surgery) in patients with **documented HPA suppression**. Even then, current evidence favors modest supplementation (e.g., hydrocortisone 25–50 mg IV) rather than the older 100 mg IV protocol. For routine outpatient endo, simply continuing the patient's usual regimen is evidence-based and appropriate.",
+              "raw": "Reserve supplementation for **major surgical stress** (general anesthesia, significant blood loss, major oral-maxillofacial surgery) in patients with **documented HPA suppression**. Even then, current evidence favors modest supplementation (e.g., hydrocortisone 25–50 mg IV) rather than the older 100 mg IV protocol. For routine outpatient endo, simply continuing the patient's usual regimen is evidence-based and appropriate."
+            }
+          ]
+        },
+        {
+          "id": "s13-systemic-conditions-and-endodontics-1314-reciprocal-effects-apical-periodontitis-on-systemic-dis",
+          "number": "13.14",
           "title": "Reciprocal Effects: Apical Periodontitis on Systemic Disease",
           "level": 2,
           "blocks": [
