@@ -30,6 +30,7 @@ HERE = Path(__file__).parent
 MD = HERE / "endo-guide.md"
 SUGGESTIONS = HERE / "suggestions.json"
 ABSTRACTS = HERE / "abstracts.json"
+FIGURES = HERE / "figures.json"
 TEMPLATE = HERE / "endo-guide.template.html"
 ASSETS = HERE / "assets"
 OUT_JSON = HERE / "guide-data.json"
@@ -356,6 +357,13 @@ def build() -> None:
         except Exception as e:
             print(f"warn: could not read abstracts.json: {e}", file=sys.stderr)
 
+    figures: list[dict] = []
+    if FIGURES.exists():
+        try:
+            figures = json.loads(FIGURES.read_text(encoding="utf-8"))
+        except Exception as e:
+            print(f"warn: could not read figures.json: {e}", file=sys.stderr)
+
     # Abstract health stats — drives the Audit-pane "Abstract health" widget.
     # Cheap aggregation so the UI doesn't have to scan abstracts.json at render.
     def _conf(v: dict) -> str:
@@ -390,6 +398,7 @@ def build() -> None:
         "suggestions": suggestions,
         "abstracts": abstracts,
         "abstract_health": abstract_health,
+        "figures": figures,
     }
     OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 

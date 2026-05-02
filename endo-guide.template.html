@@ -1200,6 +1200,15 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
     return sections.filter(s => (matchCounts?.[s.id] || 0) > 0);
   }, [sections, query, matchCounts]);
 
+  const figuresBySection = useMemo(() => {
+    const map = {};
+    for (const fig of (DATA.figures || [])) {
+      if (!map[fig.section_id]) map[fig.section_id] = [];
+      map[fig.section_id].push(fig);
+    }
+    return map;
+  }, []);
+
   const jumpTo = (id) => {
     const el = mainRef.current?.querySelector(`[data-anchor="${id}"]`);
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1275,15 +1284,34 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
                 <span>{highlight(sec.title, query)}</span>
               </h2>
               <BlocksWithNotes blocks={sec.blocks || []} sectionId={sec.id} subsectionId={null} query={query} />
-              {(sec.subsections || []).map(sub => (
+              {(sec.subsections || []).map(sub => {
+                const subFigs = figuresBySection[sub.id] || [];
+                return (
                 <section key={sub.id} data-anchor={sub.id} id={sub.id} className="mt-10 pt-6 border-t border-slate-100">
                   <h3 className="flex items-baseline gap-2 mb-4 not-prose">
                     {sub.number && <span className="text-xs text-indigo-400 tabular-nums font-semibold shrink-0 w-8">{sub.number}</span>}
                     <span className="text-[15px] font-semibold text-slate-800 tracking-tight leading-snug">{highlight(sub.title, query)}</span>
                   </h3>
-                  <BlocksWithNotes blocks={sub.blocks || []} sectionId={sec.id} subsectionId={sub.id} query={query} />
+                  {subFigs.length > 0 ? (
+                    <div className="flex gap-6 items-start">
+                      <div className="flex-1 min-w-0">
+                        <BlocksWithNotes blocks={sub.blocks || []} sectionId={sec.id} subsectionId={sub.id} query={query} />
+                      </div>
+                      <div className="shrink-0 w-56 xl:w-64 space-y-4">
+                        {subFigs.map((fig, fi) => (
+                          <figure key={fi} className="sticky top-4 border border-slate-200 rounded-lg overflow-hidden bg-white shadow-sm">
+                            <img src={fig.image} alt={fig.caption} className="w-full block" loading="lazy" />
+                            <figcaption className="px-3 py-2 text-[11px] leading-snug text-slate-500 border-t border-slate-100">{fig.caption}</figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <BlocksWithNotes blocks={sub.blocks || []} sectionId={sec.id} subsectionId={sub.id} query={query} />
+                  )}
                 </section>
-              ))}
+                );
+              })}
             </section>
           ))}
           <div className="h-32" />
