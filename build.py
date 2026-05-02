@@ -360,7 +360,8 @@ def build() -> None:
     figures: list[dict] = []
     if FIGURES.exists():
         try:
-            figures = json.loads(FIGURES.read_text(encoding="utf-8"))
+            raw = json.loads(FIGURES.read_text(encoding="utf-8"))
+            figures = raw.get("figures", []) if isinstance(raw, dict) else raw
         except Exception as e:
             print(f"warn: could not read figures.json: {e}", file=sys.stderr)
 

@@ -1,0 +1,123 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: assets/images
+public_folder: /assets/images
+
+collections:
+  - name: figures
+    label: Guide Figures
+    files:
+      - name: all_figures
+        label: All Figures
+        file: figures.json
+        fields:
+          - name: figures
+            label: Figures
+            label_singular: Figure
+            widget: list
+            fields:
+              - name: section_id
+                label: Section
+                widget: select
+                options:
+                  - { label: "1.1 Pulp Testing Methodology and Interpretation", value: "s1-diagnosis-and-case-assessment-11-pulp-testing-methodology-and-interpretation" }
+                  - { label: "1.2 Periapical Diagnosis Classification", value: "s1-diagnosis-and-case-assessment-12-periapical-diagnosis-classification" }
+                  - { label: "1.3 Crack/Fracture Identification and Prognosis", value: "s1-diagnosis-and-case-assessment-13-crackfracture-identification-and-prognosis" }
+                  - { label: "1.4 Restorability Assessment", value: "s1-diagnosis-and-case-assessment-14-restorability-assessment" }
+                  - { label: "1.5 Periodontal-Endodontic Lesion Differentiation", value: "s1-diagnosis-and-case-assessment-15-periodontal-endodontic-lesion-differentiation" }
+                  - { label: "1.6 When to Refer vs. Treat", value: "s1-diagnosis-and-case-assessment-16-when-to-refer-vs-treat" }
+                  - { label: "2.1 Extraction vs. Endodontic Treatment", value: "s2-treatment-planning-21-extraction-vs-endodontic-treatment" }
+                  - { label: "2.2 Non-Surgical vs. Surgical Approach", value: "s2-treatment-planning-22-non-surgical-vs-surgical-approach" }
+                  - { label: "2.3 Single Visit vs. Multiple Visit Treatment", value: "s2-treatment-planning-23-single-visit-vs-multiple-visit-treatment" }
+                  - { label: "2.4 Vital Pulp Therapy Candidacy", value: "s2-treatment-planning-24-vital-pulp-therapy-candidacy" }
+                  - { label: "2.5 Intentional Replantation Considerations", value: "s2-treatment-planning-25-intentional-replantation-considerations" }
+                  - { label: "2.6 Retreatment vs. Surgery for Previously Treated Teeth", value: "s2-treatment-planning-26-retreatment-vs-surgery-for-previously-treated-teeth" }
+                  - { label: "2.7 Timing of Retreatment After Initial Failure", value: "s2-treatment-planning-27-timing-of-retreatment-after-initial-failure" }
+                  - { label: "3.1 Anesthetic Selection and Technique", value: "s3-anesthesia-and-pain-control-31-anesthetic-selection-and-technique-by-toothdiagnosis" }
+                  - { label: "3.2 Supplemental Anesthesia Decision Tree", value: "s3-anesthesia-and-pain-control-32-supplemental-anesthesia-decision-tree" }
+                  - { label: "3.3 Managing the Hot Tooth", value: "s3-anesthesia-and-pain-control-33-managing-the-hot-tooth" }
+                  - { label: "3.4 Sedation and Anxiolysis", value: "s3-anesthesia-and-pain-control-34-sedation-and-anxiolysis" }
+                  - { label: "4.1 Access Design Philosophy", value: "s4-access-and-coronal-disassembly-41-access-design-philosophy" }
+                  - { label: "4.2 Magnification and Rubber Dam Utilization", value: "s4-access-and-coronal-disassembly-42-magnification-and-rubber-dam-utilization" }
+                  - { label: "4.3 Post and Core Removal", value: "s4-access-and-coronal-disassembly-43-post-and-core-removal" }
+                  - { label: "4.4 Managing Calcified Canals", value: "s4-access-and-coronal-disassembly-44-managing-calcified-canals" }
+                  - { label: "5.1 Working Length Determination Method", value: "s5-instrumentation-51-working-length-determination-method" }
+                  - { label: "5.2 Glide Path Establishment", value: "s5-instrumentation-52-glide-path-establishment" }
+                  - { label: "5.3 Instrument System Selection", value: "s5-instrumentation-53-instrument-system-selection" }
+                  - { label: "5.4 Apical Preparation Size Determination", value: "s5-instrumentation-54-apical-preparation-size-determination" }
+                  - { label: "5.5 Taper Selection", value: "s5-instrumentation-55-taper-selection" }
+                  - { label: "5.6 Single File vs. Multiple File Sequences", value: "s5-instrumentation-56-single-file-vs-multiple-file-sequences" }
+                  - { label: "5.7 Hand vs. Rotary vs. Reciprocating Instrumentation", value: "s5-instrumentation-57-hand-vs-rotary-vs-reciprocating-instrumentation" }
+                  - { label: "6.1 Irrigant Selection and Concentration", value: "s6-irrigation-and-disinfection-61-irrigant-selection-and-concentration" }
+                  - { label: "6.2 Irrigation Delivery Method", value: "s6-irrigation-and-disinfection-62-irrigation-delivery-method" }
+                  - { label: "6.3 Activation Technique Selection", value: "s6-irrigation-and-disinfection-63-activation-technique-selection" }
+                  - { label: "6.4 Intracanal Medicament Use and Selection", value: "s6-irrigation-and-disinfection-64-intracanal-medicament-use-and-selection" }
+                  - { label: "6.5 Smear Layer Removal Protocol", value: "s6-irrigation-and-disinfection-65-smear-layer-removal-protocol" }
+                  - { label: "7.1 Obturation Technique Selection", value: "s7-obturation-71-obturation-technique-selection" }
+                  - { label: "7.2 Sealer Selection", value: "s7-obturation-72-sealer-selection" }
+                  - { label: "7.3 Apical Barrier Material Selection", value: "s7-obturation-73-apical-barrier-material-selection" }
+                  - { label: "7.4 Open Apex Management", value: "s7-obturation-74-open-apex-management-apexification-vs-revascularization" }
+                  - { label: "7.5 Criteria for Adequate Fill", value: "s7-obturation-75-criteria-for-adequate-fill" }
+                  - { label: "8.1 Immediate vs. Delayed Coronal Restoration", value: "s8-restoration-81-immediate-vs-delayed-coronal-restoration" }
+                  - { label: "8.2 Post Indications and Selection", value: "s8-restoration-82-post-indications-and-selection" }
+                  - { label: "8.3 Core Material Selection", value: "s8-restoration-83-core-material-selection" }
+                  - { label: "8.4 Cuspal Coverage Decisions", value: "s8-restoration-84-cuspal-coverage-decisions" }
+                  - { label: "8.5 Post-Operative Pain and Occlusal Adjustment", value: "s8-restoration-85-post-operative-pain-and-occlusal-adjustment" }
+                  - { label: "9.1 Instrument Separation Management", value: "s9-complications-and-management-91-instrument-separation-management" }
+                  - { label: "9.2 Perforation Repair Timing and Materials", value: "s9-complications-and-management-92-perforation-repair-timing-and-materials" }
+                  - { label: "9.3 Ledge/Transportation Management", value: "s9-complications-and-management-93-ledgetransportation-management" }
+                  - { label: "9.4 Sodium Hypochlorite Accident Response", value: "s9-complications-and-management-94-sodium-hypochlorite-accident-response" }
+                  - { label: "9.5 Flare-Up Management", value: "s9-complications-and-management-95-flare-up-management" }
+                  - { label: "9.6 Persistent Infection Workup", value: "s9-complications-and-management-96-persistent-infection-workup" }
+                  - { label: "9.7 Cemental Tears", value: "s9-complications-and-management-97-cemental-tears" }
+                  - { label: "9.8 External Cervical Resorption (ECR)", value: "s9-complications-and-management-98-external-cervical-resorption-ecr" }
+                  - { label: "10.1 Case Selection Criteria", value: "s10-surgical-endodontics-101-case-selection-criteria" }
+                  - { label: "10.2 Flap Design Selection", value: "s10-surgical-endodontics-102-flap-design-selection" }
+                  - { label: "10.3 Osteotomy Technique", value: "s10-surgical-endodontics-103-osteotomy-technique" }
+                  - { label: "10.4 Root-End Resection Depth and Angle", value: "s10-surgical-endodontics-104-root-end-resection-depth-and-angle" }
+                  - { label: "10.5 Root-End Preparation Depth", value: "s10-surgical-endodontics-105-root-end-preparation-depth" }
+                  - { label: "10.6 Retrofill Material Selection", value: "s10-surgical-endodontics-106-retrofill-material-selection" }
+                  - { label: "10.7 Hemisection/Root Amputation Decisions", value: "s10-surgical-endodontics-107-hemisectionroot-amputation-decisions" }
+                  - { label: "11.1 Recall Interval Determination", value: "s11-recall-and-outcomes-111-recall-interval-determination" }
+                  - { label: "11.2 Healing Assessment Criteria and Timing", value: "s11-recall-and-outcomes-112-healing-assessment-criteria-and-timing" }
+                  - { label: "11.3 When to Intervene on Asymptomatic Apical Periodontitis", value: "s11-recall-and-outcomes-113-when-to-intervene-on-asymptomatic-apical-periodontitis" }
+                  - { label: "12.1 Analgesic Selection and Dosing", value: "s12-pharmacology-and-pain-management-121-analgesic-selection-and-dosing" }
+                  - { label: "12.2 Antibiotic Selection and Indications", value: "s12-pharmacology-and-pain-management-122-antibiotic-selection-and-indications" }
+                  - { label: "12.3 Antibiotic Prophylaxis Guidelines", value: "s12-pharmacology-and-pain-management-123-antibiotic-prophylaxis-guidelines" }
+                  - { label: "13.1 Diabetes and Endodontic Outcomes", value: "s13-systemic-conditions-and-endodontics-131-diabetes-and-endodontic-outcomes" }
+                  - { label: "13.2 Cardiovascular Considerations", value: "s13-systemic-conditions-and-endodontics-132-cardiovascular-considerations" }
+                  - { label: "13.3 Sickle Cell Disease", value: "s13-systemic-conditions-and-endodontics-133-sickle-cell-disease" }
+                  - { label: "13.4 Head and Neck Radiation", value: "s13-systemic-conditions-and-endodontics-134-head-and-neck-radiation" }
+                  - { label: "13.5 Antiresorptive Medications and MRONJ", value: "s13-systemic-conditions-and-endodontics-135-antiresorptive-medications-and-mronj" }
+                  - { label: "13.6 Pregnancy", value: "s13-systemic-conditions-and-endodontics-136-pregnancy" }
+                  - { label: "13.7 Immunocompromised Patients", value: "s13-systemic-conditions-and-endodontics-137-immunocompromised-patients" }
+                  - { label: "13.8 Hypertension", value: "s13-systemic-conditions-and-endodontics-138-hypertension" }
+                  - { label: "13.9 Bleeding Disorders and Anticoagulation", value: "s13-systemic-conditions-and-endodontics-139-bleeding-disorders-and-anticoagulation" }
+                  - { label: "13.10 Prosthetic Joint Replacements", value: "s13-systemic-conditions-and-endodontics-1310-prosthetic-joint-replacements" }
+                  - { label: "13.11 End-Stage Renal Disease and Dialysis", value: "s13-systemic-conditions-and-endodontics-1311-end-stage-renal-disease-and-dialysis" }
+                  - { label: "13.12 Allergies Affecting Endodontic Care", value: "s13-systemic-conditions-and-endodontics-1312-allergies-affecting-endodontic-care" }
+                  - { label: "13.13 Corticosteroid Therapy", value: "s13-systemic-conditions-and-endodontics-1313-corticosteroid-therapy-and-stress-dose-coverage" }
+                  - { label: "13.14 Reciprocal Effects: Apical Periodontitis on Systemic Disease", value: "s13-systemic-conditions-and-endodontics-1314-reciprocal-effects-apical-periodontitis-on-systemic-dis" }
+                  - { label: "14.1 Pulp Histology and Biology", value: "s14-pulp-biology-and-dental-anatomy-141-pulp-histology-and-biology" }
+                  - { label: "14.2 Anatomical Variations and Anomalies", value: "s14-pulp-biology-and-dental-anatomy-142-anatomical-variations-and-anomalies" }
+                  - { label: "14.3 Periapical Pathology", value: "s14-pulp-biology-and-dental-anatomy-143-periapical-pathology" }
+                  - { label: "15.0 Managing Trauma Patients", value: "s15-dental-trauma-150-managing-trauma-patients" }
+                  - { label: "15.1 Concussion, Subluxation, and Intrusion", value: "s15-dental-trauma-151-concussion-subluxation-and-intrusion" }
+                  - { label: "15.2 Avulsion Management", value: "s15-dental-trauma-152-avulsion-management" }
+                  - { label: "15.3 Splinting Guidelines", value: "s15-dental-trauma-153-splinting-guidelines" }
+                  - { label: "15.4 Replacement Resorption and Decoronation", value: "s15-dental-trauma-154-replacement-resorption-and-decoronation" }
+                  - { label: "16.1 Non-Odontogenic Pain", value: "s16-differential-diagnosis-and-disease-mimickers-161-non-odontogenic-pain" }
+                  - { label: "16.2 Lesions Mimicking Endodontic Pathology", value: "s16-differential-diagnosis-and-disease-mimickers-162-lesions-mimicking-endodontic-pathology" }
+                  - { label: "17.1 Trauma Quick Reference", value: "s17-high-yield-board-review-topics-171-trauma-quick-reference" }
+                  - { label: "17.2 Resorption", value: "s17-high-yield-board-review-topics-172-resorption" }
+                  - { label: "17.3 Pulpal Pathology and Immunology", value: "s17-high-yield-board-review-topics-173-pulpal-pathology-and-immunology" }
+                  - { label: "17.4 Coronal Seal and Restoration Timing", value: "s17-high-yield-board-review-topics-174-coronal-seal-and-restoration-timing" }
+              - name: image
+                label: Image
+                widget: image
+                allow_multiple: false
+              - name: caption
+                label: Caption
+                widget: text

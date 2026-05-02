@@ -1,0 +1,9 @@
+[build]
+  command   = "python3 build.py"
+  publish   = "."
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
