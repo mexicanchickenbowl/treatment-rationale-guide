@@ -1,0 +1,1384 @@
+<!doctype html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Endo Pharm Bucket Sort",
+  "schemaVersion": 1,
+  "description": "Adaptive endodontic pharmacology bucket-sort study tool. 60 drugs across 23 classes (LAs, NSAIDs, opioids, antibiotics, benzos, anticoagulants, bisphosphonates, etc.). Each round samples 25 drugs weighted toward your weak spots, with decoy buckets to prevent process-of-elimination. Tracks lifetime first-try accuracy per drug and per class in localStorage and surfaces weak areas in the Stats panel.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Endo Pharmacology — Bucket Sort</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  background: #f7f8fb;
+  color: #1a1f2c;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 16px;
+}
+h1 { font-size: 18px; margin: 0 0 2px 0; font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 14px; margin: 0 0 8px 0; font-weight: 600; color: #4b5363; text-transform: uppercase; letter-spacing: 0.05em; }
+.subtitle { font-size: 12px; color: #6b7280; margin-bottom: 14px; }
+
+.topbar {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+  padding-bottom: 12px; border-bottom: 1px solid #e5e7eb; margin-bottom: 14px;
+}
+.stats-strip { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.stat { display: flex; flex-direction: column; line-height: 1.1; }
+.stat .v { font-size: 16px; font-weight: 700; color: #111827; }
+.stat .l { font-size: 10px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+.btn {
+  background: #ffffff; border: 1px solid #d1d5db; color: #111827;
+  padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.btn:hover { background: #f3f4f6; border-color: #9ca3af; }
+.btn.primary { background: #1f6feb; border-color: #1f6feb; color: white; }
+.btn.primary:hover { background: #1858bd; border-color: #1858bd; }
+.btn.danger { color: #b91c1c; border-color: #fecaca; background: #fff; }
+.btn.danger:hover { background: #fef2f2; }
+
+.pool-wrap { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; margin-bottom: 14px; }
+.pool {
+  display: flex; flex-wrap: wrap; gap: 8px; min-height: 60px;
+}
+.drug {
+  background: #fff; border: 1px solid #d1d5db; border-radius: 8px;
+  padding: 8px 12px; font-size: 13px; font-weight: 500; cursor: grab;
+  user-select: none; transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
+  box-shadow: 0 1px 0 rgba(17,24,39,0.04);
+}
+.drug:hover { border-color: #9ca3af; box-shadow: 0 2px 6px rgba(17,24,39,0.06); }
+.drug.dragging { opacity: 0.4; }
+.drug .dlevel {
+  display: inline-block; min-width: 16px; height: 16px; padding: 0 4px;
+  border-radius: 4px; font-size: 10px; font-weight: 700;
+  margin-right: 6px; vertical-align: middle; text-align: center; line-height: 16px;
+  color: white;
+}
+.drug .dlevel.d1 { background: #16a34a; }
+.drug .dlevel.d2 { background: #65a30d; }
+.drug .dlevel.d3 { background: #1f6feb; }
+.drug .dlevel.d4 { background: #f59e0b; }
+.drug .dlevel.d5 { background: #dc2626; }
+.drug.selected .dlevel { background: rgba(255,255,255,0.3); }
+.drug.selected { background: #1f6feb; color: white; border-color: #1f6feb; box-shadow: 0 4px 10px rgba(31,111,235,0.3); }
+.drug.shake { animation: shake 0.3s ease-in-out; border-color: #dc2626 !important; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+
+.buckets {
+  display: grid; gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+.bucket {
+  background: #fff; border: 1.5px dashed #d1d5db; border-radius: 10px;
+  padding: 10px 12px; min-height: 80px;
+  transition: border-color 0.12s, background 0.12s, transform 0.12s;
+  display: flex; flex-direction: column; gap: 4px; cursor: pointer;
+}
+.bucket:hover { border-color: #9ca3af; background: #fafbff; }
+.bucket.drag-over { border-color: #1f6feb; background: #eff5ff; border-style: solid; }
+.bucket.flash-correct { background: #dcfce7; border-color: #22c55e; border-style: solid; }
+.bucket.flash-wrong { background: #fee2e2; border-color: #dc2626; border-style: solid; }
+.bucket.target-hint { border-color: #f59e0b; background: #fef3c7; border-style: solid; animation: pulse 0.8s ease-in-out 2; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.5); } 50% { box-shadow: 0 0 0 8px rgba(245,158,11,0); } }
+.bucket .bname { font-size: 13px; font-weight: 600; color: #111827; }
+.bucket .bmech { font-size: 11px; color: #6b7280; line-height: 1.35; margin-top: 2px; }
+.bucket .btx {
+  font-size: 11px; color: #4b5563; line-height: 1.35;
+  margin-top: 5px; padding-top: 5px; border-top: 1px dashed #e5e7eb;
+}
+.bucket .btx::before {
+  content: 'Treats: '; font-weight: 600; color: #16a34a;
+}
+.bucket .placed { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.bucket .placed .chip {
+  background: #f3f4f6; border-radius: 5px; padding: 2px 6px; font-size: 11px; color: #374151;
+}
+.bucket .placed .chip.miss { background: #fee2e2; color: #991b1b; }
+.bucket .placed .chip.hit { background: #dcfce7; color: #166534; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  background: #111827; color: white; padding: 10px 16px; border-radius: 8px;
+  font-size: 13px; box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  max-width: 90vw; text-align: center; z-index: 100;
+}
+.toast.show { opacity: 1; }
+.toast.success { background: #16a34a; }
+.toast.error { background: #dc2626; }
+
+.modal-bg { position: fixed; inset: 0; background: rgba(17,24,39,0.55); display: none; align-items: center; justify-content: center; z-index: 200; padding: 20px; }
+.modal-bg.show { display: flex; }
+.modal {
+  background: white; border-radius: 14px; padding: 22px; max-width: 640px; width: 100%;
+  max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.modal h3 { margin: 0 0 4px 0; font-size: 18px; }
+.modal .mlead { font-size: 13px; color: #6b7280; margin-bottom: 16px; }
+.modal .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+.modal .row:last-child { border-bottom: none; }
+.modal .row .nm { font-weight: 500; }
+.modal .row .ac { font-variant-numeric: tabular-nums; color: #4b5563; font-size: 12px; }
+.modal .acc-bar { width: 80px; height: 6px; background: #f3f4f6; border-radius: 4px; overflow: hidden; }
+.modal .acc-bar > div { height: 100%; background: #22c55e; }
+.modal .acc-bar.weak > div { background: #dc2626; }
+.modal .acc-bar.med > div { background: #f59e0b; }
+.modal .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; }
+.weak-list { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 12px; margin: 10px 0; font-size: 12px; }
+.weak-list ul { margin: 4px 0 0 0; padding-left: 18px; }
+
+.section-spacer { height: 6px; }
+.empty-pool { color: #6b7280; font-size: 13px; padding: 10px; text-align: center; font-style: italic; }
+.help { font-size: 12px; color: #6b7280; padding: 4px 0 10px; }
+
+.stat.timer .v { color: #1f6feb; font-variant-numeric: tabular-nums; }
+.stat.timer.warn .v { color: #f59e0b; }
+.stat.timer.fast .v { color: #16a34a; }
+.stat.high .v { color: #c026d3; }
+.stat .pb { font-size: 9px; font-weight: 700; color: #c026d3; letter-spacing: 0.05em; }
+
+.summary-card { background: linear-gradient(135deg, #1f6feb 0%, #6366f1 100%); color: white; border-radius: 14px; padding: 22px; margin: 12px 0 18px; }
+.summary-card.pb { background: linear-gradient(135deg, #c026d3 0%, #f59e0b 100%); }
+.summary-card .sc-headline { font-size: 12px; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.summary-card .sc-score { font-size: 44px; font-weight: 800; line-height: 1; margin: 4px 0 8px; font-variant-numeric: tabular-nums; }
+.summary-card .sc-row { display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; }
+.summary-card .sc-row b { font-weight: 700; }
+.summary-card .pb-banner { display: inline-block; background: rgba(255,255,255,0.25); padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px; }
+
+.topic-panel { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; }
+.topic-panel-header { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.topic-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.topic-actions select { padding: 6px 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 13px; background: white; }
+.topic-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-topic {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 11px; border-radius: 999px; border: 1.5px solid #d1d5db;
+  background: #fff; cursor: pointer; user-select: none;
+  font-size: 12px; font-weight: 500; color: #4b5563;
+  transition: background 0.12s, border-color 0.12s;
+}
+.chip-topic:hover { border-color: #9ca3af; }
+.chip-topic.on { background: #1f6feb; border-color: #1f6feb; color: white; }
+.chip-topic .ct { background: rgba(255,255,255,0.3); padding: 1px 6px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+.chip-topic:not(.on) .ct { background: #f3f4f6; color: #6b7280; }
+.topic-meta { font-size: 11px; color: #6b7280; margin-top: 8px; }
+.diff-pills { display: inline-flex; gap: 0; border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden; }
+.diff-pill {
+  border: none; background: white; padding: 6px 10px; font-size: 12px; font-weight: 600;
+  color: #4b5563; cursor: pointer; min-width: 28px;
+  border-right: 1px solid #e5e7eb; transition: background 0.1s;
+}
+.diff-pill:last-child { border-right: none; }
+.diff-pill:hover { background: #f3f4f6; }
+.diff-pill.selected {
+  color: white;
+}
+.diff-pill.selected[data-d="1"] { background: #16a34a; }
+.diff-pill.selected[data-d="2"] { background: #65a30d; }
+.diff-pill.selected[data-d="3"] { background: #1f6feb; }
+.diff-pill.selected[data-d="4"] { background: #f59e0b; }
+.diff-pill.selected[data-d="5"] { background: #dc2626; }
+.diff-pill.range {
+  background: #eff5ff; color: #1f6feb;
+}
+
+@media (max-width: 600px) {
+  body { padding: 10px; }
+  .buckets { grid-template-columns: 1fr; }
+  h1 { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>Endo Pharmacology — Bucket Sort</h1>
+    <div class="subtitle">Drag (or tap) each drug into its class. Mistakes get re-fed in future rounds.</div>
+  </div>
+  <div class="stats-strip">
+    <div class="stat timer" id="stat-timer-wrap"><span class="v" id="stat-timer">00:00</span><span class="l">Time</span></div>
+    <div class="stat"><span class="v" id="stat-round">1</span><span class="l">Round</span></div>
+    <div class="stat"><span class="v" id="stat-correct">0</span><span class="l">First-try</span></div>
+    <div class="stat"><span class="v" id="stat-misses">0</span><span class="l">Misses</span></div>
+    <div class="stat"><span class="v" id="stat-remaining">0</span><span class="l">Left</span></div>
+    <div class="stat high"><span class="v" id="stat-high">—</span><span class="l">High score</span></div>
+    <button class="btn" id="btn-stats">Stats</button>
+    <button class="btn" id="btn-skip" title="Show me the answer for this drug">Reveal</button>
+    <button class="btn primary" id="btn-newround" style="display:none;">Next round</button>
+  </div>
+</div>
+
+<div id="summary-slot"></div>
+
+<div class="topic-panel">
+  <div class="topic-panel-header">
+    <h2 style="margin:0;">Topics</h2>
+    <div class="topic-actions">
+      <span style="font-size:11px;color:#6b7280;">Difficulty:</span>
+      <div class="diff-pills" id="diff-pills">
+        <button class="diff-pill" data-d="1" title="L1 — must-know cold (most common Rx)">1</button>
+        <button class="diff-pill" data-d="2" title="L2 — board core (common)">2</button>
+        <button class="diff-pill" data-d="3" title="L3 — standard board difficulty">3</button>
+        <button class="diff-pill" data-d="4" title="L4 — less common but board-relevant">4</button>
+        <button class="diff-pill" data-d="5" title="L5 — obscure, includes everything">5</button>
+      </div>
+      <span style="font-size:11px;color:#6b7280;margin-left:8px;">Size:</span>
+      <select id="round-size">
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="25">25</option>
+        <option value="40">40</option>
+        <option value="60">60</option>
+      </select>
+      <button class="btn" id="btn-topics-all">All on</button>
+      <button class="btn" id="btn-topics-none">All off</button>
+      <button class="btn" id="btn-topics-endo">Endo only</button>
+      <button class="btn primary" id="btn-apply-topics">Restart round</button>
+    </div>
+  </div>
+  <div class="topic-chips" id="topic-chips"></div>
+  <div class="topic-meta" id="topic-meta"></div>
+</div>
+
+<div class="pool-wrap">
+  <h2>Drug pool</h2>
+  <div class="help">Tip: tap a drug to select it, then tap a bucket. Or drag it. Timer starts on your first action.</div>
+  <div class="pool" id="pool"></div>
+</div>
+
+<h2>Drug-class buckets</h2>
+<div class="buckets" id="buckets"></div>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h3 id="modal-title">Stats</h3>
+    <div class="mlead" id="modal-lead"></div>
+    <div id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn danger" id="btn-reset">Reset all stats</button>
+      <button class="btn primary" id="btn-modal-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// =========================================================================
+// DATA
+// =========================================================================
+
+const TOPICS = {
+  endo:   { label:'Endo essentials',  desc:'LA, antibiotics, analgesics, sedation' },
+  cv:     { label:'Cardiovascular',   desc:'HTN, lipids, antiarrhythmics' },
+  hemo:   { label:'Hematology',       desc:'Anticoagulants, antiplatelets' },
+  dm:     { label:'Diabetes',         desc:'Oral agents + insulin' },
+  bone:   { label:'Bone health',      desc:'BPs, RANKL, PTH analogs' },
+  onco:   { label:'Oncology',         desc:'Chemo, targeted, immune' },
+  psych:  { label:'Psychiatry',       desc:'Antidepressants, antipsychotics' },
+  neuro:  { label:'Neuro / AED',      desc:'Anticonvulsants' },
+  pulm:   { label:'Pulmonary',        desc:'Asthma / COPD' },
+  gi:     { label:'GI',               desc:'PPI, H2, antiemetics' },
+  thyr:   { label:'Thyroid',          desc:'Replacement, antithyroid' },
+  allg:   { label:'Allergy',          desc:'Antihistamines' },
+  rheum:  { label:'Rheum / Immune',   desc:'DMARDs, biologics' },
+  anesth: { label:'Anesthesia adj.',  desc:'Induction, reversal, gases' },
+};
+
+const BUCKETS = [
+  // ENDO ESSENTIALS
+  { t:'endo', id:'amide-la', name:'Amide local anesthetic', mech:'Na⁺ channel blocker; hepatic metabolism', tx:'Dental local anesthesia; peripheral nerve blocks' },
+  { t:'endo', id:'ester-la', name:'Ester local anesthetic', mech:'Na⁺ channel blocker; plasma cholinesterase → PABA', tx:'Topical anesthesia (mucosa); historical injectable LA' },
+  { t:'endo', id:'nsaid-ns', name:'Non-selective NSAID', mech:'Reversible (mostly) COX-1/COX-2 inhibition; one member is irreversible', tx:'Mild-moderate pain, fever, inflammation, dysmenorrhea' },
+  { t:'endo', id:'cox2', name:'COX-2 selective NSAID', mech:'Selective COX-2 inhibition; lower GI risk', tx:'Pain/inflammation when GI bleed risk is elevated' },
+  { t:'endo', id:'apap', name:'Acetaminophen', mech:'Central COX/peroxidase; weak peripheral effect', tx:'Mild-moderate pain, fever (no anti-inflammatory effect)' },
+  { t:'endo', id:'opioid', name:'Opioid analgesic', mech:'μ-opioid receptor agonist', tx:'Moderate-severe acute pain; chronic cancer pain' },
+  { t:'endo', id:'penicillin', name:'Penicillin (β-lactam)', mech:'Inhibits PBPs → cell wall synthesis', tx:'Endo infections (1st line), strep, susceptible aerobes' },
+  { t:'endo', id:'cephalosporin', name:'Cephalosporin (β-lactam)', mech:'Inhibits PBPs → cell wall synthesis', tx:'Skin/soft tissue, UTI, surgical prophylaxis' },
+  { t:'endo', id:'macrolide', name:'Macrolide', mech:'Binds 50S ribosome → blocks translocation', tx:'Atypical pneumonia, dental abscess (PCN-allergic), strep pharyngitis' },
+  { t:'endo', id:'lincosamide', name:'Lincosamide', mech:'Binds 50S ribosome → inhibits protein synthesis', tx:'Anaerobic infections, dental abscess (PCN-allergic)' },
+  { t:'endo', id:'nitroimidazole', name:'Nitroimidazole', mech:'Reduced nitro group → DNA disruption (anaerobes)', tx:'Anaerobes, C. diff, H. pylori, trichomoniasis' },
+  { t:'endo', id:'tetracycline', name:'Tetracycline', mech:'Binds 30S ribosome → blocks tRNA binding', tx:'Acne, periodontitis, atypical infections, Lyme' },
+  { t:'endo', id:'aminoglycoside', name:'Aminoglycoside', mech:'Binds 30S ribosome irreversibly; bactericidal', tx:'Severe gram-negative infections (IV/IM only)' },
+  { t:'endo', id:'fluoroquinolone', name:'Fluoroquinolone', mech:'Inhibits DNA gyrase / topoisomerase IV', tx:'UTI, GI infections, atypical pneumonia' },
+  { t:'endo', id:'sulfonamide', name:'Sulfonamide', mech:'Sequential inhibition of folate synthesis at DHPS + DHFR', tx:'UTI, PCP prophylaxis, MRSA skin infections' },
+  { t:'endo', id:'glycopeptide', name:'Glycopeptide', mech:'Binds D-Ala-D-Ala terminus → blocks cell wall synthesis', tx:'MRSA, severe Gram-positive infections; C. diff (PO)' },
+  { t:'endo', id:'oxazolidinone', name:'Oxazolidinone', mech:'Binds 23S of 50S ribosomal subunit; blocks initiation complex', tx:'VRE, MRSA, complicated skin infections' },
+  { t:'endo', id:'benzo', name:'Benzodiazepine', mech:'GABA-A allosteric modulator → ↑ Cl⁻ influx', tx:'Anxiolysis, sedation, seizures, alcohol withdrawal' },
+  { t:'endo', id:'corticosteroid', name:'Corticosteroid', mech:'Glucocorticoid receptor → ↓ phospholipase A2', tx:'Inflammation, autoimmune flare, post-op edema, adrenal insufficiency' },
+  { t:'endo', id:'vasoconstrictor', name:'Vasoconstrictor', mech:'α-adrenergic agonist', tx:'Prolong LA effect; reduce intra-op bleeding' },
+  { t:'endo', id:'antifungal-azole', name:'Antifungal — Azole', mech:'Inhibits 14α-demethylase → ↓ ergosterol', tx:'Candidiasis (oral/systemic), tinea, cryptococcosis' },
+  { t:'endo', id:'antifungal-polyene', name:'Antifungal — Polyene', mech:'Binds ergosterol → membrane pores', tx:'Oral candidiasis (topical); invasive fungi (IV)' },
+  { t:'endo', id:'antifungal-echino', name:'Antifungal — Echinocandin', mech:'Inhibits β-1,3-glucan synthase → disrupts fungal cell wall', tx:'Invasive candidiasis, aspergillosis (IV)' },
+  { t:'endo', id:'antiviral', name:'Antiviral — Nucleoside analog', mech:'Inhibits viral DNA polymerase', tx:'HSV (cold sores, genital), VZV (shingles, chickenpox)' },
+
+  // HEMATOLOGY
+  { t:'hemo', id:'antico-vka', name:'Anticoagulant — Vit K antagonist', mech:'Inhibits VKORC1 → ↓ factors II, VII, IX, X', tx:'AFib, DVT/PE, mechanical heart valves' },
+  { t:'hemo', id:'antico-doac-xa', name:'DOAC — Factor Xa inhibitor', mech:'Direct factor Xa inhibitor', tx:'AFib (non-valvular), DVT/PE' },
+  { t:'hemo', id:'antico-doac-iia', name:'DOAC — Direct thrombin inhibitor', mech:'Direct thrombin (factor IIa) inhibitor', tx:'AFib (non-valvular), DVT/PE' },
+  { t:'hemo', id:'antico-heparin', name:'Heparin / LMWH', mech:'Activates antithrombin III → inhibits IIa, Xa', tx:'Acute DVT/PE, ACS, bridging, surgical prophylaxis' },
+  { t:'hemo', id:'antiplatelet-p2y12', name:'Antiplatelet — P2Y12', mech:'Irreversible P2Y12 ADP receptor inhibitor', tx:'ACS, post-stent, secondary stroke/MI prevention' },
+  { t:'hemo', id:'antiplatelet-asa', name:'Antiplatelet — ASA (low-dose)', mech:'Irreversibly acetylates platelet COX-1 → ↓ TXA2', tx:'Secondary CV prevention, post-MI, stroke prevention' },
+  { t:'hemo', id:'antiplatelet-pde', name:'Antiplatelet — PDE inhibitor', mech:'Inhibits phosphodiesterase → ↑ cAMP → ↓ platelet aggregation', tx:'Peripheral artery disease (claudication); 2° stroke prev.' },
+
+  // BONE HEALTH
+  { t:'bone', id:'bisphosphonate', name:'Bisphosphonate', mech:'Osteoclast inhibitor (MRONJ risk)', tx:'Osteoporosis, Paget disease, malignant hypercalcemia, bone mets' },
+  { t:'bone', id:'rankl-inh', name:'RANKL inhibitor', mech:'Mab vs RANKL → blocks osteoclast formation (MRONJ risk)', tx:'Osteoporosis, bone mets' },
+  { t:'bone', id:'sclerostin-inh', name:'Sclerostin inhibitor', mech:'Mab vs sclerostin → ↑ bone formation', tx:'Severe osteoporosis (anabolic, time-limited)' },
+  { t:'bone', id:'pth-analog', name:'PTH analog (anabolic)', mech:'Recombinant PTH; intermittent dosing → bone formation', tx:'Severe osteoporosis with high fracture risk (anabolic)' },
+  { t:'bone', id:'serm-bone', name:'SERM (bone)', mech:'Estrogen receptor mod; agonist in bone, antagonist in breast', tx:'Postmenopausal osteoporosis; breast cancer risk reduction' },
+  { t:'bone', id:'calcitonin', name:'Calcitonin', mech:'↓ osteoclast activity; mild antiresorptive', tx:'Osteoporosis (rare now), Paget, acute hypercalcemia' },
+
+  // CARDIOVASCULAR
+  { t:'cv', id:'acei', name:'ACE inhibitor', mech:'Inhibits ACE → ↓ ang II, ↑ bradykinin (cough)', tx:'HTN, HF, post-MI, CKD/proteinuria, DM nephropathy' },
+  { t:'cv', id:'arb', name:'ARB (angiotensin II receptor blocker)', mech:'Selective AT1 receptor antagonist', tx:'HTN, HF, CKD/proteinuria (esp. ACEi-intolerant)' },
+  { t:'cv', id:'bb-nonsel', name:'Beta blocker — non-selective', mech:'Blocks β1 + β2', tx:'Migraine prophylaxis, performance anxiety, essential tremor, portal HTN' },
+  { t:'cv', id:'bb-sel', name:'Beta blocker — β1 selective', mech:'Cardioselective β1 blockade', tx:'HTN, HF, post-MI, AFib rate control, angina' },
+  { t:'cv', id:'bb-mixed', name:'Beta blocker — mixed α/β', mech:'Combined α + β receptor blockade', tx:'HF, HTN, hypertensive emergency' },
+  { t:'cv', id:'ccb-dhp', name:'CCB — dihydropyridine', mech:'L-type Ca channel block in vascular smooth muscle', tx:'HTN, Raynaud phenomenon, vasospastic angina' },
+  { t:'cv', id:'ccb-non', name:'CCB — non-dihydropyridine', mech:'L-type Ca block in cardiac/AV node', tx:'HTN, AFib/SVT rate control, angina' },
+  { t:'cv', id:'thiazide', name:'Thiazide diuretic', mech:'Inhibits Na/Cl cotransporter in DCT', tx:'HTN (1st line), mild HF, Ca²⁺ kidney stones' },
+  { t:'cv', id:'loop', name:'Loop diuretic', mech:'Inhibits Na/K/2Cl in thick ascending limb', tx:'HF, edema, HTN with renal impairment, hypercalcemia' },
+  { t:'cv', id:'k-sparing', name:'K-sparing / aldosterone antagonist', mech:'Aldosterone receptor antagonist or ENaC blocker', tx:'HF (mortality benefit), hyperaldosteronism, K⁺ retention' },
+  { t:'cv', id:'alpha1-block', name:'Alpha-1 blocker', mech:'Selective α1 receptor antagonist', tx:'BPH, resistant HTN, PTSD nightmares' },
+  { t:'cv', id:'alpha2-agonist', name:'Central α2 agonist', mech:'Reduces sympathetic outflow centrally', tx:'Resistant HTN, gestational HTN, ADHD, opioid withdrawal' },
+  { t:'cv', id:'vasodilator', name:'Direct arterial vasodilator', mech:'Direct arteriolar smooth muscle relaxation', tx:'Resistant HTN, HF (with nitrate), severe alopecia (one agent)' },
+  { t:'cv', id:'statin', name:'Statin', mech:'HMG-CoA reductase inhibitor', tx:'Hyperlipidemia, ASCVD primary/secondary prevention' },
+  { t:'cv', id:'fibrate', name:'Fibrate', mech:'PPAR-α agonist → ↓ TG', tx:'High triglycerides, mixed dyslipidemia' },
+  { t:'cv', id:'ezetimibe', name:'Cholesterol absorption inhibitor', mech:'Inhibits NPC1L1 sterol transporter in small intestine', tx:'LDL reduction add-on when statin alone insufficient' },
+  { t:'cv', id:'pcsk9', name:'PCSK9 inhibitor', mech:'Mab vs PCSK9 → ↑ LDL receptors', tx:'Familial hypercholesterolemia; statin-refractory high LDL' },
+  { t:'cv', id:'antiarr-3', name:'Class III antiarrhythmic', mech:'K⁺ channel blocker; prolongs phase 3 repolarization (some agents are multi-class)', tx:'AFib, AFlut, recurrent VT/VF' },
+  { t:'cv', id:'nitrate', name:'Nitrate', mech:'NO donor → cGMP-mediated vasodilation', tx:'Angina (acute and chronic), HF (combo with vasodilator)' },
+
+  // DIABETES
+  { t:'dm', id:'biguanide', name:'Biguanide', mech:'↓ hepatic gluconeogenesis; ↑ peripheral glucose uptake', tx:'Type 2 DM (1st line), PCOS' },
+  { t:'dm', id:'sulfonylurea', name:'Sulfonylurea', mech:'Closes β-cell K-ATP channel → endogenous insulin release', tx:'Type 2 DM (older 2nd-line; hypoglycemia risk)' },
+  { t:'dm', id:'meglitinide', name:'Meglitinide', mech:'Closes β-cell K-ATP channel (faster, mealtime)', tx:'Type 2 DM postprandial control; sulfonylurea-intolerant' },
+  { t:'dm', id:'tzd', name:'Thiazolidinedione (TZD)', mech:'PPAR-γ agonist → ↑ peripheral insulin sensitivity', tx:'Type 2 DM (insulin-resistant phenotype, NAFLD)' },
+  { t:'dm', id:'dpp4', name:'DPP-4 inhibitor', mech:'Prevents endogenous incretin degradation', tx:'Type 2 DM (modest A1c, weight-neutral)' },
+  { t:'dm', id:'glp1', name:'GLP-1 receptor agonist', mech:'Mimics incretin → ↑ insulin, ↓ glucagon, satiety', tx:'Type 2 DM, obesity, CV/renal risk reduction' },
+  { t:'dm', id:'sglt2', name:'SGLT2 inhibitor', mech:'Blocks renal glucose reabsorption (UTI / euglycemic DKA risk)', tx:'Type 2 DM, HF (any EF), CKD' },
+  { t:'dm', id:'insulin-rapid', name:'Insulin — rapid-acting', mech:'Mealtime; onset 5–15 min', tx:'Mealtime coverage; correction doses' },
+  { t:'dm', id:'insulin-long', name:'Insulin — long-acting basal', mech:'Flat 24-hr basal coverage', tx:'Basal insulin coverage (24-hr)' },
+
+  // ONCOLOGY
+  { t:'onco', id:'alkylating', name:'Alkylating agent', mech:'Cross-links DNA', tx:'Solid tumors, lymphomas; conditioning for BMT' },
+  { t:'onco', id:'antimetabolite', name:'Antimetabolite', mech:'Mimics nucleotides → inhibits DNA synthesis', tx:'Leukemias, lymphomas, solid tumors; low-dose for autoimmune' },
+  { t:'onco', id:'anthracycline', name:'Anthracycline', mech:'Topoisomerase II inhibitor; cardiotoxic', tx:'Breast, lymphoma, leukemia, sarcoma' },
+  { t:'onco', id:'taxane', name:'Taxane', mech:'Stabilizes microtubules → mitotic arrest', tx:'Breast, ovarian, NSCLC, prostate cancer' },
+  { t:'onco', id:'tki', name:'Tyrosine kinase inhibitor', mech:'Inhibits intracellular tyrosine kinase signaling', tx:'Targeted: CML, NSCLC, RCC, HER2+, etc.' },
+  { t:'onco', id:'mab-cytotoxic', name:'Monoclonal antibody — cytotoxic', mech:'Targets surface antigen (CD20, HER2, etc.)', tx:'Targeted: CD20 lymphoma, HER2+ breast, others' },
+  { t:'onco', id:'antiangiogenic', name:'Antiangiogenic mAb / VEGF inhibitor', mech:'Anti-VEGF (MRONJ risk)', tx:'Colon, RCC, glioblastoma, NSCLC (MRONJ risk)' },
+  { t:'onco', id:'checkpoint', name:'Immune checkpoint inhibitor', mech:'PD-1/PD-L1/CTLA-4 blockade — restores T-cell response', tx:'Melanoma, NSCLC, RCC, HCC, urothelial, MSI-H tumors' },
+  { t:'onco', id:'aromatase', name:'Aromatase inhibitor', mech:'Inhibits peripheral estrogen synthesis', tx:'ER+ breast cancer (postmenopausal)' },
+  { t:'onco', id:'serm-onco', name:'SERM (anti-tumor)', mech:'Estrogen receptor mod; antagonist in breast', tx:'ER+ breast cancer (pre- and post-menopausal)' },
+
+  // PSYCHIATRY
+  { t:'psych', id:'ssri', name:'SSRI', mech:'Selective serotonin reuptake inhibitor', tx:'Depression, anxiety, OCD, PTSD, panic disorder' },
+  { t:'psych', id:'snri', name:'SNRI', mech:'Serotonin + norepinephrine reuptake inhibitor', tx:'Depression, anxiety, neuropathic pain, fibromyalgia' },
+  { t:'psych', id:'tca', name:'TCA', mech:'Blocks 5-HT/NE reuptake; antimuscarinic, α-block', tx:'Depression (legacy), neuropathic pain, migraine prevention' },
+  { t:'psych', id:'maoi', name:'MAOI', mech:'Inhibits monoamine oxidase', tx:'Refractory/atypical depression; Parkinson (one agent)' },
+  { t:'psych', id:'antipsy-atyp', name:'Atypical antipsychotic (2nd gen)', mech:'5-HT2A + D2 antagonist', tx:'Schizophrenia, bipolar, refractory depression, agitation' },
+  { t:'psych', id:'antipsy-typ', name:'Typical antipsychotic (1st gen)', mech:'Strong D2 antagonist', tx:'Schizophrenia, acute psychosis, severe agitation' },
+  { t:'psych', id:'lithium', name:'Lithium', mech:'Multi-site (IMPase, GSK-3β); narrow therapeutic index', tx:'Bipolar disorder; depression augmentation' },
+
+  // NEURO / ANTICONVULSANTS
+  { t:'neuro', id:'aed-na', name:'Anticonvulsant — Na⁺ channel blocker', mech:'Inactivates voltage-gated Na⁺ channels', tx:'Focal/generalized seizures, neuropathic pain, mood stabilization' },
+  { t:'neuro', id:'aed-gaba', name:'Anticonvulsant — GABA-related', mech:'Enhances GABAergic inhibition or related ion-channel effects', tx:'Seizures, neuropathic pain, anxiety (gabapentinoids)' },
+  { t:'neuro', id:'aed-multi', name:'Anticonvulsant — multimodal/other', mech:'Multiple/novel mechanisms (SV2A binding, carbonic anhydrase, etc.)', tx:'Broad-spectrum seizures; some used for migraine' },
+
+  // PULMONARY
+  { t:'pulm', id:'saba', name:'SABA (short-acting β2 agonist)', mech:'β2 agonist → bronchodilation (rescue)', tx:'Acute asthma/COPD bronchospasm (rescue)' },
+  { t:'pulm', id:'laba', name:'LABA (long-acting β2 agonist)', mech:'Long-acting β2 agonist (always with ICS in asthma)', tx:'COPD maintenance; asthma (always paired with ICS)' },
+  { t:'pulm', id:'ics', name:'Inhaled corticosteroid (ICS)', mech:'Local anti-inflammatory; cornerstone of asthma', tx:'Asthma maintenance (1st line), COPD with exacerbations' },
+  { t:'pulm', id:'lama', name:'LAMA / SAMA (antimuscarinic)', mech:'Blocks M3 muscarinic receptor → bronchodilation', tx:'COPD maintenance; asthma adjunct' },
+  { t:'pulm', id:'ltra', name:'Leukotriene receptor antagonist', mech:'Blocks CysLT1 receptor', tx:'Asthma (esp. exercise/allergic); allergic rhinitis' },
+  { t:'pulm', id:'methylxanthine', name:'Methylxanthine', mech:'Non-selective PDE inhibitor + adenosine receptor antagonist', tx:'Refractory asthma/COPD (legacy; narrow therapeutic window)' },
+
+  // GI
+  { t:'gi', id:'ppi', name:'Proton pump inhibitor (PPI)', mech:'Irreversible H+/K+ ATPase inhibitor in parietal cells', tx:'GERD, peptic ulcer, H. pylori combo, erosive esophagitis' },
+  { t:'gi', id:'h2', name:'H2 receptor blocker', mech:'Blocks histamine H2 on parietal cells', tx:'Mild GERD, dyspepsia, peptic ulcer' },
+  { t:'gi', id:'5ht3', name:'5-HT3 antagonist', mech:'Blocks 5-HT3 receptors at the CTZ and GI tract (antiemetic)', tx:'Chemotherapy and post-op nausea/vomiting' },
+  { t:'gi', id:'d2-gi', name:'D2 antagonist (prokinetic/antiemetic)', mech:'Dopamine D2 blockade in GI/CTZ', tx:'Diabetic gastroparesis, severe nausea, GERD adjunct' },
+
+  // THYROID
+  { t:'thyr', id:'thyroid-rep', name:'Thyroid hormone replacement', mech:'Synthetic T4; deiodinated peripherally to active T3', tx:'Hypothyroidism, post-thyroidectomy, TSH suppression' },
+  { t:'thyr', id:'antithyroid', name:'Antithyroid (thioamide)', mech:'Inhibits thyroid peroxidase', tx:'Hyperthyroidism (Graves), pre-thyroidectomy, thyroid storm' },
+
+  // ALLERGY
+  { t:'allg', id:'h1-1', name:'1st-gen H1 antihistamine', mech:'H1 blocker; crosses BBB (sedating, antimuscarinic)', tx:'Allergic reactions, motion sickness, insomnia' },
+  { t:'allg', id:'h1-2', name:'2nd-gen H1 antihistamine', mech:'H1 blocker; minimal BBB penetration', tx:'Seasonal allergies, urticaria (non-sedating)' },
+
+  // RHEUM / IMMUNE
+  { t:'rheum', id:'tnf', name:'TNF-α inhibitor', mech:'Mab/fusion protein vs TNF-α', tx:'RA, IBD, psoriasis, ankylosing spondylitis' },
+  { t:'rheum', id:'calcineurin', name:'Calcineurin inhibitor', mech:'Inhibits calcineurin → ↓ T-cell activation; gingival hyperplasia association', tx:'Transplant rejection, severe psoriasis/eczema' },
+  { t:'rheum', id:'mtor', name:'mTOR inhibitor', mech:'Inhibits mTORC1 → ↓ T-cell proliferation', tx:'Transplant rejection; some cancers' },
+  { t:'rheum', id:'jak', name:'JAK inhibitor', mech:'Inhibits Janus kinase cytokine signaling', tx:'RA, ulcerative colitis, alopecia areata, atopic dermatitis' },
+  { t:'rheum', id:'antimalarial', name:'Antimalarial DMARD', mech:'Multi-mechanism (lysosomal pH, antigen presentation)', tx:'RA, SLE, malaria' },
+  { t:'rheum', id:'impdh', name:'IMPDH inhibitor', mech:'Inhibits inosine monophosphate dehydrogenase → lymphocyte-selective ↓ guanosine', tx:'Transplant rejection, lupus nephritis' },
+  { t:'rheum', id:'purine-am', name:'Purine antimetabolite', mech:'Prodrug → 6-MP; inhibits purine synthesis', tx:'IBD, transplant rejection, autoimmune hepatitis' },
+  { t:'rheum', id:'il6', name:'IL-6 inhibitor', mech:'Monoclonal antibody vs IL-6 receptor', tx:'RA, giant cell arteritis, CAR-T cytokine release syndrome' },
+
+  // ANESTHESIA ADJUNCTS
+  { t:'anesth', id:'iv-induct', name:'IV induction agent', mech:'GABA-A receptor enhancer → IV anesthesia induction', tx:'Anesthesia induction; ICU sedation' },
+  { t:'anesth', id:'nmda', name:'NMDA antagonist', mech:'NMDA receptor antagonist → dissociative anesthesia', tx:'Procedural sedation, refractory status epilepticus, depression' },
+  { t:'anesth', id:'a2-sed', name:'α2 agonist sedative', mech:'Central α2 receptor agonist → sedation and sympatholysis', tx:'Procedural and ICU sedation' },
+  { t:'anesth', id:'gas', name:'Inhaled anesthetic', mech:'Halogenated ether or N₂O', tx:'Inhalational anesthesia; minimal sedation (N₂O)' },
+  { t:'anesth', id:'opioid-antag', name:'Opioid antagonist', mech:'Competitive μ-opioid receptor antagonist (rapid reversal)', tx:'Reversal of opioid overdose / sedation' },
+  { t:'anesth', id:'benzo-antag', name:'Benzo antagonist', mech:'Competitive antagonist at the benzodiazepine site of GABA-A', tx:'Reversal of benzodiazepine sedation or overdose' },
+  { t:'anesth', id:'antico-rev', name:'Anticoagulant reversal', mech:'Drug-specific antidote: neutralizes target, replaces depleted factor, or restores Xa activity', tx:'Emergency reversal of specific anticoagulants' },
+];
+
+const DRUGS = [
+  // ENDO ESSENTIALS
+  { n:'Lidocaine', c:'amide-la', d:1 },
+  { n:'Articaine', c:'amide-la', d:1 },
+  { n:'Bupivacaine', c:'amide-la', d:2 },
+  { n:'Mepivacaine', c:'amide-la', d:2 },
+  { n:'Prilocaine', c:'amide-la', d:2 },
+  { n:'Benzocaine', c:'ester-la', d:2 },
+  { n:'Procaine', c:'ester-la', d:3 },
+  { n:'Tetracaine', c:'ester-la', d:3 },
+  { n:'Ibuprofen', c:'nsaid-ns', d:1 },
+  { n:'Naproxen', c:'nsaid-ns', d:1 },
+  { n:'Ketorolac', c:'nsaid-ns', d:2 },
+  { n:'Diclofenac', c:'nsaid-ns', d:2 },
+  { n:'Indomethacin', c:'nsaid-ns', d:3 },
+  { n:'Meloxicam', c:'nsaid-ns', d:3 },
+  { n:'Celecoxib', c:'cox2', d:2 },
+  { n:'Acetaminophen', c:'apap', d:1 },
+  { n:'Codeine', c:'opioid', d:1 },
+  { n:'Hydrocodone', c:'opioid', d:1 },
+  { n:'Oxycodone', c:'opioid', d:1 },
+  { n:'Tramadol', c:'opioid', d:2 },
+  { n:'Morphine', c:'opioid', d:2 },
+  { n:'Fentanyl', c:'opioid', d:2 },
+  { n:'Hydromorphone', c:'opioid', d:3 },
+  { n:'Penicillin VK', c:'penicillin', d:1 },
+  { n:'Amoxicillin', c:'penicillin', d:1 },
+  { n:'Amoxicillin/clavulanate', c:'penicillin', d:1 },
+  { n:'Dicloxacillin', c:'penicillin', d:4 },
+  { n:'Cephalexin', c:'cephalosporin', d:1 },
+  { n:'Cefadroxil', c:'cephalosporin', d:3 },
+  { n:'Cefuroxime', c:'cephalosporin', d:3 },
+  { n:'Ceftriaxone', c:'cephalosporin', d:3 },
+  { n:'Azithromycin', c:'macrolide', d:1 },
+  { n:'Clarithromycin', c:'macrolide', d:2 },
+  { n:'Erythromycin', c:'macrolide', d:3 },
+  { n:'Clindamycin', c:'lincosamide', d:1 },
+  { n:'Metronidazole', c:'nitroimidazole', d:1 },
+  { n:'Doxycycline', c:'tetracycline', d:1 },
+  { n:'Minocycline', c:'tetracycline', d:3 },
+  { n:'Tetracycline', c:'tetracycline', d:4 },
+  { n:'Gentamicin', c:'aminoglycoside', d:4 },
+  { n:'Tobramycin', c:'aminoglycoside', d:4 },
+  { n:'Ciprofloxacin', c:'fluoroquinolone', d:2 },
+  { n:'Levofloxacin', c:'fluoroquinolone', d:2 },
+  { n:'Moxifloxacin', c:'fluoroquinolone', d:3 },
+  { n:'Trimethoprim/sulfamethoxazole', c:'sulfonamide', d:2 },
+  { n:'Vancomycin', c:'glycopeptide', d:3 },
+  { n:'Linezolid', c:'oxazolidinone', d:4 },
+  { n:'Diazepam', c:'benzo', d:1 },
+  { n:'Triazolam', c:'benzo', d:1 },
+  { n:'Midazolam', c:'benzo', d:1 },
+  { n:'Alprazolam', c:'benzo', d:2 },
+  { n:'Lorazepam', c:'benzo', d:2 },
+  { n:'Dexamethasone', c:'corticosteroid', d:1 },
+  { n:'Prednisone', c:'corticosteroid', d:1 },
+  { n:'Methylprednisolone', c:'corticosteroid', d:3 },
+  { n:'Hydrocortisone', c:'corticosteroid', d:3 },
+  { n:'Epinephrine', c:'vasoconstrictor', d:1 },
+  { n:'Levonordefrin', c:'vasoconstrictor', d:2 },
+  { n:'Fluconazole', c:'antifungal-azole', d:1 },
+  { n:'Ketoconazole', c:'antifungal-azole', d:3 },
+  { n:'Itraconazole', c:'antifungal-azole', d:3 },
+  { n:'Voriconazole', c:'antifungal-azole', d:4 },
+  { n:'Nystatin', c:'antifungal-polyene', d:1 },
+  { n:'Amphotericin B', c:'antifungal-polyene', d:3 },
+  { n:'Caspofungin', c:'antifungal-echino', d:5 },
+  { n:'Acyclovir', c:'antiviral', d:1 },
+  { n:'Valacyclovir', c:'antiviral', d:2 },
+  { n:'Famciclovir', c:'antiviral', d:4 },
+
+  // HEMATOLOGY
+  { n:'Warfarin', c:'antico-vka', d:1 },
+  { n:'Rivaroxaban', c:'antico-doac-xa', d:2 },
+  { n:'Apixaban', c:'antico-doac-xa', d:1 },
+  { n:'Edoxaban', c:'antico-doac-xa', d:4 },
+  { n:'Dabigatran', c:'antico-doac-iia', d:2 },
+  { n:'Heparin', c:'antico-heparin', d:1 },
+  { n:'Enoxaparin', c:'antico-heparin', d:2 },
+  { n:'Dalteparin', c:'antico-heparin', d:4 },
+  { n:'Clopidogrel', c:'antiplatelet-p2y12', d:1 },
+  { n:'Prasugrel', c:'antiplatelet-p2y12', d:3 },
+  { n:'Ticagrelor', c:'antiplatelet-p2y12', d:3 },
+  { n:'Aspirin', c:'antiplatelet-asa', d:1 },
+  { n:'Cilostazol', c:'antiplatelet-pde', d:4 },
+  { n:'Dipyridamole', c:'antiplatelet-pde', d:4 },
+
+  // BONE
+  { n:'Alendronate', c:'bisphosphonate', d:1 },
+  { n:'Zoledronic acid', c:'bisphosphonate', d:1 },
+  { n:'Risedronate', c:'bisphosphonate', d:2 },
+  { n:'Ibandronate', c:'bisphosphonate', d:3 },
+  { n:'Pamidronate', c:'bisphosphonate', d:4 },
+  { n:'Denosumab', c:'rankl-inh', d:1 },
+  { n:'Romosozumab', c:'sclerostin-inh', d:5 },
+  { n:'Teriparatide', c:'pth-analog', d:3 },
+  { n:'Abaloparatide', c:'pth-analog', d:5 },
+  { n:'Raloxifene', c:'serm-bone', d:3 },
+  { n:'Calcitonin', c:'calcitonin', d:5 },
+
+  // CARDIOVASCULAR
+  { n:'Lisinopril', c:'acei', d:1 },
+  { n:'Enalapril', c:'acei', d:2 },
+  { n:'Ramipril', c:'acei', d:3 },
+  { n:'Benazepril', c:'acei', d:4 },
+  { n:'Losartan', c:'arb', d:1 },
+  { n:'Valsartan', c:'arb', d:2 },
+  { n:'Olmesartan', c:'arb', d:3 },
+  { n:'Irbesartan', c:'arb', d:3 },
+  { n:'Propranolol', c:'bb-nonsel', d:3 },
+  { n:'Nadolol', c:'bb-nonsel', d:4 },
+  { n:'Metoprolol', c:'bb-sel', d:1 },
+  { n:'Atenolol', c:'bb-sel', d:2 },
+  { n:'Bisoprolol', c:'bb-sel', d:3 },
+  { n:'Carvedilol', c:'bb-mixed', d:2 },
+  { n:'Labetalol', c:'bb-mixed', d:3 },
+  { n:'Amlodipine', c:'ccb-dhp', d:1 },
+  { n:'Nifedipine', c:'ccb-dhp', d:3 },
+  { n:'Felodipine', c:'ccb-dhp', d:4 },
+  { n:'Verapamil', c:'ccb-non', d:3 },
+  { n:'Diltiazem', c:'ccb-non', d:2 },
+  { n:'Hydrochlorothiazide', c:'thiazide', d:1 },
+  { n:'Chlorthalidone', c:'thiazide', d:2 },
+  { n:'Furosemide', c:'loop', d:1 },
+  { n:'Bumetanide', c:'loop', d:4 },
+  { n:'Torsemide', c:'loop', d:4 },
+  { n:'Spironolactone', c:'k-sparing', d:2 },
+  { n:'Eplerenone', c:'k-sparing', d:3 },
+  { n:'Doxazosin', c:'alpha1-block', d:3 },
+  { n:'Terazosin', c:'alpha1-block', d:4 },
+  { n:'Clonidine', c:'alpha2-agonist', d:3 },
+  { n:'Methyldopa', c:'alpha2-agonist', d:4 },
+  { n:'Hydralazine', c:'vasodilator', d:2 },
+  { n:'Minoxidil', c:'vasodilator', d:4 },
+  { n:'Atorvastatin', c:'statin', d:1 },
+  { n:'Simvastatin', c:'statin', d:1 },
+  { n:'Rosuvastatin', c:'statin', d:2 },
+  { n:'Pravastatin', c:'statin', d:3 },
+  { n:'Fenofibrate', c:'fibrate', d:3 },
+  { n:'Gemfibrozil', c:'fibrate', d:4 },
+  { n:'Ezetimibe', c:'ezetimibe', d:2 },
+  { n:'Evolocumab', c:'pcsk9', d:4 },
+  { n:'Alirocumab', c:'pcsk9', d:4 },
+  { n:'Amiodarone', c:'antiarr-3', d:2 },
+  { n:'Sotalol', c:'antiarr-3', d:4 },
+  { n:'Nitroglycerin', c:'nitrate', d:2 },
+  { n:'Isosorbide mononitrate', c:'nitrate', d:3 },
+
+  // DIABETES
+  { n:'Metformin', c:'biguanide', d:1 },
+  { n:'Glipizide', c:'sulfonylurea', d:2 },
+  { n:'Glyburide', c:'sulfonylurea', d:2 },
+  { n:'Glimepiride', c:'sulfonylurea', d:3 },
+  { n:'Repaglinide', c:'meglitinide', d:4 },
+  { n:'Nateglinide', c:'meglitinide', d:4 },
+  { n:'Pioglitazone', c:'tzd', d:3 },
+  { n:'Rosiglitazone', c:'tzd', d:4 },
+  { n:'Sitagliptin', c:'dpp4', d:2 },
+  { n:'Saxagliptin', c:'dpp4', d:4 },
+  { n:'Linagliptin', c:'dpp4', d:4 },
+  { n:'Semaglutide', c:'glp1', d:2 },
+  { n:'Liraglutide', c:'glp1', d:2 },
+  { n:'Dulaglutide', c:'glp1', d:3 },
+  { n:'Tirzepatide', c:'glp1', d:3 },
+  { n:'Empagliflozin', c:'sglt2', d:2 },
+  { n:'Canagliflozin', c:'sglt2', d:3 },
+  { n:'Dapagliflozin', c:'sglt2', d:3 },
+  { n:'Insulin lispro', c:'insulin-rapid', d:2 },
+  { n:'Insulin aspart', c:'insulin-rapid', d:2 },
+  { n:'Insulin glargine', c:'insulin-long', d:1 },
+  { n:'Insulin detemir', c:'insulin-long', d:4 },
+  { n:'Insulin degludec', c:'insulin-long', d:3 },
+
+  // ONCOLOGY
+  { n:'Cyclophosphamide', c:'alkylating', d:2 },
+  { n:'Cisplatin', c:'alkylating', d:3 },
+  { n:'Carboplatin', c:'alkylating', d:3 },
+  { n:'Methotrexate', c:'antimetabolite', d:1 },
+  { n:'5-Fluorouracil', c:'antimetabolite', d:3 },
+  { n:'Gemcitabine', c:'antimetabolite', d:4 },
+  { n:'Doxorubicin', c:'anthracycline', d:3 },
+  { n:'Daunorubicin', c:'anthracycline', d:4 },
+  { n:'Paclitaxel', c:'taxane', d:3 },
+  { n:'Docetaxel', c:'taxane', d:3 },
+  { n:'Imatinib', c:'tki', d:3 },
+  { n:'Erlotinib', c:'tki', d:3 },
+  { n:'Sunitinib', c:'tki', d:4 },
+  { n:'Rituximab', c:'mab-cytotoxic', d:2 },
+  { n:'Trastuzumab', c:'mab-cytotoxic', d:3 },
+  { n:'Bevacizumab', c:'antiangiogenic', d:2 },
+  { n:'Pembrolizumab', c:'checkpoint', d:2 },
+  { n:'Nivolumab', c:'checkpoint', d:3 },
+  { n:'Ipilimumab', c:'checkpoint', d:4 },
+  { n:'Anastrozole', c:'aromatase', d:3 },
+  { n:'Letrozole', c:'aromatase', d:3 },
+  { n:'Tamoxifen', c:'serm-onco', d:3 },
+  { n:'Fulvestrant', c:'serm-onco', d:5 },
+
+  // PSYCHIATRY
+  { n:'Sertraline', c:'ssri', d:1 },
+  { n:'Fluoxetine', c:'ssri', d:1 },
+  { n:'Paroxetine', c:'ssri', d:3 },
+  { n:'Citalopram', c:'ssri', d:2 },
+  { n:'Escitalopram', c:'ssri', d:2 },
+  { n:'Venlafaxine', c:'snri', d:2 },
+  { n:'Duloxetine', c:'snri', d:2 },
+  { n:'Desvenlafaxine', c:'snri', d:4 },
+  { n:'Amitriptyline', c:'tca', d:2 },
+  { n:'Nortriptyline', c:'tca', d:3 },
+  { n:'Imipramine', c:'tca', d:4 },
+  { n:'Phenelzine', c:'maoi', d:3 },
+  { n:'Tranylcypromine', c:'maoi', d:4 },
+  { n:'Selegiline', c:'maoi', d:3 },
+  { n:'Risperidone', c:'antipsy-atyp', d:2 },
+  { n:'Olanzapine', c:'antipsy-atyp', d:2 },
+  { n:'Quetiapine', c:'antipsy-atyp', d:2 },
+  { n:'Aripiprazole', c:'antipsy-atyp', d:2 },
+  { n:'Haloperidol', c:'antipsy-typ', d:2 },
+  { n:'Chlorpromazine', c:'antipsy-typ', d:3 },
+  { n:'Lithium', c:'lithium', d:2 },
+
+  // NEURO / AED
+  { n:'Phenytoin', c:'aed-na', d:2 },
+  { n:'Carbamazepine', c:'aed-na', d:3 },
+  { n:'Lamotrigine', c:'aed-na', d:3 },
+  { n:'Gabapentin', c:'aed-gaba', d:2 },
+  { n:'Pregabalin', c:'aed-gaba', d:3 },
+  { n:'Valproate', c:'aed-gaba', d:3 },
+  { n:'Levetiracetam', c:'aed-multi', d:2 },
+  { n:'Topiramate', c:'aed-multi', d:3 },
+
+  // PULMONARY
+  { n:'Albuterol', c:'saba', d:1 },
+  { n:'Levalbuterol', c:'saba', d:4 },
+  { n:'Salmeterol', c:'laba', d:2 },
+  { n:'Formoterol', c:'laba', d:3 },
+  { n:'Fluticasone', c:'ics', d:1 },
+  { n:'Budesonide', c:'ics', d:3 },
+  { n:'Beclomethasone', c:'ics', d:4 },
+  { n:'Tiotropium', c:'lama', d:3 },
+  { n:'Ipratropium', c:'lama', d:3 },
+  { n:'Montelukast', c:'ltra', d:2 },
+  { n:'Zafirlukast', c:'ltra', d:4 },
+  { n:'Theophylline', c:'methylxanthine', d:3 },
+
+  // GI
+  { n:'Omeprazole', c:'ppi', d:1 },
+  { n:'Pantoprazole', c:'ppi', d:2 },
+  { n:'Esomeprazole', c:'ppi', d:3 },
+  { n:'Lansoprazole', c:'ppi', d:3 },
+  { n:'Famotidine', c:'h2', d:2 },
+  { n:'Cimetidine', c:'h2', d:3 },
+  { n:'Ondansetron', c:'5ht3', d:2 },
+  { n:'Granisetron', c:'5ht3', d:4 },
+  { n:'Metoclopramide', c:'d2-gi', d:3 },
+  { n:'Prochlorperazine', c:'d2-gi', d:3 },
+
+  // THYROID
+  { n:'Levothyroxine', c:'thyroid-rep', d:1 },
+  { n:'Liothyronine', c:'thyroid-rep', d:3 },
+  { n:'Methimazole', c:'antithyroid', d:2 },
+  { n:'Propylthiouracil (PTU)', c:'antithyroid', d:3 },
+
+  // ALLERGY
+  { n:'Diphenhydramine', c:'h1-1', d:1 },
+  { n:'Hydroxyzine', c:'h1-1', d:3 },
+  { n:'Chlorpheniramine', c:'h1-1', d:4 },
+  { n:'Loratadine', c:'h1-2', d:1 },
+  { n:'Cetirizine', c:'h1-2', d:2 },
+  { n:'Fexofenadine', c:'h1-2', d:3 },
+
+  // RHEUM / IMMUNE
+  { n:'Etanercept', c:'tnf', d:3 },
+  { n:'Adalimumab', c:'tnf', d:3 },
+  { n:'Infliximab', c:'tnf', d:3 },
+  { n:'Cyclosporine', c:'calcineurin', d:2 },
+  { n:'Tacrolimus', c:'calcineurin', d:3 },
+  { n:'Sirolimus', c:'mtor', d:4 },
+  { n:'Everolimus', c:'mtor', d:4 },
+  { n:'Tofacitinib', c:'jak', d:3 },
+  { n:'Baricitinib', c:'jak', d:4 },
+  { n:'Hydroxychloroquine', c:'antimalarial', d:2 },
+  { n:'Mycophenolate mofetil', c:'impdh', d:3 },
+  { n:'Azathioprine', c:'purine-am', d:3 },
+  { n:'Tocilizumab', c:'il6', d:4 },
+
+  // ANESTHESIA ADJUNCTS
+  { n:'Propofol', c:'iv-induct', d:1 },
+  { n:'Etomidate', c:'iv-induct', d:3 },
+  { n:'Ketamine', c:'nmda', d:2 },
+  { n:'Dexmedetomidine', c:'a2-sed', d:3 },
+  { n:'Nitrous oxide', c:'gas', d:2 },
+  { n:'Sevoflurane', c:'gas', d:3 },
+  { n:'Naloxone', c:'opioid-antag', d:1 },
+  { n:'Flumazenil', c:'benzo-antag', d:2 },
+  { n:'Vitamin K (phytonadione)', c:'antico-rev', d:2 },
+  { n:'Protamine sulfate', c:'antico-rev', d:4 },
+  { n:'Idarucizumab', c:'antico-rev', d:5 },
+  { n:'Andexanet alfa', c:'antico-rev', d:5 },
+];
+
+// Build helper: bucket id -> topic
+const BUCKET_TOPIC = {};
+BUCKETS.forEach(b => { BUCKET_TOPIC[b.id] = b.t; });
+
+// =========================================================================
+// STATE
+// =========================================================================
+const STORAGE_KEY = 'endo-pharm-sort.v1';
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const s = JSON.parse(raw);
+      if (typeof s.highScore !== 'number') s.highScore = 0;
+      if (typeof s.bestTime !== 'number') s.bestTime = 0;
+      if (typeof s.bestAccuracy !== 'number') s.bestAccuracy = 0;
+      if (!Array.isArray(s.recentScores)) s.recentScores = [];
+      if (!Array.isArray(s.enabledTopics) || s.enabledTopics.length === 0) {
+        s.enabledTopics = Object.keys(TOPICS);
+      }
+      if (typeof s.roundSize !== 'number') s.roundSize = 25;
+      if (typeof s.maxDifficulty !== 'number') s.maxDifficulty = 3;
+      return s;
+    }
+  } catch (e) {}
+  return { round: 1, totalCorrect: 0, totalMisses: 0, drugStats: {}, highScore: 0, bestTime: 0, bestAccuracy: 0, recentScores: [], enabledTopics: Object.keys(TOPICS), roundSize: 25, maxDifficulty: 3 };
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+let state = loadState();
+function getStat(drugName) {
+  if (!state.drugStats[drugName]) state.drugStats[drugName] = { attempts: 0, firstTryRight: 0, missed: 0, seen: 0 };
+  return state.drugStats[drugName];
+}
+
+// Per-round state
+let currentDrugs = [];   // drug objects in this round
+let placedThisRound = {}; // drugName -> 'hit' | 'miss'
+let firstAttemptThisDrug = {}; // drugName -> bool (true if untouched / no wrong yet)
+let selectedDrug = null;  // when tap-selected
+let roundCorrect = 0;
+let roundMisses = 0;
+
+// Timer state
+let timerStart = 0;
+let timerEnd = 0;
+let timerRunning = false;
+let timerInterval = null;
+let roundTotal = 0; // count of drugs in round (for scoring)
+
+function fmtTime(ms) {
+  if (ms < 0) ms = 0;
+  const total = Math.floor(ms / 1000);
+  const m = Math.floor(total / 60);
+  const s = total % 60;
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+function startTimer() {
+  if (timerRunning) return;
+  timerStart = Date.now();
+  timerRunning = true;
+  timerInterval = setInterval(updateTimerDisplay, 100);
+}
+function stopTimer() {
+  if (!timerRunning) return;
+  timerEnd = Date.now();
+  timerRunning = false;
+  clearInterval(timerInterval);
+  updateTimerDisplay();
+}
+function resetTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerStart = 0;
+  timerEnd = 0;
+  timerRunning = false;
+  document.getElementById('stat-timer').textContent = '00:00';
+  document.getElementById('stat-timer-wrap').classList.remove('warn','fast');
+}
+function elapsedMs() {
+  if (!timerStart) return 0;
+  return (timerRunning ? Date.now() : timerEnd) - timerStart;
+}
+function updateTimerDisplay() {
+  const ms = elapsedMs();
+  document.getElementById('stat-timer').textContent = fmtTime(ms);
+  const wrap = document.getElementById('stat-timer-wrap');
+  wrap.classList.remove('warn','fast');
+  const sec = ms / 1000;
+  if (sec < 60) wrap.classList.add('fast');
+  else if (sec > 180) wrap.classList.add('warn');
+}
+
+// Score formula:
+//   per-drug-correct points: 100
+//   miss penalty: -25
+//   time penalty: -1 pt per 2 seconds
+//   reveals (auto-place misses) already counted in roundMisses
+function computeScore(firstTryCorrect, misses, elapsedSeconds) {
+  const raw = firstTryCorrect * 100 - misses * 25 - Math.floor(elapsedSeconds / 2);
+  return Math.max(0, raw);
+}
+
+// =========================================================================
+// DRUG SELECTION
+// =========================================================================
+function pickRoundDrugs(n) {
+  if (typeof n !== 'number') n = state.roundSize || 25;
+  // Filter by enabled topics + max difficulty
+  const enabled = new Set(state.enabledTopics);
+  const maxD = state.maxDifficulty || 3;
+  const eligibleDrugs = DRUGS.filter(d => enabled.has(BUCKET_TOPIC[d.c]) && (d.d || 3) <= maxD);
+  if (eligibleDrugs.length === 0) return [];
+  if (n > eligibleDrugs.length) n = eligibleDrugs.length;
+  // Weight: drugs you've missed often, or never seen, get higher weight.
+  const weighted = eligibleDrugs.map(d => {
+    const s = getStat(d.n);
+    let w;
+    if (s.seen === 0) {
+      w = 3.0; // unseen drugs prioritized
+    } else {
+      const accuracy = s.firstTryRight / s.seen;
+      w = 1.0 + (1.0 - accuracy) * 3.0;
+    }
+    return { drug: d, w };
+  });
+  const picked = [];
+  const pool = weighted.slice();
+  while (picked.length < n && pool.length > 0) {
+    const totalW = pool.reduce((a,b) => a + b.w, 0);
+    let r = Math.random() * totalW;
+    for (let i = 0; i < pool.length; i++) {
+      r -= pool[i].w;
+      if (r <= 0) {
+        picked.push(pool[i].drug);
+        pool.splice(i, 1);
+        break;
+      }
+    }
+  }
+  // Shuffle order for display
+  for (let i = picked.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [picked[i], picked[j]] = [picked[j], picked[i]];
+  }
+  return picked;
+}
+
+// =========================================================================
+// RENDER
+// =========================================================================
+const poolEl = document.getElementById('pool');
+const bucketsEl = document.getElementById('buckets');
+const statRound = document.getElementById('stat-round');
+const statCorrect = document.getElementById('stat-correct');
+const statMisses = document.getElementById('stat-misses');
+const statRemaining = document.getElementById('stat-remaining');
+const btnNewRound = document.getElementById('btn-newround');
+const btnSkip = document.getElementById('btn-skip');
+const toastEl = document.getElementById('toast');
+const topicChipsEl = document.getElementById('topic-chips');
+const topicMetaEl = document.getElementById('topic-meta');
+const roundSizeSelect = document.getElementById('round-size');
+
+function renderTopicChips() {
+  topicChipsEl.innerHTML = '';
+  const enabled = new Set(state.enabledTopics);
+  const maxD = state.maxDifficulty || 3;
+  // Count drugs per topic, respecting difficulty cap
+  const drugCount = {};
+  Object.keys(TOPICS).forEach(t => drugCount[t] = 0);
+  DRUGS.forEach(d => {
+    if ((d.d || 3) > maxD) return;
+    const t = BUCKET_TOPIC[d.c];
+    if (t && drugCount.hasOwnProperty(t)) drugCount[t] += 1;
+  });
+  Object.entries(TOPICS).forEach(([id, t]) => {
+    const chip = document.createElement('span');
+    chip.className = 'chip-topic' + (enabled.has(id) ? ' on' : '');
+    chip.dataset.topic = id;
+    chip.title = t.desc;
+    chip.innerHTML = `${t.label} <span class="ct">${drugCount[id]}</span>`;
+    chip.addEventListener('click', () => {
+      const idx = state.enabledTopics.indexOf(id);
+      if (idx >= 0) state.enabledTopics.splice(idx, 1);
+      else state.enabledTopics.push(id);
+      saveState();
+      renderTopicChips();
+    });
+    topicChipsEl.appendChild(chip);
+  });
+  renderDiffPills();
+  updateTopicMeta();
+}
+
+function renderDiffPills() {
+  const maxD = state.maxDifficulty || 3;
+  document.querySelectorAll('.diff-pill').forEach(p => {
+    const d = parseInt(p.dataset.d, 10);
+    p.classList.remove('selected', 'range');
+    if (d === maxD) p.classList.add('selected');
+    else if (d < maxD) p.classList.add('range');
+  });
+}
+
+function updateTopicMeta() {
+  const enabled = new Set(state.enabledTopics);
+  const maxD = state.maxDifficulty || 3;
+  const eligibleDrugs = DRUGS.filter(d => enabled.has(BUCKET_TOPIC[d.c]) && (d.d || 3) <= maxD);
+  const eligibleBuckets = BUCKETS.filter(b => {
+    if (!enabled.has(b.t)) return false;
+    // Bucket counts only if at least one of its drugs is below the difficulty cap
+    return DRUGS.some(d => d.c === b.id && (d.d || 3) <= maxD);
+  });
+  const diffWord = ['', 'must-know', 'common', 'standard', 'less common', 'all incl. obscure'][maxD] || '';
+  topicMetaEl.textContent = `${eligibleDrugs.length} drugs · ${eligibleBuckets.length} buckets in pool · difficulty ≤ ${maxD} (${diffWord}). Changes take effect on next round restart.`;
+}
+
+document.querySelectorAll('.diff-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    state.maxDifficulty = parseInt(pill.dataset.d, 10);
+    saveState();
+    renderTopicChips();
+  });
+});
+
+document.getElementById('btn-topics-all').addEventListener('click', () => {
+  state.enabledTopics = Object.keys(TOPICS);
+  saveState(); renderTopicChips();
+});
+document.getElementById('btn-topics-none').addEventListener('click', () => {
+  state.enabledTopics = [];
+  saveState(); renderTopicChips();
+});
+document.getElementById('btn-topics-endo').addEventListener('click', () => {
+  state.enabledTopics = ['endo'];
+  saveState(); renderTopicChips();
+});
+document.getElementById('btn-apply-topics').addEventListener('click', () => {
+  state.roundSize = parseInt(roundSizeSelect.value, 10) || 25;
+  if (state.enabledTopics.length === 0) {
+    showToast('Select at least one topic', 'error');
+    return;
+  }
+  saveState();
+  startRound();
+});
+roundSizeSelect.addEventListener('change', () => {
+  state.roundSize = parseInt(roundSizeSelect.value, 10) || 25;
+  saveState();
+});
+
+function startRound() {
+  currentDrugs = pickRoundDrugs(state.roundSize || 25);
+  roundTotal = currentDrugs.length;
+  placedThisRound = {};
+  firstAttemptThisDrug = {};
+  currentDrugs.forEach(d => { firstAttemptThisDrug[d.n] = true; });
+  roundCorrect = 0;
+  roundMisses = 0;
+  selectedDrug = null;
+  btnNewRound.style.display = 'none';
+  document.getElementById('summary-slot').innerHTML = '';
+  resetTimer();
+  renderAll();
+  renderHighScore();
+}
+
+function renderHighScore() {
+  const el = document.getElementById('stat-high');
+  el.textContent = state.highScore > 0 ? state.highScore : '—';
+}
+
+function renderAll() {
+  renderPool();
+  renderBuckets();
+  updateStats();
+}
+
+function renderPool() {
+  poolEl.innerHTML = '';
+  const remaining = currentDrugs.filter(d => !placedThisRound[d.n]);
+  if (remaining.length === 0) {
+    poolEl.innerHTML = '<div class="empty-pool">Round complete — see your score above.</div>';
+    btnNewRound.style.display = 'inline-block';
+    if (timerRunning) {
+      stopTimer();
+      finishRound();
+    }
+    return;
+  }
+  remaining.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'drug';
+    el.draggable = true;
+    const dl = d.d || 3;
+    el.innerHTML = `<span class="dlevel d${dl}" title="Difficulty ${dl}">${dl}</span>${d.n}`;
+    el.dataset.drug = d.n;
+    if (selectedDrug && selectedDrug.n === d.n) el.classList.add('selected');
+    el.addEventListener('dragstart', (e) => {
+      e.dataTransfer.setData('text/plain', d.n);
+      e.dataTransfer.effectAllowed = 'move';
+      el.classList.add('dragging');
+    });
+    el.addEventListener('dragend', () => el.classList.remove('dragging'));
+    el.addEventListener('click', () => {
+      selectedDrug = (selectedDrug && selectedDrug.n === d.n) ? null : d;
+      renderPool();
+    });
+    poolEl.appendChild(el);
+  });
+}
+
+function renderBuckets() {
+  bucketsEl.innerHTML = '';
+  // Show only buckets relevant to this round, plus decoys (only from enabled topics) for difficulty
+  const enabledTopics = new Set(state.enabledTopics);
+  const usedClasses = new Set(currentDrugs.map(d => d.c));
+  const relevantBuckets = BUCKETS.filter(b => usedClasses.has(b.id));
+  // Decoy pool: enabled topics but not in current round
+  const decoyPool = BUCKETS.filter(b => !usedClasses.has(b.id) && enabledTopics.has(b.t));
+  const decoys = [];
+  // Scale decoys by round size — more decoys for larger rounds
+  const decoyTarget = Math.min(decoyPool.length, Math.max(3, Math.round(currentDrugs.length / 6)));
+  while (decoys.length < decoyTarget) {
+    const idx = Math.floor(Math.random() * decoyPool.length);
+    decoys.push(decoyPool.splice(idx, 1)[0]);
+  }
+  let toShow = [...relevantBuckets, ...decoys];
+  // Sort by topic, then alphabetical, so related buckets cluster
+  toShow.sort((a, b) => {
+    const tCmp = (a.t || '').localeCompare(b.t || '');
+    if (tCmp !== 0) return tCmp;
+    return a.name.localeCompare(b.name);
+  });
+
+  toShow.forEach(b => {
+    const el = document.createElement('div');
+    el.className = 'bucket';
+    el.dataset.bucket = b.id;
+    el.innerHTML = `
+      <div class="bname">${b.name}</div>
+      <div class="bmech">${b.mech}</div>
+      ${b.tx ? `<div class="btx">${b.tx}</div>` : ''}
+      <div class="placed" id="placed-${b.id}"></div>
+    `;
+    el.addEventListener('dragover', (e) => { e.preventDefault(); el.classList.add('drag-over'); });
+    el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+    el.addEventListener('drop', (e) => {
+      e.preventDefault();
+      el.classList.remove('drag-over');
+      const drugName = e.dataTransfer.getData('text/plain');
+      handleDrop(drugName, b.id);
+    });
+    el.addEventListener('click', () => {
+      if (selectedDrug) {
+        const dn = selectedDrug.n;
+        selectedDrug = null;
+        handleDrop(dn, b.id);
+      }
+    });
+    bucketsEl.appendChild(el);
+  });
+
+  // Render any already-placed chips (for placed-this-round visual)
+  Object.keys(placedThisRound).forEach(dn => {
+    const drug = DRUGS.find(d => d.n === dn);
+    if (!drug) return;
+    const placeContainer = document.getElementById('placed-' + drug.c);
+    if (placeContainer) {
+      const chip = document.createElement('span');
+      chip.className = 'chip ' + (placedThisRound[dn] === 'hit' ? 'hit' : 'miss');
+      chip.textContent = dn;
+      placeContainer.appendChild(chip);
+    }
+  });
+}
+
+function handleDrop(drugName, bucketId) {
+  const drug = currentDrugs.find(d => d.n === drugName);
+  if (!drug) return;
+  if (placedThisRound[drugName]) return; // already placed
+  if (!timerRunning && timerStart === 0) startTimer();
+  const stat = getStat(drugName);
+  const bucketEl = document.querySelector(`[data-bucket="${bucketId}"]`);
+
+  if (drug.c === bucketId) {
+    // CORRECT
+    bucketEl.classList.add('flash-correct');
+    setTimeout(() => bucketEl.classList.remove('flash-correct'), 700);
+    stat.attempts += 1;
+    stat.seen += 1;
+    if (firstAttemptThisDrug[drugName]) {
+      stat.firstTryRight += 1;
+      placedThisRound[drugName] = 'hit';
+      roundCorrect += 1;
+      state.totalCorrect += 1;
+      showToast('✓ ' + drugName + ' — ' + lookupBucket(drug.c).name, 'success');
+    } else {
+      stat.missed += 1;
+      placedThisRound[drugName] = 'miss';
+      state.totalMisses += 1;
+      showToast('Correct on retry — ' + lookupBucket(drug.c).name, 'success');
+    }
+    saveState();
+    renderAll();
+  } else {
+    // WRONG
+    bucketEl.classList.add('flash-wrong');
+    setTimeout(() => bucketEl.classList.remove('flash-wrong'), 700);
+    const drugEl = document.querySelector(`.drug[data-drug="${CSS.escape(drugName)}"]`);
+    if (drugEl) {
+      drugEl.classList.add('shake');
+      setTimeout(() => drugEl.classList.remove('shake'), 350);
+    }
+    if (firstAttemptThisDrug[drugName]) {
+      firstAttemptThisDrug[drugName] = false;
+      roundMisses += 1;
+    }
+    showToast('✗ Not ' + lookupBucket(bucketId).name + ' — try again', 'error');
+    updateStats();
+  }
+}
+
+function lookupBucket(id) { return BUCKETS.find(b => b.id === id) || { name: id, mech: '' }; }
+
+function showToast(msg, kind) {
+  toastEl.textContent = msg;
+  toastEl.className = 'toast show ' + (kind || '');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(() => { toastEl.className = 'toast'; }, 1800);
+}
+
+function updateStats() {
+  statRound.textContent = state.round;
+  statCorrect.textContent = roundCorrect;
+  statMisses.textContent = roundMisses;
+  const remaining = currentDrugs.filter(d => !placedThisRound[d.n]).length;
+  statRemaining.textContent = remaining;
+}
+
+function finishRound() {
+  const elapsedSec = Math.round(elapsedMs() / 1000);
+  const score = computeScore(roundCorrect, roundMisses, elapsedSec);
+  const accuracy = roundTotal ? Math.round(100 * roundCorrect / roundTotal) : 0;
+
+  // Track personal bests
+  const isPbScore = score > state.highScore;
+  const isPbTime = roundCorrect === roundTotal && (state.bestTime === 0 || elapsedSec < state.bestTime);
+  const isPbAcc = accuracy > state.bestAccuracy;
+
+  if (isPbScore) state.highScore = score;
+  if (isPbTime) state.bestTime = elapsedSec;
+  if (isPbAcc) state.bestAccuracy = accuracy;
+
+  state.recentScores.unshift({ score, elapsedSec, accuracy, correct: roundCorrect, misses: roundMisses, total: roundTotal, round: state.round, ts: Date.now() });
+  if (state.recentScores.length > 20) state.recentScores.length = 20;
+  saveState();
+  renderHighScore();
+
+  const slot = document.getElementById('summary-slot');
+  const isPb = isPbScore || isPbTime || isPbAcc;
+  const pbBadge = isPb
+    ? `<div class="pb-banner">★ ${[isPbScore && 'NEW HIGH SCORE', isPbTime && 'FASTEST PERFECT', isPbAcc && 'BEST ACCURACY'].filter(Boolean).join(' · ')}</div>`
+    : '';
+  slot.innerHTML = `
+    <div class="summary-card ${isPb ? 'pb' : ''}">
+      ${pbBadge}
+      <div class="sc-headline">Round ${state.round} score</div>
+      <div class="sc-score">${score}</div>
+      <div class="sc-row">
+        <span><b>${roundCorrect}/${roundTotal}</b> first-try (${accuracy}%)</span>
+        <span><b>${roundMisses}</b> misses</span>
+        <span><b>${fmtTime(elapsedSec * 1000)}</b> elapsed</span>
+        <span>High score: <b>${state.highScore}</b></span>
+        ${state.bestTime ? `<span>Best perfect time: <b>${fmtTime(state.bestTime*1000)}</b></span>` : ''}
+      </div>
+    </div>
+  `;
+  // Scroll the summary into view
+  slot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// =========================================================================
+// REVEAL (skip / "I don't know")
+// =========================================================================
+btnSkip.addEventListener('click', () => {
+  // Pick the currently selected drug if any, otherwise the first remaining
+  let drug = selectedDrug;
+  if (!drug) drug = currentDrugs.find(d => !placedThisRound[d.n]);
+  if (!drug) return;
+  const correctBucketEl = document.querySelector(`[data-bucket="${drug.c}"]`);
+  if (correctBucketEl) {
+    correctBucketEl.classList.add('target-hint');
+    setTimeout(() => correctBucketEl.classList.remove('target-hint'), 1800);
+  }
+  showToast(drug.n + ' → ' + lookupBucket(drug.c).name, 'success');
+  // Mark as a miss (no first-try credit) but auto-place after a short delay
+  if (firstAttemptThisDrug[drug.n]) {
+    firstAttemptThisDrug[drug.n] = false;
+    roundMisses += 1;
+  }
+  setTimeout(() => {
+    handleDrop(drug.n, drug.c);
+  }, 1200);
+});
+
+// =========================================================================
+// NEXT ROUND
+// =========================================================================
+btnNewRound.addEventListener('click', () => {
+  state.round += 1;
+  saveState();
+  startRound();
+});
+
+// =========================================================================
+// STATS MODAL
+// =========================================================================
+const modalBg = document.getElementById('modal-bg');
+const modalBody = document.getElementById('modal-body');
+const modalLead = document.getElementById('modal-lead');
+const modalTitle = document.getElementById('modal-title');
+
+document.getElementById('btn-stats').addEventListener('click', openStats);
+document.getElementById('btn-modal-close').addEventListener('click', () => modalBg.classList.remove('show'));
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if (!confirm('Reset all study stats? This cannot be undone.')) return;
+  state = { round: 1, totalCorrect: 0, totalMisses: 0, drugStats: {}, highScore: 0, bestTime: 0, bestAccuracy: 0, recentScores: [], enabledTopics: Object.keys(TOPICS), roundSize: 25, maxDifficulty: 3 };
+  saveState();
+  renderTopicChips();
+  roundSizeSelect.value = String(state.roundSize);
+  startRound();
+  modalBg.classList.remove('show');
+});
+
+function openStats() {
+  modalTitle.textContent = 'Study stats';
+  // Aggregate by class
+  const classAgg = {};
+  Object.entries(state.drugStats).forEach(([dn, s]) => {
+    const drug = DRUGS.find(d => d.n === dn);
+    if (!drug) return;
+    if (!classAgg[drug.c]) classAgg[drug.c] = { seen: 0, right: 0 };
+    classAgg[drug.c].seen += s.seen;
+    classAgg[drug.c].right += s.firstTryRight;
+  });
+
+  let totalSeen = 0, totalRight = 0;
+  Object.values(classAgg).forEach(c => { totalSeen += c.seen; totalRight += c.right; });
+  const overallAcc = totalSeen ? Math.round(100 * totalRight / totalSeen) : 0;
+  modalLead.textContent = `High score: ${state.highScore || '—'} · Best perfect time: ${state.bestTime ? fmtTime(state.bestTime*1000) : '—'} · ${overallAcc}% lifetime accuracy · Round ${state.round}`;
+
+  let html = '';
+  if (state.recentScores && state.recentScores.length) {
+    html += '<h2 style="margin-top:6px;">Recent rounds</h2>';
+    state.recentScores.slice(0, 10).forEach(r => {
+      const isHigh = r.score === state.highScore && r.score > 0;
+      html += `
+        <div class="row">
+          <div class="nm" style="flex:1;">R${r.round}${isHigh ? ' <span style="color:#c026d3;font-weight:700;">★</span>' : ''}</div>
+          <div class="ac">${r.correct}/${r.total} · ${r.accuracy}%</div>
+          <div class="ac">${fmtTime(r.elapsedSec*1000)}</div>
+          <div class="ac" style="font-weight:700;color:#111827;width:50px;text-align:right;">${r.score}</div>
+        </div>`;
+    });
+  }
+
+  // Find weak drugs (seen ≥ 2, accuracy < 60%)
+  const weakDrugs = Object.entries(state.drugStats)
+    .filter(([dn, s]) => s.seen >= 2 && (s.firstTryRight / s.seen) < 0.6)
+    .map(([dn, s]) => ({ dn, acc: Math.round(100 * s.firstTryRight / s.seen) }))
+    .sort((a, b) => a.acc - b.acc);
+
+  if (weakDrugs.length) {
+    html += `<div class="weak-list"><strong>Weak spots</strong><br><span style="font-size:11px;color:#92400e;">These drugs will appear more often in upcoming rounds.</span><ul>`;
+    weakDrugs.slice(0, 10).forEach(w => { html += `<li>${w.dn} — ${w.acc}%</li>`; });
+    html += `</ul></div>`;
+  }
+
+  html += '<h2 style="margin-top:14px;">By class</h2>';
+  const sortedClasses = Object.entries(classAgg).sort((a,b) => {
+    const accA = a[1].seen ? a[1].right / a[1].seen : 1;
+    const accB = b[1].seen ? b[1].right / b[1].seen : 1;
+    return accA - accB;
+  });
+  sortedClasses.forEach(([cid, c]) => {
+    const acc = c.seen ? Math.round(100 * c.right / c.seen) : 0;
+    const bucket = lookupBucket(cid);
+    let barClass = 'acc-bar';
+    if (acc < 60) barClass += ' weak';
+    else if (acc < 80) barClass += ' med';
+    html += `
+      <div class="row">
+        <div class="nm" style="flex:1;">${bucket.name}</div>
+        <div class="ac">${c.right}/${c.seen}</div>
+        <div class="${barClass}"><div style="width:${acc}%"></div></div>
+        <div class="ac" style="width:36px;text-align:right;">${acc}%</div>
+      </div>`;
+  });
+
+  html += '<h2 style="margin-top:14px;">Per drug (sorted by accuracy)</h2>';
+  const allDrugRows = Object.entries(state.drugStats)
+    .map(([dn, s]) => ({ dn, seen: s.seen, right: s.firstTryRight, acc: s.seen ? s.firstTryRight / s.seen : 0 }))
+    .sort((a, b) => a.acc - b.acc || b.seen - a.seen);
+  allDrugRows.forEach(r => {
+    const acc = r.seen ? Math.round(100 * r.acc) : 0;
+    let barClass = 'acc-bar';
+    if (r.seen >= 2 && acc < 60) barClass += ' weak';
+    else if (r.seen >= 2 && acc < 80) barClass += ' med';
+    html += `
+      <div class="row">
+        <div class="nm" style="flex:1;">${r.dn}</div>
+        <div class="ac">${r.right}/${r.seen}</div>
+        <div class="${barClass}"><div style="width:${acc}%"></div></div>
+        <div class="ac" style="width:36px;text-align:right;">${acc}%</div>
+      </div>`;
+  });
+
+  if (allDrugRows.length === 0) {
+    html += '<div style="color:#6b7280;font-size:13px;padding:8px 0;">No data yet — finish a round to populate.</div>';
+  }
+
+  modalBody.innerHTML = html;
+  modalBg.classList.add('show');
+}
+
+modalBg.addEventListener('click', (e) => {
+  if (e.target === modalBg) modalBg.classList.remove('show');
+});
+
+// =========================================================================
+// GO
+// =========================================================================
+roundSizeSelect.value = String(state.roundSize || 25);
+renderTopicChips();
+startRound();
+</script>
+</body>
+</html>
