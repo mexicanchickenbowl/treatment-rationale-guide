@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-05-02T13:23:07.687348+00:00",
+  "built_at": "2026-05-10T18:38:24.581790+00:00",
   "sections": [
     {
       "id": "preamble",
@@ -7719,14 +7719,12 @@
       "needs_review": true
     },
     "Bhaskar and Rappaport|": {
-      "pmid": "41888890",
-      "title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy.",
-      "abstract": "BACKGROUND: Community-acquired pneumonia (CAP) is defined as an infection of the pulmonary parenchyma acquired in the community and outside the hospital setting. CAP is generally diagnosed based on clinical parameters and chest radiography, with biomarkers increasingly used to support diagnostic decisions. Our review aims to synthesise evidence on the diagnosis of bacterial CAP using clinical assessments and biomarkers and to guide evidence-based national antibiotic guidelines for bacterial CAP in India. Our primary objective is to determine the diagnostic accuracy of clinical criteria (symptoms, examination findings, or clinical scoring systems) and chest X-rays with and without serum biomarkers for detecting bacterial CAP in children and adults with presumptive signs and symptoms of pneumonia. We also aim to investigate potential sources of heterogeneity in the diagnostic accuracy of the aforementioned index tests in relation to covariates such as the healthcare settings, HIV status, malnutrition, and comorbidities. METHODS: We will perform a systematic search of electronic databases without language and geographical restriction and bibliography mining. We will only include prospective and retrospective cross-sectional and cohort studies and Randomized Control trials. We will exclude case reports, conference abstracts, reviews, and studies with a case-control design. We will also include studies that provide or allow the derivation of diagnostic accuracy data. Participants from all healthcare settings with a presumptive diagnosis of CAP will be included. The QUADAS-2 tool will be used to ascertain the methodological quality of the selected studies. We will perform analyses of data for children and adults separately. Bivariate model will be used for meta-analysis to estimate summary sensitivity and specificity wherever possible. Certainty of evidence will be assessed using the GRADE approach (Grading of Recommendations Assessment, Development, and Evaluation) for diagnostic test accuracy studies. DISCUSSION: Our review will evaluate the diagnostic accuracy of clinical criteria, with and without biomarkers, for diagnosing bacterial CAP in children and adults. This will inform antibiotic guidelines in India and similar resource-limited settings. SYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42024619430 and CRD42024620335.",
-      "journal": "Systematic reviews",
-      "pub_year": "2026",
-      "status": "ok",
-      "score": 0.153,
-      "confidence": "low",
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "confidence": "unknown",
       "needs_review": true
     },
     "Bierma|": {
@@ -8562,14 +8560,12 @@
       "needs_review": true
     },
     "AAE and AAO 2015 joint position statement|": {
-      "pmid": "41438163",
-      "title": "Physical activity and diurnal variation have no impact on plasma microRNA-140 expression levels in patients with knee osteoarthritis and healthy controls.",
-      "abstract": "OBJECTIVE: This study aimed to determine whether physical activity or diurnal variation influence circulating microRNA-140-3p (miR-140-3p) and miR-140-5p expression levels in patients with knee osteoarthritis (OA) compared to healthy controls. METHOD: Twenty-one patients with knee OA and ten healthy controls ran on a treadmill for 20 ​min and blood samples were taken prior to and after running. To assess diurnal variation, blood samples were drawn at six different times during a 24-h period. RNA was extracted from plasma and used for cDNA synthesis. Expression levels were assessed with real-time quantitative polymerase chain reaction and compared between patients and controls. RESULTS: All participants had detectable expression levels of miR-140-3p and miR-140-5p. A paired analysis could not demonstrate statistically significant differences between the groups. CONCLUSIONS: Plasma miR-140-3p and miR-140-5p expression levels were found in all samples; however, the expression levels were not affected by physical activity and did not show diurnal variation. The observation of stable miR-140 expression supports its potential as a reliable biomarker for OA, providing a methodological foundation for future diagnostic and translational studies.",
-      "journal": "Osteoarthritis and cartilage open",
-      "pub_year": "2026",
-      "status": "ok",
-      "score": 0.043,
-      "confidence": "low",
+      "pmid": null,
+      "title": "",
+      "abstract": "",
+      "status": "not_found",
+      "score": 0,
+      "confidence": "unknown",
       "needs_review": true
     },
     "Basrani|2007": {
@@ -8856,8 +8852,8 @@
     "total": 113,
     "high": 25,
     "medium": 33,
-    "low": 27,
-    "unknown": 28,
+    "low": 25,
+    "unknown": 30,
     "needs_review": 88
   },
   "figures": [
