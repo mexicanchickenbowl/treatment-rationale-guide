@@ -2,6 +2,42 @@
   command   = "python3 build.py"
   publish   = "."
 
+[[redirects]]
+  from = "/"
+  to = "/endo-guide.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/guide"
+  to = "/endo-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/rationale-guide"
+  to = "/endo-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/endo-guide"
+  to = "/endo-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/guide/*"
+  to = "/endo-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/rationale-guide/*"
+  to = "/endo-guide.html"
+  status = 200
+
+[[redirects]]
+  from = "/endo-guide/*"
+  to = "/endo-guide.html"
+  status = 200
+
 [[headers]]
   for = "/admin/*"
   [headers.values]

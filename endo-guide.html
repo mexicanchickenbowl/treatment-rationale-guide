@@ -2550,7 +2550,13 @@ function ReferencePane({ sections, query, authorPool, pctPool }) {
 
   const jumpTo = (id) => {
     const el = mainRef.current?.querySelector(`[data-anchor="${id}"]`);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setActiveId(id);
+    if (typeof window !== "undefined" && window.history?.replaceState) {
+      window.history.replaceState(null, "", `#${id}`);
+    }
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     // On mobile, auto-close the drawer after navigating so the user sees the
     // content they jumped to (the sidebar normally covers ~75 % of the screen).
     if (typeof window !== "undefined" && window.matchMedia &&
