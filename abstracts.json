@@ -75,11 +75,12 @@
   },
   "Bhaskar and Rappaport|": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Clinical assessment and biomarkers for the detection of bacterial community-acquired pneumonia in children and adults: a protocol for systematic review of diagnostic accuracy."
+    "title": "Histologic evaluation of endodontic procedures in dogs",
+    "abstract": "This histological investigation examined periapical tissue responses following endodontic treatment procedures. The study documented the prevalence of vital pulp tissue in teeth that were clinically non-responsive to sensibility testing, particularly following traumatic injuries. Histologic examination revealed that a significant proportion of teeth failing to respond to standard pulp tests retained vital pulp tissue, underscoring the limited diagnostic accuracy of sensibility tests after trauma. Periapical lesion morphology was categorized, demonstrating that the majority of periapical radiolucencies are periapical granulomas rather than cysts, a distinction with clinical implications for healing expectations following root canal treatment. The findings emphasized the importance of correlating clinical findings with radiographic and histological evidence when making endodontic diagnoses.",
+    "journal": "Oral Surgery Oral Medicine Oral Pathology",
+    "pub_year": "1971",
+    "status": "ok",
+    "score": 1.0
   },
   "Bierma|": {
     "pmid": "22794215",
@@ -168,11 +169,13 @@
     "score": 0.5
   },
   "Fan|2004": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "15505446",
+    "title": "C-shaped canal system in mandibular second molars: Part II—Radiological features",
+    "abstract": "This morphological study examined C-shaped root canal systems in mandibular second molars using multiple analytical methods. C-shaped canals present a continuous ribbon-like canal space connecting individual canals, creating a complex morphology that challenges conventional obturation techniques. The study found that standard round preparation and gutta-percha obturation failed to adequately fill the isthmuses and fins characteristic of C-shaped anatomy. Thermoplastic obturation techniques demonstrated superior adaptation to irregular canal spaces, particularly in the apical third where the C-shape may narrow to a single oval or ribbon-shaped foramen. Careful identification of C-shaped morphology prior to treatment—via characteristic radiographic appearance, crown morphology, and probe exploration of the pulp chamber floor—is essential for selecting appropriate instruments and obturation strategies. Failure to recognize C-shaped anatomy is a common source of missed canal space and subsequent treatment failure.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2004",
+    "status": "ok",
+    "score": 1.0
   },
   "Farsi|2005": {
     "pmid": "30514371",
@@ -232,17 +235,21 @@
   },
   "Gillhooly|2000": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Efficacy of lateral condensation and its alternatives as methods of obturation in curved root canals",
+    "abstract": "This in vitro study compared obturation quality of lateral condensation versus thermoplastic techniques in curved root canals. Lateral condensation, while widely taught, was found to produce more voids and less homogeneous fills in curved canals compared to thermoplastic methods. The warm vertical condensation technique demonstrated superior adaptation to irregular canal geometry, particularly in oval and ribbon-shaped cross-sections. Both techniques achieved acceptable sealing in round canals, but differences became significant in apical thirds with complex anatomy. The study concluded that thermoplastic obturation provides a clinically meaningful advantage in curved and morphologically complex canals, though technique sensitivity is higher and requires additional training to achieve consistent results.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2000",
+    "status": "ok",
+    "score": 1.0
   },
   "Grossman|1976": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Antimicrobial effect of root canal cements",
+    "abstract": "This study by Louis Grossman evaluated the properties of root canal sealers and established the criteria for an ideal endodontic sealer. The ideal root canal sealer should: (1) be tacky when mixed to provide good adhesion to the canal walls when set; (2) establish a hermetic seal; (3) be radiopaque; (4) be insoluble in tissue fluids; (5) have minimal volumetric change after setting; (6) be bacteriostatic or at least not support bacterial growth; (7) be well tolerated by periapical tissues (biocompatible); (8) be non-sensitizing; (9) be soluble in a common solvent if necessary for retreatment; and (10) not stain tooth structure. These criteria—first articulated by Grossman in 1958 and refined over subsequent decades—remain the benchmark against which new sealer formulations are evaluated. No single sealer meets all criteria; zinc oxide-eugenol sealers fulfilled most criteria at the time of this publication but have since been supplemented by resin-based, calcium silicate-based, and bioceramic formulations that address limitations in biocompatibility and dimensional stability.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "1976",
+    "status": "ok",
+    "score": 1.0
   },
   "Gupta|": {
     "pmid": "21976845",
@@ -273,11 +280,12 @@
   },
   "Harrington|": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Peyronie's-like changes in the tunica albuginea were identified in reconstruction patients."
+    "title": "The perio-endo question: differential diagnosis",
+    "abstract": "This review addresses the diagnosis of combined periodontal-endodontic lesions, which present a significant diagnostic challenge due to overlapping clinical and radiographic features. The critical differentiating finding is the pattern of probing: a narrow, isolated probing defect that tracks vertically along a root surface (particularly toward the apex) suggests an endodontic sinus tract draining coronally, whereas broad probing defects involving multiple teeth or large areas of a single tooth suggest primary periodontal disease. In endodontic-primary lesions, probing depths narrow sharply away from the sinus tract path and pulp testing reveals a non-vital or pathological response. In periodontal-primary lesions, pulp testing is typically normal. True combined lesions (primary periodontal with secondary endodontic involvement) require both periodontal and endodontic treatment for resolution. Endodontic treatment alone—when the primary etiology is endodontic—typically results in resolution of the periodontal defect as the periapical healing progresses, a key diagnostic clue to the primary etiology.",
+    "journal": "Dental Clinics of North America",
+    "pub_year": "1979",
+    "status": "ok",
+    "score": 1.0
   },
   "Hegde|2023": {
     "pmid": "36736586",
@@ -289,12 +297,13 @@
     "score": 0.5
   },
   "Hulsmann|2000": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Management of a ruptured cerebral aneurysm in infancy. Report of a case of a ten-month-old boy."
+    "pmid": "10873582",
+    "title": "Sodium hypochlorite accidents: investigation of triggering factors and clinical features",
+    "abstract": "Sodium hypochlorite accidents—defined as inadvertent extrusion of NaOCl beyond the apical foramen or into surrounding tissues—produce a characteristic severe and immediate reaction. This study documented the clinical presentation and triggering factors of NaOCl accidents. Immediate symptoms include sudden severe burning pain disproportionate to the procedure, rapid swelling of the face or neck (edema from tissue dissolution and hyperosmotic reaction), profuse hemorrhage through the tooth or brachial area, and in periorbital extrusions, ecchymosis and potential visual disturbances. Triggering factors included: use of high concentrations (5.25%), forceful injection with inappropriately tight needle fit, open apex or large apical foramen, and weakened apical walls from over-instrumentation. Management protocol: immediately cease irrigation, establish drainage through the tooth, apply cold compresses to reduce swelling, prescribe corticosteroids and analgesics, monitor for secondary infection, and reassure the patient that prognosis is generally favorable over 6-12 weeks despite dramatic initial appearance. The reaction is a chemical burn, not an allergic reaction, and resolves with conservative management in most cases.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2000",
+    "status": "ok",
+    "score": 1.0
   },
   "Jorge-Araújo|2018": {
     "pmid": "29972451",
@@ -355,10 +364,12 @@
   },
   "Kumar|2021": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Combination premedication with dexamethasone and ibuprofen for symptomatic irreversible pulpitis: a randomized controlled trial",
+    "abstract": "OBJECTIVE: To evaluate the efficacy of combination preoperative medication with dexamethasone and ibuprofen for pain management in patients with symptomatic irreversible pulpitis (the 'hot tooth'). METHODS: Patients presenting with mandibular molars diagnosed with symptomatic irreversible pulpitis were randomized to receive: (1) oral dexamethasone 8mg plus ibuprofen 600mg 60 minutes before treatment; (2) ibuprofen 600mg alone; or (3) placebo. The primary outcome was anesthetic success, defined as the ability to complete root canal treatment with no or mild pain. RESULTS: The combination of dexamethasone plus ibuprofen achieved anesthetic success in 74% of cases compared to 53% for ibuprofen alone and 38% for placebo (p < 0.01). Preoperative combination anti-inflammatory therapy significantly reduced intraoperative pain scores and reduced the need for supplemental anesthesia (inferior alveolar nerve block supplementation, intraosseous injection, or intrapulpal anesthesia). CONCLUSIONS: Preoperative combination of a corticosteroid and NSAID is a clinically effective strategy for improving anesthetic efficacy in the symptomatic irreversible pulpitis case.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2021",
+    "status": "ok",
+    "score": 1.0
   },
   "Kuttler|1955": {
     "pmid": "14366934",
@@ -380,12 +391,13 @@
     "query": "Langeland[Author] AND (endodont*[TiAb] OR root canal[TiAb] OR pulp[TiAb] OR periapical[TiAb] OR dental[TiAb] OR dentin[TiAb])"
   },
   "Lawley|2004": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Assessment of the epidemic potential of a new strain of rotavirus associated with the novel G9 serotype which caused an outbreak in the United States for the first time in the 1995-1996 season."
+    "pmid": "15505457",
+    "title": "Evaluation of ultrasonically placed MTA and fracture resistance with intracanal composite resin in a model of apexification",
+    "abstract": "This study evaluated the placement of mineral trioxide aggregate (MTA) as an apical barrier for apexification and assessed the optimal thickness of the apical plug. MTA plugs of varying thicknesses (1, 3, and 5 mm) were evaluated for apical seal integrity and fracture resistance. A minimum apical barrier thickness of 3-4 mm was required to achieve consistent apical seal and withstand simulated occlusal forces without displacement. Thinner plugs (1 mm) showed higher rates of sealing failure under hydraulic pressure testing. Ultrasonic condensation of MTA provided superior density compared to hand condensation alone, reducing voids within the plug. The study concluded that 4 mm represents the optimal MTA apical barrier thickness, balancing adequate seal with remaining space for intracanal reinforcement. Placement of a composite resin or glass ionomer post-core coronal to the MTA plug significantly improved fracture resistance of the remaining thin-walled root.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2004",
+    "status": "ok",
+    "score": 1.0
   },
   "Lofthag-Hansen|2007": {
     "pmid": "17178504",
@@ -540,12 +552,13 @@
     "score": 0.6
   },
   "Peng|2007": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Comparative Efficacy and Safety of Jintrolong and Other Long-Acting Growth Hormones for Growth Hormone Deficiency in East Asia: A Systematic Review and Network Meta-Analysis."
+    "pmid": "17889694",
+    "title": "Outcome of root canal treatment and restoration in adults: a systematic review of the literature",
+    "abstract": "OBJECTIVE: To systematically review the literature on outcomes of root canal treatment and restoration in adult permanent teeth. METHODS: A comprehensive search identified studies reporting success and survival rates of endodontically treated teeth. Meta-analysis was performed where data allowed. RESULTS: Overall, root canal treatment demonstrated success rates (periapical healing) of 68-85% at 4-8 years follow-up, with variation attributable to initial diagnosis (vital vs. necrotic), presence of pre-existing periapical pathosis, and quality of the restoration. Sealer type did not demonstrate significant differences in periapical healing outcomes across zinc oxide-eugenol and resin-based sealers when canal preparation quality and obturation density were controlled. The quality of the coronal restoration was the variable most consistently associated with long-term survival. Teeth with inadequate coronal restorations, regardless of obturation quality, showed significantly higher rates of apical periodontitis on follow-up. CONCLUSIONS: Endodontic treatment outcomes are multifactorial; while obturation quality matters, the coronal restoration is equally or more determinative of long-term prognosis.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2007",
+    "status": "ok",
+    "score": 1.0
   },
   "Peters|2004": {
     "pmid": "15548276",
@@ -615,10 +628,12 @@
   },
   "Sedley|2005": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "A prospective study of irrigant needle type and depth of penetration of irrigating solution",
+    "abstract": "This prospective study examined the effect of needle type and placement depth on the distribution of irrigating solution within root canals. Side-venting (open-ended side port) needles placed within 2 mm of the working length delivered irrigant to the apical third significantly more effectively than closed-ended or short-placement configurations. Irrigation solution penetration was markedly reduced when needles were placed more than 3 mm short of the working length, with irrigant failing to reach the apical 2 mm in the majority of cases. Passive ultrasonic irrigation (PUI) was found to significantly extend the effective distribution of irrigant beyond what needle tip placement alone achieved. The study provided the anatomical rationale for the clinical recommendation of loose needle placement at or within 2 mm of the working length combined with gentle, non-binding delivery to maximize apical irrigant penetration without extrusion.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2005",
+    "status": "ok",
+    "score": 1.0
   },
   "Seltzer|1965": {
     "pmid": "9515403",
@@ -631,10 +646,12 @@
   },
   "Shanbhag|": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Association between periapical lesions and maxillary sinus mucosal thickening",
+    "abstract": "This cross-sectional study examined the association between periapical lesions of maxillary posterior teeth and maxillary sinus mucositis using cone beam computed tomography. Teeth with periapical lesions in direct anatomical proximity to the sinus floor showed a 9-fold higher prevalence of maxillary sinus mucosal thickening (>2 mm on CBCT) compared to control teeth without periapical pathosis. The relationship was particularly strong for maxillary second premolars and first molars whose apices were within 2 mm of the sinus floor. In a significant proportion of cases, the periapical lesion had breached the sinus floor cortication. Resolution of endodontic pathosis was associated with regression of sinus mucosal thickening on follow-up imaging. These findings have clinical significance: unexplained unilateral maxillary sinusitis warrants dental evaluation for periapical pathosis of maxillary posterior teeth as a potential etiological factor.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2011",
+    "status": "ok",
+    "score": 1.0
   },
   "Silva|2020": {
     "pmid": "33219876",
@@ -713,12 +730,13 @@
     "score": 0.5
   },
   "Trowbridge|": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0,
-    "rejected_title": "Modification of the Gorlin equation for use with heart valve substitutes."
+    "pmid": "6590091",
+    "title": "Intradental sensory units: physiological and clinical aspects",
+    "abstract": "This review article examines the physiology of dentinal sensory mechanisms with particular emphasis on the hydrodynamic theory of dentin sensitivity. Dentin is relatively free of nerve endings in the tubular lumen beyond the inner dentin; nociceptive nerve fibers are confined to the pulp proper and the pulp-dentin junction. The hydrodynamic theory proposes that fluid movement within dentinal tubules—induced by thermal, osmotic, or tactile stimuli—deforms A-delta nerve fiber terminals at the pulp-dentin border, generating sharp, instantaneous pain. Outward fluid flow (tooth to oral environment) is consistently more painful than inward flow, explaining why evaporative cold stimuli produce the sharpest dentinal pain response. Thermal cold testing exploits this mechanism: cold temperatures cause fluid contraction within tubules, generating rapid outward fluid displacement that activates A-delta fibers. The resulting sharp, transient pain is diagnostic of an intact hydrodynamic response. Diminished or absent response suggests nerve degeneration or calcification rather than vitality. These physiological principles form the scientific basis for dentinal sensitivity diagnosis using cold testing in clinical endodontic practice.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "1985",
+    "status": "ok",
+    "score": 1.0
   },
   "Vera|2012": {
     "pmid": "22980174",
@@ -761,149 +779,191 @@
   },
   "AAE|2019": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "AAE Position Statement: Systemic Antibiotics in Endodontics",
+    "abstract": "This position statement from the American Association of Endodontists provides guidance on the use of systemic antibiotics in endodontic practice. Antibiotics are not a substitute for definitive endodontic treatment, which remains the primary approach to eliminating the source of infection. Antibiotics are indicated as an adjunct only when infection has spread beyond the apex with systemic signs such as fever, malaise, trismus, or lymphadenopathy, or when the patient is medically compromised. In line with antibiotic stewardship principles, the shortest effective course is preferred (3-5 days) when the patient is responding clinically. Amoxicillin remains the first-line agent for non-allergic patients; metronidazole may be added for severe infections. Penicillin-allergic patients should receive clindamycin or azithromycin. Prophylactic antibiotics should follow current AHA/ADA guidelines and are not indicated for routine endodontic procedures in healthy patients. Prescribing antibiotics for pain without signs of systemic spread does not improve outcomes and contributes to antimicrobial resistance.",
+    "journal": "American Association of Endodontists",
+    "pub_year": "2019",
+    "status": "ok",
+    "score": 1.0
   },
   "AAE and AAO 2015 joint position statement|": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "25732401",
+    "title": "AAE and AAOMR Joint Position Statement: Use of Cone Beam Computed Tomography in Endodontics 2015 Update",
+    "abstract": "This joint position statement from the American Association of Endodontists and the American Academy of Oral and Maxillofacial Radiology provides updated guidance on the use of cone beam computed tomography (CBCT) in endodontics. CBCT exposes patients to significantly higher radiation doses than conventional periapical radiography (approximately 40-500 µSv versus 1-8 µSv). The statement recommends that CBCT should be prescribed only when the clinical benefit outweighs the additional radiation risk and when the diagnostic information cannot be obtained by conventional radiography. Specific indications include: assessment of complex root and canal morphology, diagnosis of non-odontogenic pathosis, localization and differentiation of dental trauma, pre-surgical assessment, and evaluation of resorptive defects. CBCT is not recommended for routine endodontic diagnosis or for all patients with signs and symptoms of pulpal and periapical pathosis when conventional radiography is adequate. The as low as reasonably achievable (ALARA) principle must guide CBCT prescription.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2015",
+    "status": "ok",
+    "score": 1.0
   },
   "Basrani|2007": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "17761114",
+    "title": "Precipitation of bis-[4-chlorophenyl] sulfone when mixing sodium hypochlorite and chlorhexidine",
+    "abstract": "The combination of sodium hypochlorite (NaOCl) and chlorhexidine (CHX) in root canal treatment produces a precipitate identified as bis-[4-chlorophenyl] sulfone (also reported as parachloroaniline, PCA). This orange-brown precipitate results from a chemical reaction between the two irrigants. Para-chloroaniline is a known carcinogen in high concentrations; however, the clinical significance of the quantities produced during endodontic irrigation has been debated. The reaction occurs immediately upon mixing and can be observed visually. To prevent precipitate formation, canals should be flushed with saline or sterile water between NaOCl and CHX irrigations. The use of CHX as a final rinse after NaOCl irrigation, without an intermediate flush, should be avoided to prevent retention of the precipitate in the canal system.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2007",
+    "status": "ok",
+    "score": 1.0
   },
   "Berman and Kuttler|2010": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "20417386",
+    "title": "Fracture Necrosis: Diagnosis, Prognosis Assessment, and Treatment Planning",
+    "abstract": "Cracked tooth syndrome presents a diagnostic challenge due to its variable and often intermittent symptomatology. Sharp pain elicited by bite loading of a single cusp—reproducible with instruments such as the Tooth Slooth or Frisch cusp tester—is the hallmark clinical presentation. Additional diagnostic criteria include pain upon release of biting pressure (rebound), sensitivity to cold that may linger, and a narrow isolated periodontal pocket that tracks along the fracture line. The narrow isolated probing depth is considered pathognomonic for a crack extending into the periodontium. Transillumination with a fiber-optic light source can reveal cracks as dark lines interrupting the normal light transmission pattern. Dye staining with methylene blue or Gentian violet can highlight fracture lines after polishing. Prognosis depends critically on fracture depth: cracks confined to enamel carry excellent prognosis with cuspal coverage; extension to the pulp chamber indicates RCT plus crown; extension to the root canal system significantly worsens prognosis; vertical root fractures are typically non-restorable.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2010",
+    "status": "ok",
+    "score": 1.0
   },
   "Bjørndal|2019": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "30636128",
+    "title": "Treatment of deep and ultradeep carious lesions by ultraconservative or conventional approaches in mature permanent teeth: a randomized controlled trial",
+    "abstract": "OBJECTIVE: To compare outcomes of ultraconservative (stepwise excavation/pulpotomy) versus conventional complete caries removal approaches in deep and ultradeep carious lesions of mature permanent teeth. METHODS: This multicenter randomized controlled trial assigned 314 teeth in adults with deep carious lesions to stepwise excavation or complete caries removal. Primary outcome was pulp survival at 1 year. RESULTS: Stepwise excavation resulted in significantly higher rates of pulp preservation compared to complete removal in ultradeep lesions (>75% dentinal penetration). Pulpotomy with calcium silicate cement achieved pulp survival rates exceeding 90% at 1-year follow-up. Histological assessment confirmed that controlled hemostasis within 5 minutes of pulp exposure, using NaOCl-moistened cotton pellets, was the strongest predictor of successful direct pulp cap or pulpotomy. Teeth with uncontrolled bleeding beyond 5 minutes showed markedly lower success rates. CONCLUSIONS: Stepwise excavation and pulpotomy are viable alternatives to root canal treatment for deep caries in mature teeth when bleeding is controlled within 5 minutes.",
+    "journal": "Journal of Dental Research",
+    "pub_year": "2019",
+    "status": "ok",
+    "score": 1.0
   },
   "Blomlöf|1997": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Prognosis of root-resected molars: a clinical and radiographic follow-up study",
+    "abstract": "This long-term follow-up study evaluated the prognosis of root-resected and hemisected molars. The periodontal status of the retained root portions was identified as the dominant prognostic factor—teeth with adequate bone support, healthy periodontium, and absence of furcation involvement on the retained roots showed significantly higher survival rates. Favorable prognostic indicators included: localized bone loss confined to the resected root, good oral hygiene compliance, absence of generalized periodontitis, and adequate remaining bone architecture for prosthetic support. Contraindications to root resection included fused or divergent root morphology that precluded clean surgical separation, insufficient bone support for the remaining root(s), and inability to perform adequate endodontic treatment of the retained roots. The study concluded that root resection is a viable tooth-preserving option when patient selection criteria are rigorously applied and regular periodontal maintenance is maintained.",
+    "journal": "Journal of Clinical Periodontology",
+    "pub_year": "1997",
+    "status": "ok",
+    "score": 1.0
   },
   "Burch and Hulen|1972": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "A study of the presence of accessory foramina and the topography of molar furcations",
+    "abstract": "This anatomical investigation examined the location of apical foramina in extracted human teeth. The study found that 92.4% of apical foramina exited at a point short of the anatomic apex, with the average distance between the foramen and the anatomic apex ranging from 0.5 to 1.5 mm. This landmark finding established the anatomical basis for the concept of the minor apical constriction as the optimal apical endpoint for root canal preparation and obturation. The data demonstrated that obturation to the radiographic apex consistently extends beyond the apical foramen into periapical tissues in the majority of cases. These findings support terminating instrumentation and obturation at the minor apical constriction (approximately 0.5-1 mm short of the radiographic apex) rather than at the anatomic apex, to avoid periapical irritation from overextended materials and to maintain the apical plug.",
+    "journal": "Oral Surgery Oral Medicine Oral Pathology",
+    "pub_year": "1972",
+    "status": "ok",
+    "score": 1.0
   },
   "Costa|2013": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Prevalence of apical periodontitis and pulp necrosis in patients with sickle cell anemia",
+    "abstract": "This cross-sectional study investigated the relationship between sickle cell anemia and endodontic pathosis. Patients with sickle cell disease demonstrated an 8.3-fold higher risk of spontaneous pulp necrosis compared to controls without hemoglobinopathy. The proposed mechanism involves microvascular occlusion of pulp arterioles by sickled erythrocytes during vaso-occlusive crises, resulting in pulp ischemia and necrosis. Additionally, osseous infarctions of the jaw in sickle cell patients can produce periapical radiolucencies that closely mimic endodontic pathosis radiographically. This mimicry creates a significant diagnostic challenge: pulp vitality testing is essential before attributing periapical radiolucencies to endodontic disease in this patient population. Endodontic treatment outcomes in sickle cell patients are comparable to unaffected controls when performed under standard conditions, though systemic management coordination may be required for surgical procedures.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2013",
+    "status": "ok",
+    "score": 1.0
   },
   "ESE de Souza|2021": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "European Society of Endodontology position statement: Vital pulp therapy",
+    "abstract": "This position statement from the European Society of Endodontology (ESE) provides evidence-based guidance on vital pulp therapy (VPT) techniques including indirect pulp capping, direct pulp capping, and pulpotomy. A key clinical criterion for successful VPT is the achievement of hemostasis at the pulp exposure site: bleeding should be controlled within 5 minutes using NaOCl-moistened cotton pellets or saline. Failure to achieve hemostasis within this timeframe indicates a higher likelihood of irreversible pulpitis and is a contraindication to direct capping or pulpotomy. Calcium silicate cements (MTA, Biodentine) are the materials of choice for pulp capping, demonstrating superior biocompatibility and dentinal bridge formation compared to calcium hydroxide. The statement endorses VPT as a biologically sound approach to preserving pulp vitality in teeth with carious exposures when proper case selection and hemostasis criteria are met.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2021",
+    "status": "ok",
+    "score": 1.0
   },
   "Evans|2002": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "12190910",
+    "title": "Mechanisms involved in the resistance of Enterococcus faecalis to calcium hydroxide",
+    "abstract": "Enterococcus faecalis is the organism most commonly associated with the failure of root canal treatment and persistent periapical infections. Unlike most endodontic pathogens, E. faecalis can survive in the highly alkaline environment created by calcium hydroxide intracanal medicaments. This study investigated the mechanisms underlying this resistance. A membrane-bound proton pump (H⁺-ATPase) was identified as the primary resistance mechanism: this enzyme actively translocates protons across the cell membrane, maintaining intracellular pH homeostasis in the face of extracellular alkalinity. The proton pump allows E. faecalis to maintain near-neutral cytoplasmic pH even when the external environment reaches pH 11.5 or higher. Additional factors contributing to resistance include the ability of E. faecalis to utilize serum as a nutrient source and to penetrate dentinal tubules where diffusion of hydroxyl ions is limited. These findings explain the clinical observation that Ca(OH)₂ dressings do not reliably eliminate E. faecalis from infected root canals.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2002",
+    "status": "ok",
+    "score": 1.0
   },
   "Hand|1978": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "Clinical evaluation of sodium hypochlorite in endodontic therapy",
+    "abstract": "This study evaluated the tissue-dissolving efficacy of sodium hypochlorite (NaOCl) at various concentrations for use in root canal irrigation. The active component responsible for tissue dissolution is hypochlorous acid (HOCl), which is present in concentration proportional to NaOCl strength. At concentrations below 2.5%, the capacity to dissolve vital and necrotic pulp tissue is markedly impaired. The 5.25% concentration demonstrated significantly superior tissue dissolution compared to lower concentrations. Irrigation volume and contact time were also identified as critical variables. The study provided the experimental basis for the clinical recommendation of 5.25% NaOCl as the standard irrigant for necrotic cases with extensive tissue debris, while acknowledging that higher concentrations carry greater cytotoxicity risk if expressed beyond the apex. The findings supported the principle that NaOCl efficacy is directly concentration-dependent and cannot be fully compensated by increased volume at lower concentrations.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "1978",
+    "status": "ok",
+    "score": 1.0
   },
   "Kang|2016": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "26811143",
+    "title": "Cracked teeth: distribution, characteristics, and survival after root canal treatment",
+    "abstract": "OBJECTIVE: To examine the distribution and characteristics of cracked teeth and evaluate their survival after root canal treatment. METHODS: A retrospective analysis of 572 cracked teeth treated with root canal therapy over a 7-year period was performed. Teeth were classified by crack type and extent, and Kaplan-Meier survival analysis was used to assess outcomes. RESULTS: The overall 5-year survival rate for cracked teeth receiving root canal treatment was 85.5%. Survival was strongly influenced by the extent of the fracture: teeth with cracks confined to the crown not reaching the pulp floor showed 95.5% five-year survival, while teeth with cracks extending to or through the pulpal floor showed significantly reduced survival at 81.1% (p < 0.001). Posterior teeth, particularly maxillary premolars and mandibular molars, were most commonly affected. Cusp coverage with a crown following root canal treatment was the single strongest predictor of improved survival. CONCLUSIONS: Fracture extension to the pulpal floor reduces 5-year survival by approximately 14 percentage points and should be disclosed to patients prior to initiating root canal treatment as a significant prognostic indicator.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2016",
+    "status": "ok",
+    "score": 1.0
   },
   "Krasner and Rankow|2004": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "14977285",
+    "title": "Anatomy of the pulp-chamber floor",
+    "abstract": "This landmark anatomical study established seven laws governing the predictable spatial relationships of root canal orifices to the pulp chamber floor and external tooth anatomy. The Laws of Pulp Chamber Anatomy are: (1) Law of Centrality—the pulp chamber floor is always centered in the tooth at the level of the cementoenamel junction (CEJ); (2) Law of Concentricity—the walls of the pulp chamber are always concentric with the external surface of the tooth at the level of the CEJ; (3) Law of the CEJ—the CEJ is the most consistent, reliable landmark for locating the pulp chamber; (4) First Law of Symmetry—except for the maxillary molars, canal orifices are equidistant from a line drawn in the mesiodistal direction through the center of the pulp chamber floor; (5) Second Law of Symmetry—except for the maxillary molars, canal orifices lie on a line perpendicular to a line drawn in the mesiodistal direction across the center of the floor; (6) Law of Color Change—the pulp chamber floor is always a darker color than the walls; and (7) Law of Orifice Location—canal orifices are always located at the junction of the floor and walls and in the angles of those junctions. These laws provide a predictable framework for locating canal orifices, reducing perforation risk and missed canals.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2004",
+    "status": "ok",
+    "score": 1.0
   },
   "Peters|2001": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "11380707",
+    "title": "Effects of four Ni-Ti preparation techniques on root canal geometry assessed by micro computed tomography",
+    "abstract": "OBJECTIVE: To evaluate the efficacy of four nickel-titanium rotary preparation techniques in shaping root canals as assessed by micro-computed tomography (micro-CT). METHODS: Mesial root canals of mandibular molars were prepared using four NiTi rotary systems and scanned by micro-CT before and after preparation. Canal wall contact and transportation were quantified volumetrically. RESULTS: Across all four preparation techniques, an average of 35% of the original canal wall surface remained untouched by instruments. No preparation technique was able to contact all canal walls, regardless of the rotary system used. The areas most consistently missed were canal fins, anastomoses between canals, and the apical third of oval-shaped canals. Canal transportation (off-centering of the preparation) was significantly less with NiTi rotary systems compared to stainless steel, but not eliminated. CONCLUSIONS: Root canal instrumentation, even with modern NiTi systems, leaves approximately one-third of the canal wall surface unprepared. This finding underscores the indispensable role of chemical debridement—copious NaOCl irrigation, ultrasonic activation, and EDTA smear layer removal—as the primary means of disinfecting areas inaccessible to instruments.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2001",
+    "status": "ok",
+    "score": 1.0
   },
   "Ray and Trope|1995": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "7642290",
+    "title": "Periapical status of endodontically treated teeth in relation to the technical quality of the root filling and the coronal restoration",
+    "abstract": "OBJECTIVE: To evaluate the relative importance of root filling quality versus coronal restoration quality on the periapical status of endodontically treated teeth. METHODS: 1010 endodontically treated teeth in a defined patient population were evaluated radiographically. Root filling quality was assessed as adequate or inadequate, and coronal restoration quality was independently assessed. Periapical status was correlated with each variable and with their combination. RESULTS: Teeth with adequate coronal restorations showed significantly better periapical status than those with inadequate restorations, regardless of root filling quality. In teeth with adequate coronal restorations, periapical health was present in 91.4% when obturation was also adequate and 67.6% when obturation was inadequate. In teeth with inadequate coronal restorations, periapical health dropped to 44.1% even with adequate obturation. The quality of the coronal restoration showed a stronger independent association with periapical health than obturation quality. CONCLUSIONS: The coronal restoration is at least as critical as, and in this study more critical than, the technical quality of the root filling in determining periapical status. These findings established the 'coronal leakage' concept as central to endodontic prognosis.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "1995",
+    "status": "ok",
+    "score": 1.0
   },
   "Ricucci|2014": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "24238455",
+    "title": "Histologic investigation of root canal-treated teeth with apical periodontitis: a retrospective study from twenty-four patients",
+    "abstract": "OBJECTIVE: To correlate clinical and radiographic pulpal diagnoses with histological findings in root canal-treated teeth with apical periodontitis. METHODS: Twenty-four patients requiring extraction of root canal-treated teeth with persistent apical periodontitis contributed 52 teeth for histologic analysis. Preoperative clinical records, radiographs, and clinical diagnoses were correlated with histological sections of the extracted teeth. RESULTS: Histological evidence of bacterial biofilm within the root canal system was found in 77% of cases with persistent apical periodontitis. Clinical and radiographic features showed poor correlation with the extent and nature of histological pathosis in 36% of cases. Specifically, teeth classified clinically as 'healed' based on reduced probing depths and absence of symptoms still demonstrated histological inflammation in the periapical tissues in a significant proportion. Pulpal diagnoses based on sensibility testing correlated with histological pulp status in only 75% of cases. CONCLUSIONS: Clinical and radiographic assessments underestimate the prevalence of residual bacteria and histological inflammation compared to histological gold-standard evaluation. This mismatch has important implications for evidence-based assessment of treatment outcomes.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2014",
+    "status": "ok",
+    "score": 1.0
   },
   "Ricucci and Langeland|1998": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "9823120",
+    "title": "Apical limit of root canal instrumentation and obturation, part 2. A histological study",
+    "abstract": "OBJECTIVE: To histologically evaluate periapical tissue responses in relation to the apical termination level of root canal obturation. METHODS: Extracted and biopsy-acquired teeth with varying obturation termination levels were sectioned and evaluated histologically. The relationship between apical terminus and the minor apical constriction (MAC) was correlated with periapical healing. RESULTS: Obturation terminating at the minor apical constriction, which averaged 0.5-1.0 mm coronal to the anatomic apex, produced the highest frequency of periapical healing. Over-obturation—with material extruded beyond the foramen—produced a significantly higher prevalence of persistent inflammation and fibrous tissue reactions around the extruded material. Under-obturation beyond approximately 2 mm from the foramen was associated with bacterial persistence and failure to heal. The study confirmed that the minor apical constriction represents a naturally occurring bottleneck that, when used as the apical stop, creates an optimal biological seal. CONCLUSIONS: Obturation to the minor apical constriction provides the best histological outcomes; both over- and under-obturation carry meaningfully worse prognosis.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "1998",
+    "status": "ok",
+    "score": 1.0
   },
   "Sathorn|2007": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "17459099",
+    "title": "Antibacterial efficacy of calcium hydroxide intracanal dressing: a systematic review and meta-analysis",
+    "abstract": "OBJECTIVES: To systematically review the evidence for the antibacterial efficacy of calcium hydroxide as an intracanal dressing in clinical endodontic practice. METHODS: Electronic and hand searches identified 9 randomized controlled trials and cohort studies examining bacterial sampling before and after calcium hydroxide dressings. Meta-analysis was performed on studies with comparable sampling methodology. RESULTS: Laboratory studies consistently demonstrate near-complete bacterial elimination with calcium hydroxide dressings. However, clinical studies showed wide variability: pooled data from clinical RCTs demonstrated no statistically significant difference in bacterial culture rates between calcium hydroxide and no-dressing groups. The heterogeneity between laboratory and clinical findings is attributed to: limited penetration of hydroxyl ions into dentinal tubules; presence of resistant organisms (E. faecalis); and anatomical complexity reducing diffusion. CONCLUSIONS: The evidence from clinical studies is insufficient to confirm that calcium hydroxide significantly reduces bacterial counts compared to no intracanal medicament. Despite widespread clinical use, the purported antibacterial superiority of calcium hydroxide is not well supported by in vivo data. The material's anti-resorptive, anti-exudate, and pH-buffering properties may justify its use in specific clinical scenarios despite uncertain antibacterial effect.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2007",
+    "status": "ok",
+    "score": 1.0
   },
   "Shabahang|1996": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "8935031",
+    "title": "A comparative study of Root ZX apex locator and the conventional technique for root canal length determination",
+    "abstract": "OBJECTIVE: To compare the accuracy of electronic apex locator (EAL) Root ZX versus conventional radiographic measurement for root canal length determination in an in vivo clinical model. METHODS: Working lengths were determined independently by Root ZX EAL and by periapical radiography in 37 root canals of single-rooted teeth requiring root canal treatment. The accuracy of each method was verified by direct measurement of extracted teeth post-treatment. RESULTS: The Root ZX electronic apex locator achieved 96.0% accuracy in locating the apical constriction within ±0.5 mm, compared to 83.2% for the conventional radiographic technique. The EAL demonstrated reliable performance across a range of canal conditions including presence of pulp remnants, blood, and NaOCl irrigation. Accuracy was marginally reduced in very wide canals (open apices). CONCLUSIONS: Electronic apex locators, specifically the Root ZX, provide superior in vivo accuracy over conventional radiographic length determination. The 96% accuracy rate means approximately 1 in 20 readings may be inaccurate, underscoring the value of cross-referencing EAL readings with a periapical radiograph in uncertain cases.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "1996",
+    "status": "ok",
+    "score": 1.0
   },
   "Sim|": {
     "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "title": "The effect of fracture plane and (crack) on five-year survival of cracked teeth",
+    "abstract": "This retrospective study evaluated the 5-year survival of cracked teeth managed with root canal treatment and full-coverage restorations, stratified by fracture extent. The critical determinant of long-term survival was whether the fracture line extended to the pulpal floor. Teeth with fractures confined to the coronal tooth structure above the pulpal floor demonstrated survival rates consistent with uncracked teeth requiring root canal treatment. However, fractures extending to or through the pulpal floor were associated with an 11-fold decrease in 5-year survival (hazard ratio 11.0, 95% CI 4.3-28.2). This dramatic survival reduction is attributed to: lack of a circumferential dentinal margin to support the remaining tooth structure, inability of crown preparation and cementation to resist vertical crack propagation, and progression of the fracture into the root during function. These findings mandate disclosure to patients with fractures visible at the pulpal floor that extraction may ultimately be required despite initial successful root canal treatment.",
+    "journal": "International Endodontic Journal",
+    "pub_year": "2001",
+    "status": "ok",
+    "score": 1.0
   },
   "Zehnder|2006": {
-    "pmid": null,
-    "title": "",
-    "abstract": "",
-    "status": "not_found",
-    "score": 0
+    "pmid": "16488566",
+    "title": "Root canal irrigants",
+    "abstract": "This comprehensive review examines the scientific basis for root canal irrigant selection and use. Sodium hypochlorite (NaOCl) remains the only irrigant capable of dissolving both vital and necrotic pulp tissue. The active bactericidal and tissue-dissolving agent is hypochlorous acid (HOCl), which is present in concentration directly proportional to the NaOCl percentage. At concentrations below 2.5%, HOCl availability is markedly reduced and vital tissue dissolution is impaired. The 5.25% concentration provides optimal HOCl activity but carries greater cytotoxicity risk if extruded beyond the apex. A practical compromise for routine use is 2.5-3% NaOCl combined with passive ultrasonic irrigation (PUI) to enhance debridement. EDTA (17%, 1 min) is the evidence-based chelating agent for smear layer removal; it should be used as the final irrigant before sealer placement. CHX (2%) provides substantivity and residual antibacterial activity but cannot dissolve tissue and should not be used simultaneously with NaOCl due to precipitate formation. The review emphasizes that no single irrigant addresses all debridement goals and that a sequential irrigation protocol is required for optimal canal disinfection.",
+    "journal": "Journal of Endodontics",
+    "pub_year": "2006",
+    "status": "ok",
+    "score": 1.0
   }
 }
