@@ -1,436 +1,80 @@
-"""Build endo-guide.html from endo-guide.md.
+"""Validate the living static treatment rationale guide for Netlify builds.
 
-Pipeline:
-  endo-guide.md  +  suggestions.json (optional)
-      │
-      ▼
-  parse markdown → sections[] (with typed blocks)
-      │
-      ▼
-  extract study cards:
-    - {{cite: Author Year [— Finding]}} markers (preferred)
-    - fallback regex over prose for "Author (Year)" and "(Author, Year)"
-      │
-      ▼
-  guide-data.json  (intermediate, human-readable)
-      │
-      ▼
-  inject as `const DATA = {...}` into endo-guide.template.html → endo-guide.html
-  hub.html is also copied to index.html for Cloudflare Pages deployment
+The guide page is now maintained as a static app in `endo-guide.html` with
+structured data in `data/`. This script intentionally does not regenerate the
+HTML; it only checks that the deployed files are internally consistent.
 """
+
 from __future__ import annotations
+
 import json
 import re
-import shutil
-import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
+
 HERE = Path(__file__).parent
-MD = HERE / "endo-guide.md"
-SUGGESTIONS = HERE / "suggestions.json"
-ABSTRACTS = HERE / "abstracts.json"
-FIGURES = HERE / "figures.json"
-TEMPLATE = HERE / "endo-guide.template.html"
-ASSETS = HERE / "assets"
-OUT_JSON = HERE / "guide-data.json"
-OUT_HTML = HERE / "endo-guide.html"
-
-# Shared static assets that must be inlined into the offline single-file
-# artifact. Order matters: srs.js must be loaded before site-nav.js (because
-# site-nav reads window.SRS.stats for the "due" badge).
-INLINED_ASSETS = [
-    ("theme.css", "css",
-     '<link rel="stylesheet" href="/assets/theme.css">'),
-    ("srs.js", "js",
-     '<script src="/assets/srs.js"></script>'),
-    ("site-nav.js", "js",
-     '<script src="/assets/site-nav.js"></script>'),
-]
+GUIDE_HTML = HERE / "endo-guide.html"
+RATIONALES_JSON = HERE / "data" / "rationales.json"
+SOURCES_JSON = HERE / "data" / "sources.json"
+APP_DATA_JS = HERE / "data" / "app-data.js"
 
 
-def inline_assets(html: str) -> str:
-    """Replace /assets/* link+script tags with inlined <style>/<script>.
-
-    Keeps the original <link>/<script> tags as comments so the diff is
-    readable.  This runs only for the guide template so the single-file
-    endo-guide.html remains usable offline (file://), matching the property
-    advertised in README.md.
-    """
-    for filename, kind, tag in INLINED_ASSETS:
-        src = ASSETS / filename
-        if not src.exists():
-            print(f"warn: asset missing, skipping inline: {src}", file=sys.stderr)
-            continue
-        body = src.read_text(encoding="utf-8")
-        if kind == "css":
-            replacement = f"<style>\n/* inlined from /assets/{filename} */\n{body}\n</style>"
-        else:
-            replacement = f"<script>\n/* inlined from /assets/{filename} */\n{body}\n</script>"
-        if tag not in html:
-            print(f"warn: could not find {tag!r} in template to inline",
-                  file=sys.stderr)
-            continue
-        html = html.replace(tag, replacement)
-    return html
+def read_json(path: Path) -> list[dict]:
+    if not path.exists():
+        raise SystemExit(f"Missing required file: {path.relative_to(HERE)}")
+    with path.open(encoding="utf-8") as handle:
+        data = json.load(handle)
+    if not isinstance(data, list):
+        raise SystemExit(f"Expected a list in {path.relative_to(HERE)}")
+    return data
 
 
-# -------------------- markdown parser (minimal, tailored) --------------------
+def main() -> None:
+    if not GUIDE_HTML.exists():
+        raise SystemExit("Missing endo-guide.html")
+    if not APP_DATA_JS.exists():
+        raise SystemExit("Missing data/app-data.js")
 
-def slugify(text: str, prefix: str = "") -> str:
-    s = re.sub(r"[^\w\s-]", "", text.lower())
-    s = re.sub(r"\s+", "-", s).strip("-")
-    s = re.sub(r"-+", "-", s)[:60]
-    return f"{prefix}{s}" if prefix else s
+    rationales = read_json(RATIONALES_JSON)
+    sources = read_json(SOURCES_JSON)
+    source_ids = {source.get("id") for source in sources}
+    problems: list[str] = []
+    quiz_count = 0
 
+    for entry in rationales:
+        entry_id = entry.get("id", "unknown")
+        if not entry.get("domain") or not entry.get("decision_point"):
+            problems.append(f"{entry_id}: missing domain or decision point")
+        quiz = entry.get("quiz") or []
+        if len(quiz) < 2:
+            problems.append(f"{entry_id}: expected at least two quiz prompts")
+        quiz_count += len(quiz)
+        for source_id in entry.get("source_ids") or []:
+            if source_id not in source_ids:
+                problems.append(f"{entry_id}: missing source {source_id}")
 
-def parse_markdown(md: str) -> list[dict]:
-    """Parse our tailored markdown into a nested section tree.
+    html = GUIDE_HTML.read_text(encoding="utf-8")
+    required_markers = [
+        "Endodontic Treatment Rationale Guide",
+        "Updated Jun 30, 2026",
+        "data/app-data.js",
+    ]
+    for marker in required_markers:
+        if marker not in html:
+            problems.append(f"endo-guide.html missing marker: {marker}")
 
-    Returns: [ { id, number, title, level:1, blocks:[...], subsections:[...] } ]
-    Blocks: {type: "p"|"ul"|"ol"|"table"|"h3"|"h4", ...}
-    """
-    lines = md.splitlines()
-    i = 0
-    n = len(lines)
-    sections: list[dict] = []
-    current_section: dict | None = None
-    current_sub: dict | None = None
+    app_data = APP_DATA_JS.read_text(encoding="utf-8")
+    if not re.search(r"window\.ENDO_GUIDE_DATA\s*=", app_data):
+        problems.append("data/app-data.js missing window.ENDO_GUIDE_DATA assignment")
 
-    def target() -> dict:
-        # where new blocks land
-        if current_sub is not None:
-            return current_sub
-        if current_section is not None:
-            return current_section
-        # synthesize a front-matter section so nothing is lost
-        return {"id": "preamble", "number": "", "title": "Preamble", "level": 1, "blocks": [], "subsections": []}
+    if problems:
+        raise SystemExit("\n".join(problems))
 
-    # If there's content before any H1, put it in a preamble section.
-    preamble: dict | None = None
-
-    def add_block(block: dict) -> None:
-        nonlocal preamble
-        if current_section is None and current_sub is None:
-            if preamble is None:
-                preamble = {"id": "preamble", "number": "", "title": "Preamble", "level": 1, "blocks": [], "subsections": []}
-            preamble["blocks"].append(block)
-        else:
-            target()["blocks"].append(block)
-
-    def split_heading(line: str) -> tuple[int, str]:
-        m = re.match(r"^(#{1,6})\s+(.*)$", line)
-        if not m:
-            return 0, ""
-        return len(m.group(1)), m.group(2).strip()
-
-    while i < n:
-        line = lines[i]
-        level, htext = split_heading(line)
-        if level == 1:
-            # flush
-            if current_section:
-                sections.append(current_section)
-            # number extraction: "1. Title" or "1 Title" or just "Title"
-            num_m = re.match(r"^(\d+)[\.\s]+(.*)$", htext)
-            if num_m:
-                number = num_m.group(1)
-                title = num_m.group(2).strip()
-            else:
-                number = ""
-                title = htext
-            sec_id = "s" + slugify(f"{number}-{title}" if number else title)
-            current_section = {"id": sec_id, "number": number, "title": title, "level": 1, "blocks": [], "subsections": []}
-            current_sub = None
-            i += 1
-            continue
-        if level == 2:
-            if current_section is None:
-                # create a synthetic wrapper
-                current_section = {"id": "s-misc", "number": "", "title": "Uncategorized", "level": 1, "blocks": [], "subsections": []}
-            num_m = re.match(r"^(\d+(?:\.\d+)*)\s+(.*)$", htext)
-            if num_m:
-                number = num_m.group(1)
-                title = num_m.group(2).strip()
-            else:
-                number = ""
-                title = htext
-            sub_id = current_section["id"] + "-" + slugify(f"{number}-{title}" if number else title)
-            current_sub = {"id": sub_id, "number": number, "title": title, "level": 2, "blocks": []}
-            current_section["subsections"].append(current_sub)
-            i += 1
-            continue
-        if level in (3, 4):
-            add_block({"type": f"h{level}", "text": htext, "raw": line})
-            i += 1
-            continue
-
-        # blank
-        if not line.strip():
-            i += 1
-            continue
-
-        # table: line starts with '|' and next line is a separator
-        if line.lstrip().startswith("|"):
-            start = i
-            tbl = [line]
-            i += 1
-            while i < n and lines[i].lstrip().startswith("|"):
-                tbl.append(lines[i])
-                i += 1
-            rows = []
-            for r in tbl:
-                cells = [c.strip() for c in r.strip().strip("|").split("|")]
-                rows.append(cells)
-            # drop separator row (all dashes)
-            if len(rows) >= 2 and all(re.match(r"^:?-+:?$", c) for c in rows[1] if c):
-                headers = rows[0]
-                body = rows[2:]
-            else:
-                headers = rows[0]
-                body = rows[1:]
-            add_block({"type": "table", "headers": headers, "rows": body, "raw": "\n".join(lines[start:i])})
-            continue
-
-        # list
-        if re.match(r"^\s*-\s+", line) or re.match(r"^\s*\d+\.\s+", line):
-            start = i
-            ordered = bool(re.match(r"^\s*\d+\.\s+", line))
-            items = []
-            while i < n and (re.match(r"^\s*-\s+", lines[i]) or re.match(r"^\s*\d+\.\s+", lines[i])):
-                item = re.sub(r"^\s*(?:-|\d+\.)\s+", "", lines[i])
-                items.append(item)
-                i += 1
-            add_block({"type": "ol" if ordered else "ul", "items": items, "raw": "\n".join(lines[start:i])})
-            continue
-
-        # paragraph — collect until blank line or block break
-        start = i
-        buf = [line]
-        i += 1
-        while i < n and lines[i].strip() and not re.match(r"^#{1,6}\s", lines[i]) and not lines[i].lstrip().startswith("|") and not re.match(r"^\s*-\s+", lines[i]) and not re.match(r"^\s*\d+\.\s+", lines[i]):
-            buf.append(lines[i])
-            i += 1
-        add_block({"type": "p", "text": " ".join(s.strip() for s in buf), "raw": "\n".join(lines[start:i])})
-
-    if current_section:
-        sections.append(current_section)
-    if preamble:
-        sections.insert(0, preamble)
-    return sections
-
-
-# -------------------- study card extraction --------------------
-
-CITE_MARKER = re.compile(r"\{\{cite:\s*([^}]+?)\}\}")
-PROSE_PATTERNS = [
-    re.compile(r"\(([A-Z][A-Za-z\-']+(?:\s+(?:et\s+al\.?|and|&)\s+[A-Z][A-Za-z\-']+)?),?\s*(\d{4})\)"),
-    re.compile(r"\b([A-Z][A-Za-z\-']+(?:\s+(?:et\s+al\.?|and|&)\s+[A-Z][A-Za-z\-']+)?)\s*\((\d{4})\)"),
-]
-
-
-def extract_finding_sentence(text: str, match_start: int, match_end: int) -> str:
-    """Return the sentence containing the citation, trimmed to ~240 chars."""
-    # find sentence boundaries around the match
-    left = text.rfind(". ", 0, match_start)
-    left = 0 if left < 0 else left + 2
-    right = text.find(". ", match_end)
-    right = len(text) if right < 0 else right + 1
-    sent = text[left:right].strip()
-    # strip residual cite markers from the finding
-    sent = CITE_MARKER.sub("", sent)
-    sent = re.sub(r"\s+", " ", sent).strip()
-    if len(sent) > 260:
-        sent = sent[:257] + "…"
-    return sent
-
-
-def parse_cite_marker(payload: str) -> tuple[str, str, str]:
-    """Parse '{{cite: Author Year — Finding}}' payload. Finding may be empty."""
-    # Split on em dash or double hyphen
-    parts = re.split(r"\s+[—–-]{1,2}\s+", payload, maxsplit=1)
-    head = parts[0].strip()
-    finding = parts[1].strip() if len(parts) > 1 else ""
-    # last token in head is year
-    ym = re.search(r"(\d{4})$", head)
-    if ym:
-        year = ym.group(1)
-        author = head[: ym.start()].strip()
-    else:
-        year = ""
-        author = head
-    return author, year, finding
-
-
-def walk_text_blocks(section: dict):
-    """Yield (subsection_or_section, block_index, text) for every text-bearing block."""
-    for bi, block in enumerate(section.get("blocks", [])):
-        yield section, bi, block_text(block)
-    for sub in section.get("subsections", []):
-        for bi, block in enumerate(sub.get("blocks", [])):
-            yield sub, bi, block_text(block)
-
-
-def block_text(block: dict) -> str:
-    t = block.get("type")
-    if t == "p" or t and t.startswith("h"):
-        return block.get("text", "")
-    if t in ("ul", "ol"):
-        return "\n".join(block.get("items", []))
-    if t == "table":
-        rows = [" | ".join(block.get("headers", []))]
-        for r in block.get("rows", []):
-            rows.append(" | ".join(r))
-        return "\n".join(rows)
-    return ""
-
-
-def extract_cards(sections: list[dict]) -> list[dict]:
-    cards: list[dict] = []
-    seen = set()
-    for sec in sections:
-        for host, bi, text in walk_text_blocks(sec):
-            if not text:
-                continue
-            # 1. explicit {{cite: ...}} markers
-            for m in CITE_MARKER.finditer(text):
-                author, year, finding = parse_cite_marker(m.group(1))
-                if not author:
-                    continue
-                if not finding:
-                    finding = extract_finding_sentence(text, m.start(), m.end())
-                key = (author.lower(), year, finding[:80].lower())
-                if key in seen:
-                    continue
-                seen.add(key)
-                cards.append({
-                    "author": author,
-                    "year": year,
-                    "finding": finding,
-                    "section_id": host["id"],
-                    "section_title": host.get("title", ""),
-                    "source": "marker",
-                })
-            # 2. prose fallback
-            for pat in PROSE_PATTERNS:
-                for m in pat.finditer(text):
-                    author = m.group(1).strip()
-                    year = m.group(2)
-                    finding = extract_finding_sentence(text, m.start(), m.end())
-                    key = (author.lower(), year, finding[:80].lower())
-                    if key in seen:
-                        continue
-                    seen.add(key)
-                    cards.append({
-                        "author": author,
-                        "year": year,
-                        "finding": finding,
-                        "section_id": host["id"],
-                        "section_title": host.get("title", ""),
-                        "source": "prose",
-                    })
-    return cards
-
-
-# -------------------- build --------------------
-
-def build() -> None:
-    if not MD.exists():
-        sys.exit(f"Missing source markdown: {MD}")
-    md = MD.read_text(encoding="utf-8")
-    sections = parse_markdown(md)
-    cards = extract_cards(sections)
-
-    suggestions: list[dict] = []
-    if SUGGESTIONS.exists():
-        try:
-            data = json.loads(SUGGESTIONS.read_text(encoding="utf-8"))
-            if isinstance(data, list):
-                suggestions = [s for s in data if s.get("status", "pending") == "pending"]
-        except Exception as e:
-            print(f"warn: could not read suggestions.json: {e}", file=sys.stderr)
-
-    abstracts: dict = {}
-    if ABSTRACTS.exists():
-        try:
-            abstracts = json.loads(ABSTRACTS.read_text(encoding="utf-8"))
-        except Exception as e:
-            print(f"warn: could not read abstracts.json: {e}", file=sys.stderr)
-
-    figures: list[dict] = []
-    if FIGURES.exists():
-        try:
-            raw = json.loads(FIGURES.read_text(encoding="utf-8"))
-            figures = raw.get("figures", []) if isinstance(raw, dict) else raw
-        except Exception as e:
-            print(f"warn: could not read figures.json: {e}", file=sys.stderr)
-
-    # Abstract health stats — drives the Audit-pane "Abstract health" widget.
-    # Cheap aggregation so the UI doesn't have to scan abstracts.json at render.
-    def _conf(v: dict) -> str:
-        # Prefer the explicit `confidence` field; fall back to score-derived
-        # buckets so older entries without it still categorize correctly.
-        if v.get("confidence") in ("high", "medium", "low", "unknown"):
-            return v["confidence"]
-        if v.get("status") == "not_found":
-            return "unknown"
-        s = float(v.get("score") or 0)
-        return "high" if s >= 0.55 else ("medium" if s >= 0.35 else "low")
-
-    conf_counts = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
-    needs_review = 0
-    for v in abstracts.values():
-        conf_counts[_conf(v)] += 1
-        if v.get("needs_review") or _conf(v) != "high":
-            needs_review += 1
-    abstract_health = {
-        "total": len(abstracts),
-        "high": conf_counts["high"],
-        "medium": conf_counts["medium"],
-        "low": conf_counts["low"],
-        "unknown": conf_counts["unknown"],
-        "needs_review": needs_review,
-    }
-
-    data = {
-        "built_at": datetime.now(timezone.utc).isoformat(),
-        "sections": sections,
-        "cards": cards,
-        "suggestions": suggestions,
-        "abstracts": abstracts,
-        "abstract_health": abstract_health,
-        "figures": figures,
-    }
-    OUT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-
-    if not TEMPLATE.exists():
-        print(f"warn: no template at {TEMPLATE}; wrote {OUT_JSON.name} only", file=sys.stderr)
-        print(f"sections: {len(sections)}  cards: {len(cards)}  pending suggestions: {len(suggestions)}")
-        return
-
-    tpl = TEMPLATE.read_text(encoding="utf-8")
-    # Inline shared assets (theme.css, srs.js, site-nav.js) so the generated
-    # endo-guide.html is a single self-contained file (offline property from
-    # README.md).  Non-generated pages (endo-debates.html, cochrane-endo.html)
-    # load the same files via /assets/* on Cloudflare Pages.
-    tpl = inline_assets(tpl)
-    payload = json.dumps(data, ensure_ascii=False)
-    # inject: replace the literal sentinel `/*__DATA__*/null` with the payload
-    if "/*__DATA__*/null" not in tpl:
-        sys.exit("template missing `/*__DATA__*/null` sentinel")
-    html = tpl.replace("/*__DATA__*/null", payload)
-    OUT_HTML.write_text(html, encoding="utf-8")
-    # hub.html is the site root — copy it to index.html so Cloudflare Pages serves it at /
-    shutil.copy(HERE / "hub.html", HERE / "index.html")
-    # keep local preview dir in sync (outside iCloud Drive so the preview server can read it)
-    preview_dir = Path.home() / "endo-preview"
-    if preview_dir.exists():
-        (preview_dir / "endo-guide.html").write_text(html, encoding="utf-8")
-        shutil.copy(HERE / "hub.html", preview_dir / "index.html")
-    print(f"sections: {len(sections)}  cards: {len(cards)}  suggestions: {len(suggestions)}  abstracts: {len(abstracts)}")
-    print(f"wrote {OUT_JSON.name} ({OUT_JSON.stat().st_size:,} b)")
-    print(f"wrote {OUT_HTML.name} ({OUT_HTML.stat().st_size:,} b) — index.html → hub.html")
+    print(
+        f"Validated living guide: {len(rationales)} rationales, "
+        f"{len(sources)} sources, {quiz_count} quiz cards."
+    )
 
 
 if __name__ == "__main__":
-    build()
+    main()
