@@ -392,6 +392,10 @@
       margin: 0;
       color: var(--muted);
       font-size: 13px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .detail-panel,
@@ -439,6 +443,56 @@
       padding: 12px 14px;
       border-radius: 0 var(--radius) var(--radius) 0;
       margin: 0;
+    }
+
+    .quick-answer {
+      border: 1px solid #99f6e4;
+      background: #f0fdfa;
+      border-radius: var(--radius);
+      padding: 14px;
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.45;
+    }
+
+    .quick-answer strong {
+      color: var(--teal);
+    }
+
+    .full-answer {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 0;
+    }
+
+    .full-answer summary {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      color: var(--teal);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .full-answer .bottom-line {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      border-radius: 0 0 var(--radius) var(--radius);
+      background: #f8fbfa;
+    }
+
+    .complexity-chip {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: var(--amber-soft);
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
     .detail-grid {
@@ -756,7 +810,7 @@
     </main>
   </div>
 
-  <script src="data/app-data.js"></script>
+  <script src="data/app-data.js?v=2026-07-01-b1"></script>
   <script>
     const data = window.ENDO_GUIDE_DATA || { rationales: [], sources: [] };
     const rationales = asArray(data.rationales);
@@ -842,6 +896,27 @@
       return /^https?:\/\//i.test(url) ? url : "#";
     }
 
+    function firstSentence(text) {
+      const value = String(text || "").replace(/\s+/g, " ").trim();
+      if (!value) return "";
+      const match = value.match(/^(.+?[.!?])\s/);
+      return match ? match[1] : value;
+    }
+
+    function shortText(text, limit = 180) {
+      const value = String(text || "").replace(/\s+/g, " ").trim();
+      if (value.length <= limit) return value;
+      const clipped = value.slice(0, limit);
+      const boundary = Math.max(clipped.lastIndexOf(". "), clipped.lastIndexOf("; "), clipped.lastIndexOf(", "));
+      return `${clipped.slice(0, boundary > 80 ? boundary + 1 : limit).trim()}...`;
+    }
+
+    function quickAnswer(entry) {
+      if (entry.quick_answer) return shortText(entry.quick_answer, 280);
+      const sentence = firstSentence(entry.bottom_line);
+      return shortText(sentence || entry.bottom_line, 190);
+    }
+
     function textOf(entry) {
       return [
         entry.id,
@@ -849,10 +924,15 @@
         entry.decision_point,
         entry.clinical_question,
         entry.bottom_line,
+        entry.quick_answer,
         entry.board_frame,
         asArray(entry.rationale).join(" "),
         asArray(entry.pitfalls).join(" "),
-        asArray(entry.source_ids).join(" ")
+        asArray(entry.source_ids).join(" "),
+        asArray(entry.source_ids).map((id) => {
+          const source = sourceMap.get(id);
+          return source ? `${source.title} ${source.organization} ${source.type} ${source.use_for}` : "";
+        }).join(" ")
       ].join(" ").toLowerCase();
     }
 
@@ -938,7 +1018,7 @@
             <span class="card-id">${escapeHtml(entry.id)}</span>
           </div>
           <h2>${escapeHtml(entry.decision_point)}</h2>
-          <p class="preview">${escapeHtml(entry.clinical_question)}</p>
+          <p class="preview">${escapeHtml(quickAnswer(entry))}</p>
         </button>`;
       }).join("");
 
@@ -974,6 +1054,8 @@
           <span>${escapeHtml(source.use_for)}</span>
         </div>`;
       }).join("");
+      const bottomWords = String(entry.bottom_line || "").trim().split(/\s+/).filter(Boolean).length;
+      const complexityChip = bottomWords > 80 ? `<span class="complexity-chip">Long answer</span>` : "";
 
       els.detail.innerHTML = `
         <div class="detail-header">
@@ -983,7 +1065,11 @@
           </div>
           <h2>${escapeHtml(entry.decision_point)}</h2>
           <p class="clinical-question">${escapeHtml(entry.clinical_question)}</p>
-          <p class="bottom-line"><strong>Bottom line:</strong> ${escapeHtml(entry.bottom_line)}</p>
+          <p class="quick-answer"><strong>Quick answer:</strong> ${escapeHtml(quickAnswer(entry))}</p>
+          <details class="full-answer">
+            <summary>Full detail ${complexityChip}</summary>
+            <p class="bottom-line">${escapeHtml(entry.bottom_line)}</p>
+          </details>
         </div>
         <div class="detail-grid">
           ${listBlock("Why", entry.rationale)}

@@ -236,7 +236,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Prepared mature canal where a nonbinding tip can agitate final irrigant safely"
         }
-      ]
+      ],
+      "quick_answer": "Use activation to improve irrigant exchange after shaping, especially in complex anatomy. It helps chemistry reach more surfaces, but it does not replace safe shaping, irrigant volume, chemical selection, or apical control."
     },
     {
       "id": "IRR-004",
@@ -1191,7 +1192,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Necrotic tooth with isolated lateral drainage and otherwise normal periodontal probing"
         }
-      ]
+      ],
+      "quick_answer": "Let the limiting disease set the sequence. Treat a primary endodontic lesion first, but get periodontal prognosis or referral before promising retention when periodontitis, furcation loss, mobility, root damage, or nonrestorability limits the tooth."
     },
     {
       "id": "PERIOENDO-004",
@@ -1249,7 +1251,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Endodontic source control, then reassess probing and healing before deciding on periodontal surgery"
         }
-      ]
+      ],
+      "quick_answer": "Control the endodontic source first, then reassess the periodontal defect before surgery or regeneration. Treat active generalized periodontitis in parallel, and escalate if probing or bone defects persist."
     },
     {
       "id": "PERIOENDO-005",
@@ -1374,7 +1377,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Reassess for root fracture, perforation, resorption, persistent endodontic infection, or residual periodontal defect"
         }
-      ]
+      ],
+      "quick_answer": "Recall must track both endodontic healing and periodontal stability. Recheck probing, mobility, furcations, symptoms, restorability, and radiographs; escalate if defects persist, healing stalls, or root damage becomes more likely."
     },
     {
       "id": "PERIOENDO-007",
@@ -1442,7 +1446,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use it as conditional periodontal-defect evidence after endodontic source control and case selection"
         }
-      ]
+      ],
+      "quick_answer": "Use outcome numbers only as context. True combined lesions are heterogeneous, so classify root damage and periodontitis, control endodontic and periodontal infection, restore appropriately, and reassess under maintenance."
     },
     {
       "id": "PERIOENDO-008",
@@ -1509,7 +1514,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Escalate root-damage assessment with selective CBCT or referral because the result could change prognosis"
         }
-      ]
+      ],
+      "quick_answer": "Escalate to small-field CBCT or referral when root damage would change the plan: vertical root fracture, perforation, invasive resorption, cemental tear, or nonrestorable crack. CBCT helps, but a negative scan does not erase a strong clinical pattern."
     },
     {
       "id": "CRACK-001",
@@ -1632,7 +1638,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Restorable molar with a crown-contained crack, no deep probing, and irreversible pulpitis"
         }
-      ]
+      ],
+      "quick_answer": "Decide by crack extent, symptoms, pulp/apical diagnosis, probing, restorability, occlusion, and patient goals. Save restorable cracks that can be sealed and protected; extract split, nonrestorable, or unfavorable root fractures."
     },
     {
       "id": "VRF-001",
@@ -1693,7 +1700,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Treat the finding as strong suspicion for vertical root fracture and confirm before retreatment or surgery"
         }
-      ]
+      ],
+      "quick_answer": "A suspected vertical root fracture is a pattern diagnosis. Use probing, angled radiographs, and selective CBCT or exploration; once confirmed, single-rooted teeth usually need extraction, while selected multirooted teeth may need root resection."
     },
     {
       "id": "CRACK-003",
@@ -1935,7 +1943,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Separable split root with an isolated deep periodontal defect"
         }
-      ]
+      ],
+      "quick_answer": "Use a barrier only after the tooth is otherwise worth saving: restorable, no confirmed split or vertical root fracture, maintainable periodontium, controlled occlusion, and planned cuspal protection. It seals and supports; it does not make a bad crack predictable."
     },
     {
       "id": "CRACK-007",
@@ -1994,7 +2003,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Evaluate for cracked tooth/VRF with probing, imaging, restorability, and possible referral before definitive treatment"
         }
-      ]
+      ],
+      "quick_answer": "A tooth can have vertical root fracture even without prior RCT. Do not start routine RCT until probing, imaging, and crack assessment support a maintainable root prognosis."
     },
     {
       "id": "CRACK-008",
@@ -2053,7 +2063,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Select a material for sealing, isolation, biocompatibility, and restorative compatibility after prognosis is established"
         }
-      ]
+      ],
+      "quick_answer": "Pick the barrier material for sealing and restorative compatibility, not because it cures cracks. Prognosis comes first; the material should support isolation, dentin conditions, and the final restoration plan."
     },
     {
       "id": "CRACK-009",
@@ -2117,7 +2128,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Vital molar with pain on release and caries undermining the cracked marginal ridge"
         }
-      ]
+      ],
+      "quick_answer": "Monitoring is reasonable only for a low-risk vital crack: no biting pain, no isolated deep probing, no bone change, no progression, and no major structural compromise. Symptoms or progression push toward restoration or cuspal coverage."
     },
     {
       "id": "CRACK-010",
@@ -2598,7 +2610,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Surgical repositioning and early endodontic treatment when position allows"
         }
-      ]
+      ],
+      "quick_answer": "Intrusion treatment depends on root maturity and depth. Immature teeth often get a chance to re-erupt; mature or deeply intruded teeth need repositioning and early endodontic planning. Ankylosis in growing patients may need decoronation."
     },
     {
       "id": "ANES-001",
@@ -3338,7 +3351,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Rescue the deeper-than-intended sedation with airway/oxygen support and activate the office emergency plan"
         }
-      ]
+      ],
+      "quick_answer": "Pediatric sedation safety is a rehearsed workflow: select the patient, document doses, rescue airway or apnea, manage LAST, activate EMS, and recover/discharge safely. If the team cannot rescue deeper sedation, refer."
     },
     {
       "id": "SED-005",
@@ -3402,7 +3416,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Drug-specific lactation review, infant-risk screening, monitored shortest-acting reasonable anxiolysis or referral, and written infant monitoring"
         }
-      ]
+      ],
+      "quick_answer": "For breastfeeding patients, choose anxiolytics by infant risk and drug behavior, not habit. Lorazepam is usually cleaner than diazepam; repeated sedating drugs or fragile infants need pediatric or lactation review."
     },
     {
       "id": "SED-006",
@@ -3467,7 +3482,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Check the state pediatric sedation/endorsement rule and refer or stage care if the office is not authorized and rescue-ready"
         }
-      ]
+      ],
+      "quick_answer": "Check the state rules before sedating a child. The permit, age group, route, sedation depth, provider credentials, emergency records, and referral threshold all have to match the planned care."
     },
     {
       "id": "PAIN-001",
@@ -3708,7 +3724,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use compatible source control with acetaminophen and/or ibuprofen when safe, reserving opioids for rare rescue situations"
         }
-      ]
+      ],
+      "quick_answer": "Do not stop breastfeeding or prescribe antibiotics just because a patient is lactating. Prioritize source control; ibuprofen, acetaminophen, and lidocaine are usually compatible, but fragile infants and opioids need extra caution."
     },
     {
       "id": "IMG-001",
@@ -4365,7 +4382,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Prepare a safe canal only when a post is needed for core retention and verify the apical fill remains intact"
         }
-      ]
+      ],
+      "quick_answer": "Plan the post before obturation. Posts retain cores; they do not strengthen roots. Preserve apical seal and dentin, and prepare post space only when the restorative need and anatomy justify the risk."
     },
     {
       "id": "OBT-006",
@@ -4775,7 +4793,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Adequately root-filled anterior tooth with persistent apical lesion and a well-fitting post/crown whose removal risks root damage"
         }
-      ]
+      ],
+      "quick_answer": "Choose apical surgery when the tooth is worth saving and nonsurgical retreatment would be too destructive, impractical, or unlikely to fix the cause. Map anatomy and biopsy needs before treating the lesion as routine."
     },
     {
       "id": "SURG-001",
@@ -5135,7 +5154,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "GTR may be considered for selected uncontained or through-and-through defects after source control, but product-specific superiority is not a universal rule"
         }
-      ]
+      ],
+      "quick_answer": "Large through-and-through defects may need regenerative surgical planning, not just curettage. Intentional replantation is a last-line option only when the tooth can be removed, managed, replanted, and maintained predictably."
     },
     {
       "id": "SURG-007",
