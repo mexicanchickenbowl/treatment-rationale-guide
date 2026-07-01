@@ -297,7 +297,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use gentle low-pressure irrigation with the needle short of the root end and consider negative pressure"
         }
-      ]
+      ],
+      "quick_answer": "For open apices or high extrusion risk, prioritize controlled disinfection over forceful chemistry. Use gentle low-pressure delivery, side-vented or closed-ended needles, suction, lower concentration when indicated, and consider negative pressure."
     },
     {
       "id": "IRR-005",
@@ -477,7 +478,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use it only as a trained, device-specific adjunct while keeping standard irrigation and safety principles"
         }
-      ]
+      ],
+      "quick_answer": "Laser-assisted irrigation is device-specific and adjunctive. It does not replace shaping, NaOCl/EDTA chemistry, rubber dam isolation, apical safety, training, or clinical healing evidence."
     },
     {
       "id": "IRR-008",
@@ -536,7 +538,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "It can be a delivery/safety strategy and may reduce early postoperative pain in selected cases"
         }
-      ]
+      ],
+      "quick_answer": "Apical negative pressure is mainly a safer delivery strategy near working length. It can reduce positive-pressure extrusion risk, but it does not replace chemistry, shaping, or case-specific healing evidence."
     },
     {
       "id": "IRR-009",
@@ -603,7 +606,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "The result supports a possible cleaning mechanism but does not prove clinical healing superiority"
         }
-      ]
+      ],
+      "quick_answer": "Do not turn surrogate endpoints into clinical outcome claims. Smear-layer removal, bacterial reduction, distribution, vapor lock, and pain data help, but they are not the same as long-term healing."
     },
     {
       "id": "IRR-010",
@@ -662,7 +666,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "The finding supports a possible adjunctive role in similar anatomy but does not prove superior healing"
         }
-      ]
+      ],
+      "quick_answer": "Complex anatomy can justify safe adjunctive activation after shaping, but no device is mandatory. Treat model-cleaning data as supportive, not proof of better long-term healing."
     },
     {
       "id": "IRR-011",
@@ -784,7 +789,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Temperature behavior is protocol- and anatomy-dependent, so warmed NaOCl remains a controlled adjunct"
         }
-      ]
+      ],
+      "quick_answer": "Preheated NaOCl is a controlled chemistry adjunct, not a magic temperature number. Delivery, cooling, flow, patency, extrusion risk, and heat safety determine whether it makes sense."
     },
     {
       "id": "MED-001",
@@ -903,7 +909,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Its high pH helps, but biofilm, tubules, and dentin buffering limit reliability"
         }
-      ]
+      ],
+      "quick_answer": "Calcium hydroxide can miss Enterococcus faecalis because dentin buffers pH and bacteria can persist in biofilm, tubules, tissue remnants, exudate, or anatomy the medicament does not reach well."
     },
     {
       "id": "MED-003",
@@ -1578,7 +1585,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "An isolated narrow deep periodontal pocket on one root surface"
         }
-      ]
+      ],
+      "quick_answer": "Diagnose cracked teeth by pattern, not one sign. Combine history, pulp and apical tests, bite testing, probing, imaging, magnification, and restorability, then classify the crack because prognosis depends on type."
     },
     {
       "id": "CRACK-002",
@@ -1767,7 +1775,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Maxillary molar with isolated fracture of one root, sound remaining roots, maintainable periodontium, and feasible cuspal-coverage restoration"
         }
-      ]
+      ],
+      "quick_answer": "Root resection can be considered only for selected multirooted teeth with an isolated fractured or diseased root and a maintainable remainder. Single-root vertical root fracture usually means extraction."
     },
     {
       "id": "CRACK-004",
@@ -1823,7 +1832,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "They can be considered for parafunction/load control but should not replace diagnosis, restoration, or follow-up"
         }
-      ]
+      ],
+      "quick_answer": "Occlusal protection manages risk; it does not cure the crack. Correct true high contacts, protect the tooth before definitive restoration, and consider a splint when parafunction or broader load is real."
     },
     {
       "id": "CRACK-005",
@@ -2682,7 +2692,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use/plan supplemental local anesthesia and reassess pulpal anesthesia"
         }
-      ]
+      ],
+      "quick_answer": "A numb lip does not prove a hot mandibular molar is numb. Test the tooth when feasible and plan supplemental anesthesia if pulpal anesthesia is still inadequate."
     },
     {
       "id": "ANES-002",
@@ -2926,7 +2937,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "About 2.5 cartridges"
         }
-      ]
+      ],
+      "quick_answer": "For children, calculate local anesthetic dose from actual weight and track milligrams from every cartridge and agent. Use the lowest effective dose, not adult cartridge habits."
     },
     {
       "id": "ANES-006",
@@ -3677,7 +3689,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "A tooth with a clearly high provisional restoration and biting pain"
         }
-      ]
+      ],
+      "quick_answer": "Do not reduce occlusion routinely for postoperative pain prevention. Adjust only when a true high or traumatic contact is part of the diagnosis or provisional/restorative plan."
     },
     {
       "id": "PAIN-004",
@@ -3807,7 +3820,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Routine screening of all endodontic patients"
         }
-      ]
+      ],
+      "quick_answer": "Use CBCT selectively when conventional imaging cannot answer a question that would change diagnosis, risk assessment, treatment, or follow-up. A negative CBCT does not rule out every crack or fracture."
     },
     {
       "id": "WL-001",
@@ -4529,7 +4543,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "No remaining supragingival tooth structure and deep root dentin caries"
         }
-      ]
+      ],
+      "quick_answer": "Before endodontic treatment, decide whether the tooth can be isolated, sealed, restored, loaded, and maintained. Ferrule helps, but only if gained without ruining periodontal support or crown-root ratio."
     },
     {
       "id": "REST-002",
@@ -4646,7 +4661,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Posterior molar with large MOD loss and undermined cusps"
         }
-      ]
+      ],
+      "quick_answer": "Definitive restoration is part of endodontic care. Seal and protect the tooth as soon as practical; posterior teeth with major structure loss, cracks, undermined cusps, or heavy load usually need cuspal coverage."
     },
     {
       "id": "RETX-001",
@@ -4759,7 +4775,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Restorable molar with untreated MB2 canal and failing coronal restoration"
         }
-      ]
+      ],
+      "quick_answer": "Choose nonsurgical retreatment when the likely cause is inside the canal and accessible, such as missed anatomy, poor obturation, leakage, or recurrent caries, and restorability can be preserved."
     },
     {
       "id": "RETX-003",
@@ -5125,7 +5142,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Choose access that exposes the target, preserves tissue, controls bleeding, and can be closed passively"
         }
-      ]
+      ],
+      "quick_answer": "Choose flap, hemostasis, and closure to create visibility while protecting tissues and vital structures. Hemostatic agents help only if they improve visualization and are not left as irritating residue."
     },
     {
       "id": "SURG-006",
@@ -5569,7 +5587,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "No pain/swelling/sinus tract with healing apical radiolucency"
         }
-      ]
+      ],
+      "quick_answer": "At the second regenerative visit, create a scaffold, protect it with a matrix if needed, and seal coronally. Follow-up first looks for symptoms gone and bone healing, then root development, then sensibility."
     },
     {
       "id": "REG-004",
@@ -5864,7 +5883,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Medical history, anesthesia, anatomy, diagnosis, restorability, and operator resources"
         }
-      ]
+      ],
+      "quick_answer": "Use formal difficulty assessment to match the case to the operator, equipment, time, and setting. Refer or plan differently when patient, diagnostic, restorative, periodontal, or procedural complexity is high."
     }
   ],
   "sources": [
