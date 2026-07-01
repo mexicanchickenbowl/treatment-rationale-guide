@@ -122,7 +122,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Refreshment/activation and adequate volume"
         }
-      ]
+      ],
+      "quick_answer": "Sodium hypochlorite is the main irrigant because it kills broadly and dissolves organic tissue. Its value depends on safe delivery, volume, time, replenishment, and extrusion control, not concentration alone."
     },
     {
       "id": "IRR-002",
@@ -174,7 +175,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Excessive dentin demineralization/erosion"
         }
-      ]
+      ],
+      "quick_answer": "Use EDTA near the end to remove the inorganic smear layer that NaOCl does not handle well. Keep exposure controlled, commonly about 17% for one minute, to limit erosion."
     },
     {
       "id": "IRR-003",
@@ -353,7 +355,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Stop irrigation, assess severity and red flags, manage pain, document, and arrange urgent referral if swelling is progressive or high-risk"
         }
-      ]
+      ],
+      "quick_answer": "A sodium hypochlorite accident is urgent, not routine soreness. Stop irrigation, assess swelling and airway/vision/neurologic risk, dilute when appropriate, manage pain, follow closely, and escalate for dangerous progression."
     },
     {
       "id": "IRR-006",
@@ -965,7 +968,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use controlled delivery matched to anatomy and avoid apical pressure"
         }
-      ]
+      ],
+      "quick_answer": "Place calcium hydroxide with controlled delivery inside the canal. Avoid binding, deep pressure, and high-risk anatomy because extrusion can injure tissues or nerves."
     },
     {
       "id": "DX-001",
@@ -1017,7 +1021,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Pain to biting/percussion or palpation"
         }
-      ]
+      ],
+      "quick_answer": "Document both pulpal and apical diagnoses because the pulp and periapical tissues can be at different disease stages. Treatment depends on both, not just one label."
     },
     {
       "id": "PERIOENDO-001",
@@ -2818,7 +2823,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Stop and stage, refer, or change the care setting rather than exceed dose limits"
         }
-      ]
+      ],
+      "quick_answer": "Before repeated injections, calculate the patient-specific maximum dose and track cumulative milligrams from every cartridge and agent. If anesthesia still fails within limits, stop, stage, refer, or change setting."
     },
     {
       "id": "ANES-004",
@@ -2876,7 +2882,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use the minimum effective vasoconstrictor, aspirate carefully, inject slowly, and track the adult 0.04 mg caution dose"
         }
-      ]
+      ],
+      "quick_answer": "Vasoconstrictors are not automatically forbidden in medically complex patients. Use the lowest effective exposure, aspirate and inject slowly, and respect common cardiovascular caution limits such as 0.04 mg epinephrine."
     },
     {
       "id": "ANES-005",
@@ -3575,7 +3582,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "NSAID alone or NSAID plus acetaminophen while arranging definitive dental care"
         }
-      ]
+      ],
+      "quick_answer": "For most endodontic toothache or short-term postoperative pain, use source control plus nonopioid analgesics first. NSAIDs, with acetaminophen when safe, usually fit the biology better than antibiotics or opioids."
     },
     {
       "id": "PAIN-002",
@@ -3635,7 +3643,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Reserve opioids for rare rescue situations at the lowest effective dose, fewest tablets, and shortest duration after risk review"
         }
-      ]
+      ],
+      "quick_answer": "Opioids are not first-line for endodontic pain. Reserve them for rare rescue situations after nonopioid options, source control, contraindications, and patient risk are reviewed, using the shortest course possible."
     },
     {
       "id": "PAIN-003",
@@ -3879,7 +3888,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use an electronic apex locator with verifying radiographs and apical anatomy"
         }
-      ]
+      ],
+      "quick_answer": "Working length should combine electronic and radiographic information. Aim for a reproducible endpoint near the apical constriction, not blindly the radiographic apex."
     },
     {
       "id": "WL-002",
@@ -3936,7 +3946,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Immature open apex with uncontrolled extrusion risk"
         }
-      ]
+      ],
+      "quick_answer": "Apical patency is passive recapitulation with a small flexible file to keep the pathway open. It is not enlargement of the foramen or the final apical preparation size."
     },
     {
       "id": "WL-003",
@@ -4055,7 +4066,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "A false communication such as perforation or resorption"
         }
-      ]
+      ],
+      "quick_answer": "Do not average conflicting apex locator and radiographic lengths. Troubleshoot reference point, file fit, canal path, blockage, open apex, resorption, perforation, and imaging before continuing or referring."
     },
     {
       "id": "WL-005",
@@ -4299,7 +4311,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Verify working length and insert slowly with minimal sealer"
         }
-      ]
+      ],
+      "quick_answer": "Carrier-based obturation can efficiently fill prepared canals when length, fit, shape, and apical resistance are controlled. The risk is pressure-driven extrusion, so use minimal sealer and careful insertion."
     },
     {
       "id": "OBT-004",
@@ -4958,7 +4971,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Atypical expanding lesion inconsistent with pulp tests"
         }
-      ]
+      ],
+      "quick_answer": "Submit apical surgery tissue when enough tissue is removed or the diagnosis is atypical, persistent, inconsistent, or suspicious for non-endodontic disease. Biopsy is patient-safety confirmation, not curiosity."
     },
     {
       "id": "SURG-003",
@@ -5527,7 +5541,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Calcium hydroxide or low-concentration TAP placed within the canal"
         }
-      ]
+      ],
+      "quick_answer": "Regenerative disinfection must control infection while protecting stem cells and thin roots. Use gentle low-concentration irrigation, little or no wall instrumentation, EDTA sequencing, and protocol-specific medicament rather than aggressive shaping."
     },
     {
       "id": "REG-003",
@@ -5822,7 +5837,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Calcium silicate cement/MTA/bioceramic"
         }
-      ]
+      ],
+      "quick_answer": "Vital pulp therapy can preserve selected vital permanent teeth when diagnosis, asepsis, caries removal, hemostasis, biomaterial placement, and immediate durable restoration are controlled."
     },
     {
       "id": "PLAN-001",
