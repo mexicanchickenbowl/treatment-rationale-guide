@@ -14,3 +14,6 @@ apps/okr-dashboard/dist/
 !.dev.vars.example
 .env*
 !.env.example
+
+# Local Netlify folder
+.netlify

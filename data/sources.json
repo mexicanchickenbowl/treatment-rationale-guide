@@ -1,0 +1,1622 @@
+[
+  {
+    "id": "S1",
+    "title": "ADA Antibiotics for Dental Pain and Swelling Guideline (2019)",
+    "organization": "American Dental Association",
+    "type": "clinical guideline landing page",
+    "url": "https://www.ada.org/resources/research/science/evidence-based-dental-research/antibiotics-for-dental-pain-and-swelling/",
+    "accessed": "2026-05-24",
+    "use_for": "Antibiotic stewardship and urgent management of pulpal/periapical pain and swelling.",
+    "inline_citation": "ADA, 2019"
+  },
+  {
+    "id": "S2",
+    "title": "Dentists: Be Antibiotics Aware - Treating Patients with Dental Pain and Swelling",
+    "organization": "CDC / ADA",
+    "type": "chairside guideline summary",
+    "url": "https://www.cdc.gov/antibiotic-use/media/pdfs/ada-treatment-guidelines-508.pdf",
+    "accessed": "2026-05-24",
+    "use_for": "Antibiotic indications, delayed prescribing concept, follow-up, and common adult dosing examples.",
+    "inline_citation": "CDC/ADA, 2019"
+  },
+  {
+    "id": "S3",
+    "title": "AAE Guidance on the Use of Systemic Antibiotics in Endodontics",
+    "organization": "American Association of Endodontists",
+    "type": "position statement",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/06/aae_systemic-antibiotics.pdf",
+    "accessed": "2026-05-24",
+    "use_for": "Source control rationale, antibiotic risks, resistance, and escalation logic for persistent infections.",
+    "inline_citation": "AAE, 2017"
+  },
+  {
+    "id": "S4",
+    "title": "Root Canal Irrigants and Disinfectants",
+    "organization": "American Association of Endodontists",
+    "type": "clinical newsletter / evidence review",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/07/rootcanalirrigantsdisinfectants.pdf",
+    "accessed": "2026-06-16",
+    "inline_citation": "AAE, 2011",
+    "use_for": "NaOCl, CHX, EDTA, smear layer, antimicrobial/tissue dissolution tradeoffs, passive ultrasonic agitation, apical negative-pressure delivery, and irrigation-safety principles."
+  },
+  {
+    "id": "S5",
+    "title": "AAE Consensus Conference Recommended Diagnostic Terminology",
+    "organization": "American Association of Endodontists",
+    "type": "consensus terminology",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/07/aaeconsensusconferencerecommendeddiagnosticterminology.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2009",
+    "use_for": "Board-standard pulpal and apical diagnostic labels."
+  },
+  {
+    "id": "S6",
+    "title": "AAE Position Statement - Vital Pulp Therapy",
+    "organization": "American Association of Endodontists",
+    "type": "position statement",
+    "url": "https://www.aae.org/wp-content/uploads/2021/05/VitalPulpTherapy_PositionStatement_v2.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2021",
+    "use_for": "VPT rationale, diagnosis, hemostasis, calcium silicate materials, and restoration."
+  },
+  {
+    "id": "S7",
+    "title": "AAE Endodontic Case Difficulty Assessment Form and Guidelines",
+    "organization": "American Association of Endodontists",
+    "type": "assessment guideline",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2022/01/CaseDifficultyAssessmentFormFINAL2022.pdf",
+    "accessed": "2026-05-25",
+    "inline_citation": "AAE, 2022",
+    "use_for": "Treatment planning, referral thresholds, and risk factors that complicate treatment."
+  },
+  {
+    "id": "S8",
+    "title": "AAE and AAOMR Joint Position Statement: Use of Cone-Beam Computed Tomography in Endodontics 2025 Update",
+    "organization": "AAE / AAOMR",
+    "type": "open-access position statement",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0099239925005849",
+    "accessed": "2026-05-25",
+    "inline_citation": "AAE/AAOMR, 2026",
+    "use_for": "Current CBCT framing: adjunctive, selective imaging, training, ALADAIP, patient-specific indications, and 2025 update approved in spring 2025 and published in Journal of Endodontics in January 2026."
+  },
+  {
+    "id": "S9",
+    "title": "Endodontic S3-level clinical practice guidelines: the ESE process and recommendations",
+    "organization": "European Society of Endodontology / British Dental Journal",
+    "type": "guideline summary",
+    "url": "https://www.nature.com/articles/s41415-025-8335-x",
+    "accessed": "2026-05-24",
+    "inline_citation": "Duncan and El-Karim, 2025",
+    "use_for": "High-level recommendations on diagnosis, VPT/RCT, antibiotics, dental dam, CBCT, and monitoring."
+  },
+  {
+    "id": "S10",
+    "title": "Treatment of pulpal and apical disease: The ESE S3-level clinical practice guideline",
+    "organization": "European Society of Endodontology",
+    "type": "clinical practice guideline",
+    "url": "https://pureadmin.qub.ac.uk/ws/files/527947228/Int_Endodontic_J_2023_Duncan_Treatment_of_pulpal_and_apical_disease_The_European_Society_of_Endodontology_ESE_.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "Duncan et al., 2023",
+    "use_for": "Full guideline backing for management of pulpitis and apical periodontitis."
+  },
+  {
+    "id": "S11",
+    "title": "Treatment Standards: Executive Summary",
+    "organization": "American Association of Endodontists",
+    "type": "treatment standards executive summary",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2019/11/TreatmentStandards_2019.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2019",
+    "use_for": "Working length termination, use of electronic apex locator with verifying radiographs, and shaping objectives."
+  },
+  {
+    "id": "S12",
+    "title": "Efficacy of electronic apex locators in comparison with intraoral radiographs in working length determination: a systematic review and meta-analysis",
+    "organization": "BMC Oral Health",
+    "type": "systematic review and meta-analysis of randomized clinical studies",
+    "url": "https://bmcoralhealth.biomedcentral.com/articles/10.1186/s12903-024-04259-w",
+    "accessed": "2026-05-24",
+    "inline_citation": "Kaur et al., 2024",
+    "use_for": "Evidence limits and comparative performance of electronic apex locators versus radiographic methods for working length in permanent teeth."
+  },
+  {
+    "id": "S13",
+    "title": "Revisiting Fundamental Skills in Endodontic Therapy: Patency, Chelation, and File Curving",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education article",
+    "url": "https://www.aae.org/specialty/revisiting-fundamental-skills-in-endodontic-therapy-patency-chelation-and-file-curving/",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2024",
+    "use_for": "Patency rationale, blockage prevention, irrigation access, working length accuracy, and careful file handling."
+  },
+  {
+    "id": "S14",
+    "title": "Does achieving apical patency increase postoperative pain during endodontics?",
+    "organization": "Evidence-Based Dentistry",
+    "type": "evidence commentary on systematic review and meta-analysis",
+    "url": "https://www.nature.com/articles/s41432-024-01058-8",
+    "accessed": "2026-05-24",
+    "inline_citation": "Strickland et al., 2025",
+    "use_for": "Postoperative pain evidence, heterogeneity, and limitations around apical patency."
+  },
+  {
+    "id": "S15",
+    "title": "Influence of apical patency in endodontic treatment outcome: A systematic review of clinical studies",
+    "organization": "Journal of Conservative Dentistry and Endodontics",
+    "type": "systematic review of clinical studies",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11702873/",
+    "accessed": "2026-05-24",
+    "inline_citation": "Kuzhanchinathan et al., 2024",
+    "use_for": "Clinical outcome evidence and uncertainty around maintaining apical patency."
+  },
+  {
+    "id": "S16",
+    "title": "AAE and AAOMR Release Joint Position Statement on the Use of CBCT in Endodontics",
+    "organization": "American Association of Endodontists",
+    "type": "press release",
+    "url": "https://newsroom.aae.org/press-releases/aae-and-aaomr-release-joint-position-statement-on-the-use-of-cbct-in-endodontics/",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE/AAOMR, 2026",
+    "use_for": "Currency check for the 2025 CBCT update, replacement of the 2015 statement, and summary of the 12 condensed recommendations."
+  },
+  {
+    "id": "S17",
+    "title": "Taking the Pain out of Restorative Dentistry",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education newsletter",
+    "url": "https://www.aae.org/uploadedfiles/publications_and_research/endodontics_colleagues_for_excellence_newsletter/winter09ecfe.pdf",
+    "accessed": "2026-05-24",
+    "use_for": "Local anesthesia in endodontics: lip numbness versus pulpal anesthesia, hot-tooth mechanisms, and supplemental buccal infiltration, intraosseous, intraligamentary, and intrapulpal techniques.",
+    "inline_citation": "AAE, 2009"
+  },
+  {
+    "id": "S18",
+    "title": "Efficacy of Combined Versus Supplementary Injection Techniques With Inferior Alveolar Nerve Block for Mandibular Molars With Symptomatic Irreversible Pulpitis: A Systematic Review and Network Meta-Analysis",
+    "organization": "International Endodontic Journal",
+    "type": "systematic review and network meta-analysis of randomized clinical trials",
+    "url": "https://doi.org/10.1111/iej.70007",
+    "accessed": "2026-05-24",
+    "use_for": "Comparing IANB alone with supplemental-after-failure and combined injection strategies for adult mandibular molars with symptomatic irreversible pulpitis.",
+    "inline_citation": "Rujirawan et al., 2025"
+  },
+  {
+    "id": "S19",
+    "title": "Anesthetic efficacy of primary and supplemental buccal/lingual infiltration in patients with irreversible pulpitis in human mandibular molars: a systematic review and meta-analysis",
+    "organization": "Journal of Dental Anesthesia and Pain Medicine",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8349668/",
+    "accessed": "2026-05-24",
+    "use_for": "Evidence and limitations for primary and supplemental buccal/lingual infiltration in mandibular molars with irreversible pulpitis.",
+    "inline_citation": "Gupta et al., 2021"
+  },
+  {
+    "id": "S20",
+    "title": "Articaine buccal infiltration for mandibular first molars with symptomatic irreversible pulpitis: is it as effective as inferior alveolar nerve block with lidocaine? a systematic review and meta-analysis",
+    "organization": "Clinical Oral Investigations",
+    "type": "systematic review and meta-analysis of randomized clinical trials",
+    "url": "https://link.springer.com/article/10.1007/s00784-025-06229-0",
+    "accessed": "2026-05-24",
+    "use_for": "Moderate-certainty evidence comparing primary articaine buccal infiltration with lidocaine IANB for adult permanent mandibular first molars with symptomatic irreversible pulpitis.",
+    "inline_citation": "Saatchi et al., 2025"
+  },
+  {
+    "id": "S21",
+    "title": "Evidence-Based Clinical Practice Guideline for the Temporary Pharmacologic Management of Acute Dental Pain: Toothache in Adolescents, Adults, and Older Adults With No Immediate Access to Definitive Dental Treatment",
+    "organization": "American Dental Association / University of Pittsburgh / University of Pennsylvania",
+    "type": "chairside clinical practice guideline",
+    "url": "https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/resources/research/2024-pain-guidelines/14205d_chairside_guide_adult_pulpitis_final.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "ADA, 2024",
+    "use_for": "Temporary toothache pharmacologic management when definitive dental treatment is not immediately available; NSAID or NSAID plus acetaminophen first-line therapy, opioid limits, local anesthetic options, and maximum daily dose reminders."
+  },
+  {
+    "id": "S22",
+    "title": "Oral Analgesics for Acute Dental Pain",
+    "organization": "American Dental Association",
+    "type": "oral health topic / evidence summary",
+    "url": "https://www.ada.org/resources/ada-library/oral-health-topics/oral-analgesics-for-acute-dental-pain",
+    "accessed": "2026-05-24",
+    "inline_citation": "ADA, 2024",
+    "use_for": "Mechanistic rationale for NSAID and acetaminophen combination therapy, NSAID first-line positioning, opioid cautions, and adverse-effect reminders."
+  },
+  {
+    "id": "S23",
+    "title": "Efficacy and Safety of Postoperative Medications in Reducing Pain after Nonsurgical Endodontic Treatment: A Systematic Review and Network Meta-analysis",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and network meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32668310/",
+    "accessed": "2026-05-24",
+    "inline_citation": "Zanjir et al., 2020",
+    "use_for": "Endodontic postoperative pain evidence comparing NSAIDs, NSAID plus acetaminophen, acetaminophen, opioids, corticosteroids, and other medication classes after nonsurgical endodontic treatment."
+  },
+  {
+    "id": "S24",
+    "title": "Influence of occlusal reduction on pain after endodontic treatment: a systematic review and meta-analysis",
+    "organization": "Scientific Reports",
+    "type": "systematic review and meta-analysis of randomized clinical trials",
+    "url": "https://www.nature.com/articles/s41598-021-93119-6",
+    "accessed": "2026-05-24",
+    "inline_citation": "Chagas Carvalho Alves et al., 2021",
+    "use_for": "Evidence limits around routine occlusal reduction for reducing postoperative pain after endodontic instrumentation or obturation."
+  },
+  {
+    "id": "S25",
+    "title": "CDC Clinical Practice Guideline for Prescribing Opioids for Pain - United States, 2022",
+    "organization": "Centers for Disease Control and Prevention",
+    "type": "clinical practice guideline",
+    "url": "https://www.cdc.gov/mmwr/volumes/71/rr/rr7103a1.htm",
+    "accessed": "2026-05-24",
+    "inline_citation": "CDC, 2022",
+    "use_for": "General opioid prescribing principles for adults, including patient-centered risk-benefit assessment, limited quantities for acute pain, and avoiding inflexible standards."
+  },
+  {
+    "id": "S26",
+    "title": "Treatment Standards",
+    "organization": "American Association of Endodontists",
+    "type": "treatment standards whitepaper",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2018/04/TreatmentStandards_Whitepaper.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2018",
+    "use_for": "Root canal disinfection standards, interappointment medicament rationale, calcium hydroxide as primary intracanal medicament, and cautions about extrusion and healing-outcome claims."
+  },
+  {
+    "id": "S27",
+    "title": "Single versus multiple visits for endodontic treatment of permanent teeth",
+    "organization": "Cochrane Database of Systematic Reviews",
+    "type": "systematic review",
+    "url": "https://www.cochrane.org/evidence/CD005296_should-root-canal-treatment-be-performed-one-dental-visit-or-over-several-visits",
+    "accessed": "2026-05-24",
+    "inline_citation": "Mergoni et al., 2022",
+    "use_for": "Single-visit versus multiple-visit root canal treatment outcomes, short-term pain, radiographic healing, and evidence certainty."
+  },
+  {
+    "id": "S28",
+    "title": "Antimicrobial Activity of Calcium Hydroxide in Endodontics: A Review",
+    "organization": "Chonnam Medical Journal",
+    "type": "narrative review",
+    "url": "https://cmj.ac.kr/pdf/10.4068/cmj.2012.48.3.133",
+    "accessed": "2026-05-24",
+    "inline_citation": "Mohammadi et al., 2012",
+    "use_for": "Calcium hydroxide antimicrobial mechanism, high-pH dependence, endotoxin effects, dentin buffering, and limits in dentinal tubules."
+  },
+  {
+    "id": "S29",
+    "title": "Antibacterial effect of calcium hydroxide combined with chlorhexidine on Enterococcus faecalis: a systematic review and meta-analysis",
+    "organization": "Journal of Applied Oral Science",
+    "type": "systematic review and meta-analysis",
+    "url": "https://revistas.usp.br/jaos/article/view/88451",
+    "accessed": "2026-05-24",
+    "inline_citation": "Saatchi et al., 2014",
+    "use_for": "Ex vivo evidence on calcium hydroxide with or without chlorhexidine against Enterococcus faecalis."
+  },
+  {
+    "id": "S30",
+    "title": "Antibacterial efficacy of antibiotic pastes versus calcium hydroxide intracanal dressing: A systematic review and meta-analysis of ex vivo studies",
+    "organization": "Journal of Conservative Dentistry and Endodontics",
+    "type": "systematic review and meta-analysis of ex vivo studies",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9733540/",
+    "accessed": "2026-05-24",
+    "inline_citation": "Vatankhah et al., 2022",
+    "use_for": "Comparative ex vivo antibiofilm evidence for antibiotic pastes and calcium hydroxide against Enterococcus faecalis and polymicrobial biofilms."
+  },
+  {
+    "id": "S31",
+    "title": "Calcium hydroxide intracanal medication effects on pain and flare-up: a systematic review and meta-analysis",
+    "organization": "Restorative Dentistry & Endodontics",
+    "type": "systematic review and meta-analysis of randomized clinical trials",
+    "url": "https://www.rde.ac/journal/view.php?number=908",
+    "accessed": "2026-05-24",
+    "inline_citation": "Ibrahim et al., 2020",
+    "use_for": "Pain and flare-up evidence limits for calcium hydroxide intracanal medication in non-vital mature teeth."
+  },
+  {
+    "id": "S32",
+    "title": "Antimicrobial effectiveness of intracanal medicaments against Enterococcus faecalis in endodontics: a systematic review with structured domain-based interpretative synthesis and exploratory meta-analysis",
+    "organization": "Frontiers in Oral Health",
+    "type": "systematic review article, accepted abstract page",
+    "url": "https://www.frontiersin.org/journals/oral-health/articles/10.3389/froh.2026.1854046/abstract",
+    "accessed": "2026-05-24",
+    "inline_citation": "Ardila et al., 2026",
+    "use_for": "Current synthesis on intracanal medicaments against Enterococcus faecalis; final formatted article pending at access."
+  },
+  {
+    "id": "S33",
+    "title": "Endodontics and Neurovascular Injury",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education newsletter",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2021/10/ecfe-fall-2021-FINAL.pdf",
+    "accessed": "2026-05-24",
+    "inline_citation": "AAE, 2021",
+    "use_for": "Calcium hydroxide and intracanal material extrusion risk near neurovascular anatomy, safe delivery principles, documentation, and referral triggers."
+  },
+  {
+    "id": "S34",
+    "title": "The Recommended Guidelines of the American Association of Endodontists for The Treatment of Traumatic Dental Injuries",
+    "organization": "American Association of Endodontists",
+    "type": "current AAE-hosted clinical guideline PDF",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2026/04/19_TraumaGuidelines.pdf",
+    "accessed": "2026-05-25",
+    "inline_citation": "AAE, 2013",
+    "use_for": "AAE trauma tables for avulsion, luxation, splinting, endodontic timing, and resorption management. The URL is currently hosted in a 2026/04 path, but the PDF front matter states copyright 2013 and revised 9/13, so IADT 2020 is treated as the newer comparator when details differ."
+  },
+  {
+    "id": "S35",
+    "title": "International Association of Dental Traumatology guidelines for the management of traumatic dental injuries: 2. Avulsion of permanent teeth",
+    "organization": "International Association of Dental Traumatology / Dental Traumatology",
+    "type": "clinical guideline",
+    "url": "https://www.aapd.org/globalassets/media/policies_guidelines/e_iadt-avulsion.pdf",
+    "accessed": "2026-06-27",
+    "inline_citation": "Fouad et al., 2020",
+    "use_for": "Avulsed permanent tooth triage, immediate replantation, storage media, extraoral dry-time categories, splinting, systemic antibiotic framing, endodontic timing, and ankylosis/replacement resorption/decoronation counseling."
+  },
+  {
+    "id": "S36",
+    "title": "International Association of Dental Traumatology guidelines for the management of traumatic dental injuries: 1. Fractures and luxations of permanent teeth",
+    "organization": "International Association of Dental Traumatology / Dental Traumatology",
+    "type": "clinical guideline",
+    "url": "https://eprints.whiterose.ac.uk/id/eprint/161684/1/IADT%20guidelines%20-%20Fractures%20and%20luxations.pdf",
+    "accessed": "2026-06-05",
+    "inline_citation": "Bourguignon et al., 2020",
+    "use_for": "Permanent-tooth crown/root fracture and luxation management, intrusion repositioning choices, flexible splinting principles, pulp sensibility limitations after trauma, follow-up intervals, and endodontic timing for severe luxation/intrusion injuries."
+  },
+  {
+    "id": "S37",
+    "title": "Canal Preparation and Obturation: An Updated View of the Two Pillars of Nonsurgical Endodontics",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education newsletter",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/07/ecfefall2016canalpreparationandobturation.pdf",
+    "accessed": "2026-05-25",
+    "inline_citation": "AAE, 2016",
+    "use_for": "Obturation prerequisites, acceptable root filling techniques, sealer role, master cone fit, warm vertical compaction, carrier-based materials, radiographic fill quality, and overfill cautions."
+  },
+  {
+    "id": "S38",
+    "title": "Clinical and Radiographic Failure of Nonsurgical Endodontic Treatment and Retreatment Using Single-cone Technique With Calcium Silicate-based Sealers: A Systematic Review and Meta-analysis",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and meta-analysis",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0099239924001675",
+    "accessed": "2026-05-25",
+    "inline_citation": "Sabeti et al., 2024",
+    "use_for": "Clinical/radiographic failure evidence for single-cone obturation with calcium silicate-based bioceramic sealers compared with other sealers and techniques in mature permanent teeth."
+  },
+  {
+    "id": "S39",
+    "title": "Clinical and radiographic success of single-cone bioceramic obturation versus traditional techniques: a systematic review and meta-analysis of randomized controlled trials",
+    "organization": "Journal of Oral Biology and Craniofacial Research",
+    "type": "systematic review and meta-analysis of randomized controlled trials",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40948576/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Elmsmari et al., 2025",
+    "use_for": "RCT-only evidence comparing single-cone bioceramic obturation with conventional obturation techniques, with short-to-medium follow-up and low-certainty limitations."
+  },
+  {
+    "id": "S40",
+    "title": "Clinical studies on core-carrier obturation: a systematic review and meta-analysis",
+    "organization": "BMC Oral Health",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29284463/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Wong et al., 2017",
+    "use_for": "Clinical outcomes, adaptation, postoperative pain, and overfilling evidence for core-carrier obturation systems."
+  },
+  {
+    "id": "S41",
+    "title": "Single cone versus carrier-based obturation using a premixed bioceramic sealer in postgraduate master cohort: a 36 months retrospective evaluation",
+    "organization": "Clinical Oral Investigations",
+    "type": "retrospective cohort study",
+    "url": "https://link.springer.com/article/10.1007/s00784-026-06900-0",
+    "accessed": "2026-05-25",
+    "inline_citation": "Zamparini et al., 2026",
+    "use_for": "Current 36-month clinical comparison of single-cone and carrier-based obturation with a premixed calcium silicate sealer, including sealer extrusion observations and retrospective-study limitations."
+  },
+  {
+    "id": "S42",
+    "title": "Factors influencing the accuracy of electronic apex locators: A scoping review",
+    "organization": "Dental Research Journal",
+    "type": "scoping review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40655901/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Golkar et al., 2025",
+    "use_for": "Current evidence map for factors that can affect electronic apex locator accuracy, including larger apical foramina, lateral foramina, apical periodontitis/resorption, perforation, irrigants/medicaments, and the continued need to confirm clinically with radiographs."
+  },
+  {
+    "id": "S43",
+    "title": "ESE position statement on root resorption",
+    "organization": "European Society of Endodontology / International Endodontic Journal",
+    "type": "position statement",
+    "url": "https://www.e-s-e.eu/fileadmin/user_upload/ESE_Position_Statement_-_Root_Resorption_2023_Final.pdf",
+    "accessed": "2026-06-05",
+    "inline_citation": "Patel et al., 2023",
+    "use_for": "Root resorption diagnosis, external inflammatory and replacement resorption management, ankylosis/infra-occlusion planning, decoronation referral language, CBCT/resorption assessment context, and referral language for complex resorptive defects."
+  },
+  {
+    "id": "S44",
+    "title": "AAE Clinical Considerations for a Regenerative Procedure Revised November 2022",
+    "organization": "American Association of Endodontists",
+    "type": "clinical considerations",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2023/04/ConsiderationsForRegEndo_AsOfNov2022-4.pdf",
+    "accessed": "2026-06-27",
+    "inline_citation": "AAE, 2022",
+    "use_for": "Immature necrotic permanent teeth/open-apex case selection, gentle low-pressure irrigation and extrusion avoidance, apexification/regenerative alternatives, medicament placement, cervical seal, and follow-up goals."
+  },
+  {
+    "id": "S45",
+    "title": "Present status and future directions - Managing perforations",
+    "organization": "International Endodontic Journal",
+    "type": "narrative review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35403711/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Clauder, 2022",
+    "use_for": "Root perforation recognition, infection/prognosis concerns, repair principles, calcium silicate cement/MTA use, and limits of evidence for newer repair materials."
+  },
+  {
+    "id": "S46",
+    "title": "European Society of Endodontology position statement: Revitalization procedures",
+    "organization": "European Society of Endodontology / International Endodontic Journal",
+    "type": "position statement",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/26990236/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Galler et al., 2016",
+    "use_for": "Revitalization/regenerative procedure case selection, minimal instrumentation, low-concentration irrigation, calcium hydroxide medicament preference, blood clot/collagen matrix, hydraulic silicate cement, coronal seal, and follow-up criteria."
+  },
+  {
+    "id": "S47",
+    "title": "Does the use of different scaffolds have an impact on the therapeutic efficacy of regenerative endodontic procedures? A systematic evaluation and meta-analysis",
+    "organization": "BMC Oral Health",
+    "type": "systematic review and meta-analysis",
+    "url": "https://link.springer.com/article/10.1186/s12903-024-04064-5",
+    "accessed": "2026-05-25",
+    "inline_citation": "Yang et al., 2024",
+    "use_for": "Blood clot, PRP, PRF, and other scaffold comparisons in regenerative endodontic procedures, including high success rates but no clear superiority of alternative scaffolds over blood clot in available RCT evidence."
+  },
+  {
+    "id": "S48",
+    "title": "Mahidol Study 2: Treatment Outcomes and Prognostic Factors of Regenerative Endodontic Procedures in Immature Permanent Teeth",
+    "organization": "Journal of Endodontics",
+    "type": "retrospective cohort study",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0099239924004795",
+    "accessed": "2026-05-25",
+    "inline_citation": "Theekakul et al., 2024",
+    "use_for": "Large-cohort regenerative endodontic treatment outcomes, functional retention, healed/healing/diseased rates, root development, sensibility response, and prognostic factors such as age, etiology, EDTA irrigation, and capping material level."
+  },
+  {
+    "id": "S49",
+    "title": "Clinical outcomes of regenerative endodontic procedures compared with apexification in young immature necrotic teeth: a systematic review of randomized controlled trials",
+    "organization": "Odontology",
+    "type": "systematic review of randomized controlled trials",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41591708/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Anas et al., 2026",
+    "use_for": "RCT-only comparison of regenerative endodontic procedures with apexification for immature necrotic permanent teeth, including root length, dentinal wall thickness, apical closure, healing, survival, and evidence limitations."
+  },
+  {
+    "id": "S50",
+    "title": "The Efficacy of Intracanal Medicaments Within the Regenerative Endodontic Procedures on Permanent Necrotic Immature Teeth: Systematic Review and Naive Indirect-Comparison Meta-Analysis",
+    "organization": "International Endodontic Journal",
+    "type": "systematic review and indirect-comparison meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/41815050/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Alovisi et al., 2026",
+    "use_for": "Current comparison of triple antibiotic paste, double antibiotic paste, and calcium hydroxide as intracanal medicaments within regenerative endodontic procedures, including 1-year success estimates and direct-comparison limitations."
+  },
+  {
+    "id": "S51",
+    "title": "Fundamentals of Restorability",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education article",
+    "url": "https://www.aae.org/specialty/fundamentals-of-restorability/",
+    "accessed": "2026-05-25",
+    "inline_citation": "AAE, 2021",
+    "use_for": "Restorability assessment, ferrule height, periodontal/restorative/endodontic prognosis, supragingival tooth structure, and strategic tooth value."
+  },
+  {
+    "id": "S52",
+    "title": "European Society of Endodontology position statement: The restoration of root filled teeth",
+    "organization": "European Society of Endodontology / International Endodontic Journal",
+    "type": "position statement",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34378217/",
+    "accessed": "2026-05-25",
+    "inline_citation": "ESE, 2021",
+    "use_for": "Consensus recommendations for post-endodontic restoration selection, ferrule/restorability, posts, direct versus indirect restorations, and coronal seal."
+  },
+  {
+    "id": "S53",
+    "title": "The restoration of root filled teeth: a review of the clinical literature",
+    "organization": "International Endodontic Journal",
+    "type": "clinical literature review",
+    "url": "https://kclpure.kcl.ac.uk/portal/en/publications/the-restoration-of-root-filled-teeth-a-review-of-the-clinical-lit/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Bhuva et al., 2021",
+    "use_for": "Clinical factors influencing survival of root-filled teeth and restorations, including ferrule, residual tooth volume, tooth location, proximal contacts, restoration timing, and cracks."
+  },
+  {
+    "id": "S54",
+    "title": "Principles guiding the restoration of the root-filled tooth",
+    "organization": "British Dental Journal",
+    "type": "clinical review",
+    "url": "https://www.nature.com/articles/s41415-025-8401-4",
+    "accessed": "2026-05-25",
+    "inline_citation": "Patel et al., 2025",
+    "use_for": "Current clinical framing for restorability, coronal seal, post/core retention, posterior cuspal protection, direct versus indirect restoration selection, and timing of definitive restoration."
+  },
+  {
+    "id": "S55",
+    "title": "Effect of Type of Coronal Restoration on Periapical Healing and Tooth Survival of Root Filled Teeth: Systematic Review and Meta-Analysis",
+    "organization": "Australian Endodontic Journal",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pure.au.dk/portal/en/publications/effect-of-type-of-coronal-restoration-on-periapical-healing-and-t/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Kaaber et al., 2025",
+    "use_for": "Current evidence comparing direct and indirect coronal restorations after root filling for tooth survival and periapical healing."
+  },
+  {
+    "id": "S56",
+    "title": "Is the use of an intraradicular post essential for reducing failures in restoring endodontically treated teeth? A systematic review and meta-analysis",
+    "organization": "Journal of Dentistry",
+    "type": "systematic review and meta-analysis of randomized clinical trials",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0300571225001836",
+    "accessed": "2026-05-25",
+    "inline_citation": "Jardim et al., 2025",
+    "use_for": "Current RCT synthesis on whether intraradicular posts reduce failure rates, including indirect-versus-direct restoration subgroups and low-certainty evidence limits."
+  },
+  {
+    "id": "S57",
+    "title": "Single crowns versus conventional fillings for the restoration of root-filled teeth",
+    "organization": "Cochrane Database of Systematic Reviews",
+    "type": "systematic review",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7111426/",
+    "accessed": "2026-05-25",
+    "inline_citation": "Sequeira-Byron et al., 2015",
+    "use_for": "Randomized-trial evidence limitations when comparing crowns and conventional fillings for root-filled teeth."
+  },
+  {
+    "id": "S58",
+    "title": "Treatment Options for the Compromised Tooth: A Decision Guide",
+    "organization": "American Association of Endodontists",
+    "type": "clinical decision guide",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/06/2014treatmentoptionsguidefinalweb.pdf",
+    "accessed": "2026-05-26",
+    "inline_citation": "AAE, 2017",
+    "use_for": "Favorable, questionable, and unfavorable prognosis framing for compromised teeth; specialist consultation before extraction; patient-specific treatment planning factors."
+  },
+  {
+    "id": "S59",
+    "title": "Nonsurgical Retreatment: Clinical Decision Making",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education newsletter",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2017/07/ecfe_spring2017_retreatment.pdf",
+    "accessed": "2026-05-26",
+    "inline_citation": "Roda, 2017",
+    "use_for": "Post-treatment disease etiologies, CBCT in retreatment planning, options of no treatment/extraction/nonsurgical retreatment/surgery, and patient/restorative/periodontal factors."
+  },
+  {
+    "id": "S60",
+    "title": "Outcome of Contemporary Nonsurgical Endodontic Retreatment: A Systematic Review of Randomized Controlled Trials and Cohort Studies",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0099239924000463",
+    "accessed": "2026-05-26",
+    "inline_citation": "Sabeti et al., 2024",
+    "use_for": "Current outcome estimates and prognostic factors for contemporary nonsurgical root canal retreatment."
+  },
+  {
+    "id": "S61",
+    "title": "Non-surgical root canal treatment and retreatment versus apical surgery in treating apical periodontitis: A systematic review",
+    "organization": "International Endodontic Journal",
+    "type": "systematic review supporting ESE S3 guideline",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35762859/",
+    "accessed": "2026-05-26",
+    "inline_citation": "Bucchi et al., 2023",
+    "use_for": "Comparative evidence limitations for nonsurgical treatment/retreatment versus apical surgery in permanent teeth with apical periodontitis."
+  },
+  {
+    "id": "S62",
+    "title": "Endodontic Surgery and Post-Treatment Apical Periodontitis: A Systematic Review",
+    "organization": "The Open Dentistry Journal",
+    "type": "systematic review",
+    "url": "https://www.opendentistryjournal.com/VOLUME/18/ELOCATOR/e18742106296829/FULLTEXT/",
+    "accessed": "2026-05-26",
+    "inline_citation": "Iqbal et al., 2024",
+    "use_for": "Current long-term endodontic microsurgery outcome estimates and prognostic factor framing, with evidence-quality caution."
+  },
+  {
+    "id": "S63",
+    "title": "Cracked Teeth and Vertical Root Fractures: A New Look at a Growing Problem",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education newsletter",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2022/12/ecfe-2022-edition-FINAL.pdf",
+    "accessed": "2026-05-28",
+    "inline_citation": "AAE, 2022",
+    "use_for": "AAE terminology, diagnostic workflow, cracked-tooth and vertical-root-fracture prognosis framing, magnification, probing, bite symptoms, and referral/restorative planning cautions."
+  },
+  {
+    "id": "S64",
+    "title": "Position statement on longitudinal cracks and fractures of teeth",
+    "organization": "European Society of Endodontology / International Endodontic Journal",
+    "type": "position statement",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/iej.14186",
+    "accessed": "2026-05-28",
+    "inline_citation": "Patel et al., 2025",
+    "use_for": "Current ESE consensus on longitudinal tooth cracks and fractures, including terminology, symptoms, probing interpretation, CBCT limitations, cracked-tooth management, VRF prognosis, and occlusal/restorative prevention."
+  },
+  {
+    "id": "S65",
+    "title": "The treatment outcomes of cracked teeth: A systematic review and meta-analysis",
+    "organization": "Journal of Dentistry",
+    "type": "systematic review and meta-analysis",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0300571224000137",
+    "accessed": "2026-05-28",
+    "inline_citation": "Zhang et al., 2024",
+    "use_for": "Treatment-outcome evidence for vital cracked teeth and cracked teeth receiving root canal treatment, including monitoring, cuspal coverage, pulpal complications, tooth survival, and evidence heterogeneity."
+  },
+  {
+    "id": "S66",
+    "title": "Is cone-beam computed tomography more accurate than periapical radiography for detection of vertical root fractures? A systematic review and meta-analysis",
+    "organization": "BMC Medical Imaging",
+    "type": "systematic review and meta-analysis",
+    "url": "https://link.springer.com/article/10.1186/s12880-024-01472-5",
+    "accessed": "2026-06-30",
+    "inline_citation": "Shokri et al., 2024",
+    "use_for": "Current comparative diagnostic accuracy evidence for periapical radiography versus CBCT in suspected vertical root fracture, including sensitivity/specificity and artifact limitations."
+  },
+  {
+    "id": "S67",
+    "title": "Developing evidence-based clinical imaging guidelines for the diagnosis of vertically fractured teeth",
+    "organization": "Oral Radiology",
+    "type": "clinical imaging guideline development review",
+    "url": "https://link.springer.com/article/10.1007/s11282-024-00766-2",
+    "accessed": "2026-06-30",
+    "inline_citation": "Kim et al., 2024",
+    "use_for": "Evidence-based imaging sequence for suspected vertically fractured teeth: periapical radiography first, small-field CBCT when intraoral radiographs are insufficient, and caution with artificial shading in endodontically treated teeth."
+  },
+  {
+    "id": "S68",
+    "title": "Hypertension (High Blood Pressure)",
+    "organization": "American Dental Association",
+    "type": "oral health topic / clinical management summary",
+    "url": "https://www.ada.org/resources/ada-library/oral-health-topics/hypertension",
+    "accessed": "2026-06-05",
+    "inline_citation": "ADA, 2026",
+    "use_for": "Vasoconstrictor caution in cardiovascular compromise, adult 0.04 mg epinephrine caution dose, slow injection, aspiration, and hypertensive crisis referral framing."
+  },
+  {
+    "id": "S69",
+    "title": "Xylocaine Dental with Epinephrine Prescribing Information",
+    "organization": "DailyMed / Dentsply Pharmaceutical",
+    "type": "FDA drug label",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=14b55cf9-f7cd-4bb4-a7c5-aba61abadef1",
+    "accessed": "2026-06-05",
+    "inline_citation": "Xylocaine label, 2024",
+    "use_for": "Dental lidocaine with epinephrine dosing, maximum recommended adult/pediatric limits, aspiration and slow injection, reduced dosing in vulnerable patients, systemic toxicity warning signs, and drug-interaction cautions."
+  },
+  {
+    "id": "S70",
+    "title": "Articaine HCl and Epinephrine Prescribing Information",
+    "organization": "DailyMed / Safco Dental Supply Co.",
+    "type": "FDA drug label",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0536a4de-578d-497e-a01b-0b1887344cc8",
+    "accessed": "2026-06-05",
+    "inline_citation": "Articaine label, 2023",
+    "use_for": "Articaine 4% with epinephrine dosing, 7 mg/kg articaine and 0.0017 mg/kg epinephrine maximum dosage, lower dosing for vulnerable patients, systemic toxicity, methemoglobinemia, sulfite sensitivity, and vasoconstrictor cautions."
+  },
+  {
+    "id": "S71",
+    "title": "Bupivacaine Hydrochloride and Epinephrine Prescribing Information",
+    "organization": "DailyMed / Hikma Pharmaceuticals",
+    "type": "FDA drug label",
+    "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=6f9ebeef-350a-495e-a0bf-c335ab48bf1c",
+    "accessed": "2026-06-05",
+    "inline_citation": "Bupivacaine label, 2025",
+    "use_for": "Bupivacaine dental dosing, individualized maximum limits, 90 mg healthy-adult dental sitting guidance, lowest effective dose, slow injection, frequent aspiration, and hepatic/cardiovascular risk cautions."
+  },
+  {
+    "id": "S72",
+    "title": "ADA Guidelines for the Use of Sedation and General Anesthesia by Dentists",
+    "organization": "American Dental Association",
+    "type": "sedation and anesthesia guideline",
+    "url": "https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/resources/library/oral-health-topics/ada_sedation_use_guidelines.pdf",
+    "accessed": "2026-06-27",
+    "inline_citation": "ADA, 2025",
+    "use_for": "Current sedation continuum definitions, minimal-sedation MRD boundary, rescue obligations, training, baseline vital signs, oxygen/equipment requirements, monitoring, documentation, and state-law compliance."
+  },
+  {
+    "id": "S73",
+    "title": "CDT Coding Guide: Nitrous Oxide, Sedation and General Anesthesia",
+    "organization": "American Dental Association",
+    "type": "coding and documentation guide",
+    "url": "https://www.ada.org/-/media/project/ada-organization/ada/ada-org/files/publications/cdt/2026/guideton2osedationgenanesthcoding_2026may04.pdf",
+    "accessed": "2026-06-05",
+    "inline_citation": "ADA, 2026",
+    "use_for": "Current ADA documentation boundaries for nitrous oxide as a single agent, minimal enteral sedation with or without nitrous oxide, and moderate sedation when multiple enteral drugs are used or a single drug exceeds MRD."
+  },
+  {
+    "id": "S74",
+    "title": "International Association of Dental Traumatology guidelines for the management of traumatic dental injuries: 3. Injuries in the Primary Dentition",
+    "organization": "International Association of Dental Traumatology / Dental Traumatology",
+    "type": "clinical guideline",
+    "url": "https://eprints.whiterose.ac.uk/161686/1/IADT%20guidelines%20-%20Injuries%20in%20the%20primary%20dentition.pdf",
+    "accessed": "2026-06-05",
+    "inline_citation": "Day et al., 2020",
+    "use_for": "Primary-tooth trauma boundaries, conservative emergency management, no replantation of avulsed primary teeth, intrusion/lateral luxation extraction changes, child-centered referral, antibiotics/tetanus framing, and permanent-successor risk counseling."
+  },
+  {
+    "id": "S75",
+    "title": "Decoronation as a Therapeutic Alternative for Ankylosis in Children and Adolescents for Vertical Bone Preservation and Growth: A Systematic Review",
+    "organization": "Journal of Clinical Medicine",
+    "type": "systematic review",
+    "url": "https://www.mdpi.com/2077-0383/14/6/1945",
+    "accessed": "2026-06-05",
+    "inline_citation": "Bautista et al., 2025",
+    "use_for": "Current evidence summary for decoronation in young ankylosed permanent teeth, including vertical bone preservation/growth rationale, case-series limitations, follow-up range, and age/growth timing context."
+  },
+  {
+    "id": "S76",
+    "title": "Non-surgical endodontics - obturation",
+    "organization": "British Dental Journal",
+    "type": "clinical review",
+    "url": "https://www.nature.com/articles/s41415-025-8562-1",
+    "accessed": "2026-06-05",
+    "inline_citation": "Tait et al., 2025",
+    "use_for": "Current clinical review of obturation aims, material and technique selection, cone-fit checks, single-cone hydraulic sealer dependence, warm techniques, carrier-based approaches, coronal seal importance, and evidence limitations."
+  },
+  {
+    "id": "S77",
+    "title": "Retreatment Strategies for Cases Containing Calcium Silicate-Based Root Canal Sealers: A Comprehensive Review",
+    "organization": "Dentistry Journal",
+    "type": "comprehensive review",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10888468/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Al Akam et al., 2024",
+    "use_for": "Retreatment challenges for calcium silicate-based sealers, including limited clinically established solvents, chemical and mechanical removal strategies, dentin interaction, and lack of clinical retreatment protocols."
+  },
+  {
+    "id": "S78",
+    "title": "Retreatability of calcium silicate-based sealers based on micro-computed tomographic evaluation - A systematic review",
+    "organization": "Saudi Dental Journal",
+    "type": "systematic review of in vitro micro-CT studies",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11544169/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Bukhary, 2024",
+    "use_for": "Micro-CT evidence on retreatability of calcium silicate-based sealers compared with epoxy resin sealers, including residual filling material, working-length/patency issues, retreatment time, and laboratory-study limitations."
+  },
+  {
+    "id": "S79",
+    "title": "A Literature Review of the Effect of Heat on the Physical-Chemical Properties of Calcium Silicate-Based Sealers",
+    "organization": "Journal of Endodontics",
+    "type": "systematic-style literature review of in vitro studies",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/38729300/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Ashkar et al., 2024",
+    "use_for": "Heat compatibility of calcium silicate-based sealers, including heat-related changes in setting time, flow, film thickness, solubility, radiopacity, porosity, and product-specific differences."
+  },
+  {
+    "id": "S80",
+    "title": "Comparison between immediate and delayed post space preparations: a systematic review and meta-analysis",
+    "organization": "Clinical Oral Investigations",
+    "type": "systematic review and meta-analysis of in vitro studies",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33417064/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Dos Reis-Prado et al., 2021",
+    "use_for": "Evidence on immediate versus delayed post-space preparation effects on apical sealing and adhesion, with emphasis on in vitro heterogeneity and limited clinical certainty."
+  },
+  {
+    "id": "S81",
+    "title": "Effect of root canal filling techniques and materials on endodontic treatment outcomes: a systematic review and meta-analysis",
+    "organization": "Scientific Reports",
+    "type": "systematic review and meta-analysis",
+    "url": "https://www.nature.com/articles/s41598-026-37936-7",
+    "accessed": "2026-06-05",
+    "inline_citation": "Mushtaq et al., 2026",
+    "use_for": "Current clinical outcome evidence comparing obturation techniques and materials in primary treatment and retreatment, including low-certainty comparative conclusions and technique/material heterogeneity."
+  },
+  {
+    "id": "S82",
+    "title": "Alternative to Avoid Tooth Discoloration after Regenerative Endodontic Procedure: A Systematic Review",
+    "organization": "Brazilian Dental Journal",
+    "type": "systematic review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30517438/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Dos Santos et al., 2018",
+    "use_for": "Discoloration prevention after regenerative endodontic procedures, especially alternatives to conventional triple antibiotic paste and gray MTA, with human evidence limitations."
+  },
+  {
+    "id": "S83",
+    "title": "Efficiency of Teeth Bleaching after Regenerative Endodontic Treatment: A Systematic Review",
+    "organization": "Journal of Clinical Medicine",
+    "type": "systematic review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33467092/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Fagogeni et al., 2021",
+    "use_for": "Management of post-regenerative tooth discoloration, including bleaching evidence, protocol variation, and lack of precise long-term bleaching guidelines."
+  },
+  {
+    "id": "S84",
+    "title": "Failure of Regenerative Endodontic Procedures: Case Analysis and Subsequent Treatment Options",
+    "organization": "Journal of Endodontics",
+    "type": "case analysis",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0099239922004083",
+    "accessed": "2026-06-05",
+    "inline_citation": "Lee and Song, 2022",
+    "use_for": "Failed regenerative endodontic procedure triage, including persistent infection, root resorption, second REP, apexification, conventional RCT, surgery, and extraction options."
+  },
+  {
+    "id": "S85",
+    "title": "Regenerative Endodontics: A Systematic Analysis of the Failed Cases",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S0099239919301104",
+    "accessed": "2026-06-05",
+    "inline_citation": "Almutairi et al., 2019",
+    "use_for": "Patterns and timing of failed regenerative endodontic treatment, especially persistent infection and late failure detection."
+  },
+  {
+    "id": "S86",
+    "title": "Guidelines for the orthodontic management of the traumatised tooth",
+    "organization": "Journal of Orthodontics",
+    "type": "clinical guideline/review",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8042518/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Sandler et al., 2021",
+    "use_for": "Orthodontic timing after regenerative endodontic or revitalization treatment in traumatised teeth, including the cautious minimum two-year observation frame."
+  },
+  {
+    "id": "S87",
+    "title": "The Impact of Orthodontic Treatment on Teeth Previously Treated with Regenerative Endodontics: A Systematic Review",
+    "organization": "Applied Sciences",
+    "type": "systematic review",
+    "url": "https://www.mdpi.com/2076-3417/14/1/210",
+    "accessed": "2026-06-05",
+    "inline_citation": "Bucchi et al., 2024",
+    "use_for": "Very-low-certainty evidence on survival, adverse events, and additional intervention after orthodontic treatment of teeth previously treated with regenerative endodontics."
+  },
+  {
+    "id": "S88",
+    "title": "Effect of orthodontic treatment on traumatized teeth treated by regenerative endodontic procedure",
+    "organization": "Angle Orthodontist",
+    "type": "clinical cohort study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39805315/",
+    "accessed": "2026-06-05",
+    "inline_citation": "Yoshpe et al., 2025",
+    "use_for": "Current limited clinical cohort evidence on orthodontic movement after REP in traumatized immature teeth and the need for close endodontic-orthodontic follow-up."
+  },
+  {
+    "id": "S89",
+    "title": "Present status and future directions: Surgical endodontics",
+    "organization": "International Endodontic Journal",
+    "type": "state-of-the-field review",
+    "url": "https://doi.org/10.1111/iej.13783",
+    "accessed": "2026-06-08",
+    "inline_citation": "Setzer et al., 2022",
+    "use_for": "Modern surgical endodontic indications, microsurgical access, root-end resection/preparation/filling, calcium silicate materials, guided approaches, and evidence limitations."
+  },
+  {
+    "id": "S90",
+    "title": "Effectiveness of different root-end filling materials in modern surgical endodontic treatment: A systematic review and network meta-analysis",
+    "organization": "Journal of Dental Sciences",
+    "type": "systematic review and network meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36299320/",
+    "accessed": "2026-06-08",
+    "inline_citation": "Chao et al., 2022",
+    "use_for": "Clinical comparative evidence for root-end filling materials in modern apical surgery, including MTA, calcium silicate/bioceramic materials, IRM, Super-EBA, and material-ranking uncertainty."
+  },
+  {
+    "id": "S91",
+    "title": "A Concise Guide to Pathology within Endodontics",
+    "organization": "American Association of Endodontists",
+    "type": "clinical education article",
+    "url": "https://www.aae.org/specialty/communique/a-concise-guide-to-pathology-within-endodontics/",
+    "accessed": "2026-06-08",
+    "inline_citation": "AAE, 2021",
+    "use_for": "Biopsy and pathology rationale in endodontics, including when persistent or inconsistent periapical disease should be submitted for histopathologic examination. Page posted January 27, 2021."
+  },
+  {
+    "id": "S92",
+    "title": "Retrospective Evaluation of Periradicular Biopsies: An 18-Year Study",
+    "organization": "Journal of Endodontics",
+    "type": "retrospective study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37543187/",
+    "accessed": "2026-06-08",
+    "inline_citation": "Krongbaramee et al., 2023",
+    "use_for": "Frequency of non-endodontic diagnoses among periradicular lesions and periapical-surgery biopsies, supporting tissue submission when surgical tissue is removed or findings are atypical."
+  },
+  {
+    "id": "S93",
+    "title": "Proximity of maxillary molar palatal roots to adjacent structures for endodontic microsurgery: a cone-beam computed tomography study",
+    "organization": "BMC Oral Health",
+    "type": "CBCT anatomical study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/39755591/",
+    "accessed": "2026-06-08",
+    "inline_citation": "Huang et al., 2025",
+    "use_for": "Maxillary molar palatal-root surgical-path planning, maxillary sinus proximity, cortical-plate distance, and CBCT-based anatomic risk assessment."
+  },
+  {
+    "id": "S94",
+    "title": "Anatomical Analysis of Mandibular Posterior Teeth using CBCT: An Endo-Surgical Perspective",
+    "organization": "European Endodontic Journal",
+    "type": "CBCT anatomical study",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8842422/",
+    "accessed": "2026-06-08",
+    "inline_citation": "Saber et al., 2021",
+    "use_for": "Mandibular posterior apical-surgery planning, including buccal bone thickness, mandibular canal proximity, mental foramen location, and when alternatives such as guided surgery, bone-lid technique, or intentional replantation may be considered."
+  },
+  {
+    "id": "S95",
+    "title": "Effectiveness of root resection techniques compared with root canal retreatment or apical surgery for the treatment of apical periodontitis and tooth survival: A systematic review",
+    "organization": "International Endodontic Journal",
+    "type": "systematic review",
+    "url": "https://doi.org/10.1111/iej.13808",
+    "accessed": "2026-06-08",
+    "inline_citation": "Corbella et al., 2023",
+    "use_for": "Evidence limits for root resection/amputation compared with retreatment or apical surgery, including heterogeneous case series, scarce comparative data, and cautious case selection."
+  },
+  {
+    "id": "S96",
+    "title": "Outcome of Crown and Root Resection: A Systematic Review and Meta-analysis of the Literature",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/30527594/",
+    "accessed": "2026-06-08",
+    "inline_citation": "Setzer et al., 2019",
+    "use_for": "Survival estimates and evidence-quality limitations for crown resection, root resection, hemisection, and root amputation in human studies."
+  },
+  {
+    "id": "S97",
+    "title": "The efficacy of occlusal splints in the treatment of bruxism: A systematic review",
+    "organization": "Journal of Dentistry",
+    "type": "systematic review",
+    "url": "https://doi.org/10.1016/j.jdent.2021.103621",
+    "accessed": "2026-06-08",
+    "inline_citation": "Hardy and Bonsor, 2021",
+    "use_for": "Evidence limits for occlusal splints as bruxism treatment, supporting cautious wording that splints may protect teeth/load distribution but are not proven to eliminate bruxism or prevent crack progression."
+  },
+  {
+    "id": "S98",
+    "title": "Guidelines for non-surgical root canal treatment",
+    "organization": "Australian Society of Endodontology / Australian Endodontic Journal",
+    "type": "clinical guideline",
+    "url": "https://doi.org/10.1111/aej.12848",
+    "accessed": "2026-06-08",
+    "inline_citation": "Peters et al., 2024",
+    "use_for": "Recall and outcome assessment after nonsurgical root canal treatment, including clinical/radiographic follow-up and 6-month or 1-year recall adjusted to clinical condition."
+  },
+  {
+    "id": "S99",
+    "title": "Use of Local Anesthesia for Pediatric Dental Patients",
+    "organization": "American Academy of Pediatric Dentistry",
+    "type": "best practice",
+    "url": "https://www.aapd.org/globalassets/media/policies_guidelines/bp_localanesthesia25.pdf",
+    "accessed": "2026-06-09",
+    "inline_citation": "AAPD, 2025",
+    "use_for": "Pediatric dental local anesthetic dose calculation, maximum recommended dosage table, age limits for selected anesthetics, toxicity prevention, and documentation expectations."
+  },
+  {
+    "id": "S100",
+    "title": "Oral Health Care During Pregnancy and Through the Lifespan",
+    "organization": "American College of Obstetricians and Gynecologists",
+    "type": "committee opinion",
+    "url": "https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2013/08/oral-health-care-during-pregnancy-and-through-the-lifespan",
+    "accessed": "2026-06-09",
+    "inline_citation": "ACOG, 2013",
+    "use_for": "Pregnancy dental-care safety framing, including needed dental treatment, local anesthesia, radiographs when indicated, and communication with prenatal care clinicians."
+  },
+  {
+    "id": "S101",
+    "title": "Acetaminophen in Pregnancy",
+    "organization": "American College of Obstetricians and Gynecologists",
+    "type": "clinical FAQ / practice advisory",
+    "url": "https://www.acog.org/clinical-information/physician-faqs/acetaminophen-in-pregnancy",
+    "accessed": "2026-06-09",
+    "inline_citation": "ACOG, 2025",
+    "use_for": "Pregnancy analgesia framing for acetaminophen as an appropriate option when clinically indicated, while using medication thoughtfully and discussing patient-specific concerns."
+  },
+  {
+    "id": "S102",
+    "title": "FDA Recommends Avoiding Use of NSAIDs in Pregnancy at 20 Weeks or Later",
+    "organization": "U.S. Food and Drug Administration",
+    "type": "drug safety communication",
+    "url": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low",
+    "accessed": "2026-06-09",
+    "inline_citation": "FDA, 2020",
+    "use_for": "Pregnancy-specific NSAID caution: avoid NSAIDs at about 20 weeks or later unless specifically advised, and avoid after about 30 weeks because of fetal kidney, amniotic fluid, and ductus arteriosus concerns."
+  },
+  {
+    "id": "S103",
+    "title": "Checklist for Treatment of Local Anesthetic Systemic Toxicity",
+    "organization": "American Society of Regional Anesthesia and Pain Medicine",
+    "type": "emergency checklist",
+    "url": "https://www.asra.com/docs/default-source/guidelines-articles/local-anesthetic-systemic-toxicity-rgb.pdf",
+    "accessed": "2026-06-09",
+    "inline_citation": "ASRA, 2020",
+    "use_for": "Recognition and emergency response for local anesthetic systemic toxicity, including airway support, seizure control, modified ACLS, and 20% lipid emulsion rescue dosing."
+  },
+  {
+    "id": "S104",
+    "title": "Irrigating Solutions and Activation Methods Used in Clinical Endodontics: A Systematic Review",
+    "organization": "Frontiers in Oral Health",
+    "type": "systematic review",
+    "url": "https://www.frontiersin.org/articles/10.3389/froh.2022.838043/full",
+    "accessed": "2026-06-16",
+    "inline_citation": "Tonini et al., 2022",
+    "use_for": "Current clinical-endodontic review of irrigants and adjunctive activation/delivery methods, including passive ultrasonic irrigation, sonic activation, XP-endo finisher, F-file agitation, EndoVac/negative-pressure delivery, and protocol limitations. Laser-specific clinical superiority was not established in this RCT-focused review."
+  },
+  {
+    "id": "S105",
+    "title": "Guidelines for management of sodium hypochlorite extrusion injuries",
+    "organization": "British Dental Journal",
+    "type": "clinical guideline / expert review",
+    "url": "https://www.nature.com/articles/sj.bdj.2014.1099",
+    "accessed": "2026-06-16",
+    "inline_citation": "Farook et al., 2014",
+    "use_for": "Recognition, prevention, urgent assessment, referral, and follow-up framing for sodium hypochlorite extrusion injuries during root canal irrigation."
+  },
+  {
+    "id": "S106",
+    "title": "A new classification scheme for periodontal and peri-implant diseases and conditions - Introduction and key changes from the 1999 classification",
+    "organization": "American Academy of Periodontology / European Federation of Periodontology",
+    "type": "World Workshop consensus classification introduction",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/JPER.18-0157",
+    "accessed": "2026-06-16",
+    "inline_citation": "Caton et al., 2018",
+    "use_for": "2017 World Workshop classification framework, including the placement of endodontic-periodontal lesions among conditions affecting the periodontium."
+  },
+  {
+    "id": "S107",
+    "title": "Acute periodontal lesions (periodontal abscesses and necrotizing periodontal diseases) and endo-periodontal lesions: Joint EFP-AAP Workshop",
+    "organization": "Journal of Periodontology",
+    "type": "World Workshop consensus review",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1002/JPER.16-0642",
+    "accessed": "2026-06-16",
+    "inline_citation": "Herrera et al., 2018",
+    "use_for": "Classification and diagnostic framing for endodontic-periodontal lesions, including root damage, periodontitis status, and prognosis-oriented clinical patterns."
+  },
+  {
+    "id": "S108",
+    "title": "Treatment of stage I-III periodontitis - The EFP S3 level clinical practice guideline",
+    "organization": "European Federation of Periodontology / Journal of Clinical Periodontology",
+    "type": "clinical practice guideline",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/jcpe.13290",
+    "accessed": "2026-06-16",
+    "inline_citation": "Sanz et al., 2020",
+    "use_for": "Stepwise periodontal therapy, risk-factor control, and supportive periodontal care when periodontitis contributes to combined endodontic-periodontal prognosis."
+  },
+  {
+    "id": "S109",
+    "title": "Apical surgery: A review of current techniques and outcome",
+    "organization": "Saudi Dental Journal",
+    "type": "clinical review",
+    "url": "https://doi.org/10.1016/j.sdentj.2010.10.004",
+    "accessed": "2026-06-16",
+    "inline_citation": "von Arx, 2011",
+    "use_for": "Apical microsurgery technique framing, including access, flap design, tissue handling, hemostasis, wound closure, and outcome limitations."
+  },
+  {
+    "id": "S110",
+    "title": "The effect of guided tissue regeneration on the outcome of surgical endodontic treatment: a systematic review and meta-analysis",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and meta-analysis",
+    "url": "https://doi.org/10.1016/j.joen.2011.04.016",
+    "accessed": "2026-06-16",
+    "inline_citation": "Tsesis et al., 2011",
+    "use_for": "Evidence framing for guided tissue regeneration, membranes, and grafting as adjuncts in endodontic surgery, especially larger or through-and-through osseous defects."
+  },
+  {
+    "id": "S111",
+    "title": "A Systematic Review of the Survival of Teeth Intentionally Replanted with a Modern Technique and Cost-effectiveness Compared with Single-tooth Implants",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review",
+    "url": "https://doi.org/10.1016/j.joen.2017.08.019",
+    "accessed": "2026-06-16",
+    "inline_citation": "Mainkar, 2017",
+    "use_for": "Intentional replantation as a last-line tooth-preservation option, including survival framing and modern technique limits."
+  },
+  {
+    "id": "S112",
+    "title": "Targeted Endodontic Microsurgery: A Novel Approach to Anatomically Challenging Scenarios Using 3-dimensional Printed Guides and Trephine Burs - a Report of 3 Cases",
+    "organization": "Journal of Endodontics",
+    "type": "case report / technique report",
+    "url": "https://doi.org/10.1016/j.joen.2017.12.019",
+    "accessed": "2026-06-16",
+    "inline_citation": "Giacomino et al., 2018",
+    "use_for": "Technique-level support for CBCT-planned, 3D-printed guided endodontic microsurgery in anatomically challenging access scenarios, with evidence limitations."
+  },
+  {
+    "id": "S113",
+    "title": "Recommended treatment of cracked teeth: Results from the National Dental Practice-Based Research Network",
+    "organization": "The Journal of Prosthetic Dentistry / National Dental Practice-Based Research Network",
+    "type": "clinical research / practice-based network study",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0022391318311739",
+    "accessed": "2026-06-16",
+    "inline_citation": "Hilton et al., 2020",
+    "use_for": "Practice-based treatment recommendation patterns for visible posterior cracked teeth, including how caries, biting pain, radiographic crack evidence, and symptom pattern influence restoration versus monitoring decisions."
+  },
+  {
+    "id": "S114",
+    "title": "A narrative review of cracks in teeth: Aetiology, microstructure and diagnostic challenges",
+    "organization": "Journal of Dentistry",
+    "type": "narrative review",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0300571223002695",
+    "accessed": "2026-06-16",
+    "inline_citation": "Yap et al., 2023",
+    "use_for": "Biomechanical framing for crack initiation and propagation, influence of remaining tooth structure and loading, and diagnostic limitations when trying to define crack extent."
+  },
+  {
+    "id": "S115",
+    "title": "Acetaminophen - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501194/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2026",
+    "use_for": "Breastfeeding analgesic selection for acetaminophen, infant exposure estimates, rare infant adverse effects, and postpartum breastfeeding observations."
+  },
+  {
+    "id": "S116",
+    "title": "Ibuprofen - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK500986/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2025",
+    "use_for": "Breastfeeding analgesic selection for ibuprofen, low milk transfer, short half-life, and preferred NSAID framing in nursing mothers."
+  },
+  {
+    "id": "S117",
+    "title": "Amoxicillin - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK500887/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2026",
+    "use_for": "Breastfeeding antibiotic selection for amoxicillin, low milk levels, acceptability in nursing mothers, and infant rash/diarrhea/thrush monitoring."
+  },
+  {
+    "id": "S118",
+    "title": "Amoxicillin and Clavulanic Acid - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK500776/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2025",
+    "use_for": "Breastfeeding antibiotic selection for amoxicillin-clavulanate, acceptability, and infant restlessness, diarrhea, and rash monitoring."
+  },
+  {
+    "id": "S119",
+    "title": "Clindamycin - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501208/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2025",
+    "use_for": "Breastfeeding antibiotic caution for clindamycin, infant gastrointestinal flora effects, alternate-drug preference when reasonable, and infant monitoring."
+  },
+  {
+    "id": "S120",
+    "title": "Metronidazole - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501315/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2026",
+    "use_for": "Breastfeeding antibiotic caution for metronidazole, infant exposure, expert disagreement, and dose-duration-specific breastfeeding interruption concerns."
+  },
+  {
+    "id": "S121",
+    "title": "Codeine - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501212/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2026",
+    "use_for": "Breastfeeding opioid caution for codeine, infant CNS depression risk, preference for nonnarcotic analgesia, short-duration rescue framing, and infant warning signs."
+  },
+  {
+    "id": "S122",
+    "title": "Use of Nitrous Oxide for Pediatric Dental Patients",
+    "organization": "American Academy of Pediatric Dentistry",
+    "type": "best practice",
+    "url": "https://www.aapd.org/globalassets/media/policies_guidelines/bp_useofnitrous.pdf",
+    "accessed": "2026-06-16",
+    "inline_citation": "AAPD, 2023",
+    "use_for": "Dental nitrous oxide/oxygen indications, limitations, concentration cautions, lack of pulpal anesthesia substitution, pregnancy cautions, and prenatal-provider consultation language."
+  },
+  {
+    "id": "S123",
+    "title": "Guidelines for Monitoring and Management of Pediatric Patients Before, During, and After Sedation for Diagnostic and Therapeutic Procedures",
+    "organization": "American Academy of Pediatrics / American Academy of Pediatric Dentistry",
+    "type": "pediatric sedation guideline",
+    "url": "https://www.aapd.org/globalassets/media/policies_guidelines/bp_monitoringsedation.pdf",
+    "accessed": "2026-06-27",
+    "inline_citation": "Cote and Wilson, 2019",
+    "use_for": "Pediatric procedural sedation safety: presedation evaluation, drug interactions, fasting, airway assessment, rescue obligations, monitoring, recovery, and high-risk children."
+  },
+  {
+    "id": "S124",
+    "title": "Lidocaine - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501230/",
+    "accessed": "2026-06-16",
+    "inline_citation": "LactMed, 2024",
+    "use_for": "Breastfeeding local-anesthetic selection for dental lidocaine, low milk levels, poor infant absorption, and no-special-precautions framing."
+  },
+  {
+    "id": "S125",
+    "title": "Efficacy of irrigant activation techniques in removing intracanal smear layer and debris from mature permanent teeth: a systematic review and meta-analysis",
+    "organization": "International Endodontic Journal",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29178166/",
+    "accessed": "2026-06-16",
+    "inline_citation": "Virdee et al., 2018",
+    "use_for": "Evidence that irrigant activation techniques can improve smear-layer/debris removal compared with conventional needle irrigation while remaining too heterogeneous to identify one superior technique or prove clinical healing superiority."
+  },
+  {
+    "id": "S126",
+    "title": "Postoperative pain after the application of two different irrigation devices in a prospective randomized clinical trial",
+    "organization": "Journal of Endodontics",
+    "type": "prospective randomized clinical trial",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20647083/",
+    "accessed": "2026-06-16",
+    "inline_citation": "Gondim et al., 2010",
+    "use_for": "Clinical outcome evidence comparing conventional needle irrigation with negative apical pressure irrigation for early postoperative pain and analgesic use in selected single-rooted teeth."
+  },
+  {
+    "id": "S127",
+    "title": "Treatment of stage IV periodontitis: The EFP S3 level clinical practice guideline",
+    "organization": "European Federation of Periodontology / Journal of Clinical Periodontology",
+    "type": "clinical practice guideline",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/jcpe.13639",
+    "accessed": "2026-06-17",
+    "inline_citation": "Herrera et al., 2022",
+    "use_for": "Complex periodontitis prognosis, staged periodontal care, tooth-retention limits, and multidisciplinary planning when periodontal support may limit endodontic investment."
+  },
+  {
+    "id": "S128",
+    "title": "Guided tissue regeneration for periodontal infra-bony defects",
+    "organization": "Cochrane Database of Systematic Reviews",
+    "type": "Cochrane systematic review",
+    "url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD001724.pub2/full",
+    "accessed": "2026-06-17",
+    "inline_citation": "Needleman et al., 2006",
+    "use_for": "Selected periodontal guided tissue regeneration evidence for infrabony defects, including benefit-versus-predictability cautions and technique-sensitive limitations."
+  },
+  {
+    "id": "S129",
+    "title": "Enamel matrix derivative (Emdogain(R)) for periodontal tissue regeneration in intrabony defects",
+    "organization": "Cochrane Database of Systematic Reviews",
+    "type": "Cochrane systematic review",
+    "url": "https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD003875.pub3/full",
+    "accessed": "2026-06-17",
+    "inline_citation": "Esposito et al., 2009",
+    "use_for": "Evidence and heterogeneity cautions for enamel matrix derivative in periodontal intrabony defects, without implying guaranteed regeneration in endodontic-periodontal lesions."
+  },
+  {
+    "id": "S130",
+    "title": "Microscopes in Endodontics",
+    "organization": "American Association of Endodontists",
+    "type": "clinical resource page",
+    "url": "https://www.aae.org/specialty/clinical-resources/microscopes-in-endodontics/",
+    "accessed": "2026-06-17",
+    "inline_citation": "AAE, 2026",
+    "use_for": "Operating microscope and magnification framing in endodontic diagnosis and treatment, including vision enhancement, locating hidden anatomy, preserving tooth structure, and the need for visualization rather than purely digital localization."
+  },
+  {
+    "id": "S131",
+    "title": "Case Assessment Tools",
+    "organization": "American Association of Endodontists",
+    "type": "clinical resource page",
+    "url": "https://www.aae.org/specialty/clinical-resources/treatment-planning/case-assessment-tools/",
+    "accessed": "2026-06-17",
+    "inline_citation": "AAE, 2026",
+    "use_for": "Case assessment and referral framing, including evaluating clinical condition, treatment capability, case-assessment pitfalls, and use of the AAE case difficulty framework for treatment planning and documentation."
+  },
+  {
+    "id": "S132",
+    "title": "Success and Survival of Endodontically Treated Cracked Teeth with Radicular Extensions: A 2- to 4-year Prospective Cohort",
+    "organization": "Journal of Endodontics",
+    "type": "prospective cohort study",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0099239919302559",
+    "accessed": "2026-06-17",
+    "inline_citation": "Davis and Shariff, 2019",
+    "use_for": "Radicular-extension cracked-tooth outcome framing, including that favorable reports come from combined protocols with staged diagnosis, orifice barriers, cuspal coverage, occlusal management, and recall rather than a material-only crack repair."
+  },
+  {
+    "id": "S133",
+    "title": "Onset and resolution of pain among treated and untreated posterior teeth with a visible crack: Three-year findings",
+    "organization": "Journal of Dentistry / National Dental Practice-Based Research Network",
+    "type": "prospective practice-based cohort study",
+    "url": "https://www.sciencedirect.com/science/article/pii/S030057122200135X",
+    "accessed": "2026-06-17",
+    "inline_citation": "Funkhouser et al., 2022",
+    "use_for": "Longer follow-up framing for pain onset and resolution in treated and untreated posterior teeth with visible cracks, supporting risk-based monitoring rather than automatic treatment of every visible crack."
+  },
+  {
+    "id": "S134",
+    "title": "Symptom changes and crack progression in untreated cracked teeth: One-year findings",
+    "organization": "Journal of Dentistry / National Dental Practice-Based Research Network",
+    "type": "prospective practice-based cohort study",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0300571219302799",
+    "accessed": "2026-06-17",
+    "inline_citation": "Hilton et al., 2020",
+    "use_for": "Short-term monitoring evidence for untreated visible posterior cracks, including symptom and crack-progression framing used to distinguish low-risk monitoring from teeth needing restoration or endodontic care."
+  },
+  {
+    "id": "S135",
+    "title": "Guideline on anaesthesia and sedation in breastfeeding women 2020",
+    "organization": "Association of Anaesthetists / Anaesthesia",
+    "type": "clinical guideline",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/32737881/",
+    "accessed": "2026-06-18",
+    "inline_citation": "Mitchell et al., 2020",
+    "use_for": "Breastfeeding after anesthesia or sedation, including avoiding routine breastfeeding interruption for most short-acting anesthetic/sedative agents after maternal recovery while using caution with opioids, repeated dosing, and vulnerable infants."
+  },
+  {
+    "id": "S136",
+    "title": "Midazolam - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501235/",
+    "accessed": "2026-06-18",
+    "inline_citation": "LactMed, 2024",
+    "use_for": "Breastfeeding sedation planning for midazolam, including low milk transfer after single-dose use, possible short nursing delay after IV dosing, and extra caution for newborn or preterm infants."
+  },
+  {
+    "id": "S137",
+    "title": "Nitrous Oxide use while Breastfeeding",
+    "organization": "Drugs.com",
+    "type": "lactation drug reference",
+    "url": "https://www.drugs.com/breastfeeding/nitrous-oxide.html",
+    "accessed": "2026-06-18",
+    "inline_citation": "Drugs.com, 2025",
+    "use_for": "Breastfeeding-specific nitrous oxide reference for brief procedural use, rapid elimination, and avoiding routine nursing interruption after maternal recovery."
+  },
+  {
+    "id": "S138",
+    "title": "Irrigants for non-surgical root canal treatment in mature permanent teeth",
+    "organization": "Cochrane Database of Systematic Reviews",
+    "type": "systematic review",
+    "url": "https://doi.org/10.1002/14651858.CD008948.pub2",
+    "accessed": "2026-06-18",
+    "inline_citation": "Fedorowicz et al., 2012",
+    "use_for": "High-level clinical-outcome uncertainty for root-canal irrigant comparisons in mature permanent teeth, supporting cautious translation from irrigant or device studies to healing claims."
+  },
+  {
+    "id": "S139",
+    "title": "Root canal disinfection by single- and multiple-instrument systems: effects of sodium hypochlorite volume, concentration, and retention time",
+    "organization": "Journal of Endodontics",
+    "type": "clinical microbiology study",
+    "url": "https://doi.org/10.1016/j.joen.2019.02.017",
+    "accessed": "2026-06-18",
+    "inline_citation": "Gazzaneo et al., 2019",
+    "use_for": "Protocol-variable framing for NaOCl disinfection, including volume, concentration, retention time, and instrumentation system interactions without treating one variable as a stand-alone healing guarantee."
+  },
+  {
+    "id": "S140",
+    "title": "Ultrasonic irrigant activation during root canal treatment: a systematic review",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review",
+    "url": "https://doi.org/10.1016/j.joen.2018.09.010",
+    "accessed": "2026-06-18",
+    "inline_citation": "Caputa et al., 2019",
+    "use_for": "Endpoint-specific activation evidence, especially the distinction between bacterial reduction, postoperative pain, cleanliness outcomes, and uncertain healing-rate effects in apical periodontitis."
+  },
+  {
+    "id": "S141",
+    "title": "Effect of different concentrations of sodium hypochlorite on outcome of primary root canal treatment: a randomized controlled trial",
+    "organization": "Journal of Endodontics",
+    "type": "randomized controlled trial",
+    "url": "https://doi.org/10.1016/j.joen.2019.01.003",
+    "accessed": "2026-06-18",
+    "inline_citation": "Verma et al., 2019",
+    "use_for": "Clinical outcome framing for NaOCl concentration comparisons in primary root canal treatment, used to keep concentration claims endpoint- and protocol-specific."
+  },
+  {
+    "id": "S142",
+    "title": "Periodontitis: Consensus report of workgroup 2 of the 2017 World Workshop on the Classification of Periodontal and Peri-Implant Diseases and Conditions",
+    "organization": "American Academy of Periodontology / European Federation of Periodontology",
+    "type": "World Workshop consensus report",
+    "url": "https://doi.org/10.1111/jcpe.12946",
+    "accessed": "2026-06-27",
+    "inline_citation": "Papapanou et al., 2018",
+    "use_for": "Periodontitis case-definition and stage/grade prognosis framing used to keep endodontic-periodontal decisions tied to periodontal severity, complexity, risk factors, and anticipated progression."
+  },
+  {
+    "id": "S143",
+    "title": "Staging and grading of periodontitis: Framework and proposal of a new classification and case definition",
+    "organization": "American Academy of Periodontology / European Federation of Periodontology",
+    "type": "World Workshop consensus framework",
+    "url": "https://doi.org/10.1111/jcpe.12945",
+    "accessed": "2026-06-27",
+    "inline_citation": "Tonetti et al., 2018",
+    "use_for": "Stage and grade framework for translating periodontal severity, complexity, extent, risk factors, and progression into prognosis and maintenance planning around endodontically treated teeth."
+  },
+  {
+    "id": "S144",
+    "title": "AAE Position Statement - Use of Microscopes and Other Magnification Devices",
+    "organization": "American Association of Endodontists",
+    "type": "position statement",
+    "url": "https://www.aae.org/specialty/wp-content/uploads/sites/2/2020/04/UseOfMicroscopes_PositionStatement_v2.pdf",
+    "accessed": "2026-06-27",
+    "inline_citation": "AAE, 2020",
+    "use_for": "Magnification and illumination in modern endodontics, including surgical visualization, root-end resection/filling, outcome evidence for high magnification, and the need for clinician judgment despite technology."
+  },
+  {
+    "id": "S145",
+    "title": "Long-term Follow-up of Cases Considered Healed One Year After Apical Microsurgery",
+    "organization": "Journal of Endodontics",
+    "type": "long-term follow-up study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/12026924/",
+    "accessed": "2026-06-27",
+    "inline_citation": "Rubinstein and Kim, 2002",
+    "use_for": "Follow-up framing after apical microsurgery, especially the caution that one-year healed status should not be treated as a permanent outcome without longer clinical and radiographic surveillance."
+  },
+  {
+    "id": "S146",
+    "title": "The Correlation of Crack Lines and Definitive Restorations with the Survival and Success Rates of Cracked Teeth",
+    "organization": "Journal of Endodontics",
+    "type": "retrospective clinical study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=The+Correlation+of+Crack+Lines+and+Definitive+Restorations+with+the+Survival+and+Success+Rates+of+Cracked+Teeth",
+    "accessed": "2026-06-27",
+    "inline_citation": "de Toubes et al., 2022",
+    "use_for": "Cracked-tooth survival context for the relationship among crack-line location, definitive restoration, and treatment success; used cautiously because it is observational and does not isolate a material-specific orifice-barrier effect."
+  },
+  {
+    "id": "S147",
+    "title": "Relationship between crown placement and the survival of endodontically treated teeth",
+    "organization": "Journal of Prosthetic Dentistry",
+    "type": "retrospective cohort study",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11941351/",
+    "accessed": "2026-06-27",
+    "inline_citation": "Aquilino and Caplan, 2002",
+    "use_for": "Broad survival association between crown placement and endodontically treated teeth; supports prompt definitive restoration framing while noting it is not cracked-tooth-specific."
+  },
+  {
+    "id": "S148",
+    "title": "Diazepam - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501214/",
+    "accessed": "2026-06-27",
+    "inline_citation": "LactMed, 2025",
+    "use_for": "Breastfeeding sedation planning for diazepam, including repeated-dose accumulation, single-dose procedural exposure, newborn/preterm caution, and infant monitoring for sedation, poor feeding, and poor weight gain."
+  },
+  {
+    "id": "S149",
+    "title": "Lorazepam - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK501231/",
+    "accessed": "2026-06-27",
+    "inline_citation": "LactMed, 2024",
+    "use_for": "Breastfeeding sedation planning for lorazepam, including low milk levels, shorter half-life compared with many benzodiazepines, usual-dose infant safety experience, and monitoring for infant sedation, poor feeding, and poor weight gain."
+  },
+  {
+    "id": "S150",
+    "title": "Hydroxyzine - Drugs and Lactation Database (LactMed)",
+    "organization": "National Library of Medicine / LactMed",
+    "type": "lactation drug monograph",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK500985/",
+    "accessed": "2026-06-27",
+    "inline_citation": "LactMed, 2025",
+    "use_for": "Breastfeeding anxiolytic/antihistamine planning for hydroxyzine, including small occasional doses, larger/prolonged-dose infant drowsiness and milk-supply cautions, and preference for other agents while nursing newborn or preterm infants."
+  },
+  {
+    "id": "S151",
+    "title": "Distribution of sodium hypochlorite throughout the mesial root canal system of mandibular molars after adjunctive irrigant activation procedures: a micro-computed tomographic study",
+    "organization": "Clinical Oral Investigations",
+    "type": "ex vivo micro-CT study",
+    "url": "https://link.springer.com/article/10.1007/s00784-019-02970-5",
+    "accessed": "2026-06-28",
+    "inline_citation": "Pacheco-Yanes et al., 2020",
+    "use_for": "Irrigant distribution in extracted mandibular molars, especially endpoint-specific interpretation of XP-endo Finisher, passive ultrasonic irrigation, positive-pressure irrigation, apical distribution, and isthmus penetration."
+  },
+  {
+    "id": "S152",
+    "title": "The effect of supplementary methods on root canal cleaning: a study using 3D-printed mandibular molar models",
+    "organization": "Odontology",
+    "type": "3D-printed mandibular molar laboratory study",
+    "url": "https://link.springer.com/article/10.1007/s10266-025-01116-2",
+    "accessed": "2026-06-28",
+    "inline_citation": "Gutierrez-Lopez et al., 2025",
+    "use_for": "Recent model-based evidence for supplementary irrigation and activation methods in complex mandibular molar anatomy, supporting NaOCl and activation as cleaning aids while preserving the need for clinical validation."
+  },
+  {
+    "id": "S153",
+    "title": "Periodontal Regeneration - Intrabony Defects: A Systematic Review From the AAP Regeneration Workshop",
+    "organization": "Journal of Periodontology / American Academy of Periodontology",
+    "type": "AAP regeneration workshop systematic review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Periodontal+Regeneration+Intrabony+Defects+Systematic+Review+AAP+Regeneration+Workshop",
+    "accessed": "2026-06-30",
+    "inline_citation": "Reynolds et al., 2015",
+    "use_for": "Periodontal intrabony-defect regeneration evidence and case-selection cautions; used to avoid overgeneralizing periodontal regeneration data into true combined endodontic-periodontal lesion material claims."
+  },
+  {
+    "id": "S154",
+    "title": "Periodontal Regeneration - Furcation Defects: A Systematic Review From the AAP Regeneration Workshop",
+    "organization": "Journal of Periodontology / American Academy of Periodontology",
+    "type": "AAP regeneration workshop systematic review",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/?term=Periodontal+Regeneration+Furcation+Defects+Systematic+Review+AAP+Regeneration+Workshop",
+    "accessed": "2026-06-30",
+    "inline_citation": "Avila-Ortiz et al., 2015",
+    "use_for": "Periodontal furcation-defect regeneration evidence and defect-specific limitations; used cautiously because furcation regeneration evidence is not direct true combined-lesion survival evidence."
+  },
+  {
+    "id": "S155",
+    "title": "Outcome of Endodontic Surgery: A Meta-analysis of the Literature - Part 1: Comparison of Traditional Root-end Surgery and Endodontic Microsurgery",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/20951283/",
+    "accessed": "2026-06-30",
+    "inline_citation": "Setzer et al., 2010",
+    "use_for": "Outcome context separating traditional root-end surgery from modern endodontic microsurgery as a treatment bundle; used cautiously and not as evidence for dynamic-navigation superiority."
+  },
+  {
+    "id": "S156",
+    "title": "Outcome of Endodontic Surgery: A Meta-analysis of the Literature - Part 2: Comparison of Endodontic Microsurgical Techniques with and without the Use of Higher Magnification",
+    "organization": "Journal of Endodontics",
+    "type": "systematic review and meta-analysis",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22152622/",
+    "accessed": "2026-06-30",
+    "inline_citation": "Setzer et al., 2012",
+    "use_for": "Magnification-specific surgical outcome context; used to support microscope/endoscope visualization within modern microsurgery while avoiding transfer to guided-surgery or navigation-product claims."
+  },
+  {
+    "id": "S157",
+    "title": "Occlusal veneer restoration treatment outcomes of cracked tooth syndrome: A 22.4-month follow-up study",
+    "organization": "Clinical Oral Investigations",
+    "type": "prospective clinical study",
+    "url": "https://link.springer.com/article/10.1007/s00784-024-05735-x",
+    "accessed": "2026-06-30",
+    "inline_citation": "Zhao et al., 2024",
+    "use_for": "Short-term clinical evidence for lithium-disilicate occlusal veneer restoration in selected vital cracked teeth with cold and/or biting pain but without spontaneous or nocturnal pain; used cautiously because the sample and follow-up are limited."
+  },
+  {
+    "id": "S158",
+    "title": "Cal. Code Regs. Tit. 16, Section 1043.1 - Permit Application Requirements",
+    "organization": "California Code of Regulations / Dental Board of California",
+    "type": "state regulation",
+    "url": "https://www.law.cornell.edu/regulations/california/16-CCR-1043.1",
+    "accessed": "2026-06-30",
+    "inline_citation": "California Code of Regulations, 2022",
+    "use_for": "State-specific pediatric sedation permit example: California pediatric endorsement requirements for deep sedation/general anesthesia in patients under seven and moderate sedation in patients under thirteen."
+  },
+  {
+    "id": "S159",
+    "title": "Cal. Code Regs. Tit. 16, Section 1043.8.1 - Application for Pediatric Endorsement",
+    "organization": "California Code of Regulations / Dental Board of California",
+    "type": "state regulation",
+    "url": "https://www.law.cornell.edu/regulations/california/16-CCR-1043.8.1",
+    "accessed": "2026-06-30",
+    "inline_citation": "California Code of Regulations, 2022",
+    "use_for": "State-specific pediatric endorsement example: required pediatric case documentation, current ACLS/PALS or PALS certification evidence, and records that may be requested by the Board."
+  },
+  {
+    "id": "S160",
+    "title": "Radiographic healing after a root canal treatment performed in single-rooted teeth with and without ultrasonic activation of the irrigant: a randomized controlled trial",
+    "organization": "Journal of Endodontics",
+    "type": "randomized controlled trial",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/24041381/",
+    "accessed": "2026-06-30",
+    "inline_citation": "Liang et al., 2013",
+    "use_for": "Clinical healing endpoint evidence for ultrasonic irrigant activation versus syringe irrigation in single-rooted teeth with periapical bone loss; used to prevent overclaiming universal activation healing superiority."
+  },
+  {
+    "id": "S161",
+    "title": "Temperature evolution of preheated irrigant injected into a root canal ex vivo",
+    "organization": "Clinical Oral Investigations",
+    "type": "ex vivo temperature study",
+    "url": "https://link.springer.com/article/10.1007/s00784-017-2086-2",
+    "accessed": "2026-06-30",
+    "inline_citation": "Macedo et al., 2017",
+    "use_for": "Device- and delivery-specific preheated-irrigant temperature behavior, including syringe cooling, apical-patency effects, external-root temperature context, and rapid post-delivery cooling."
+  },
+  {
+    "id": "S162",
+    "title": "Periodontal manifestations of systemic diseases and developmental and acquired conditions: Consensus report of workgroup 3 of the 2017 World Workshop on the Classification of Periodontal and Peri-Implant Diseases and Conditions",
+    "organization": "American Academy of Periodontology / European Federation of Periodontology",
+    "type": "World Workshop consensus report",
+    "url": "https://onlinelibrary.wiley.com/doi/10.1111/jcpe.12951",
+    "accessed": "2026-06-30",
+    "inline_citation": "Jepsen et al., 2018",
+    "use_for": "Tooth- and root-related periodontal modifying factors, including root fractures, cervical root resorption, cemental tears, and other local factors that can mimic or limit endodontic-periodontal lesion prognosis."
+  }
+]
