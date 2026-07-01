@@ -56,7 +56,7 @@ def main() -> None:
     html = GUIDE_HTML.read_text(encoding="utf-8")
     required_markers = [
         "Endodontic Treatment Rationale Guide",
-        "Updated Jun 30, 2026",
+        "Updated Jul 1, 2026",
         "data/app-data.js",
     ]
     for marker in required_markers:

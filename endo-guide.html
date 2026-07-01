@@ -843,7 +843,7 @@
     </main>
   </div>
 
-  <script src="data/app-data.js?v=2026-07-01-b5"></script>
+  <script src="data/app-data.js?v=2026-07-01-b6"></script>
   <script>
     const data = window.ENDO_GUIDE_DATA || { rationales: [], sources: [] };
     const rationales = asArray(data.rationales);
@@ -1022,7 +1022,7 @@
       const cards = quizCards();
       const known = Object.values(state.review).filter((value) => value === "known").length;
       const review = Object.values(state.review).filter((value) => value === "review").length;
-      els.siteMeta.textContent = `Updated Jun 30, 2026 - ${rationales.length} decision points - ${sources.length} sources - ${cards.length} quiz cards`;
+      els.siteMeta.textContent = `Updated Jul 1, 2026 - ${rationales.length} decision points - ${sources.length} sources - ${cards.length} quiz cards`;
       els.cardCount.textContent = String(rationales.length);
       els.quizCount.textContent = String(cards.length);
       els.knownCount.textContent = String(known);
