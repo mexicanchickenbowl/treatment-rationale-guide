@@ -60,7 +60,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Localized abscess with fever and malaise"
         }
-      ]
+      ],
+      "quick_answer": "Antibiotics are not routine for toothache or localized endodontic infection in immunocompetent adults when definitive dental treatment is available. Use source control first; reserve antibiotics for systemic involvement, spreading infection, or special risk."
     },
     {
       "id": "IRR-001",
@@ -414,7 +415,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "It is an optional chemistry optimization that still requires volume, contact time, and extrusion control"
         }
-      ]
+      ],
+      "quick_answer": "Warming or replenishing NaOCl can improve chemistry, but it is not a separate treatment strategy. Use it within safe irrigation: controlled concentration, volume, activation, apical control, and extrusion prevention."
     },
     {
       "id": "IRR-007",
@@ -1070,7 +1072,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Necrotic tooth with an isolated deep probing defect and localized radiolucency"
         }
-      ]
+      ],
+      "quick_answer": "Differentiate endo-perio lesions with pulp testing plus full periodontal assessment, not the radiograph alone. Probe, trace sinus tracts, assess restorability and root damage, then classify the primary driver."
     },
     {
       "id": "PERIOENDO-002",
@@ -1127,7 +1130,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Trace the tract when feasible and correlate with pulp tests, probing, and radiographs"
         }
-      ]
+      ],
+      "quick_answer": "Trace drainage before treating. A sinus tract or isolated deep pocket can be endodontic, periodontal, fracture-related, perforation-related, or resorptive, so match tracing, pulp tests, probing, and imaging before committing."
     },
     {
       "id": "PERIOENDO-003",
@@ -1314,7 +1318,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "They are selected periodontal regenerative options, but evidence should not be generalized beyond appropriate defect anatomy and source control"
         }
-      ]
+      ],
+      "quick_answer": "Periodontal regeneration is not a fix for unresolved endodontic infection or root damage. Consider it only after endodontic source control, reassessment, maintainable anatomy, and periodontal conditions that make regeneration realistic."
     },
     {
       "id": "PERIOENDO-006",
@@ -2195,7 +2200,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Root-filled mandibular molar with MOD structure loss, undermined cusps, and a durable temporary only"
         }
-      ]
+      ],
+      "quick_answer": "After RCT in a cracked posterior tooth, definitive seal and cuspal protection are part of treatment. A temporary is only a short bridge while symptoms, occlusion, or final restoration logistics are managed."
     },
     {
       "id": "CRACK-011",
@@ -2255,7 +2261,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Vital molar with cold/biting pain, no spontaneous pain, normal probing, and a coronal enamel-dentin crack that can be isolated"
         }
-      ]
+      ],
+      "quick_answer": "Conservative adhesive cuspal protection can fit selected vital cracked posterior teeth with low-risk pulp, probing, radiographs, crack extent, and isolation. It is not for irreversible pulpitis, necrosis, radicular cracks, VRF, or major structural compromise."
     },
     {
       "id": "TRAUMA-001",
@@ -2313,7 +2320,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Primary incisor"
         }
-      ]
+      ],
+      "quick_answer": "For an avulsed permanent tooth, replant immediately if safe. If not, keep it moist and arrange urgent replantation. Do not replant primary teeth. Dry time drives prognosis."
     },
     {
       "id": "TRAUMA-002",
@@ -2431,7 +2439,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "One early negative cold test after trauma"
         }
-      ]
+      ],
+      "quick_answer": "Endodontic timing after trauma depends on apex maturity and injury severity. Closed-apex avulsions usually need early RCT; immature teeth are monitored for revascularization unless necrosis or infection develops."
     },
     {
       "id": "TRAUMA-004",
@@ -2547,7 +2556,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Reposition the coronal segment, verify radiographically, splint flexibly, and monitor"
         }
-      ]
+      ],
+      "quick_answer": "Crown-root fractures are restorability decisions first; root fractures are usually reposition, flexible splint, and monitor. Do not start RCT just because early sensibility testing is negative after root fracture."
     },
     {
       "id": "TRAUMA-006",
@@ -2971,7 +2981,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Acetaminophen when clinically indicated, while avoiding NSAIDs unless specifically advised"
         }
-      ]
+      ],
+      "quick_answer": "Pregnancy should not delay urgent endodontic diagnosis, drainage, pain control, or definitive care. Use pregnancy-compatible anesthesia and analgesia, screen drug risks, and avoid letting infection or severe pain linger."
     },
     {
       "id": "ANES-007",
@@ -3094,7 +3105,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Stop, stage emergency care, or refer to an appropriately monitored setting"
         }
-      ]
+      ],
+      "quick_answer": "In pediatric sedation plus local anesthesia, calculate weight-based anesthetic limits first and track every dose. Sedation can hide early toxicity, so monitor, document, and refer if rescue capacity is not solid."
     },
     {
       "id": "SED-001",
@@ -3281,7 +3293,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Use nitrous as support, confirm local anesthesia, and avoid reflex pump-and-dump advice after maternal recovery"
         }
-      ]
+      ],
+      "quick_answer": "Breastfeeding usually should not delay endodontic source control or local anesthesia. Nitrous clears quickly; sedatives need drug-specific planning, infant-risk screening, and extra caution with repeated dosing or fragile infants."
     },
     {
       "id": "SED-004",
@@ -4139,7 +4152,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Persistent canal exudate that prevents drying"
         }
-      ]
+      ],
+      "quick_answer": "Obturate only when the canal is ready: isolated, shaped, disinfected, dryable, length and fit controlled, symptoms appropriate, and a durable coronal seal/restoration plan available."
     },
     {
       "id": "OBT-002",
@@ -4852,7 +4866,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Confirmed vertical root fracture or nonrestorable structure"
         }
-      ]
+      ],
+      "quick_answer": "Choose a root-end filling that seals in a moist surgical field and is biocompatible. Modern calcium silicate materials are common, but success still depends on microsurgical source control and case selection."
     },
     {
       "id": "SURG-002",
@@ -4971,7 +4986,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "The scan will clarify sinus or mandibular canal proximity and may change the surgical plan"
         }
-      ]
+      ],
+      "quick_answer": "Posterior apical surgery needs risk mapping before a flap. Use CBCT when sinus, canal, mental foramen, cortical plate, or root-position anatomy could change access, consent, referral, or treatment choice."
     },
     {
       "id": "SURG-004",
@@ -5222,7 +5238,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Dynamic navigation may help selected anatomic-risk cases if CBCT indication, registration/tracking, visualization, and fallback are verified"
         }
-      ]
+      ],
+      "quick_answer": "Use digital guides or navigation as planning aids, not outcome guarantees. They help locate difficult targets only when the tooth is worth saving and the workflow still allows inspection, sealing, biopsy judgment, and fallback."
     },
     {
       "id": "SURG-008",
@@ -5291,7 +5308,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Early healing and accurate access are encouraging endpoints but must be linked to longer clinical outcomes before making superiority claims"
         }
-      ]
+      ],
+      "quick_answer": "Ask what the study actually measured. Accuracy, magnification, early healing, and survival are different endpoints; none alone proves that a product or adjunct guarantees better long-term healing."
     },
     {
       "id": "SURG-009",
@@ -5590,7 +5608,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Disease control and a stable cervical/coronal seal"
         }
-      ]
+      ],
+      "quick_answer": "Prevent discoloration before regenerative treatment: avoid or limit minocycline, keep medicaments below the CEJ, protect dentin when needed, seal well, and discuss esthetic risk before treatment."
     },
     {
       "id": "REG-005",
@@ -5650,7 +5669,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Negative cold/EPT response"
         }
-      ]
+      ],
+      "quick_answer": "When regenerative endodontics does not respond, reassess before choosing the next procedure. Check diagnosis, restorability, seal, fracture or resorption, root development, canal access, and whether retreatment, apexification, surgery, extraction, or monitoring fits best."
     },
     {
       "id": "REG-006",

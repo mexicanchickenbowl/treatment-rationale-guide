@@ -521,6 +521,39 @@
       margin: 0;
     }
 
+    .detail-disclosure {
+      border-top: 1px solid var(--line);
+      margin-top: 14px;
+    }
+
+    .detail-disclosure summary {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--teal);
+      cursor: pointer;
+      font-weight: 700;
+      padding: 12px 0;
+    }
+
+    .detail-disclosure summary span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .detail-disclosure-body {
+      padding: 0 0 14px;
+    }
+
+    .detail-disclosure-body p {
+      color: #344149;
+      margin: 0;
+    }
+
     ul {
       margin: 0;
       padding-left: 20px;
@@ -810,7 +843,7 @@
     </main>
   </div>
 
-  <script src="data/app-data.js?v=2026-07-01-b1"></script>
+  <script src="data/app-data.js?v=2026-07-01-b2"></script>
   <script>
     const data = window.ENDO_GUIDE_DATA || { rationales: [], sources: [] };
     const rationales = asArray(data.rationales);
@@ -1056,6 +1089,7 @@
       }).join("");
       const bottomWords = String(entry.bottom_line || "").trim().split(/\s+/).filter(Boolean).length;
       const complexityChip = bottomWords > 80 ? `<span class="complexity-chip">Long answer</span>` : "";
+      const sourceCount = asArray(entry.source_ids).length;
 
       els.detail.innerHTML = `
         <div class="detail-header">
@@ -1082,14 +1116,16 @@
           <p>${escapeHtml(entry.board_frame)}</p>
         </div>
         ${listBlock("Numbers To Know", entry.numbers_to_know)}
-        <div class="block">
-          <h3>Evidence Notes</h3>
-          <p>${escapeHtml(entry.evidence_notes)}</p>
-        </div>
-        <div class="block">
-          <h3>Sources</h3>
-          <div class="source-list">${sourceHtml}</div>
-        </div>
+        <details class="detail-disclosure">
+          <summary>Evidence notes <span>Supporting detail</span></summary>
+          <div class="detail-disclosure-body">
+            <p>${escapeHtml(entry.evidence_notes)}</p>
+          </div>
+        </details>
+        <details class="detail-disclosure">
+          <summary>Sources <span>${sourceCount} source${sourceCount === 1 ? "" : "s"}</span></summary>
+          <div class="detail-disclosure-body source-list">${sourceHtml}</div>
+        </details>
       `;
     }
 
