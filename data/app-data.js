@@ -722,7 +722,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "The trial tempers universal healing claims but does not eliminate selected adjunctive activation"
         }
-      ]
+      ],
+      "quick_answer": "Clinical healing trials matter more than lab model endpoints. One trial tempers universal ultrasonic activation claims, but it does not erase activation as an adjunct or validate every other device."
     },
     {
       "id": "IRR-012",
@@ -842,7 +843,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Necrotic tooth with persistent canal exudate that cannot be dried predictably today"
         }
-      ]
+      ],
+      "quick_answer": "Use calcium hydroxide when a multi-visit case needs interim disinfection or containment. Do not make it automatic when adequate single-visit treatment can be completed safely."
     },
     {
       "id": "MED-002",
@@ -1881,7 +1883,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Reassess for vertical root fracture or crack progression before routine retreatment"
         }
-      ]
+      ],
+      "quick_answer": "Recall is part of cracked-tooth treatment. Recheck symptoms, pulp status, probing, mobility, occlusion, restoration seal, and bone changes; use CBCT only when a new management-changing question appears."
     },
     {
       "id": "CRACK-006",
@@ -2379,7 +2382,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Avulsion with associated alveolar bone fracture"
         }
-      ]
+      ],
+      "quick_answer": "Most replanted or luxated permanent teeth need a passive flexible splint for the injury-specific period, often about two weeks for avulsion. Follow-up is mandatory because necrosis and resorption can appear later."
     },
     {
       "id": "TRAUMA-003",
@@ -2498,7 +2502,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Observation is often appropriate unless there is aspiration risk, occlusal interference, severe pain, infection, or fracture concerns"
         }
-      ]
+      ],
+      "quick_answer": "Primary-tooth trauma protects the child and permanent successor. Observe many injuries, do not replant avulsed primary teeth, and intervene for aspiration risk, occlusal interference, pain, infection, or alveolar fracture concerns."
     },
     {
       "id": "TRAUMA-005",
@@ -2737,7 +2742,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Supplement with local techniques such as buccal infiltration, PDL, or intraosseous anesthesia; use intrapulpal after exposure if needed"
         }
-      ]
+      ],
+      "quick_answer": "After failed IANB in a hot mandibular molar, escalate locally rather than repeating the same block endlessly. Consider infiltration, PDL, intraosseous, and intrapulpal only after exposure with pressure."
     },
     {
       "id": "ANES-003",
@@ -3045,7 +3051,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Tinnitus, confusion, tremor, and falling blood pressure"
         }
-      ]
+      ],
+      "quick_answer": "Suspect LAST when neurologic or cardiovascular symptoms follow local anesthetic exposure. Stop injecting, call EMS, support airway and circulation, control seizures, start CPR if needed, and use lipid rescue when indicated."
     },
     {
       "id": "ANES-008",
@@ -3168,7 +3175,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Multiple enteral sedative drugs during one appointment"
         }
-      ]
+      ],
+      "quick_answer": "Sedation can reduce anxiety, but it does not replace profound local anesthesia. If anesthesia cannot be achieved within safe drug and rescue limits, stage care, refer, or use a monitored setting."
     },
     {
       "id": "SED-002",
@@ -3229,7 +3237,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Avoid elective first-trimester nitrous framing and defer, stage, or consult as appropriate"
         }
-      ]
+      ],
+      "quick_answer": "Pregnancy should not delay needed endodontic source control or local anesthesia. Use nitrous or sedation only with a higher threshold, obstetric-risk review, prenatal consultation when needed, and rescue-ready monitoring."
     },
     {
       "id": "SED-003",
@@ -3974,7 +3983,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Open apex greater than 1.5 mm with no apical stop"
         }
-      ]
+      ],
+      "quick_answer": "Open apices lack a normal constriction, so do not use the mature-tooth short-of-apex rule blindly. Prioritize reproducible length estimation, containment, gentle irrigation, apical control, and the correct open-apex pathway."
     },
     {
       "id": "WL-004",
@@ -4092,7 +4102,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Stop, confirm possible perforation/resorption with imaging and clinical assessment, and repair or refer"
         }
-      ]
+      ],
+      "quick_answer": "An abrupt apex locator reading, bleeding, pain, or odd radiograph may mean resorption or perforation, not working length. Stop, identify the defect, image if it changes care, and repair or refer."
     },
     {
       "id": "OBT-001",
@@ -4214,7 +4225,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Technique choice depends on anatomy, cone fit, sealer system, apical control, and operator skill"
         }
-      ]
+      ],
+      "quick_answer": "Warm vertical and single-cone bioceramic obturation are technique choices, not shortcuts. Either can fail if diagnosis, disinfection, shaping, apical control, cone fit, or case selection is poor."
     },
     {
       "id": "OBT-003",
@@ -4335,7 +4347,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Retreatment usually depends on mechanical access/removal with adjuncts, and evidence is mostly laboratory-based"
         }
-      ]
+      ],
+      "quick_answer": "Bioceramic sealer fills can be retreated, but removal may be harder and less predictable. Plan cone fit, apical control, sealer amount, post needs, and referral before choosing the technique."
     },
     {
       "id": "OBT-005",
@@ -4456,7 +4469,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Heat can accelerate setting and reduce flow depending on the product"
         }
-      ]
+      ],
+      "quick_answer": "Heat compatibility is product-specific. Do not use warm obturation with a calcium silicate sealer unless that sealer and technique are intended for the temperature and supported by instructions or evidence."
     },
     {
       "id": "REST-001",
@@ -4572,7 +4586,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "They retain a core when coronal retention is inadequate"
         }
-      ]
+      ],
+      "quick_answer": "Use a post only when the core needs retention. Posts do not strengthen roots; avoid them when chamber retention and remaining tooth structure can support the final restoration without entering the canal."
     },
     {
       "id": "REST-003",
@@ -4687,7 +4702,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Vertical root fracture with isolated deep probing and poor restorability"
         }
-      ]
+      ],
+      "quick_answer": "Persistent disease after RCT is not automatic extraction or retreatment. Confirm the cause, judge restorability and periodontal support, then choose retreatment, surgery, extraction, monitoring, or referral based on prognosis."
     },
     {
       "id": "RETX-002",
@@ -5052,7 +5068,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Restorable posterior tooth with a difficult-to-localize root apex near vital anatomy where CBCT planning will change the surgical path"
         }
-      ]
+      ],
+      "quick_answer": "Use guided microsurgery when digital planning can make a difficult root-end target safer or more conservative. It remains an adjunct; diagnosis, restorability, inspection, retropreparation, filling, and closure still decide outcome."
     },
     {
       "id": "SURG-005",
@@ -5375,7 +5392,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "High magnification supports visualization and precise root-end work within modern microsurgery"
         }
-      ]
+      ],
+      "quick_answer": "Use modern microsurgery outcome data to support the whole source-control bundle, not one gadget. A guide, navigation system, graft, membrane, or PRF protocol needs its own clinical evidence before superiority claims."
     },
     {
       "id": "REG-001",
@@ -5432,7 +5450,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Pulp space is needed for a post/core final restoration"
         }
-      ]
+      ],
+      "quick_answer": "Regenerative endodontics mainly fits restorable immature permanent teeth with necrotic pulp and open apices when continued root development would help. Apexification remains useful when regeneration is not feasible or follow-up is unreliable."
     },
     {
       "id": "REG-002",
@@ -5729,7 +5748,8 @@ window.ENDO_GUIDE_DATA = {
           ],
           "answer": "Interdisciplinary plan with stable healing, light or modified forces, and serial radiographs"
         }
-      ]
+      ],
+      "quick_answer": "After regenerative endodontics, orthodontic movement should wait until healing is stable when possible, often about two years in trauma cases. If movement must happen sooner, use light forces and close monitoring."
     },
     {
       "id": "VPT-001",
