@@ -1,0 +1,14 @@
+{
+  "name": "Bodyweight Rebuild",
+  "short_name": "Rebuild",
+  "description": "6-week bodyweight + running program: 12 → 50 clean push-ups.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#2a78d6",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

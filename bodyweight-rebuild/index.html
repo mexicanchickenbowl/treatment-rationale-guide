@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Bodyweight Rebuild</title>
+  <meta name="description" content="6-week bodyweight + running program: 12 → 50 clean push-ups." />
+  <meta name="theme-color" content="#f9f9f7" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Rebuild" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <link rel="stylesheet" href="./css/app.css" />
+  <script>
+    // Apply saved theme before first paint to avoid a flash
+    try {
+      var t = JSON.parse(localStorage.getItem('bodyweight-rebuild-v1') || '{}')?.settings?.theme || 'auto';
+      var dark = t === 'dark' || (t === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <main id="app" class="app" aria-live="polite"></main>
+  <nav id="tabbar" class="tabbar" aria-label="Main navigation"></nav>
+  <noscript>Bodyweight Rebuild needs JavaScript to track your workouts.</noscript>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

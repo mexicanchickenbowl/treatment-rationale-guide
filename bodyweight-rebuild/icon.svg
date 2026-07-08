@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#2a78d6"/>
+  <!-- push-up figure -->
+  <g stroke="#ffffff" stroke-width="7" stroke-linecap="round" fill="none">
+    <path d="M22 88h84"/>
+    <circle cx="38" cy="52" r="9" fill="#ffffff" stroke="none"/>
+    <path d="M47 58l30 8 24 4"/>
+    <path d="M60 62l-6 24M78 66l-4 20"/>
+  </g>
+  <!-- upward progress tick -->
+  <path d="M30 36l16-12 12 6 18-14" stroke="#a8d0ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M76 12h12v12" stroke="#a8d0ff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
